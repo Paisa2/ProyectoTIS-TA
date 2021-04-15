@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Unidad extends Model
+class UsuarioTieneRol extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'unidades';
+    protected $table = 'usuario_tiene_roles';
 }

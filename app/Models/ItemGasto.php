@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SolicitudItem extends Model
+class ItemGasto extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'solicitud_item';
+    protected $table = 'item_gasto';
 }
