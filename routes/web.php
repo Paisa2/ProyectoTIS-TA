@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('Bienvenido','LoginController@index');
+Route::get('login','LoginController@mostrarFormulario');
+Route::post('autentificacion','LoginController@autentificar');
