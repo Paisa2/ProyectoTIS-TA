@@ -35,9 +35,7 @@ class LoginController extends Controller
      */
     public function autentificar(Request $request)
     {
-        $mensages=[
-            'email.reqquired'=>'El campo:atribute es requerido.',
-        ];
-        $this->validate($request, ['email'=>'required', 'password'=>'required',], $mensages);
+    $this->validate($request, ['email'=>['required'],
+     'password'=>['required']]);
     }
 }

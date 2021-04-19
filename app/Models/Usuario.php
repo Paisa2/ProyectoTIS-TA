@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuarios extends Authenticatable
+class Usuario extends Authenticatable
 {
     use Notifiable;
 
@@ -26,4 +26,8 @@ class Usuarios extends Authenticatable
     protected $hidden = [
         'contrasenia', 'remember_token',
     ];
+    public function getAuthPassword()
+    {
+        return $this->contrasenia;
+    }
 }
