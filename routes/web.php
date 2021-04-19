@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\phpLoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
