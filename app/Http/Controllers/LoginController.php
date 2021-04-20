@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -37,5 +38,14 @@ class LoginController extends Controller
     {
     $this->validate($request, ['email'=>['required'],
      'password'=>['required']]);
+     $credentials = request()->only('email','password');
+     Auth::logout();
+     
+      if(Auth::attempt($credentials)){
+         $usuario = Auth::user($credentials);
+         session(['nombres' => $usuario->nombres]);
+         return redirect('/Bienvenido');
+       }
+       return redirect('/login');
     }
 }

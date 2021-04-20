@@ -8,5 +8,9 @@
 </head>
 <body>
     <h1>BIENVENIDO A SISTEMA DE COTIZACIONES</h1>
+    @if(session()->has('nombres'))
+<div>{{session('nombres')}}</div>
+@endif
+
 </body>
 </html>

@@ -11,7 +11,7 @@
     
     <div class="navbar">
     
-       <h1>Iniciar Seción</h1>
+       <h1>Iniciar Sesión</h1>
            <form  action="/autentificacion" method="POST">
            {{csrf_field()}}
                 <label>
