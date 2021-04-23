@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\ItemGasto;
 
 class ItemgastoController extends Controller
 {
@@ -13,7 +16,8 @@ class ItemgastoController extends Controller
      */
     public function index()
     {
-        return view("ITEM_GASTOS.visualizarItemgasto");
+        $itemsgastos = ItemGasto::all();
+        return view("ITEM_GASTOS.visualizarItemgasto", compact('itemsgastos'));
     }
 
     /**
@@ -34,7 +38,8 @@ class ItemgastoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //aqui iran codigo de validaciones y para guardar en la BD
+        return redirect()->route("itemsgastos.index");
     }
 
     /**

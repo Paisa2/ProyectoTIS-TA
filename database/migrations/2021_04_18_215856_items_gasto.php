@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemsGastoTable extends Migration
+class ItemsGasto extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateItemsGastoTable extends Migration
             $table->increments('id');
             $table->string('tipo_item');
             $table->string('nombre_item', 255);
-            $table->integer('item_id')->unsigned();
+            $table->integer('item_id')->unsigned()->nullable();
             $table->foreign('item_id')->references('id')->on('items_gasto');
             $table->timestamps();
         });
