@@ -21,18 +21,20 @@
        <table class="table">
   <thead>
     <tr>
-      <th scope="col">Nro. ID</th>
-      <th scope="col">Tipo</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Fecha de Registro</th>
+      <th scope="col">NRO. ID</th>
+      <th scope="col">TIPO</th>
+      <th scope="col">NOMBRE</th>
+      <th scope="col">PERTENECE A</th>
+      <th scope="col">DETALLE DE REGISTRO</th>
     </tr>
   </thead>
   <tbody>
   @foreach($itemsgastos as $itemgasto)
     <tr>
-      <th scope="row">{{$itemgasto->id}}</th>
+      <th scope="row">{{ $loop->index +1}}</th>
       <th>{{$itemgasto->tipo_item}}</th>
       <th>{{$itemgasto->nombre_item}}</th>
+      <th>{{$itemgasto->pertenece_a}}</th>
       <th>{{$itemgasto->created_at}}</th>
     </tr>
   @endforeach

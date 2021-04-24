@@ -16,8 +16,11 @@ class ItemgastoController extends Controller
      */
     public function index()
     {
-        $itemsgastos = ItemGasto::all();
+        //$itemsgastos = ItemGasto::all();
+        $itemsgastos=ItemGasto::leftjoin('items_gasto as genericos','genericos.id','=','items_gasto.item_id')->select('items_gasto.*', 'genericos.nombre_item as pertenece_a')->get();
         return view("ITEM_GASTOS.visualizarItemgasto", compact('itemsgastos'));
+        //$itemsgastos=ItemGasto::leftjoin('items_gasto','items_gasto.id','=','items_gasto.itemd_id')->get();
+        //return view("ITEM_GASTOS.visualizarItemgasto", compact('itemsgastos'));
     }
 
     /**
@@ -27,7 +30,9 @@ class ItemgastoController extends Controller
      */
     public function create()
     {
-        return view("ITEM_GASTOS.crearItemgasto");
+        $items=ItemGasto::where('tipo_item','Generico')->get();
+
+        return view("ITEM_GASTOS.crearItemgasto",compact('items'));
     }
 
     /**
@@ -39,7 +44,40 @@ class ItemgastoController extends Controller
     public function store(Request $request)
     {
         //aqui iran codigo de validaciones y para guardar en la BD
+        //return $request->all();
+
+        //$request->validate([
+          //  'nombre_item' => 'required'
+        //]);
+
+        //$this->validate($request, [
+        //    'nombre_item' => 'required|unique:posts|max:255',
+        //]);
+        $mensajes = [
+            'tipo_item.required' => 'Debe de seleccionar el tipo de item',
+            'nombre_item.required' => 'Debe de llenar el campo nombre',
+            'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
+            'max'   => 'El :attribute no puede tener más de :max caracteres.',
+            'regex' => 'El campo :attribute solo puede tener letras',
+            'numeric'=> 'Debe de seleccionar el item generico al que pertenece',
+            //'permisos.required' => 'Debe seleccionar por lo menos un permiso.',
+        ];
+        $this->validate($request, [
+            
+            'nombre_item'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
+            'tipo_item'=>'required',
+            'item_id'=>'numeric',
+            ], $mensajes);
+
+        $itemsdegastos=new ItemGasto;
+        $itemsdegastos->tipo_item=$request->tipo_item;
+        $itemsdegastos->nombre_item=$request->nombre_item;
+        if($request->exists('item_id')){
+            $itemsdegastos->item_id=$request->item_id;
+        }
+        $itemsdegastos->save();
         return redirect()->route("itemsgastos.index");
+        //return redirect('ITEM_GASTOS.visualizarItemgasto');
     }
 
     /**

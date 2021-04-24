@@ -7,3 +7,5 @@ Route::get('/', function () {
 });
 
 Route::resource('itemsgastos','ItemgastoController');
+
+Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');
