@@ -40,9 +40,9 @@ class RolesController extends Controller
             foreach ($permisos as $permiso) {
                 if ($permiso->tipo_permiso == 2) {
                     $modulo->visualizar_id = $permiso->id;
-                }else if ($permiso->nombre_permiso == 3) {
+                }else if ($permiso->tipo_permiso == 3) {
                     $modulo->editar_id = $permiso->id;
-                }else if ($permiso->nombre_permiso == 1) {
+                }else if ($permiso->tipo_permiso == 1) {
                     $modulo->crear_id = $permiso->id;
                 }
             }

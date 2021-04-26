@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\SolicitarItemController;
 use App\Http\Controllers\RolesController;
 
 /*
@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::resource("roles", "RolesController");
+
+Route::resource("solicitudes-de-items", "SolicitarItemController");
