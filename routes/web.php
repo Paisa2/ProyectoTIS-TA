@@ -1,10 +1,9 @@
 
 <?php
 use App\Http\Controllers\phpLoginController;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,17 +22,3 @@ Route::get('Bienvenido','LoginController@index');
 Route::get('login','LoginController@mostrarFormulario');
 Route::post('autentificacion','LoginController@autentificar');
 
-Route::post('login', function(Request $request){
-    $this->validate($request, ['email'=>['required'],
-     'password'=>['required']]);
-
-    $credentials = request()->only('email','password');
-    Auth::logout();
-    
-     if(Auth::attempt($credentials)){
-        $usuario = Auth::user($credentials);
-        session(['nombres' => $usuario->nombres]);
-        return redirect('/Bienvenido');
-      }
-      return redirect('/login');
-    });
