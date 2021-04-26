@@ -12,4 +12,5 @@ class Unidad extends Model
      * @var string
      */
     protected $table = 'unidades';
+    protected $fillable = ['tipo_unidad','nombre_unidad','unidad_id'];
 }

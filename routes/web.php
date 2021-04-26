@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/unidades', 'UnidadesController@lista');
+
+Route::get('/unidades/registro', 'RegistroController@index');
+
+Route::post('/unidades/registro', 'RegistroController@store')->name('registro.store');
