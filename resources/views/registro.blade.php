@@ -22,12 +22,17 @@
             <option value="unidad de administrativa">Unidad Administrativa</option>
             <option value="facultad">Facultad</option>
         </select>
+        @foreach($errors->get('tipo_unidad') as $message)
+            <div class="alert alert-danger" role="alert">{{$message}}</div>
+        @endforeach
     </div>
 
     <div class="form-group">
         <label for="nombre_unidad">Nombre</label>
         <input type="text" name="nombre_unidad" class="form-control" autocomplete="off" value="{{ old('nombre_unidad') }}">
-        {{$errors->first('nombre_unidad')}}
+        @if($errors->has('nombre_unidad'))
+            <div class="alert alert-danger" role="alert">{{$errors->first('nombre_unidad')}}</div>
+        @endif
     </div>
 
     <div class="form-group">

@@ -25,7 +25,8 @@ class MessaggeRequest extends FormRequest
     {
         return [
             'tipo_unidad' => 'required',
-            'nombre_unidad' => 'required|min:2|max:255|regex:/^[\pL\s\-]+$/u'
+            'nombre_unidad' => ['required','min:2','max:255', 'regex:/^[\pL\s\-]+$/u'],
+            'unidad_id' => 'required'
             //
         ];
     }

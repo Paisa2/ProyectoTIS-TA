@@ -11,6 +11,9 @@
 </head>
 <body>
     <h1>unidades registradas</h1>
+    <div class="d-flex justify-content-end">
+        <a href="/unidades/registro" class="btn btn-primary">+Nuevo</a>
+    </div>
     <table class="table">
         <thead>
             <tr>
