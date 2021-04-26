@@ -38,11 +38,11 @@ class RolesController extends Controller
         foreach ($modulos as $modulo) {
             $permisos = Permiso::where('tipo_contenido_id', $modulo->id)->get();
             foreach ($permisos as $permiso) {
-                if (str_contains($permiso->nombre_permiso, 'visualizar')) {
+                if ($permiso->tipo_permiso == 2) {
                     $modulo->visualizar_id = $permiso->id;
-                }else if (str_contains($permiso->nombre_permiso, 'editar')) {
+                }else if ($permiso->nombre_permiso == 3) {
                     $modulo->editar_id = $permiso->id;
-                }else if (str_contains($permiso->nombre_permiso, 'crear')) {
+                }else if ($permiso->nombre_permiso == 1) {
                     $modulo->crear_id = $permiso->id;
                 }
             }
@@ -59,20 +59,19 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         $mensages = [
-            'nombre.required' => 'El campo :attribute es requerido.',
+            'nombre_rol.required' => 'El campo nombre es requerido.',
             'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
             'max'   => 'El :attribute no puede tener más de :max caracteres.',
             'regex' => 'El campo :attribute solo puede tener letras',
             'permisos.required' => 'Debe seleccionar por lo menos un permiso.',
         ];
         $this->validate($request, [
-            'nombre'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
+            'nombre_rol'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
             'permisos'=>'required',
             ], $mensages);
         try {
             DB::beginTransaction();
-            $rol = new Rol;
-            $rol->nombre_rol = $request->nombre;
+            $rol = new Rol($request->all());
             $rol->save();
             $permisos = $request->permisos;
             for ($i=0; $i < count($permisos); $i++) { 
@@ -86,7 +85,7 @@ class RolesController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
         }
-        return redirect('roles.visualizarRoles');
+        return redirect()->route("roles.index");
     }
 
     /**

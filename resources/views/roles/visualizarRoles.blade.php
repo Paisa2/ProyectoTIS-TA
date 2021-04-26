@@ -21,13 +21,13 @@
     <div>numero de permisos</div>
     <div>Fecha creacion</div>
   </div>
+  @foreach($roles as $rol)
   <div style="display:flex;justify-content:space-between;width:auto;">
-    @foreach($roles as $rol)
     <div>{{$rol->nombre_rol}}</div>
     <div>{{$rol->numero_permisos}}</div>
     <div>{{date('d-m-Y', strtotime($rol->created_at))}}</div>
-    @endforeach
   </div>
+  @endforeach
 </div>
 
 <!-- fin codigo importante -->

@@ -17,8 +17,8 @@
 
   <div>
     <label for="nombre">Nombre</label>
-    <input type="text" name="nombre" id="nombre" value="{{old('nombre')}}">
-    @foreach($errors->get('nombre') as $message)
+    <input type="text" name="nombre_rol" id="nombre" value="{{old('nombre_rol')}}">
+    @foreach($errors->get('nombre_rol') as $message)
     <div style="color:red;">{{$message}}</div>
     @endforeach
   </div>
