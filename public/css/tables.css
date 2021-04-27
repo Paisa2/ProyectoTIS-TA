@@ -1,0 +1,10 @@
+.container-table {
+  background-color: #24252F;
+  border-radius: 10px;
+}
+.table *{
+  color: #fff;
+}
+.table > thead > tr {
+  border-color: #fff;
+}
