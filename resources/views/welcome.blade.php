@@ -97,6 +97,10 @@
 </html> -->
 @extends('base')
 
+@section('head')
+<!-- aqui van los stilos css -->
+@endsection
+
 
 @section('main')
 
@@ -111,3 +115,6 @@
 
 @endsection
 
+@section('scripts')
+<!-- aqui van los scripts, javascript -->
+@endsection
