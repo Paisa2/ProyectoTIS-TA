@@ -1,10 +1,23 @@
 .container-table {
   background-color: #24252F;
   border-radius: 10px;
+  padding: 24px;
+}
+.container-table * {
+  color: #fff;
 }
 .table *{
   color: #fff;
 }
 .table > thead > tr {
   border-color: #fff;
+}
+.btn {
+  color: #fff;
+  background-color: #181924;
+  border: 1px solid #fff;
+}
+.btn:hover {
+  background-color: #46546C;
+  color: #fff;
 }
