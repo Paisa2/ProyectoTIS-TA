@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-</head>
-<body>
+@extends('base')
+
+@section('head')
+    <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+
+@endsection
+
+
+@section('main')
 
 <!-- codigo importante -->
 
 <div class="container my-4">
 
-<h2>Crear Usuario</h2>
-<br>
     <form action="/usuario" method="post">
         {{csrf_field()}}
+
+        <h2>Crear Usuario</h2>
+        <br>
 
         <div>
             <label for="nombre" class="form-label">Nombres:</label>
@@ -37,7 +37,7 @@
 
         <div>
             <label for="">Rol:</label>
-            <select class="form-control" name="rol_id" id="">
+            <select class="form-select" name="rol_id" id="">
             @foreach($roles as $rol)
             <option value="{{$rol->id}}">{{$rol->nombre_rol}}</option>
             @endforeach
@@ -57,7 +57,7 @@
 
         <div>
             <label for="">Pertenece a:</label>
-            <select class="form-control" name="unidad_id" id="">
+            <select class="form-select" name="unidad_id" id="">
            
             @foreach($unidades as $unidad)
             <option value="{{$unidad->id}}">{{$unidad->nombre_unidad}}</option>
@@ -127,6 +127,4 @@
 
 
 <!-- fin codigo importante -->
-
-</body>
-</html>
+@endsection
