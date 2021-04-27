@@ -48,6 +48,9 @@
                 <option value="{{ $facultad->id }}">{{ $facultad->nombre_unidad }}</option>
             @endforeach
         </select>
+        @foreach($errors->get('unidad_id') as $message)
+        <div class="alert alert-danger" role="alert">{{$message}}</div>
+    @endforeach
     </div>
 
 
