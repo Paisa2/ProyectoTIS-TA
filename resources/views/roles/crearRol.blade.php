@@ -8,10 +8,10 @@
 <!-- codigo importante -->
 
 <div style="width:90%; margin:24px auto;">
-  <h1>Registro de rol</h1>
-  <br>
   <form action="/roles" method="post">
     {{csrf_field()}}
+    <h1>Registro de rol</h1>
+    <br>
 
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre:</label>
@@ -50,7 +50,10 @@
       @endforeach
     </div>
 
-    <button type="submit" class="btn btn-primary">REGISTRAR</button>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary">REGISTRAR</button>
+    </div>
+    
   </form>
 </div>
 

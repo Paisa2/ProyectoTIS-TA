@@ -11,9 +11,8 @@
 <div style="width:90%; margin:24px auto;" class="container-table">
 
   <h1>Roles Registrados</h1>
-  <br>
   <div style="display:flex;justify-content:flex-end;">
-    <a href="{{url('roles/create')}}" class="btn btn-primary">+Nuevo</a>
+    <a href="{{ route('roles.create') }}" class="btn btn-primary">+Nuevo</a>
   </div>
   <table class="table">
     <thead>
