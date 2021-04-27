@@ -69,3 +69,9 @@
 
 
 </section>
+
+
+
+<span class="icon is-small is-right"> 
+             <i class="fas fa-envelope"></i>
+             </span>
