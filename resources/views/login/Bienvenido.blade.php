@@ -1,3 +1,4 @@
+@extends('base')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +8,14 @@
     <title>Sistema de cotizaciones</title>
 </head>
 <body>
-    <h1>BIENVENIDO A SISTEMA DE COTIZACIONES</h1>
+ @section('main')
+    
+ <h1>BIENVENIDO A SISTEMA DE COTIZACIONES</h1>
     @if(session()->has('nombres'))
 <div>{{session('nombres')}}</div>
 @endif
+
+@endsection
 
 </body>
 </html>
