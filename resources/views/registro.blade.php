@@ -10,6 +10,7 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="container my-4">
     <h1>Registrar Unidades</h1>
 
     <form action="{{route('registro.store')}}" method="POST">
@@ -57,6 +58,7 @@
 
     <button type="submit" class="btn btn-primary">Registrar</button>
     </form>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
 <script>

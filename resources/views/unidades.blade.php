@@ -10,6 +10,7 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="container my-4">
     <h1>unidades registradas</h1>
     <div class="d-flex justify-content-end">
         <a href="/unidades/registro" class="btn btn-primary">+Nuevo</a>
@@ -34,5 +35,6 @@
         @endforeach
         </tbody>
     </table>
+    </div>
 </body>
 </html>
