@@ -3,6 +3,10 @@ form {
   border-radius: 10px;
   padding:24px;
 }
+.display-4{
+  text-align: center;
+}
+
 form *{
   color:#fff;
 }
@@ -53,6 +57,7 @@ option, select {
   color: #fff;
   background-color: #181924;
   border: 1px solid #fff;
+  align-items: center;
 }
 .btn:hover {
   background-color: #46546C;
@@ -62,3 +67,8 @@ option, select {
   color: #fff;
   background-color: #960816;
 }
+button{
+  display: flex;
+  justify-content: center;
+}
+
