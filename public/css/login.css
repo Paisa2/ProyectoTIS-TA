@@ -5,16 +5,18 @@
     font-family: sans-serif;
     box-sizing: border-box;
 }
-
+body, html{
+    height: 100%;
+}
 
 body{
     
   background-image: url(../imagen/fondo\ oficial.jpg);
-  height: 100%;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: 100% ;
-  position: relative;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+  
   
 }
 
@@ -24,15 +26,17 @@ body{
     justify-content: center;
     min-height: 100vh;
     position: relative;
+    height: 30%;
    
 }
 .form{
-    width: 400px;
+    width: 320px;
     background-color: #eff3f7;
     opacity: .90;
     padding: 0 20px;
     box-shadow: 0px 0px 3px #848484;
-    height: 320px;
+    
+    
     
 }
 .form h2{
@@ -47,37 +51,60 @@ body{
     
 }
 
-.mb-3 input{
-    height: 50px;
-    font-size: 18px;
-    padding-left: 50px ;
-    
-      
-}
+
+
+
 
 .iconCheck{
     position: relative;
 }
 .fas{
     position: absolute;
-    padding: 30px;
+    padding: 20px;
     left:-15px;
     font-size: 22px;
-    color: black;
+    color: rgb(245, 240, 240);
+    
 }
 
-.from .submit{
-  height: 100px;
+
+.border input[type="email"],
+.border input[type="password"]{
+  border: 0;
+  margin: -5px auto;
+  font-size: 15px;
+  padding-left: 40px ;
 }
+
+
+.border button[type="submit"]{ 
+    height: 40px;
+    margin:20px auto;
+    text-align: center;
+}
+
+.alert{
+    padding: 0.5rem 1rem;
+}
+
+
+
+
+
+
+
+
+
+
 
 @media(max-width:768px){
 
-    .from{
+    .form{
         width: 80%;
     }
 }
 @media(max-width:480px){
-  .from{
+  .form{
       width: 70%;
 
   }
