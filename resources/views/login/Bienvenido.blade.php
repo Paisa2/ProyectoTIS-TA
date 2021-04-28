@@ -12,15 +12,23 @@
     <title>Sistema de cotizaciones</title>
 </head>
 <body>
+@section('usuario')
+@if(session()->has('nombres'))
+{{session('nombres')}}
+@endif
+@endsection
+
  @section('main')
     <div class="navar">
  <h1 >BIENVENIDO</h1>
-  <p>hola</p>
+ 
+  <p class="parrafo">El sistema  que te permite tener al detalle<br>
+     las cotizaciones para la compra o servicios,<br>
+      la generación de  comparan<br>
+     los productos o servicio cotizados </p>
  
    </div>
- @if(session()->has('nombres'))
-<div>{{session('nombres')}}</div>
-@endif
+ 
 
 @endsection
 

@@ -54,6 +54,9 @@
                    <div class="submit">
                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                    </div>
+                                     @foreach($errors->get('password2') as $message)
+                                        <div class="alert alert-danger" role="alert">{{$message}}</div>
+                                       @endforeach
         
                </form>
 

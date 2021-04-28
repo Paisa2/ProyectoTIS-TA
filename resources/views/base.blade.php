@@ -21,7 +21,7 @@
         </ul>
 
         <div class="d-flex text-white">
-          Admin
+          @yield('usuario')
         </div>
 
       </div>
