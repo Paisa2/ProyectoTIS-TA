@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/unidades', 'UnidadesController@lista');
+Route::get('/unidades', 'UnidadesController@lista')->name('unidades.lista');
 
 Route::get('/unidades/registro', 'RegistroController@index');
 
