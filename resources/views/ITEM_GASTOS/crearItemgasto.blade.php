@@ -49,7 +49,9 @@
        <div class="alert alert-danger">{{$message}}</div>
       @endforeach
   </div>
+  <div style=display:flex;justify-content:center;>
   <button type="submit" class="btn btn-primary">REGISTRAR</button>
+  </div>
 </form>
     </div>
 @endsection

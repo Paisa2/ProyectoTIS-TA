@@ -24,7 +24,7 @@
   <tbody>
   @foreach($itemsgastos as $itemgasto)
     <tr>
-      <th scope="row">{{ $loop->index +1}}</th>
+      <td scope="row">{{ $loop->index +1}}</td>
       <td>{{$itemgasto->tipo_item}}</td>
       <td>{{$itemgasto->nombre_item}}</td>
       <td>{{$itemgasto->pertenece_a}}</td>

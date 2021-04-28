@@ -12,8 +12,10 @@
 body {
   /* background-color: #181924; */
   background-image: url(../imagenes/citysoft-2.jpg);
+  background-position: center center;
   height: 100%;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-attachment: fixed;
+  background-size: cover;
   position: relative;
 }
