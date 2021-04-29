@@ -53,6 +53,7 @@ class UsuariosController extends Controller
             'min'   => 'El campo :attribute debe tener por lo menos :min caracteres',
             'max'   => 'El campo :attribute no puede tener más de :max caracteres',
             'regex' => 'El campo :attribute solo puede tener letras',
+            'email' => 'Debe ingresar un Email que sea valido',
             'contrasenia.min'   => 'El campo contraseña debe tener por lo menos :min caracteres',
             'contrasenia.max'   => 'El campo contraseña no puede tener más de :max caracteres',
             'contrasenia2.min'   => 'El campo confirmar contraseña debe tener por lo menos :min caracteres',

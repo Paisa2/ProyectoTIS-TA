@@ -62,12 +62,14 @@
                     @endforeach
                 </div>
             </div>
-            <div class="mb-3 col-6">
-                <label for="emails" class="form-label">Email:</label>
-                <input type="text" class="form-control" name="email" id="emails" value="{{old('email')}}">
-                @foreach($errors->get('email') as $message) 
-                <div class="alert alert-danger" role="alert">{{$message}}</div>
-                @endforeach
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <label for="emails" class="form-label">Email:</label>
+                    <input type="text" class="form-control" name="email" id="emails" value="{{old('email')}}">
+                    @foreach($errors->get('email') as $message) 
+                    <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
+                </div>
             </div>
             
             <div class="row">   
