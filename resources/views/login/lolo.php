@@ -90,3 +90,18 @@
     height: 40px;
     margin:40px auto;
 }
+
+
+
+<?php 
+            //Si existe la sesión "cliente"...
+            if(isset($_SESSION['cliente'])){
+                echo "<p class='negrita'>Bienvenido ".$cliente."&nbsp;&nbsp;";
+                echo "<a href='reservar.php?salir=1'>Salir</a></p>";
+                //Si existe y hemos pulsado el link "Salir"...
+                if(isset($_REQUEST["salir"])){
+                    //Borramos o destruimos la sesión "cliente".
+                    unset($_SESSION["cliente"]);
+                }
+            }
+            ?>

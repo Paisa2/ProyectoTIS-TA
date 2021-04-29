@@ -20,7 +20,10 @@
 </head>
 <body>
     
-   
+<div id="sesion_cliente">
+           
+       
+
     <div class="abs-center">     
     
     
@@ -33,7 +36,7 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <label for="exampleInputEmail1" class="form-label"></label>
-                               <input  type="email" name="email" class="form-control" id=" email" placeholder= "Email" aria-describedby="emailHelp">
+                               <input  type="email" name="email" class="form-control" id=" email" placeholder= "Email" aria-describedby="emailHelp" value="{{old('email')}}" autocomplete="off"> 
                                      @foreach($errors->get('email') as $message)
                                       <div class="alert alert-danger" role="alert">{{$message}}</div>
                                      @endforeach
@@ -45,7 +48,7 @@
                                 </div>
      
                            <label for="exampleInputPassword1" class="form-label"></label>
-                           <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
+                           <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" value="">
                                       @foreach($errors->get('password') as $message)
                                         <div class="alert alert-danger" role="alert">{{$message}}</div>
                                        @endforeach
