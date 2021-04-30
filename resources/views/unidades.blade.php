@@ -7,7 +7,7 @@
 
 @section('main')
 <div style="width: 90%; margin:24px auto;" class="container-table">
-    <h1>unidades registradas</h1>
+    <h1>Unidades Registradas</h1>
     <div class="d-flex justify-content-end">
         <a href="{{route('registro.store')}}" class="btn btn-primary">+Nuevo</a>
     </div>
