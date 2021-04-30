@@ -76,7 +76,7 @@ class ItemgastoController extends Controller
             $itemsdegastos->item_id=$request->item_id;
         }
         $itemsdegastos->save();
-        return redirect()->route("itemsgastos.index");
+        return redirect()->route("itemsgastos.index")->with('confirm', 'El Item de Gasto a sido registrado correctamente');
         //return redirect('ITEM_GASTOS.visualizarItemgasto');
     }
 

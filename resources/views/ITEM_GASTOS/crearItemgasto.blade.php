@@ -30,7 +30,7 @@
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Nombre:</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="nombre_item" value="{{ old('nombre_item') }}">
+    <input type="text" class="form-control" id="exampleInputPassword1" name="nombre_item" value="{{ old('nombre_item') }}" autocomplete="off">
     <div class="br"> </div>
     @foreach($errors->get('nombre_item') as $message)
     <div class="alert alert-danger">{{$message}}</div>

@@ -5,6 +5,11 @@
 @endsection
 @section('main')
 <div style="width:90%; margin:24px auto;" class="container-table">
+@if(session()->has('confirm'))
+<div class="alert alert-success" role="alert">
+{{session()->get('confirm')}}
+</div>
+@endif
        <h1 class="display-4">
         Items de Gasto Registrados
        </h1>
