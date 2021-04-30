@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Models\TipoContenido;
 use App\Models\Permiso;
@@ -64,9 +65,10 @@ class RolesController extends Controller
             'max'   => 'El :attribute no puede tener más de :max caracteres.',
             'regex' => 'El campo :attribute solo puede tener letras',
             'permisos.required' => 'Debe seleccionar por lo menos un permiso.',
+            'unique' => 'El rol ya ha sido registrado',
         ];
         $this->validate($request, [
-            'nombre_rol'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
+            'nombre_rol'=>['required', 'min:4', 'max:255', 'regex:/^[\pL\s\-]+$/u', 'unique:roles,nombre_rol'], 
             'permisos'=>'required',
             ], $mensages);
         try {
@@ -82,10 +84,12 @@ class RolesController extends Controller
                 unset($rolTienePermiso);
             }
             DB::commit();
+            //return Redirect::back()->with('confirm', 'Se registro correctamente');
+            return redirect()->route("roles.index")->with('confirm', 'Se registro correctamente');
         } catch (Exception $e) {
             DB::rollBack();
+            return Redirect::back()->withErrors(['failed', 'Se produjo un error intente el registro nuevamente']);
         }
-        return redirect()->route("roles.index");
     }
 
     /**

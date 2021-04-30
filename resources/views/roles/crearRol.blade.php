@@ -6,7 +6,17 @@
 
 @section('main')
 <!-- codigo importante -->
-
+@if(session()->has('failed'))
+    <div class="alert alert-danger" role="alert">
+        {{ session()->get('failed') }}
+    </div>
+@endif
+<!-- @if(session()->has('confirm'))
+    <div class="alert alert-success" role="alert">
+        {{ session()->get('confirm') }}
+    </div>
+    <script>setTimeout("location.href = '{{ route('roles.index') }}';",1500);</script>
+@endif -->
 <div style="width:90%; margin:24px auto;">
   <form action="/roles" method="post">
     {{csrf_field()}}

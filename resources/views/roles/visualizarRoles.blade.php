@@ -7,6 +7,12 @@
 @section('main')
   
 <!-- codigo importante -->
+<!-- @if(session()->has('confirm'))
+    <div class="alert alert-success" role="alert">
+        {{ session()->get('confirm') }}
+    </div>
+    <script>setTimeout("location.href = '{{ route('roles.create') }}';",1500);</script>
+@endif -->
 
 <div style="width:90%; margin:24px auto;" class="container-table">
 
