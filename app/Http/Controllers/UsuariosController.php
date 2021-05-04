@@ -89,7 +89,7 @@ class UsuariosController extends Controller
         } catch (Exception $e) {
                 DB::rollBack();
         } 
-        return redirect()->route('usuario.index');   
+        return redirect()->route('usuario.index')->with('confirm', 'Nuevo usuario registrado correctamente');           
     }
 
     /**

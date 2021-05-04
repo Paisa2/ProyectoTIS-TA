@@ -11,6 +11,13 @@
 
 <!-- codigo importante -->
 
+@if(session()->has('confirm'))
+  <div class="alert alert-success" role="alert" id="confirm">
+      {{session()->get('confirm')}}
+  </div>
+  <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
+@endif
+
 <div class="container my-4 container-table" >
 
 <h2>Usuarios Registrados</h2>

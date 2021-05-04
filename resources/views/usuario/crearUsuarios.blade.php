@@ -15,7 +15,7 @@
     <form action="/usuario" method="post">
         {{csrf_field()}}
 
-        <h2>Crear Usuario</h2>
+        <h2>Registrar Usuario</h2>
         <br>
             <div class="row">
                 <div class="mb-3 col-6">
@@ -93,8 +93,14 @@
         <div class='d-flex justify-content-center'>
 			<button type='submit' class="btn btn-primary">Registrar</button>
 		</div>
-
+      
     </form>
+    @if(session()->has('confirm'))
+            <div class="alert alert-success" role="alert" id="confirm">
+                {{session()->get('confirm')}}
+            </div>
+            <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",1500);</script>
+    @endif
 
 </br>
 
