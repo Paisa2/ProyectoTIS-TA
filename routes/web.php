@@ -21,3 +21,11 @@ Route::get('/', function () {
 Route::resource("roles", "RolesController");
 
 Route::resource("solicitudes-de-items", "SolicitarItemController");
+
+
+Route::get('/unidades', 'UnidadesController@lista')->name('unidades.lista');
+
+Route::get('/unidades/registro', 'RegistroController@index');
+
+Route::post('/unidades/registro', 'RegistroController@store')->name('registro.store');
+

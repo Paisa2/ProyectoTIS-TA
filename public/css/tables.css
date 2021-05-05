@@ -2,9 +2,12 @@
   background-color: #24252F;
   border-radius: 10px;
   padding: 24px;
+
 }
 .container-table * {
   color: #fff;
+
+
 }
 .table *{
   color: #fff;
@@ -19,5 +22,10 @@
 }
 .btn:hover {
   background-color: #46546C;
+  color: #fff;
+
+}
+
+h1{
   color: #fff;
 }
