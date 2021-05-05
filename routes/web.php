@@ -3,16 +3,24 @@
 use App\Http\Controllers\phpLoginController;
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\SolicitarItemController;
 use App\Http\Controllers\RolesController;
-
 use app\Http\Controllers\ItemgastoController;
+use App\Http\Controllers\UsuariosController;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 Route::resource("roles", "RolesController");
 
@@ -34,3 +42,4 @@ Route::post('autentificacion','LoginController@autentificar');
 Route::resource('itemsgastos','ItemgastoController');
 
 Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');
+Route::resource("usuario", "UsuariosController");
