@@ -6,6 +6,12 @@
 @endsection
 
 @section('main')
+@if(session('confirm'))
+<div class="alert alert-success" role="alert" id="confirm">
+    {!! session('confirm') !!}
+</div>
+<script>setTimeout("document.getElementById('confirm').classList.add('d-none');",2000);</script>
+@endif
 <div style="width: 90%; margin:24px auto;" class="container-table">
     <h1>Unidades Registradas</h1>
     <div class="d-flex justify-content-end">
@@ -31,9 +37,11 @@
         @endforeach
         </tbody>
     </table>
+    {{--  {!!$unidad->render()!!}  --}}
     </div>
 @endsection
 {{-- <!DOCTYPE html>
+    <script>setTimeout("location.href = '{{ route('roles.index') }}';",1500);</script>
 <html lang="es">
 <head>
     <meta charset="UTF-8">

@@ -5,9 +5,8 @@
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 @endsection
 @section('main')
-<div class="container my-4">
-    
 
+<div class="container my-4">
     <form action="{{route('registro.store')}}" method="POST">
     {{ @csrf_field() }}
     <h1>Registrar Unidades</h1>
