@@ -10,7 +10,7 @@
 <div class="alert alert-success" role="alert" id="confirm">
     {!! session('confirm') !!}
 </div>
-<script>setTimeout("document.getElementById('confirm').classList.add('d-none');",2000);</script>
+<script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 @endif
 <div style="width: 90%; margin:24px auto;" class="container-table">
     <h1>Unidades Registradas</h1>
