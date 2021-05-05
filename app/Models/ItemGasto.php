@@ -11,5 +11,13 @@ class ItemGasto extends Model
      *
      * @var string
      */
-    protected $table = 'item_gasto';
+    protected $table = 'items_gasto';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'tipo_item', 'nombre_item',
+    ];
 }
