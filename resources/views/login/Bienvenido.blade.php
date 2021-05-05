@@ -22,10 +22,13 @@
     <div class="navar">
  <h1 >BIENVENIDO</h1>
  
-  <p class="parrafo">El sistema  que te permite tener al detalle<br>
-     las cotizaciones para la compra o servicios,<br>
-      la generación de  comparan<br>
-     los productos o servicio cotizados </p>
+  <p class="parrafo">
+    
+     
+     A Cotysoft la herramienta de apoyo <br>
+     para procesos de cotización,  donde <br>
+     podrás dar seguimiento a solicitudes <br>
+     de adquisiciones de tu institución</p>
  
    </div>
  
