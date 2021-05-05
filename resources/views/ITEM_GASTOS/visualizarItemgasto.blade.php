@@ -4,12 +4,13 @@
 
 @endsection
 @section('main')
-<div style="width:90%; margin:24px auto;" class="container-table">
 @if(session()->has('confirm'))
-<div class="alert alert-success" role="alert">
+<div class="alert alert-success" role="alert" id="confirm">
 {{session()->get('confirm')}}
 </div>
 @endif
+<div style="width:90%; margin:24px auto;" class="container-table">
+
        <h1 class="display-4">
         Items de Gasto Registrados
        </h1>
@@ -41,5 +42,6 @@
     </div>
 @endsection
 @section('scripts')
+<script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 @endsection
