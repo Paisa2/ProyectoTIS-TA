@@ -6,6 +6,13 @@
 
 @section('main')
 <!-- codigo importante -->
+@if(session()->has('confirm'))
+    <div class="alert alert-success" role="alert" id="confirm">
+        {{ session()->get('confirm') }}
+    </div>
+    <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
+@endif
+
 <div style="width:90%; margin:24px auto;" class="container-table">
   <h1>Solicitudes de registro de items</h1>
   <div style="display:flex;justify-content:flex-end;">

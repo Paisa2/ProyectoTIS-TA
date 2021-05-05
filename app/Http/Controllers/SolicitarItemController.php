@@ -77,7 +77,7 @@ class SolicitarItemController extends Controller
         $solicitud = new SolicitudItem($request->all());
         $solicitud->de_usuario_id = session("id");
         $solicitud->save();
-        return redirect()->route("solicitudes-de-items.index");
+        return redirect()->route("solicitudes-de-items.index")->with('confirm', 'Se envio la solicitud correctamente');
     }
 
     /**
