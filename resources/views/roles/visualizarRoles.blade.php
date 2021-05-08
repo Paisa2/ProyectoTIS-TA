@@ -16,17 +16,17 @@
 
 <div style="width:90%; margin:24px auto;" class="container-table">
 
-  <h1>Roles Registrados</h1>
-  <div style="display:flex;justify-content:flex-end;">
+  <h1 class="display-4">Roles Registrados</h1>
+  <div style="display:flex;justify-content:flex-end;" class="mb-3">
     <a href="{{ route('roles.create') }}" class="btn btn-primary">+Nuevo</a>
   </div>
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Nro</th>
-        <th scope="col">Rol</th>
-        <th scope="col">Numero de permisos</th>
-        <th scope="col">Fecha creacion</th>
+        <th scope="col">NRO</th>
+        <th scope="col">ROL</th>
+        <th scope="col">NÚMERO DE PERMISOS</th>
+        <th scope="col">FECHA DE CREACIÓN</th>
       </tr>
     </thead>
     <tbody>

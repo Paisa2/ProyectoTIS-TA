@@ -14,19 +14,19 @@
 @endif
 
 <div style="width:90%; margin:24px auto;" class="container-table">
-  <h1>Solicitudes de registro de items</h1>
-  <div style="display:flex;justify-content:flex-end;">
+  <h1 class="display-4">Solicitudes de registro de items</h1>
+  <div style="display:flex;justify-content:flex-end;" class="mb-3">
     <a href="{{url('solicitudes-de-items/create')}}" class="btn btn-primary">+Nuevo</a>
   </div>
 
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Nro</th>
-        <th scope="col">De</th>
-        <th scope="col">Para</th>
-        <th scope="col">Detalle</th>
-        <th scope="col">Fecha creacion</th>
+        <th scope="col">NRO</th>
+        <th scope="col">DE</th>
+        <th scope="col">PARA</th>
+        <th scope="col">DETALLE</th>
+        <th scope="col">FECHA DE CREACIÓN</th>
       </tr>
     </thead>
     <tbody>

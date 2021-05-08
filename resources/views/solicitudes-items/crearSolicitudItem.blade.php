@@ -14,7 +14,7 @@
     <br>
     <div class="mb-3">
       <label for="para" class="form-label">Para:</label>
-      <select name="para_usuario_id" id="para" class="form-select">
+      <select name="para_usuario_id" id="para" class="form-control">
         @foreach($destinatarios as $destinatario)
         <option value="{{$destinatario->id}}">{{$destinatario->nombres}} / {{$destinatario->nombre_rol}} / {{$destinatario->nombre_unidad}}</option>
         @endforeach

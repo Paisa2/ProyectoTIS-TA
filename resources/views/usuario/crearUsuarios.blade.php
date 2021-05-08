@@ -2,9 +2,7 @@
 
 @section('head')
     <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
-
 @endsection
-
 
 @section('main')
 
@@ -39,7 +37,7 @@
             <div class="row">     
                 <div class="mb-3 col-6">
                     <label for="" class="form-label">Rol:</label>
-                    <select class="form-select" name="rol_id" id="">
+                    <select class="form-control" name="rol_id" id="">
                     @foreach($roles as $rol)
                     <option value="{{$rol->id}}">{{$rol->nombre_rol}}</option>
                     @endforeach
@@ -51,7 +49,7 @@
 
                 <div class="mb-3 col-6">
                     <label for="" class="form-label">Pertenece a:</label>
-                    <select class="form-select" name="unidad_id" id="">
+                    <select class="form-control" name="unidad_id" id="">
                 
                     @foreach($unidades as $unidad)
                     <option value="{{$unidad->id}}">{{$unidad->nombre_unidad}}</option>

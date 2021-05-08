@@ -18,7 +18,7 @@
     <script>setTimeout("location.href = '{{ route('roles.index') }}';",1500);</script>
 @endif -->
 <div style="width:90%; margin:24px auto;">
-  <form action="/roles" method="post">
+  <form action="{{ route('roles.store') }}" method="post">
     {{csrf_field()}}
     <h1>Registro de rol</h1>
     <br>

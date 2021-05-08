@@ -19,27 +19,25 @@ use App\Http\Controllers\UsuariosController;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('login');
 });
 
-Route::resource("roles", "RolesController");
-
-Route::resource("solicitudes-de-items", "SolicitarItemController");
-
-
-Route::get('/unidades', 'UnidadesController@lista')->name('unidades.lista');
-
-Route::get('/unidades/registro', 'RegistroController@index');
-
-Route::post('/unidades/registro', 'RegistroController@store')->name('registro.store');
-
-Route::get('Bienvenido','LoginController@index');
-Route::get('login','LoginController@mostrarFormulario');
+Route::get('login','LoginController@mostrarFormulario')->name('login');
 Route::post('autentificacion','LoginController@autentificar');
 
-
-
-Route::resource('itemsgastos','ItemgastoController');
-
-Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');
-Route::resource("usuario", "UsuariosController");
+Route::group(['middleware' => 'auth'], function () {  
+    Route::resource("roles", "RolesController");
+    Route::resource("solicitudes-de-items", "SolicitarItemController");
+    Route::resource("usuario", "UsuariosController");
+    Route::resource('itemsgastos','ItemgastoController');
+    Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');
+    Route::get('/unidades', 'UnidadesController@lista')->name('unidades.lista');
+    Route::get('/unidades/registro', 'RegistroController@index');
+    Route::post('/unidades/registro', 'RegistroController@store')->name('registro.store');
+    Route::get('Bienvenido','LoginController@index')->name('bienvenido');
+    Route::post('logout', function(){
+        Auth::logout();
+        return redirect()->route('login');
+    })->name('logout');
+});

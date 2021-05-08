@@ -6,7 +6,6 @@
 
 @endsection
 
-
 @section('main')
 
 <!-- codigo importante -->
@@ -20,22 +19,22 @@
 
 <div class="container my-4 container-table" >
 
-<h2>Usuarios Registrados</h2>
+<h2 class="display-4">Usuarios Registrados</h2>
 
   <table class="table">
 
-      <div style="display:flex;justify-content:flex-end;">
-        <a class="btn btn-primary" href="{{url('usuario/create')}}">Nuevo</a>
+      <div style="display:flex;justify-content:flex-end;" class="mb-3">
+        <a class="btn btn-primary" href="{{url('usuario/create')}}">+ Nuevo</a>
       </div>
       <thead>
         <tr>
-          <th scope="col">Número</th>
-          <th scope="col">Nombres</th>
-          <th scope="col">Apellidos</th>
-          <th scope="col">Rol</th>
-          <th scope="col">Email</th>
-          <th scope="col">Pertenece a</th>
-          <th scope="col">Fecha creación</th>
+          <th scope="col">NRO</th>
+          <th scope="col">NOMBRES</th>
+          <th scope="col">APELLIDOS</th>
+          <th scope="col">ROL</th>
+          <th scope="col">EMAIL</th>
+          <th scope="col">PERTENECE A</th>
+          <th scope="col">FECHA DE CREACIÓN</th>
         </tr>
       </thead>
       @foreach($usuarios as $usuario)

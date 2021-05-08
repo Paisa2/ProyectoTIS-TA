@@ -1,0 +1,19 @@
+.navbar1 {
+  background-color: #22222F !important;
+}
+.navbar2 {
+  background-color: #282933 !important;
+}
+.navbar-brand {
+  font-weight: 700;
+  font-size:36px; 
+  line-height: 1;
+}
+body {
+  /* background-color: #181924; */
+  background-image: url(../imagenes/citysoft-2.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}

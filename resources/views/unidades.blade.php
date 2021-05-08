@@ -14,8 +14,8 @@
 @endif
 <div style="width: 90%; margin:24px auto;" class="container-table">
     <h1>Unidades Registradas</h1>
-    <div class="d-flex justify-content-end">
-        <a href="{{route('registro.store')}}" class="btn btn-primary">+Nuevo</a>
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{route('registro.store')}}" class="btn btn-primary">+ Nuevo</a>
     </div>
     <table class="table">
         <thead>
@@ -23,7 +23,7 @@
                 <th scope="col">TIPO DE UNIDAD</th>
                 <th scope="col">NOMBRE DE UNIDAD</th>
                 <th scope="col">PERTENECE A</th>
-                <th scope="col">FECHA DE REGISTRO</th>
+                <th scope="col">FECHA DE CREACIÓN</th>
             </tr>
         </thead>
         <tbody>
