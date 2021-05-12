@@ -23,8 +23,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('login','LoginController@mostrarFormulario')->name('login');
-Route::post('autentificacion','LoginController@autentificar');
+Route::group(['middleware' => 'noauth'], function () {  
+    Route::get('login','LoginController@mostrarFormulario')->name('login');
+    Route::post('autentificacion','LoginController@autentificar');
+});
 
 Route::group(['middleware' => 'auth'], function () {  
     Route::resource("roles", "RolesController");
