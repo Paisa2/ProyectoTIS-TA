@@ -43,3 +43,20 @@ Route::group(['middleware' => 'auth'], function () {
         return redirect()->route('login');
     })->name('logout');
 });
+
+//Route::get('/formpdf', [App\Http\Controllers\StorageController::class, 'mform'])->name('formpdf');
+//Route::post('/guardarpdf', [App\Http\Controllers\StorageController::class, 'mguardar'])->name('guardarpdf');
+Route::get('formulario', 'StorageController@index')->name('formulario');
+Route::post('formulario', 'StorageController@save');
+Route::get('formulario/{archivo}', function ($archivo) {
+    $public_path = public_path();
+    $url = $public_path.'/storage/'.$archivo;
+    //verificamos si el archivo existe y lo retornamos
+    if (storage::exists($archivo))
+    {
+      return response()->download($url);
+    }
+    //si no se encuentra lanzamos un error 404.
+    abort(404);
+
+});

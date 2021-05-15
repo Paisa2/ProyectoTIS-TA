@@ -20,4 +20,5 @@ class Cotizacion_pdf extends Model
     protected $fillable = [
         'ruta', 'cotizacion_id',
     ];
+    public $timestamps = false;
 }
