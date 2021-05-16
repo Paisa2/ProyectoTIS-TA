@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 use App\Models\Usuario;
 use App\Models\Permiso;
 use App\Models\Unidad;
+use App\Models\InfoUsuario;
+use App\Models\VerificacionFechas;
+use App\Models\Solicitud_adquisicion;
+use App\Models\Notificacion;
 
 class LoginController extends Controller
 {
@@ -48,11 +53,7 @@ class LoginController extends Controller
       Auth::logout();
       
       if(Auth::attempt($credentials)){
-         $infoUser = Usuario::join("unidades", "unidades.id", "=", "usuarios.unidad_id")
-         ->join("usuario_tiene_roles", "usuario_tiene_roles.usuario_id", "=", "usuarios.id")
-         ->join("roles", "roles.id", "=", "usuario_tiene_roles.rol_id")
-         ->where("usuarios.id", Auth::id())->where("usuario_tiene_roles.estado", true)
-         ->select("usuarios.*", "roles.id as rol_id", "roles.nombre_rol", "unidades.nombre_unidad", "unidades.tipo_unidad", "unidades.unidad_id as unidad_padre_id")->get();
+         $infoUser = InfoUsuario::where("id", Auth::id())->get();
          $infoUser = $infoUser[0];
          $permisos = Permiso::join("rol_tiene_permisos", "rol_tiene_permisos.permiso_id", "=", "permisos.id")
          ->where("rol_tiene_permisos.rol_id", $infoUser->rol_id)->get();
@@ -62,33 +63,58 @@ class LoginController extends Controller
             "apellidos" => $infoUser->apellidos,
             "email" => $infoUser->email,
             "unidad_id" => $infoUser->unidad_id,
-            "unidad" => $infoUser->nombre_unidad,
+            "nombre_unidad" => $infoUser->nombre_unidad,
             "tipo_unidad" => $infoUser->tipo_unidad,
+            "unidad_padre_id" => $infoUser->unidad_padre_id,
+            "nombre_unidad_padre" => $infoUser->nombre_unidad_unidad,
+            "tipo_unidad_padre" => $infoUser->tipo_unidad_padre,
             "rol" => $infoUser->nombre_rol,
          ]);
-         if ($infoUser->tipo_unidad == "unidad de gasto" || $infoUser->tipo_unidad == "unidad administrativa") {
-            $facultad = Unidad::where("id", $infoUser->unidad_padre_id)->get();
-            $facultad = $facultad[0];
-            session([
-               "facultad_id" => $facultad->id,
-               "nombre_facultad" => $facultad->nombre_unidad,
-            ]);
-            if ($infoUser->tipo_unidad == "unidad de gasto") {
-               $administrativa = Unidad::where("unidad_id", $facultad->id)->where("tipo_unidad", "unidad administrativa")->get();
-               $administrativa = $administrativa[0];
-            }
-            session([
-               "administrativa_id" =>$administrativa->id,
-               "nombre_administrativa" =>$administrativa->nombre_unidad,
-            ]);
+         if ($infoUser->tipo_unidad != "unidad administrativa") {
+            $administrativa = Unidad::where("unidad_id", $infoUser->unidad_padre_id)->where("tipo_unidad", "unidad administrativa")->get();
+            $administrativa = $administrativa[0];
+         }else {
+            $administrativa = Unidad::where("unidad_id", 1)->where("tipo_unidad", "unidad administrativa")->get();
+            $administrativa = $administrativa[0];
          }
+         session([
+            "administrativa_id" =>$administrativa->id,
+            "nombre_administrativa" =>$administrativa->nombre_unidad,
+         ]);
          foreach ($permisos as $permiso) {
             Session([$permiso->nombre_clave => true]);
          }
+         $this->verificarFechas();
          return redirect('/Bienvenido');
       }else{
          $errors = new MessageBag(['password2' => ['Email y/o Contraseña Incorrectas']]);
          return Redirect::back()->withErrors($errors)->withInput(Input::except('password2'));
+      }
+   }
+
+   private function verificarFechas() {
+      date_default_timezone_set('America/La_Paz');
+      if (VerificacionFechas::where("verificado", true)->where("created_at", ">", Date("Y-m-d"))->where("created_at", "<", Date("Y-m-d", strtotime("+1 day")))->count() < 1) {
+         $adquisiciones = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->where("updated_at", ">", Date("Y-m-d", strtotime("-1 day")))->where("updated_at", "<", Date("Y-m-d"))->get();
+         $vencidas = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->where("updated_at", "<", Date("Y-m-d", strtotime("-3 day")))->get();
+         DB::beginTransaction();
+         $verificacion = new VerificacionFechas();
+         $verificacion->verificado = true;
+         $verificacion->save();
+         foreach ($adquisiciones as $adquisicion) {
+            $notificacion = new Notificacion;
+            $notificacion->mensaje_notificacion = "El plazo de espera de la solicitud de adquisicion " . str_pad($adquisicion->id, 6, '0', STR_PAD_LEFT) . " vence en 1 día";
+            $notificacion->solicitud_id = $adquisicion->id;
+            $notificacion->tipo_solicitud = "adquisicion";
+            $notificacion->unidad_id = $adquisicion->para_unidad_id;
+            $notificacion->save();
+            unset($notificacion);
+         }
+         foreach ($vencidas as $vencida) {
+            $actualizado = Solicitud_adquisicion::where("id", $vencida->id)->update(["estado_solicitud_a" => "plazo de espera vencido"]);
+            unset($actualizado);
+         }
+         DB::commit();
       }
    }
 

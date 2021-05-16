@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SolicitudItem;
 use App\Models\Usuario;
+use App\Models\InfoUsuario;
 
 class SolicitarItemController extends Controller
 {
@@ -29,29 +30,18 @@ class SolicitarItemController extends Controller
      */
     public function create()
     {
-        session(['id' => '5']);
-        session(['unidad_id' => '4']);
-        session(['unidad_unidad_id' => '2']);
-        $destinatarios = Usuario::join('usuario_tiene_roles', function ($join) {
-            $join->on('usuario_tiene_roles.usuario_id', '=', 'usuarios.id')
-                 ->where('estado', 1);
-        })
-        ->join('roles', 'roles.id', '=', 'usuario_tiene_roles.rol_id')
-        ->join('rol_tiene_permisos', 'rol_tiene_permisos.rol_id', '=', 'roles.id')
-        ->join('permisos', function ($join) {
-            $join->on('permisos.id', '=', 'rol_tiene_permisos.permiso_id')
-                 ->where('nombre_clave', 'Crear ítems de gasto');
-        })
-        ->join('unidades', 'unidades.id', '=', 'usuarios.unidad_id')
+        $destinatarios = InfoUsuario::join("rol_tiene_permisos", "rol_tiene_permisos.rol_id", "=", "info_usuario.rol_id")
+        ->join("permisos", "permisos.id", "=", "rol_tiene_permisos.permiso_id")
+        ->where("permisos.nombre_clave", "Crear ítem de gasto")
         ->where(function ($query) {
-            $query->where('unidades.unidad_id', session('unidad_unidad_id'))
-                  ->orWhere('unidades.unidad_id', 1);
+            $query->where('info_usuario.unidad_id', session('administrativa_id'))
+                ->orWhere('info_usuario.unidad_id', 1);
         })
         ->where(function ($query) {
-            $query->where('unidades.tipo_unidad', 'unidad administrativa')
-                  ->orWhere('unidades.tipo_unidad', 'Institución');
+            $query->where('info_usuario.tipo_unidad', 'unidad administrativa')
+                ->orWhere('info_usuario.tipo_unidad', 'Institución');
         })
-        ->select('usuarios.id', 'usuarios.nombres', 'unidades.nombre_unidad', 'roles.nombre_rol')
+        ->select('info_usuario.id', 'info_usuario.nombres', 'info_usuario.nombre_unidad', 'info_usuario.nombre_rol')
         ->get();
         return view("solicitudes-items.crearSolicitudItem", compact('destinatarios'));
     }
