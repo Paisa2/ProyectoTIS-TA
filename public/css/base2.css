@@ -17,3 +17,20 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+/*estilos aside*/
+.c-icon {
+  fill: #fff;
+}
+.dropdown-item {
+  word-wrap: break-word;
+}
+.c-dark-theme .nav-underline-primary .nav-link.active, .c-dark-theme .nav-underline-primary .show > .nav-link {
+  border-color: #fff;
+}
+.aside-link {
+  color: rgba(255, 255, 255, 0.6) !important;
+  text-decoration: none;
+}
+.aside-link:hover {
+  text-decoration: none;
+}
