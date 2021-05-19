@@ -7,6 +7,7 @@ use App\Http\Controllers\SolicitarItemController;
 use App\Http\Controllers\RolesController;
 use app\Http\Controllers\ItemgastoController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\AutorizaciónPresupuestocontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::group(['middleware' => 'noauth'], function () {
     Route::post('autentificacion','LoginController@autentificar');
 });
 
+
 Route::group(['middleware' => 'auth'], function () {  
     Route::resource("roles", "RolesController");
     Route::resource("solicitudes-de-items", "SolicitarItemController");
@@ -42,4 +44,6 @@ Route::group(['middleware' => 'auth'], function () {
         Auth::logout();
         return redirect()->route('login');
     })->name('logout');
+    /* Route::get('autopresupuesto', 'AutorizaciónPresupuestoController@index')->name('autopresupuesto');*/
+   Route::get('/autopresupuesto/{id}', 'AutorizaciónPresupuestoController@show')->name('autopresupuesto');
 });
