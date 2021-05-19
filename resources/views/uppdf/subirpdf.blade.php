@@ -12,31 +12,42 @@ Subir PDF
 @endsection
 
 @section('main')
-
 <div class="container my-4">
-@if(session()->has('confirm'))
-<div class="alert alert-success" role="alert" id="confirm">
-{{session()->get('confirm')}}
-</div>
-@endif
-<form method="POST" action="{{ route('formulario') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+    @if(session()->has('confirm'))
+      <div class="alert alert-success" role="alert" id="confirm">
+      {{session()->get('confirm')}}
+      </div>
+    @endif
+  <form method="POST" action="{{ route('formulario') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <h1 class="display-4">Agregar Documento PDF</h1>
+        
+      <div class="mb-3">
+      <label for="disabledSelect" class="form-label">Cotizacion:</label>
+      <select class="form-control" name="cotizacion_id" id="cotizacion_id">
+        <option hidden selected>Seleccione</option>
+        @foreach($cotizaciones as $cotizacion)
+        <option value="{{$cotizacion->id}}">{{$cotizacion->id}}</option>
+        @endforeach
+      </select>
+       @foreach($errors->get('cotizacion_id') as $message)
+       <div class="alert alert-danger">{{$message}}</div>
+       @endforeach
+      </div>
 
-            
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            
-            <div class="form-group">
-              <h1 class="display-4">Agregar Documento PDF</h1>
-              <div class="col-md-6">
-                <input type="file" class="form-control" accept="application/pdf" name="file">
-              </div>
-            </div>
+      <div class="mb-3">
+          <label for="formFile" class="form-label">Archivo:</label>
+          <br>
+          <input class="form-pdf" type="file"  id="formFile" accept="application/pdf" name="ruta" style=width:100%;>
+          @foreach($errors->get('ruta') as $message)
+          <div class="alert alert-danger">{{$message}}</div>
+          @endforeach
+      </div>
 
-            <div class="form-group">
-            <div style=display:flex;justify-content:center;>
-                <button type="submit" class="btn btn-primary">GUARDAR</button>
-              </div>
-            </div>
-          </form>
+      <div style=display:flex;justify-content:center;>
+          <button type="submit" class="btn btn-primary">GUARDAR</button>
+      </div>
+  </form>
 </div>
 
 @endsection

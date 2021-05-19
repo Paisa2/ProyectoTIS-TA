@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\Cotizacion_pdf;
+use App\Models\Solicitud_cotizacion;
 
 class StorageController extends Controller
 {
     public function index(){
-     //return view('uppdf.subirpdf');
-     return \View::make('uppdf.subirpdf');
+    $cotizaciones = Solicitud_cotizacion::all();
+    return view('uppdf.subirpdf', compact('cotizaciones'));
+     //return \View::make('uppdf.subirpdf');
     }
 
     //public function mguardar(Request $request){
@@ -17,15 +22,29 @@ class StorageController extends Controller
 
 
     public function save(Request $request){
+        $mensajes = [
+            'ruta.required' => 'Debe de seleccionar y agregar un documento PDF',
+            'mimetypes' => 'ERROR. Solo se aceptan documentos con extension PDF',
+            'numeric'=> 'Debe de seleccionar la cotizacion a la cual desea agregar un documento PDF',
+        ];
+        $this->validate($request, [
+            'ruta'=>['required','mimetypes:application/pdf'],
+            'cotizacion_id'=>'numeric',
+            ], $mensajes);
 
-       //obtenemos el campo file definido en el formulario
-       $file = $request->file('file');
+       //obteniendo el campo file definido en el formulario
+       $file = $request->file('ruta');
 
-       //obtenemos el nombre del archivo
+       //obteniendo el nombre del archivo
        $nombre = $file->getClientOriginalName();
 
-       //indicamos que queremos guardar un nuevo archivo en el disco local
+       //indicando que se quiere guardar un nuevo archivo en el disco local
        \Storage::disk('local')->put($nombre,  \File::get($file));
+       $rutaaa="storage/".$nombre;
+       $datospdf=new Cotizacion_pdf;
+       $datospdf->ruta=$rutaaa;
+       $datospdf->cotizacion_id=$request->cotizacion_id;
+       $datospdf->save();
 
        //return "archivo guardado";
        return redirect()->route('formulario')->with('confirm', 'El archivo a sido guardado correctamente');
