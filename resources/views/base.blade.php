@@ -11,6 +11,7 @@
   @yield('head')
   <script src="{{ asset('js/bundle.min.js') }}"></script>
   <script src="{{ asset('js/main.js') }}"></script>
+  
 </head>
 <body>
 

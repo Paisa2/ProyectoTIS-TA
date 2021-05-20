@@ -1,0 +1,62 @@
+
+table {
+    border-collapse: separate;
+    border-spacing: 2px 0;
+    table-layout: fixed;
+    width: 100%;
+    color: #fff;
+}
+.cotizacion thead tr th {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-weight: normal;
+    text-align: center;
+}
+.cotizacion thead tr th.c-4, .cotizacion thead tr th.c-6 {
+    letter-spacing: 4px;
+}
+.cotizacion thead tr th.c-1 {
+    width: 6%;
+}
+.cotizacion thead tr th.c-2 {
+    width: 10%;
+}
+.cotizacion thead tr th.c-3 {
+    width: 8%;
+}
+.cotizacion thead tr th.c-4 {
+    width: 54%;
+}
+.cotizacion thead tr th.c-5 {
+    width: 10%;
+}
+.cotizacion thead tr th.c-6 {
+    width: 12%;
+}
+.cotizacion tbody:before {
+    content: "";
+    display: block;
+    height: 4px;
+    color: transparent;
+}
+.cotizacion tbody tr td {
+    height: 1.5rem;
+    word-wrap: normal;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    border-bottom: 1px dotted #fff;
+    text-align: center;
+    overflow-x: hidden;
+}
+.cotizacion tbody tr td.d4 {
+    padding: 6px;
+    text-align: unset;
+}
+.cotizacion tbody tr:first-child td {
+    border-top: 1px solid #fff;
+    border-radius: 5px 5px 0 0;
+}
+.cotizacion tbody tr:last-child td {
+    border-bottom: 1px solid #fff;
+    border-radius: 0 0 5px 5px;
+}

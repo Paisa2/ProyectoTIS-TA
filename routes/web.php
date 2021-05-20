@@ -7,6 +7,7 @@ use App\Http\Controllers\SolicitarItemController;
 use App\Http\Controllers\RolesController;
 use app\Http\Controllers\ItemgastoController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\SolicitudCotizacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource("solicitudes-de-items", "SolicitarItemController");
     Route::resource("usuario", "UsuariosController");
     Route::resource('itemsgastos','ItemgastoController');
+    Route::resource("solicitudCotizacion", "SolicitudCotizacionController");
     Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');
     Route::get('/unidades', 'UnidadesController@lista')->name('unidades.lista');
     Route::get('/unidades/registro', 'RegistroController@index');
