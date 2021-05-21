@@ -43,6 +43,7 @@ h1{
   background-color: gray;
 }
 .alert-success{
+  color: #fff !important;
   background-color: rgb(4, 153, 28);
   border-color: rgb(4, 153, 28);
 }

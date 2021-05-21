@@ -25,7 +25,7 @@
 
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre:</label>
-      <input type="text" name="nombre_rol" id="nombre" value="{{old('nombre_rol')}}" class="form-control">
+      <input type="text" name="nombre_rol" id="nombre" value="{{old('nombre_rol')}}" class="form-control" autocomplete="off">
       @foreach($errors->get('nombre_rol') as $message)
       <div class="alert alert-danger" role="alert">{{$message}}</div>
       @endforeach
