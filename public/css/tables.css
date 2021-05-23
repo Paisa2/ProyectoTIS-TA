@@ -50,3 +50,13 @@ h1{
 .alert{
   padding: 5px;
 }
+
+.options {
+  width: 24px;
+}
+.options .dropdown-menu {
+  padding-top: 0;
+}
+.options > div > span {
+  cursor: pointer;
+}

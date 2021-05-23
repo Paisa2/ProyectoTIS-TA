@@ -32,13 +32,14 @@
     </div>
 
     <label class="form-label">Permisos:</label>
-    <div class="mb-3" style="width:60%; margin:auto;">
+    <div class="mb-3" style="width:70%; margin:auto;">
       <div class="row">
         <div class="col d-flex justify-content-center">Modulo</div>
         <div class="col d-flex justify-content-center">Visualizar</div>
         <div class="col d-flex justify-content-center">Crear</div>
         <div class="col d-flex justify-content-center">Editar</div>
       </div>
+      <hr style="background-color:#fff;border-width: 2px;">
       <div>
         @foreach($modulos as $modulo)
         <div class="row">
@@ -53,6 +54,7 @@
             <input type="checkbox" name="permisos[]" value="{{$modulo->editar_id}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->editar_id, old('permisos'))) checked @endif>
           </div>
         </div>
+        <hr style="background-color:#fff;margin:.5rem 0;">
         @endforeach
       </div>
       @foreach($errors->get('permisos') as $message)

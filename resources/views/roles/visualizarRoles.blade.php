@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('head')
-<link rel="stylesheet" href="{{ asset('css/tables.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
 @endsection
 
 @section('main')
@@ -27,6 +27,7 @@
         <th scope="col">ROL</th>
         <th scope="col">NÚMERO DE PERMISOS</th>
         <th scope="col">FECHA DE CREACIÓN</th>
+        <th class="options"></th>
       </tr>
     </thead>
     <tbody>
@@ -36,6 +37,23 @@
         <td>{{$rol->nombre_rol}}</td>
         <td>{{$rol->numero_permisos}}</td>
         <td>{{$rol->created_at}}</td>
+        <td class="c-dark-theme options">
+          <div class="dropdown dropleft">
+            <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg class="c-icon mfe-2">
+                <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+              </svg>
+            </span>
+            <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+              <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+              <a class="dropdown-item" href="{{ route('roles.show', $rol->id) }}">
+                <svg class="c-icon mfe-2">
+                  <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                </svg>Detalles
+              </a>
+            </div>
+          </div>
+        </td>
       </tr>
     @endforeach
     </tbody>

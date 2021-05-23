@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title')</title>
+  <title>CotySoft</title>
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="{{ asset('css/base.css') }}">
   <link rel="stylesheet" href="{{ asset('css/base2.css') }}">
@@ -23,12 +23,17 @@
             @if(Auth::check())
             {{Auth::user()->nombres}}
             @endif
+            <span id="user-image">
+              <svg class="c-icon mfe-2">
+                  <use xlink:href="{{asset('img/icons/user-fill.svg#i-user-fill')}}"></use>
+                </svg>
+            </span>
           </span>
           <div class="dropdown-menu dropdown-menu-right pt-0" aria-labelledby="btn-user">
-            <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
-            <a class="dropdown-item" href="#">
+            <div class="dropdown-header bg-light py-2"><strong>Cuenta</strong></div>
+            <!-- <a class="dropdown-item" href="#">
               <svg class="c-icon mfe-2">
-              <use xlink:href="{{asset('img/icons/bell.svg#bell')}}"></use>
+                <use xlink:href="{{asset('img/icons/bell.svg#bell')}}"></use>
               </svg> Updates<span class="badge badge-info mfs-auto">42</span>
             </a>
             <a class="dropdown-item" href="#">
@@ -72,12 +77,12 @@
               <svg class="c-icon mfe-2">
               <use xlink:href="{{asset('img/icons/lock-locked.svg#lock-locked')}}"></use>
               </svg> Lock Account
-            </a>
+            </a> -->
             <form action="{{ route('logout') }}" method="post" id="logout" class="d-none">{{csrf_field()}}</form>
             <button class="dropdown-item" type="submit" form="logout">
               <svg class="c-icon mfe-2">
               <use xlink:href="{{asset('img/icons/account-logout.svg#account-logout')}}"></use>
-              </svg> Logout
+              </svg> Cerrar sesion
             </button>
           </div>
         </div>
@@ -96,19 +101,19 @@
             <a class="nav-link {{ request()->is('Bienvenido') ? 'active' : '' }}" href="{{route('bienvenido')}}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('unidades') || request()->is('unidades/registro')) ? 'active' : '' }}" href="{{route('unidades.lista')}}">Unidades</a>
+            <a class="nav-link {{ (request()->is('unidades') || request()->is('unidades/*')) ? 'active' : '' }}" href="{{route('unidades.lista')}}">Unidades</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('usuario') || request()->is('usuario/create')) ? 'active' : '' }}" href="{{route('usuario.index')}}">Usuarios</a>
+            <a class="nav-link {{ (request()->is('usuario') || request()->is('usuario/*')) ? 'active' : '' }}" href="{{route('usuario.index')}}">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('itemsgastos') || request()->is('itemsgastos/create')) ? 'active' : '' }}" href="{{route('itemsgastos.index')}}">Items de gasto</a>
+            <a class="nav-link {{ (request()->is('itemsgastos') || request()->is('itemsgastos/*')) ? 'active' : '' }}" href="{{route('itemsgastos.index')}}">Items de gasto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('roles') || request()->is('roles/create')) ? 'active' : '' }}" href="{{route('roles.index')}}">Roles de usuario</a>
+            <a class="nav-link {{ (request()->is('roles') || request()->is('roles/*')) ? 'active' : '' }}" href="{{route('roles.index')}}">Roles de usuario</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('solicitudes-de-items') || request()->is('solicitudes-de-items/create')) ? 'active' : '' }}" href="{{route('solicitudes-de-items.index')}}">Solicitudes de items</a>
+            <a class="nav-link {{ (request()->is('solicitudes-de-items') || request()->is('solicitudes-de-items/*')) ? 'active' : '' }}" href="{{route('solicitudes-de-items.index')}}">Solicitudes de items</a>
           </li>
         </ul>
 
