@@ -11,7 +11,7 @@ use App\Models\Solicitud_cotizacion;
 class StorageController extends Controller
 {
     public function index(){
-    $cotizaciones = Solicitud_cotizacion::all();
+    $cotizaciones = Solicitud_cotizacion::where('id','3')->get();
     return view('uppdf.subirpdf', compact('cotizaciones'));
      //return \View::make('uppdf.subirpdf');
     }
@@ -24,8 +24,8 @@ class StorageController extends Controller
     public function save(Request $request){
         $mensajes = [
             'ruta.required' => 'Debe de seleccionar y agregar un documento PDF',
-            'mimetypes' => 'ERROR. Solo se aceptan documentos con extension PDF',
-            'numeric'=> 'Debe de seleccionar la cotizacion a la cual desea agregar un documento PDF',
+            'mimetypes' => 'ERROR.  Solo se aceptan documentos con extension PDF',
+            'numeric'=> 'ERROR.  El ID de la cotizacion es incorrecto',
         ];
         $this->validate($request, [
             'ruta'=>['required','mimetypes:application/pdf'],

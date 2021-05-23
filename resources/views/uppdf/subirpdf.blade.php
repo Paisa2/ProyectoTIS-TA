@@ -22,21 +22,25 @@ Subir PDF
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <h1 class="display-4">Agregar Documento PDF</h1>
         
-      <div class="mb-3">
-      <label for="disabledSelect" class="form-label">Cotizacion:</label>
-      <select class="form-control" name="cotizacion_id" id="cotizacion_id">
+      <div class="mb-3">  
+      <label for="disabledSelect" class="form-label">ID de la Cotización:</label>
+      <!--<select class="form-control" name="cotizacion_id" id="cotizacion_id">
         <option hidden selected>Seleccione</option>
         @foreach($cotizaciones as $cotizacion)
-        <option value="{{$cotizacion->id}}">{{$cotizacion->id}}</option>
+        <option value="{{$cotizacion->id}}">{{$cotizacion->razon_social}}</option>
         @endforeach
-      </select>
+      </select>-->
+      @foreach($cotizaciones as $cotizacion)
+      <input type="text" class="form-control" id="cotizacion_id" name="cotizacion_id" value='{{$cotizacion->id}}' >
+      @endforeach
+      <div class="br"> </div>
        @foreach($errors->get('cotizacion_id') as $message)
        <div class="alert alert-danger">{{$message}}</div>
        @endforeach
       </div>
 
       <div class="mb-3">
-          <label for="formFile" class="form-label">Archivo:</label>
+          <label for="formFile" class="form-label">Agregar Archivo:</label>
           <br>
           <input class="form-pdf" type="file"  id="formFile" accept="application/pdf" name="ruta" style=width:100%;>
           @foreach($errors->get('ruta') as $message)

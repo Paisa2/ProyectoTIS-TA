@@ -145,3 +145,9 @@ button{
   border-color: rgb(255 255 255 / 88%);
   box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 88%);
 }
+.form-control:disabled{
+  background-color: #dee2e6b3;
+  opacity: 1;
+  color: black;
+  border-color: #24252F;
+}
