@@ -42,4 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
         Auth::logout();
         return redirect()->route('login');
     })->name('logout');
+    Route::post('reenviar-solicitud/{id}', function($id){
+        $adquisicion = App\Models\Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "pendiente"]);
+        // return redirect()->route('');
+    })->name('reenviar');
 });

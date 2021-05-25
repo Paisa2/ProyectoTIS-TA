@@ -94,8 +94,8 @@ class LoginController extends Controller
 
    private function verificarFechas() {
       date_default_timezone_set('America/La_Paz');
-      if (VerificacionFechas::where("verificado", true)->where("created_at", ">", Date("Y-m-d"))->where("created_at", "<", Date("Y-m-d", strtotime("+1 day")))->count() < 1) {
-         $adquisiciones = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->where("updated_at", ">", Date("Y-m-d", strtotime("-1 day")))->where("updated_at", "<", Date("Y-m-d"))->get();
+      if (VerificacionFechas::where("verificado", true)->whereDate("created_at", Date("Y-m-d"))->count() < 1) {
+         $adquisiciones = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->whereDate("updated_at", Date("Y-m-d", strtotime("-1 day")))->get();
          $vencidas = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->where("updated_at", "<", Date("Y-m-d", strtotime("-3 day")))->get();
          DB::beginTransaction();
          $verificacion = new VerificacionFechas();
