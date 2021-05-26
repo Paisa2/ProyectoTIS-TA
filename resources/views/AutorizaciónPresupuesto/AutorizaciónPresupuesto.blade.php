@@ -43,9 +43,9 @@ AtorizaciónPresupuesto
     <label  for="exampleInputEmail1" class="form-label">JUSTIFICACIÓN:</label>
     <br>
 
-    <label >{{$autopre->justificacion_solicitud_a}}</label>
+    <label class="soli" >{{$autopre->justificacion_solicitud_a}}</label>
     <br>
-    <label>{!!$autopre->detalle_solicitud_a!!}</label>
+    <label class="table">{!!$autopre->detalle_solicitud_a!!}</label>
     @endforeach
    </div>
    </form>

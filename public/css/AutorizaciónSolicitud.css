@@ -15,4 +15,14 @@ form {
       font-size: 150%;
       
   }
-  
+  .soli{
+    border: 1px solid white;
+    border-radius: 5px;
+    display:flow-root;
+    padding: 5px;
+
+
+  }
+  .table{
+    margin: center;
+  }

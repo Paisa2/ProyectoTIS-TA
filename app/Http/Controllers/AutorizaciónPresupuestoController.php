@@ -50,7 +50,7 @@ class AutorizaciónPresupuestoController extends Controller
     public function show($id)
     {
        $autopresupuesto=Solicitud_adquisicion::join('usuarios','usuarios.id','=','solicitudes_adquisiciones.de_usuario_id')
-       ->join('unidades','unidades.id','=','solicitudes_adquisiciones.para_unidad_id')
+       ->join('unidades','unidades.id','=','usuarios.unidad_id')
        ->join('presupuestos','presupuestos.unidad_id','=','unidades.id')
        ->where('solicitudes_adquisiciones.id',$id)
        ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad','presupuestos.monto')->get();     
