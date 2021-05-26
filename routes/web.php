@@ -26,6 +26,10 @@ Route::get('/', function () {
 Route::group(['middleware' => 'noauth'], function () {  
     Route::get('login','LoginController@mostrarFormulario')->name('login');
     Route::post('autentificacion','LoginController@autentificar');
+    
+
+    
+    
 });
 
 Route::group(['middleware' => 'auth'], function () {  
@@ -42,4 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
         Auth::logout();
         return redirect()->route('login');
     })->name('logout');
+    
+    Route::get('/lista', 'AdqController@index')->name('lista.index');
+    Route::get('lista/solicitud', 'AdqController@create')->name('solicitud.create');
+    Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
 });

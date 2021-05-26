@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MessaggeRequest;
-use App\Models\Unidad;
+use App\Http\Requests\AdquisicionRequest;
+use App\Models\Solicitud_adquisicion;
+use App\Models\ItemGasto;
 use Illuminate\Http\Request;
 
-class RegistroController extends Controller
+class AdqController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        /*$unidades = Unidad::where('tipo_unidad', 'Institución')->orWhere('tipo_unidad', 'facultad')->get();*/
-        $facultades = Unidad::where('tipo_unidad', 'facultad')->get();
-        $instituciones = Unidad::where('tipo_unidad', 'Institución')->get();
-        return view('registro', compact('facultades', 'instituciones'));
-        //
+        $tipo = $request->get('buscar');
+        $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo%")->get();
+        // $compras=Solicitud_adquisicion::where('tipo_solicitud_a', 'compra')->get();
+        // $alquiler=Solicitud_adquisicion::where('tipo_solicitud_a', 'alquiler')->get();
+        return view('solicitudes-adq.lista', compact('solicitudes'));
     }
 
     /**
@@ -29,7 +30,8 @@ class RegistroController extends Controller
      */
     public function create()
     {
-        //
+        $adquisicion=ItemGasto::where('tipo_item', '=', 'Especifico')->get();
+        return view('solicitudes-adq.solicitud', compact('adquisicion'));
     }
 
     /**
@@ -38,14 +40,18 @@ class RegistroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MessaggeRequest $request)
+    public function store(AdquisicionRequest $request)
     {
-        $unidad = new Unidad;
-        $unidad->tipo_unidad = $request->tipo_unidad;
-        $unidad->nombre_unidad = $request->nombre_unidad;
-        $unidad->unidad_id = $request->unidad_id;        
-        $unidad->save();
-        return redirect('unidades')->with('confirm', 'La unidad se registro correctamente');
+        $solicitudes = new Solicitud_adquisicion;
+        $solicitudes->tipo_solicitud_a = $request->tipo;
+        $solicitudes->estado_solicitud_a = 'pendiente';
+        $solicitudes->justificacion_solicitud_a = $request->justificacion;
+        $solicitudes->detalle_solicitud_a = $request->detalle;
+        $solicitudes->fecha_entrega = $request->fecha;
+        $solicitudes->de_usuario_id = session('id');
+        $solicitudes->para_unidad_id = session('administrativa_id');
+        $solicitudes->save();
+        return redirect('lista');
     }
 
     /**
