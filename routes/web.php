@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('Bienvenido','LoginController@index')->name('bienvenido');
     Route::post('logout', function(){
         Auth::logout();
+        session()->flush();
         return redirect()->route('login');
     })->name('logout');
     Route::post('reenviar-solicitud/{id}', function($id){

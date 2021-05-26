@@ -10,6 +10,19 @@ use App\Models\InfoUsuario;
 class SolicitarItemController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('crear.solicitud.item')->only('create');
+        $this->middleware('crear.solicitud.item')->only('store');
+        $this->middleware('visualizar.solicitud.item')->only('index');
+        $this->middleware('visualizar.solicitud.item')->only('show');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

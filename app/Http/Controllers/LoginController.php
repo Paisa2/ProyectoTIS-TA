@@ -49,7 +49,7 @@ class LoginController extends Controller
    {
       $this->validate($request, ['email'=>['required',], 'password'=>['required']]);
       $credentials = request()->only('email','password');
-      session()->regenerate();
+      session()->flush();
       Auth::logout();
       
       if(Auth::attempt($credentials)){
@@ -82,7 +82,7 @@ class LoginController extends Controller
             "nombre_administrativa" =>$administrativa->nombre_unidad,
          ]);
          foreach ($permisos as $permiso) {
-            Session([$permiso->nombre_clave => true]);
+            session([$permiso->nombre_clave => true]);
          }
          $this->verificarFechas();
          return redirect('/Bienvenido');

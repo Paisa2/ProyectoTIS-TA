@@ -57,5 +57,9 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'noauth' => \App\Http\Middleware\noAuthenticated::class,
+        'crear.rol' => \App\Http\Middleware\TienePermisoCrearRol::class,
+        'visualizar.rol' => \App\Http\Middleware\TienePermisoVisualizarRoles::class,
+        'crear.solicitud.item' => \App\Http\Middleware\TienePermisoCrearSolicitudItem::class,
+        'visualizar.solicitud.item' => \App\Http\Middleware\TienePermisoVisualizarSolicitudesItems::class,
     ];
 }

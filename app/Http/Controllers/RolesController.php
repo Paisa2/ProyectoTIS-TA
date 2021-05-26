@@ -14,6 +14,19 @@ use App\Models\Rol;
 class RolesController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('crear.rol')->only('create');
+        $this->middleware('crear.rol')->only('store');
+        $this->middleware('visualizar.rol')->only('index');
+        $this->middleware('visualizar.rol')->only('show');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
