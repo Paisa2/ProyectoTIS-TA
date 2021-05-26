@@ -18,9 +18,9 @@ form *{
   width: 100%;
 }
 .form-control, .form-select {
-  color: #fff;
-  border-color: #fff;
-  background-color: #24252F;
+  color: #fff !important;
+  border-color: #fff !important;
+  background-color: #24252F !important;
 }
 .form-select:disabled{
   background-color: #dee2e6b3;

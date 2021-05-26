@@ -32,7 +32,7 @@
     <tbody>
     @foreach($roles as $rol)
       <tr>
-        <th scope="row">{{$loop->index +1}}</th>
+        <td scope="row">{{$loop->index +1}}</td>
         <td>{{$rol->nombre_rol}}</td>
         <td>{{$rol->numero_permisos}}</td>
         <td>{{$rol->created_at}}</td>

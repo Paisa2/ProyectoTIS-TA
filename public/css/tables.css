@@ -15,6 +15,12 @@
 .table > thead > tr {
   border-color: #fff;
 }
+.table td, .table th {
+  border-top-color: #d8dbe0 !important;
+}
+.table thead th {
+  border-bottom-color: #d8dbe0 !important;
+}
 .btn {
   color: #fff !important  ;
   background-color: #181924 !important;

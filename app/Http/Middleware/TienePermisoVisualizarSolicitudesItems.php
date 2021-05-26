@@ -15,7 +15,7 @@ class TienePermisoVisualizarSolicitudesItems
      */
     public function handle($request, Closure $next)
     {
-        if (!session()->has('Visualizar solicitudes de ítems')) {
+        if (!session()->has('Visualizar solicitud de ítems')) {
             abort(403);
         }
         return $next($request);
