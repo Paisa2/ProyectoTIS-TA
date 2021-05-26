@@ -46,8 +46,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 //Route::get('/formpdf', [App\Http\Controllers\StorageController::class, 'mform'])->name('formpdf');
 //Route::post('/guardarpdf', [App\Http\Controllers\StorageController::class, 'mguardar'])->name('guardarpdf');
-Route::get('formulario', 'StorageController@index')->name('formulario');
-Route::post('formulario', 'StorageController@save');
+Route::get('formulario/{id}', 'StorageController@index')->name('formulario');
+Route::post('formulario/{i}', 'StorageController@save')->name('formpost');
+
+
+
+
 Route::get('formulario/{archivo}', function ($archivo) {
     $public_path = public_path();
     $url = $public_path.'/storage/'.$archivo;

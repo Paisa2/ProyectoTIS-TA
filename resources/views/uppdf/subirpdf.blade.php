@@ -8,6 +8,7 @@ Subir PDF
 <title>Items de Gasto</title>
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
 @endsection
 
@@ -18,7 +19,8 @@ Subir PDF
       {{session()->get('confirm')}}
       </div>
     @endif
-  <form method="POST" action="{{ route('formulario') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+    @foreach($cotizaciones as $cotizacion)
+  <form method="POST" action="{{ route('formpost', $cotizacion->id) }}" accept-charset="UTF-8" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <h1 class="display-4">Agregar Documento PDF</h1>
         
@@ -31,27 +33,38 @@ Subir PDF
         @endforeach
       </select>-->
       @foreach($cotizaciones as $cotizacion)
-      <input type="text" class="form-control" id="cotizacion_id" name="cotizacion_id" value='{{$cotizacion->id}}' >
+      <input type="text" class="form-control" id="cotizacion_id" name="cotizacion_id" value='{{$cotizacion->id}}' disabled>
       @endforeach
       <div class="br"> </div>
        @foreach($errors->get('cotizacion_id') as $message)
        <div class="alert alert-danger">{{$message}}</div>
        @endforeach
       </div>
-
+<!--
       <div class="mb-3">
           <label for="formFile" class="form-label">Agregar Archivo:</label>
           <br>
-          <input class="form-pdf" type="file"  id="formFile" accept="application/pdf" name="ruta" style=width:100%;>
+          <input class="custom-file-input" type="file"  id="formFile" accept="application/pdf" name="ruta" style=width:100%;>
           @foreach($errors->get('ruta') as $message)
           <div class="alert alert-danger">{{$message}}</div>
           @endforeach
+      </div>
+      -->
+      <div class="mb-3">
+          <label for="formFile" class="form-label">Agregar Archivo:</label>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+        <label class="custom-file-label" for="inputGroupFile01">Seleccionar Archivo PDF</label>
+        </div>
+      </div>
       </div>
 
       <div style=display:flex;justify-content:center;>
           <button type="submit" class="btn btn-primary">GUARDAR</button>
       </div>
   </form>
+  @endforeach
 </div>
 
 @endsection

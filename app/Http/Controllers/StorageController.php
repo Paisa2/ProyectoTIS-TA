@@ -10,8 +10,8 @@ use App\Models\Solicitud_cotizacion;
 
 class StorageController extends Controller
 {
-    public function index(){
-    $cotizaciones = Solicitud_cotizacion::where('id','3')->get();
+    public function index($id){
+    $cotizaciones = Solicitud_cotizacion::where('id',$id)->get();
     return view('uppdf.subirpdf', compact('cotizaciones'));
      //return \View::make('uppdf.subirpdf');
     }
@@ -21,7 +21,7 @@ class StorageController extends Controller
     //}
 
 
-    public function save(Request $request){
+    public function save(Request $request, $valor){
         $mensajes = [
             'ruta.required' => 'Debe de seleccionar y agregar un documento PDF',
             'mimetypes' => 'ERROR.  Solo se aceptan documentos con extension PDF',
@@ -44,9 +44,10 @@ class StorageController extends Controller
        $datospdf=new Cotizacion_pdf;
        $datospdf->ruta=$rutaaa;
        $datospdf->cotizacion_id=$request->cotizacion_id;
+       $datospdf->cotizacion_id=$request->cotizacion_id;
        $datospdf->save();
 
        //return "archivo guardado";
-       return redirect()->route('formulario')->with('confirm', 'El archivo a sido guardado correctamente');
+       return redirect()->route('formulario', $request->cotizacion_id)->with('confirm', 'El archivo a sido guardado correctamente');
        }
 }
