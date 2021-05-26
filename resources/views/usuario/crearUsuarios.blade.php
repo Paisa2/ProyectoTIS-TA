@@ -13,7 +13,7 @@
     <form action="/usuario" method="post">
         {{csrf_field()}}
 
-        <h2>Registrar Usuario</h2>
+        <h2  class="display-4">LISTA DE COTIZACIONES</h2>
         <br>
             <div class="row">
                 <div class="mb-3 col-6">
