@@ -68,12 +68,12 @@ AtorizaciónPresupuesto
     <br>
     
     <div class="submit">
-     <button type="submit" class="btn btn-primary">ACEPTAR</button>
+    <a href="{{route('verificarpresupuesto',['aceptar', $autopre->id])}}" class="btn btn-primary">Aceptar</a>
     </div>
     <br>
     <br>
     <div class="submit">
-    <button type="submit" class="btn btn-primary">RECHAZAR</button>
+    <a href="{{route('verificarpresupuesto',['rechazar', $autopre->id])}}" class="btn btn-primary">Rechazar</a>
      </div>
      
     @endforeach

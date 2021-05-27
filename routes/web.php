@@ -55,5 +55,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/lista', 'AdqController@index')->name('lista.index');
     Route::get('lista/solicitud', 'AdqController@create')->name('solicitud.create');
     Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
- 
+    Route::get('verificarpresupuesto/{tipo}/{id}', 'AutorizaciónPresupuestoController@update')->name('verificarpresupuesto');
 });

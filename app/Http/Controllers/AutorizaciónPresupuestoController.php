@@ -76,9 +76,15 @@ class AutorizaciónPresupuestoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$tipo, $id)
+
     {
-        //
+        if($tipo=='aceptar'){
+         Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "proceso de cotizacion"]); 
+        }elseif($tipo=='rechazar'){
+            Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Rechazado por falta de presupuesto"]); 
+        }
+       return redirect()->route('lista.index');
     }
 
     /**

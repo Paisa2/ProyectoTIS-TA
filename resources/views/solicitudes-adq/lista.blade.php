@@ -38,6 +38,7 @@
                 <th scope="col">FECHA</th>
                 <th scope="col">TIPO</th>
                 <th scope="col">ESTADO</th>
+                <th class="options"></th>
             </tr>
         </thead>
         <tbody>
@@ -48,6 +49,23 @@
             <td>{{$listadb->fecha_entrega}}</td>
             <td>{{$listadb->tipo_solicitud_a}}</td>
             <td>{{$listadb->estado_solicitud_a}}</td>
+            <td class="c-dark-theme options">
+          <div class="dropdown dropleft">
+            <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg class="c-icon mfe-2">
+                <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+              </svg>
+            </span>
+            <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+              <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+              <a class="dropdown-item" href="{{ route('autopresupuesto', $listadb->id) }}">
+                <svg class="c-icon mfe-2">
+                  <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                </svg>Verificar
+              </a>
+            </div>
+          </div>
+        </td>
         </tr>
         @endforeach
         </tbody>
