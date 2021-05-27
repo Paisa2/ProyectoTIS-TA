@@ -16,7 +16,7 @@
         <label for="tipo">Tipo</label>
         <select class="form-control" name="tipo_unidad" id="tipo_unidad">
             <option value="unidad de gasto">Unidad De Gasto</option>
-            <option value="unidad de administrativa">Unidad Administrativa</option>
+            <option value="unidad administrativa">Unidad Administrativa</option>
             <option value="facultad">Facultad</option>
         </select>
         @foreach($errors->get('tipo_unidad') as $message)

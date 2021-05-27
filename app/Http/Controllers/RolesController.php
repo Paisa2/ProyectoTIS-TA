@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Database\QueryException;
 
 use App\Models\TipoContenido;
 use App\Models\Permiso;
@@ -35,10 +36,10 @@ class RolesController extends Controller
     {
         $roles = Rol::all();
         foreach ($roles as $rol) {
-            $permisos = RolTienePermiso::where("rol_id", $rol->id)->get();
+            $permisos = RolTienePermiso::where('rol_id', $rol->id)->get();
             $rol->numero_permisos = count($permisos);
         }
-        return view("roles.visualizarRoles", compact("roles"));
+        return view('roles.visualizarRoles', compact('roles'));
     }
 
     /**
@@ -61,7 +62,7 @@ class RolesController extends Controller
                 }
             }
         }
-        return view("roles.crearRol", compact("modulos"));
+        return view('roles.crearRol', compact('modulos'));
     }
 
     /**
@@ -72,7 +73,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $mensages = [
+        $mensajes = [
             'nombre_rol.required' => 'El campo nombre es requerido.',
             'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
             'max'   => 'El :attribute no puede tener más de :max caracteres.',
@@ -83,7 +84,7 @@ class RolesController extends Controller
         $this->validate($request, [
             'nombre_rol'=>['required', 'min:4', 'max:255', 'regex:/^[\pL\s\-]+$/u', 'unique:roles,nombre_rol'], 
             'permisos'=>'required',
-            ], $mensages);
+            ], $mensajes);
         try {
             DB::beginTransaction();
             $rol = new Rol($request->all());
@@ -98,10 +99,10 @@ class RolesController extends Controller
             }
             DB::commit();
             //return Redirect::back()->with('confirm', 'Se registro correctamente');
-            return redirect()->route("roles.index")->with('confirm', 'Se registro correctamente');
+            return redirect()->route('roles.index')->withSuccess('Se registro correctamente');
         } catch (Exception $e) {
             DB::rollBack();
-            return Redirect::back()->withErrors(['failed', 'Se produjo un error intente el registro nuevamente']);
+            return redirect()->back()->withError('Se produjo un error intente el registro nuevamente');
         }
     }
 
@@ -113,7 +114,29 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        //
+        $rol = Rol::where('id', $id)->first();
+        if ($rol) {
+            $modulos = TipoContenido::all();
+            foreach ($modulos as $modulo) {
+                $permisos = Permiso::join('rol_tiene_permisos', 'rol_tiene_permisos.permiso_id', '=', 'permisos.id')
+                ->where('rol_tiene_permisos.rol_id', $id)
+                ->where('permisos.tipo_contenido_id', $modulo->id)->get();
+                foreach ($permisos as $permiso) {
+                    if ($permiso->tipo_permiso == 2) {
+                        $modulo->visualizar = true;
+                    } else if ($permiso->tipo_permiso == 3) {
+                        $modulo->editar = true;
+                    } else if ($permiso->tipo_permiso == 1) {
+                        $modulo->crear = true;
+                    } else {
+                        $modulo->eliminar = true;
+                    }
+                }
+            }
+        } else {
+            abort(404);
+        }
+        return view('roles.mostrarRol', compact('rol', 'modulos'));
     }
 
     /**
@@ -147,6 +170,15 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rol = Rol::where('id', $id)->first();
+        if ($rol) {
+            try {
+                $rol->delete();
+                return redirect()->back()->withSuccess('Se elimino el rol correctamente.');   
+            } catch (QueryException $e) {
+                return redirect()->back()->withError('El rol ' . $rol->nombre_rol . ' esta en uso.');   
+            }
+        }
+        return redirect()->back()->withError('Ocurrio un error al momento de eliminar el rol, intentelo de nuevo.');   
     }
 }

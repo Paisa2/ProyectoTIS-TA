@@ -3,12 +3,17 @@
     <div class="dropdown">
       <span class="text-white" id="btn-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
         @if(Auth::check())
-          {{Auth::user()->nombres}}
+        {{Auth::user()->nombres}}
         @endif
+        <span id="user-image">
+          <svg class="c-icon mfe-2">
+              <use xlink:href="{{asset('img/icons/user-fill.svg#i-user-fill')}}"></use>
+            </svg>
+        </span>
       </span>
       <div class="dropdown-menu dropdown-menu-right pt-0" aria-labelledby="btn-user">
-        <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
-        <a class="dropdown-item" href="#">
+        <div class="dropdown-header bg-light py-2"><strong>Cuenta</strong></div>
+        <!-- <a class="dropdown-item" href="#">
           <svg class="c-icon mfe-2">
           <use xlink:href="{{asset('img/icons/bell.svg#bell')}}"></use>
           </svg> Updates<span class="badge badge-info mfs-auto">42</span>
@@ -54,12 +59,12 @@
           <svg class="c-icon mfe-2">
           <use xlink:href="{{asset('img/icons/lock-locked.svg#lock-locked')}}"></use>
           </svg> Lock Account
-        </a>
+        </a> -->
         <form action="{{ route('logout') }}" method="post" id="logout" class="d-none">{{csrf_field()}}</form>
         <button class="dropdown-item" type="submit" form="logout">
           <svg class="c-icon mfe-2">
           <use xlink:href="{{asset('img/icons/account-logout.svg#account-logout')}}"></use>
-          </svg> Logout
+          </svg> Cerrar sesion
         </button>
       </div>
     </div>

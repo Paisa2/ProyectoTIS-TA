@@ -54,7 +54,7 @@ class SolicitarItemController extends Controller
             $query->where('info_usuario.tipo_unidad', 'unidad administrativa')
                 ->orWhere('info_usuario.tipo_unidad', 'Institución');
         })
-        ->select('info_usuario.id', 'info_usuario.nombres', 'info_usuario.nombre_unidad', 'info_usuario.nombre_rol')
+        ->select('info_usuario.id', 'info_usuario.nombres', 'info_usuario.apellidos', 'info_usuario.nombre_unidad', 'info_usuario.nombre_rol')
         ->get();
         return view("solicitudes-items.crearSolicitudItem", compact('destinatarios'));
     }

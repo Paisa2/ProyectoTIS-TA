@@ -20,6 +20,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">NRO</th>
                 <th scope="col">TIPO DE UNIDAD</th>
                 <th scope="col">NOMBRE DE UNIDAD</th>
                 <th scope="col">PERTENECE A</th>
@@ -29,6 +30,7 @@
         <tbody>
         @foreach($unidad as $unidadbd)
         <tr>
+            <th scope="row">{{$loop->index +1}}</th>
             <td>{{$unidadbd->tipo_unidad}}</td>
             <td>{{$unidadbd->nombre_unidad}}</td>
             <td>{{$unidadbd->pertenece_a}}</td>

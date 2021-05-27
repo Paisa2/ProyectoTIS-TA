@@ -21,7 +21,7 @@ class UsuariosController extends Controller
         $usuarios = Usuario::join('usuario_tiene_roles','usuarios.id','=','usuario_tiene_roles.usuario_id')
         -> join ('roles','roles.id','=','usuario_tiene_roles.rol_id')
         -> join ('unidades','unidades.id','=','usuarios.unidad_id')
-        -> where ('estado',1) -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
+        -> where ('estado',1) -> where('roles.nombre_rol', '!=', 'Superusuario') -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
         -> get ();
         
         return view("usuario.visualizarUsuarios",compact('usuarios'));

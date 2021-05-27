@@ -16,6 +16,7 @@ use App\Models\VerificacionFechas;
 use App\Models\Solicitud_adquisicion;
 use App\Models\Notificacion;
 
+
 class LoginController extends Controller
 {
    
@@ -95,7 +96,7 @@ class LoginController extends Controller
    private function verificarFechas() {
       date_default_timezone_set('America/La_Paz');
       if (VerificacionFechas::where("verificado", true)->whereDate("created_at", Date("Y-m-d"))->count() < 1) {
-         $adquisiciones = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->whereDate("updated_at", Date("Y-m-d", strtotime("-1 day")))->get();
+         $adquisiciones = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->whereDate("updated_at", Date("Y-m-d", strtotime("-2 day")))->get();
          $vencidas = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->where("updated_at", "<", Date("Y-m-d", strtotime("-3 day")))->get();
          DB::beginTransaction();
          $verificacion = new VerificacionFechas();

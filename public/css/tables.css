@@ -49,9 +49,25 @@ h1{
   background-color: gray;
 }
 .alert-success{
-  background-color: rgb(4, 153, 28);
-  border-color: rgb(4, 153, 28);
+  color: #fff !important;
+  background-color: rgb(4, 153, 28) !important;
+  border-color: rgb(4, 153, 28) !important;
+}
+.alert-danger{
+  color: #fff !important;
+  background-color: #960816 !important;
+  border-color: #960816 !important;
 }
 .alert{
   padding: 5px;
+}
+
+.options {
+  width: 24px;
+}
+.options .dropdown-menu {
+  padding-top: 0;
+}
+.options > div > span {
+  cursor: pointer;
 }

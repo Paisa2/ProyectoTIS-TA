@@ -17,6 +17,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
 /*estilos aside*/
 .c-icon {
   fill: #fff;
@@ -33,4 +34,29 @@ body {
 }
 .aside-link:hover {
   text-decoration: none;
+}
+
+#user-image {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+#user-image svg {
+  width: 24px;
+  height: 24px;
+  fill: #22222F;
+  margin: 0 !important;
+}
+#btn-user {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: unset !important;
 }
