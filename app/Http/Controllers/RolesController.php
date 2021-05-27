@@ -100,7 +100,29 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        //
+        $rol = Rol::where("id", $id)->first();
+        if ($rol) {
+            $modulos = TipoContenido::all();
+            foreach ($modulos as $modulo) {
+                $permisos = Permiso::join("rol_tiene_permisos", "rol_tiene_permisos.permiso_id", "=", "permisos.id")
+                ->where("rol_tiene_permisos.rol_id", $id)
+                ->where("permisos.tipo_contenido_id", $modulo->id)->get();
+                foreach ($permisos as $permiso) {
+                    if ($permiso->tipo_permiso == 2) {
+                        $modulo->visualizar = true;
+                    } else if ($permiso->tipo_permiso == 3) {
+                        $modulo->editar = true;
+                    } else if ($permiso->tipo_permiso == 1) {
+                        $modulo->crear = true;
+                    } else {
+                        $modulo->eliminar = true;
+                    }
+                }
+            }
+        } else {
+            abort(404);
+        }
+        return view("roles.mostrarRol", compact("rol", "modulos"));
     }
 
     /**

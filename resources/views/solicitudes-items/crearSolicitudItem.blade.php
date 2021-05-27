@@ -16,7 +16,7 @@
       <label for="para" class="form-label">Para:</label>
       <select name="para_usuario_id" id="para" class="form-control">
         @foreach($destinatarios as $destinatario)
-        <option value="{{$destinatario->id}}">{{$destinatario->nombres}} / {{$destinatario->nombre_rol}} / {{$destinatario->nombre_unidad}}</option>
+        <option value="{{$destinatario->id}}">{{$destinatario->nombres . " " . $destinatario->apellidos}} / {{$destinatario->nombre_rol}} / {{$destinatario->nombre_unidad}}</option>
         @endforeach
       </select>
       @foreach($errors->get('para_usuario_id') as $message)

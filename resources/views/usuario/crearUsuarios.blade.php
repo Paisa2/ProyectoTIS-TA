@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="mb-3 col-6">
                     <label for="nombre" class="form-label">Nombres:</label>
-                    <input type="text" class="form-control" name="nombres" id="nombre" value="{{old('nombres')}}">
+                    <input type="text" class="form-control" name="nombres" id="nombre" value="{{old('nombres')}}" autocomplete="off">
                     @foreach($errors->get('nombres') as $message) 
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
@@ -27,7 +27,7 @@
 
                 <div class="mb-3 col-6">
                     <label for="apellido"class="form-label">Apellidos:</label>
-                    <input type="text" class="form-control" name="apellidos" id="apellido" value="{{old('apellidos')}}">
+                    <input type="text" class="form-control" name="apellidos" id="apellido" value="{{old('apellidos')}}" autocomplete="off">
                     @foreach($errors->get('apellidos') as $message) 
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="mb-3 col-6">
                     <label for="emails" class="form-label">Email:</label>
-                    <input type="text" class="form-control" name="email" id="emails" value="{{old('email')}}">
+                    <input type="text" class="form-control" name="email" id="emails" value="{{old('email')}}" autocomplete="off">
                     @foreach($errors->get('email') as $message) 
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach

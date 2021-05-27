@@ -112,7 +112,7 @@ option, select {
   color: #fff;
   background-color: #960816;
 }
-button{
+form button{
   display: flex;
   justify-content: center;
 }

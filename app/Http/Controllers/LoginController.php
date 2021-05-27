@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
 use App\Models\Permiso;
 use App\Models\Unidad;
+use App\Models\InfoUsuario;
 
 class LoginController extends Controller
 {
@@ -48,11 +49,7 @@ class LoginController extends Controller
       Auth::logout();
       
       if(Auth::attempt($credentials)){
-         $infoUser = Usuario::join("unidades", "unidades.id", "=", "usuarios.unidad_id")
-         ->join("usuario_tiene_roles", "usuario_tiene_roles.usuario_id", "=", "usuarios.id")
-         ->join("roles", "roles.id", "=", "usuario_tiene_roles.rol_id")
-         ->where("usuarios.id", Auth::id())->where("usuario_tiene_roles.estado", true)
-         ->select("usuarios.*", "roles.id as rol_id", "roles.nombre_rol", "unidades.nombre_unidad", "unidades.tipo_unidad", "unidades.unidad_id as unidad_padre_id")->get();
+         $infoUser = InfoUsuario::where("id", Auth::id())->get();
          $infoUser = $infoUser[0];
          $permisos = Permiso::join("rol_tiene_permisos", "rol_tiene_permisos.permiso_id", "=", "permisos.id")
          ->where("rol_tiene_permisos.rol_id", $infoUser->rol_id)->get();
@@ -62,26 +59,24 @@ class LoginController extends Controller
             "apellidos" => $infoUser->apellidos,
             "email" => $infoUser->email,
             "unidad_id" => $infoUser->unidad_id,
-            "unidad" => $infoUser->nombre_unidad,
+            "nombre_unidad" => $infoUser->nombre_unidad,
             "tipo_unidad" => $infoUser->tipo_unidad,
+            "unidad_padre_id" => $infoUser->unidad_padre_id,
+            "nombre_unidad_padre" => $infoUser->nombre_unidad_unidad,
+            "tipo_unidad_padre" => $infoUser->tipo_unidad_padre,
             "rol" => $infoUser->nombre_rol,
          ]);
-         if ($infoUser->tipo_unidad == "unidad de gasto" || $infoUser->tipo_unidad == "unidad administrativa") {
-            $facultad = Unidad::where("id", $infoUser->unidad_padre_id)->get();
-            $facultad = $facultad[0];
-            session([
-               "facultad_id" => $facultad->id,
-               "nombre_facultad" => $facultad->nombre_unidad,
-            ]);
-            if ($infoUser->tipo_unidad == "unidad de gasto") {
-               $administrativa = Unidad::where("unidad_id", $facultad->id)->where("tipo_unidad", "unidad administrativa")->get();
-               $administrativa = $administrativa[0];
-            }
-            session([
-               "administrativa_id" =>$administrativa->id,
-               "nombre_administrativa" =>$administrativa->nombre_unidad,
-            ]);
+         if ($infoUser->tipo_unidad != "unidad administrativa") {
+            $administrativa = Unidad::where("unidad_id", $infoUser->unidad_padre_id)->where("tipo_unidad", "unidad administrativa")->get();
+            $administrativa = $administrativa[0];
+         }else {
+            $administrativa = Unidad::where("unidad_id", 1)->where("tipo_unidad", "unidad administrativa")->get();
+            $administrativa = $administrativa[0];
          }
+         session([
+            "administrativa_id" =>$administrativa->id,
+            "nombre_administrativa" =>$administrativa->nombre_unidad,
+         ]);
          foreach ($permisos as $permiso) {
             Session([$permiso->nombre_clave => true]);
          }
