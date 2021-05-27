@@ -27,10 +27,13 @@ class SolicitudCotizacionController extends Controller
                         
         ];
         $this->validate($request, [
-            'razon_social'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
+            'razon_social'=>['required', 'min:2', 'max:40', 'regex:/^[\pL\s\-]+$/u'],
+            'numero_cotizacion'=>['required', 'min:6', 'max:8', 'numeric'], 
+            'fecha_cotizacion'=>['required'], 
             ], $mensages);
         $cotizacion = new Solicitud_cotizacion;    
         $cotizacion->razon_social = $request->razon_social;
+        $cotizacion->numero_cotizacion = $request->numero_cotizacion;
         $cotizacion->fecha_cotizacion = $request->fecha_cotizacion;
         $cotizacion->detalle_cotizacion = $request->detalle;
 
