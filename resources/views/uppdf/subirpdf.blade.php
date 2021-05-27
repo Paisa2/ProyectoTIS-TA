@@ -37,6 +37,7 @@ Subir PDF
        <div class="alert alert-danger">{{$message}}</div>
        @endforeach
       </div>
+      <br>
 <!--
       <div class="mb-3">
           <label for="formFile" class="form-label">Agregar Archivo:</label>
