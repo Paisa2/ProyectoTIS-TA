@@ -46,7 +46,6 @@ class RegistroController extends Controller
         $unidad->unidad_id = $request->unidad_id;        
         $unidad->save();
         return redirect('unidades')->with('confirm', 'La unidad se registro correctamente');
-        //
     }
 
     /**

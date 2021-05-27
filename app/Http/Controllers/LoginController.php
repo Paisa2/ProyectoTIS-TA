@@ -112,7 +112,7 @@ class LoginController extends Controller
             unset($notificacion);
          }
          foreach ($vencidas as $vencida) {
-            $actualizado = Solicitud_adquisicion::where("id", $vencida->id)->update(["estado_solicitud_a" => "plazo de espera vencido"]);
+            $actualizado = Solicitud_adquisicion::where("id", $vencida->id)->update(["estado_solicitud_a" => "Plazo de espera vencido"]);
             unset($actualizado);
          }
          DB::commit();

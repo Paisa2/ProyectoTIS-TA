@@ -26,6 +26,10 @@ Route::get('/', function () {
 Route::group(['middleware' => 'noauth'], function () {  
     Route::get('login','LoginController@mostrarFormulario')->name('login');
     Route::post('autentificacion','LoginController@autentificar');
+    
+
+    
+    
 });
 
 Route::group(['middleware' => 'auth'], function () {  
@@ -43,8 +47,14 @@ Route::group(['middleware' => 'auth'], function () {
         session()->flush();
         return redirect()->route('login');
     })->name('logout');
-    Route::post('reenviar-solicitud/{id}', function($id){
-        $adquisicion = App\Models\Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "pendiente"]);
-        // return redirect()->route('');
+
+    Route::get('reenviar-solicitud/{id}', function($id){
+        App\Models\Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "pendiente"]);
+        return redirect()->route('lista.index');
     })->name('reenviar');
+
+    Route::get('/lista', 'AdqController@index')->name('lista.index');
+    Route::get('lista/solicitud', 'AdqController@create')->name('solicitud.create');
+    Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
+
 });
