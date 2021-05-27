@@ -18,29 +18,42 @@ AtorizaciónPresupuesto
   <form >
    <div>
      <h3>DETALLE DE LA SOLICITUD DE ADQUISICIÓN</h3>
+     <br>
    
     @foreach($autopresupuesto as $autopre)
-    <label  for="exampleInputEmail1" class="form-label">TIPO:</label>
+
+    <label  for="exampleInputEmail1" class="form-label"><b>TIPO:</b></label>
     
     <label>{{$autopre->tipo_solicitud_a}}</label>
-    <br>
-    <label  for="exampleInputEmail1" class="form-label">ELABORADO POR:</label>
-    
-    <label>{{$autopre->nombres}} {{$autopre->apellidos}}</label>
-    <br>
-    <label  for="exampleInputEmail1" class="form-label">UNIDAD SOLICITANTE:</label>
-    
+   
+
+    <div class='row'>
+    <div class='col-6'>
+    <label  for="exampleInputEmail1" class="form-label"><b>UNIDAD SOLICITANTE:</b></label>
     <label>{{$autopre->nombre_unidad}}</label>
-    <br>
-    <label  for="exampleInputEmail1" class="form-label">FECHA DE PEDIDO:</label>
+    </div>
+
+    <div class='col-6'>
+    <label  for="exampleInputEmail1" class="form-label"><b>ELABORADO POR:</b></label>
+    <label>{{$autopre->nombres}} {{$autopre->apellidos}}</label>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-6">
     
+    <label  for="exampleInputEmail1" class="form-label"><b>FECHA DE PEDIDO:</b></label>
     <label>{{$autopre->created_at}}</label>
-    <br>
-    <label  for="exampleInputEmail1" class="form-label">FECHA DE ENTREGA:</label>
-    
+    </div>
+    <div class="col-6">
+    <label  for="exampleInputEmail1" class="form-label"><b>FECHA DE ENTREGA:</b></label>
     <label>{{$autopre->fecha_entrega}}</label>
-    <br>
-    <label  for="exampleInputEmail1" class="form-label">JUSTIFICACIÓN:</label>
+    </div>
+    </div>
+    
+    
+  
+    <label  for="exampleInputEmail1" class="form-label"><b>JUSTIFICACIÓN:</b></label>
     <br>
 
     <label class="soli" >{{$autopre->justificacion_solicitud_a}}</label>
@@ -56,21 +69,22 @@ AtorizaciónPresupuesto
   <form >
    <div >
      <h3>VERIFICAR PRESUPUESTO</h3>
+     <br>
    
     @foreach($autopresupuesto as $autopre)
-    <label  for="exampleInputEmail1" class="form-label">UNIDAD QUE SOLICITA: </label>
+    <label  for="exampleInputEmail1" class="form-label"><b>UNIDAD QUE SOLICITA:</b> </label>
     
     <div>{{$autopre->nombre_unidad}}</div>
     <br>
-    <label  for="exampleInputEmail1" class="form-label">PRESUPUESTO:</label>
-    <br>
+    <label  for="exampleInputEmail1" class="form-label"><b>PRESUPUESTO:</b></label>
+    
     <label>{{$autopre->monto}} bs</label>
+    <br>
     <br>
     
     <div class="submit">
     <a href="{{route('verificarpresupuesto',['aceptar', $autopre->id])}}" class="btn btn-primary">Aceptar</a>
     </div>
-    <br>
     <br>
     <div class="submit">
     <a href="{{route('verificarpresupuesto',['rechazar', $autopre->id])}}" class="btn btn-primary">Rechazar</a>
