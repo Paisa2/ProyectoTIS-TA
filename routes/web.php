@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource("usuario", "UsuariosController");
     Route::resource('itemsgastos','ItemgastoController');
     Route::resource("solicitudCotizacion", "SolicitudCotizacionController");
+    Route::get('formulario/{id}', 'StorageController@index')->name('formulario');
+    Route::post('formulario/{i}', 'StorageController@save')->name('formpost');
     Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');
     Route::get('/unidades', 'UnidadesController@lista')->name('unidades.lista');
     Route::get('/unidades/registro', 'RegistroController@index');
@@ -48,8 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 //Route::get('/formpdf', [App\Http\Controllers\StorageController::class, 'mform'])->name('formpdf');
 //Route::post('/guardarpdf', [App\Http\Controllers\StorageController::class, 'mguardar'])->name('guardarpdf');
-Route::get('formulario/{id}', 'StorageController@index')->name('formulario');
-Route::post('formulario/{i}', 'StorageController@save')->name('formpost');
+
 
 
 

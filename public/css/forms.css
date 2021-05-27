@@ -151,3 +151,11 @@ form button{
   color: black;
   border-color: #24252F;
 }
+.custom-file-label{
+color: white;
+background-color: #24252F;
+}
+.custom-file-label::after{
+  color: white;
+  background-color: #20212b;
+}

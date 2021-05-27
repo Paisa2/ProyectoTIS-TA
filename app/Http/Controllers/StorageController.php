@@ -25,7 +25,7 @@ class StorageController extends Controller
         $mensajes = [
             'ruta.required' => 'Debe de seleccionar y agregar un documento PDF',
             'mimetypes' => 'ERROR.  Solo se aceptan documentos con extension PDF',
-            'numeric'=> 'ERROR.  El ID de la cotizacion es incorrecto',
+            'numeric'=> 'ERROR.  El codigo de la cotizacion es incorrecto',
         ];
         $this->validate($request, [
             'ruta'=>['required','mimetypes:application/pdf'],
@@ -48,6 +48,6 @@ class StorageController extends Controller
        $datospdf->save();
 
        //return "archivo guardado";
-       return redirect()->route('formulario', $valor)->with('confirm', 'El archivo a sido guardado correctamente');
+       return redirect()->route("solicitudCotizacion.index")->with('confirm', 'Se ha agregado el archivo PDF correctamente');
        }
 }
