@@ -43,11 +43,11 @@ class StorageController extends Controller
        $rutaaa="storage/".$nombre;
        $datospdf=new Cotizacion_pdf;
        $datospdf->ruta=$rutaaa;
-       $datospdf->cotizacion_id=$request->cotizacion_id;
-       $datospdf->cotizacion_id=$request->cotizacion_id;
+       //$datospdf->cotizacion_id=$request->cotizacion_id;
+       $datospdf->cotizacion_id=$valor;
        $datospdf->save();
 
        //return "archivo guardado";
-       return redirect()->route('formulario', $request->cotizacion_id)->with('confirm', 'El archivo a sido guardado correctamente');
+       return redirect()->route('formulario', $valor)->with('confirm', 'El archivo a sido guardado correctamente');
        }
 }
