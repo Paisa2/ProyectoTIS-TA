@@ -45,6 +45,11 @@
         <div class="row">
             <div class="col-md-12" id="tabla-compra">
                 <table class="table table-bordered" id="compra">
+                    <style>
+                        table{
+                            table-layout: fixed;
+                        }
+                    </style>
                     <thead>
                         <tr>
                             <th>Item</th>
@@ -88,7 +93,7 @@
                 <thead>
                     <tr>
                         <th>Servicio</th>
-                        <th>Duracion de Servicio</th>
+                        <th>Meses de Duracion</th>
                         {{--  <th>Precio Mensual</th>  --}}
                         <th>Precio</th>
                     </tr>
@@ -97,9 +102,9 @@
                     @for($i=0; $i<5; $i++)
                     <tr>
                         <th contenteditable="true"></th>
-                        <th contenteditable="true"></th>
+                        <th contenteditable="true" class="only-numbers"></th>
                         {{--  <th contenteditable="true"></th>  --}}
-                        <th contenteditable="true"></th>
+                        <th contenteditable="true" class="only-numbers"></th>
                     </tr>
                     @endfor
                 </tbody>
@@ -113,17 +118,21 @@
 </div>
 @endsection
 @section('scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>´
+//<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
     let selectorN = ".only-numbers";
     $(selectorN).on("keydown", function(e) {
-    if (!"0123456789".includes(e.key) && e.key!="Backspace") {
+    if(isNaN(parseInt(e.key)) && e.key!="Backspace"){
       e.preventDefault();
+    }else{
+        if("´@-*{}[]•◘○♦♣♠☺☻".includes(e.key)){
+            e.preventDefault();
+        }
     }
     });
     $(document).ready(function(){
-        $("#compra").hide();
-        $('#compra').prop("disabled", true);
+        $("#alquiler").hide();
         $("#tipo").change(function(){
             var selector = $("#tipo").val();
             console.log(selector);
@@ -155,7 +164,7 @@
       .replace(/<span class="d-none">/g, "")
       .replace(/<\/span>/g, "")
       .replace(/  /g, "")
-      .replace(/class="only-numbers"/g, "");
+      .replace(/class="only-numbers"/g,"");
       $("#detalle").val(html);
     });
     });

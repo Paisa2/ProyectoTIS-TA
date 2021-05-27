@@ -6,30 +6,35 @@
 @endsection
 
 @section('main')
-{{-- @if(session('confirm'))
+@if(session('confirm'))
 <div class="alert alert-success" role="alert" id="confirm">
     {!! session('confirm') !!}
 </div>
 <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
-@endif --}}
+@endif
 <div style="width: 90%; margin:24px auto;" class="container-table">
     <h1>Adquisiciones Registradas</h1>
-    <div class="d-flex justify-content-end mb-3">
+    <div class="row g-2">
+      <div class="col-md">
+      <form action="" method="get">
+      {{-- <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <input type="submit" value="compra" class="btn btn-outline-primary" name="compra" id="compra">
+        <input type="submit" value="alquiler" class="btn btn-outline-primary" name="alquiler" id="alquiler">
+      </div> --}}
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="submit" class="btn btn-primary" name="todos" id="todos" value="todos" checked>
+      
+        <input type="submit" class="btn btn-primary" name="compra" id="compra" value="compra">
+      
+        <input type="submit" class="btn btn-primery" name="alquiler" id="compra" value="alquiler" >
+      </div>
+      </form>
+      </div>
+      <div class="col-md">
+      <div class="d-flex justify-content-end mb-3">
         <a href="{{route('solicitud.create')}}" class="btn btn-primary">+ Nuevo</a>
+      </div>
     </div>
-    <nav class="navbar navbar-light">
-        <div class="container-fluid">
-          <form class="d-flex">
-              {{-- <select name="buscar" id="buscar" onchange="this.form.submit()">
-                <option value="">Todos</option>
-                <option value="">compra</option>
-                <option value="">alquiler</option>
-              </select> --}}
-            {{-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="buscar">
-            <button class="btn btn-outline-success" type="submit">Search</button> --}}
-          </form>
-        </div>
-      </nav>
     <table class="table">
         <thead>
             <tr>
