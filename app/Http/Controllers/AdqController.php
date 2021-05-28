@@ -20,7 +20,7 @@ class AdqController extends Controller
         $tipo2 = $request->get('compra');
         $tipo3 = $request->get('alquiler');
         // $todos=Solicitud_adquisicion::all();
-        $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")->where('tipo_solicitud_a', 'like', "%$tipo3%")->get();
+        $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")->where('tipo_solicitud_a', 'like', "%$tipo3%")->orderBy('updated_at','desc')->get();
         return view('solicitudes-adq.lista', compact('solicitudes'));
     }
 

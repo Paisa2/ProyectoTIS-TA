@@ -13,7 +13,7 @@
 <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 @endif
 <div style="width: 90%; margin:24px auto;" class="container-table">
-    <h1>Adquisiciones Registradas</h1>
+  <div><h1 class="display-4">Solicitudes de Adquisiciones</h1></div>  
     <div class="row g-2">
       <div class="col-md">
       <form action="" method="get">
@@ -33,6 +33,7 @@
       <div class="col-md">
       <div class="d-flex justify-content-end mb-3">
         <a href="{{route('solicitud.create')}}" class="btn btn-primary">+ Nuevo</a>
+      </div>
       </div>
     </div>
     <table class="table">
@@ -58,5 +59,4 @@
         </tbody>
     </table>
     {{--  {!!$unidad->render()!!}  --}}
-    </div>
 @endsection

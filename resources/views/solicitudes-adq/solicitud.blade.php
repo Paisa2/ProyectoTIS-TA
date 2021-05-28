@@ -11,7 +11,7 @@
     <form action="{{route('solicitud.store')}}" method="post">
         {{csrf_field()}}
         <div class="col-md-12">
-            <h1>Solicitar Adquisicion</h1>
+            <h1 class="display-4">Solicitar Adquisicion</h1>
         </div>
         <div class="row g-3">
             <div class="col-md-6">
@@ -19,7 +19,7 @@
                 <select name="tipo" id="tipo" class="form-control">
                     <option value="compra">Compra</option>
                     <option value="alquiler">Alquiler</option>
-                </select>
+                </select><br>
                 @foreach($errors->get('tipo') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
