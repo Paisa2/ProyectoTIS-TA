@@ -19,7 +19,7 @@
         <br>
             <div class="row">
                 <div class="mb-3 col-5">
-                    <div class="row">
+                    <div>
                     <label for="RazonSocial" class="form-label col-auto">Razón Social:</label>
                     <input type="text" class="form-control col" name="razon_social" id="RazonSocial" autocomplete="off" value="{{old('razon_social')}}">
                     </div>
@@ -28,7 +28,7 @@
                     @endforeach
                 </div>
                 <div class="mb-3 col-3">
-                    <div class="row">
+                    <div>
                     <label for="Fechas" class="form-label col-auto">Fecha:</label>
                     <input class="form-control col" type="date" name="fecha_cotizacion">
                     </div>
@@ -37,7 +37,7 @@
                     @endforeach
                 </div>
                 <div class="mb-3 col-4">
-                    <div class="row">
+                    <div>
                     <label for="NumeroCotizacion" class="form-label col-auto">Número Cotización:</label>
                     <input type="text" class="form-control col" name="numero_cotizacion" id="NumeroCotizacion" autocomplete="off" value="{{old('numero_cotizacion')}}">
                     </div>
