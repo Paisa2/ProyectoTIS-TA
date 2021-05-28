@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-6">
                 <label for="fecha" class="form-label">Fecha de entrega</label>
-                <input type="date" name="fecha" id="" class="form-control">
+                <input type="date" name="fecha" id="" class="form-control" min=<?php $fecha=date("Y-m-d"); echo date("Y-m-d", strtotime($fecha."+ 3 days"));?>>
                 @foreach($errors->get('fecha') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
@@ -35,7 +35,7 @@
         <div class="row">
             <div class="mb-3 col-12">
                 <label for="justificacion" class="form-label">Justificacion</label>
-                <textarea name="justificacion" id="justificacion" class="form-control" cols="30" rows="0"></textarea><br>
+                <textarea name="justificacion" id="justificacion" class="form-control" cols="30" rows="0" style="resize: none">{{old('justificacion')}}</textarea>
                 @foreach($errors->get('justificacion') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
