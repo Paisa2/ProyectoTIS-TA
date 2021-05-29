@@ -59,6 +59,8 @@ class Kernel extends HttpKernel
         'noauth' => \App\Http\Middleware\noAuthenticated::class,
         'crear.rol' => \App\Http\Middleware\TienePermisoCrearRol::class,
         'visualizar.rol' => \App\Http\Middleware\TienePermisoVisualizarRoles::class,
+        'editar.rol' => \App\Http\Middleware\TienePermisoEditarRol::class,
+        'eliminar.rol' => \App\Http\Middleware\TienePermisoEliminarRol::class,
         'crear.solicitud.item' => \App\Http\Middleware\TienePermisoCrearSolicitudItem::class,
         'visualizar.solicitud.item' => \App\Http\Middleware\TienePermisoVisualizarSolicitudesItems::class,
     ];

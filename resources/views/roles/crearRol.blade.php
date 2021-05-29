@@ -2,22 +2,14 @@
 
 @section('head')
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+<link rel="stylesheet" href="{{ asset('css/tables.css') }}">
+<link rel="stylesheet" href="{{ asset('css/roles/tableRol.css') }}">
 @endsection
 
 @section('main')
 <!-- codigo importante -->
-@if(session()->has('failed'))
-    <div class="alert alert-danger" role="alert">
-        {{ session()->get('failed') }}
-    </div>
-@endif
-<!-- @if(session()->has('confirm'))
-    <div class="alert alert-success" role="alert">
-        {{ session()->get('confirm') }}
-    </div>
-    <script>setTimeout("location.href = '{{ route('roles.index') }}';",1500);</script>
-@endif -->
-<div style="width:90%; margin:24px auto;">
+
+<div style="width:70%; margin:48px auto;">
   <form action="{{ route('roles.store') }}" method="post">
     {{csrf_field()}}
     <h1>Registro de rol</h1>
@@ -32,43 +24,69 @@
     </div>
 
     <label class="form-label">Permisos:</label>
-    <div class="mb-3" style="width:70%; margin:auto;">
-      <div class="row">
-        <div class="col d-flex justify-content-center">Modulo</div>
-        <div class="col d-flex justify-content-center">Visualizar</div>
-        <div class="col d-flex justify-content-center">Crear</div>
-        <div class="col d-flex justify-content-center">Editar</div>
-      </div>
-      <hr style="background-color:#fff;border-width: 2px;">
-      <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Modulo</th>
+          <th>Visualizar</th>
+          <th>Crear</th>
+          <th>Editar</th>
+        </tr>
+      </thead>
+      <tbody>
         @foreach($modulos as $modulo)
-        <div class="row">
-          <div class="col">{{$modulo->modulo}}</div>
-          <div class="col d-flex justify-content-center">
-            <input type="checkbox" name="permisos[]" value="{{$modulo->visualizar_id}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->visualizar_id, old('permisos'))) checked @endif>
-          </div>
-          <div class="col d-flex justify-content-center">
-            <input type="checkbox" name="permisos[]" value="{{$modulo->crear_id}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->crear_id, old('permisos'))) checked @endif>
-          </div>
-          <div class="col d-flex justify-content-center">
-            <input type="checkbox" name="permisos[]" value="{{$modulo->editar_id}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->editar_id, old('permisos'))) checked @endif>
-          </div>
-        </div>
-        <hr style="background-color:#fff;margin:.5rem 0;">
+        <tr>
+          <td class="module">{{$modulo->modulo}}</td>
+          <td>
+            <input type="checkbox" name="permisos[]" value="{{$modulo->visualizar_id}}" id="r-{{$loop->index +1}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->visualizar_id, old('permisos'))) checked @endif>
+          </td>
+          <td>
+            <input type="checkbox" name="permisos[]" value="{{$modulo->crear_id}}" id="c-{{$loop->index +1}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->crear_id, old('permisos'))) checked @endif>
+          </td>
+          <td>
+            <input type="checkbox" name="permisos[]" value="{{$modulo->editar_id}}" id="u-{{$loop->index +1}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->editar_id, old('permisos'))) checked @endif>
+          </td>
+        </tr>
         @endforeach
-      </div>
-      @foreach($errors->get('permisos') as $message)
-      <div class="alert alert-danger" role="alert">{{$message}}</div>
-      @endforeach
-    </div>
+      </tbody>
+    </table>
+    @foreach($errors->get('permisos') as $message)
+    <div class="alert alert-danger" role="alert">{{$message}}</div>
+    @endforeach
 
     <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary">REGISTRAR</button>
+      <button type="submit" class="btn btn-primary" id="registrar">REGISTRAR</button>
     </div>
     
   </form>
 </div>
 
 <!-- fin codigo importante -->
+@endsection
 
+@section('scripts')
+  <script>
+    $(document).ready(function(){
+      let checkboxes = $("input[type='checkbox']");
+      checkboxes.change(function(){
+        let id = $(this).attr("id");
+        let tipo = id.charAt(0);
+        let num = id.charAt(id.length-1);
+        if ($(this).is(":checked")) {
+          if (tipo == "c" || tipo == "u") {
+            if (!($("#r-"+num).is(":checked"))) $("#r-"+num).prop("checked", true);
+            $("#r-"+num).prop("disabled", true);
+          }
+        } else {
+          if (tipo == "c" || tipo == "u") {
+            if (!($("#c-"+num).is(":checked")) && !($("#u-"+num).is(":checked"))) {
+            $("#r-"+num).prop("disabled", false);
+          }
+        }
+      });
+      $("#registrar").on("focus", function(){
+        checkboxes.prop("disabled", false);
+      });
+    });
+  </script>
 @endsection

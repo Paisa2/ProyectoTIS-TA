@@ -1,9 +1,8 @@
 form {
   background-color: #24252F;
   border-radius: 10px;
-  padding:24px;
-  margin-top: 7%;
-  margin-bottom: 0px;
+  padding: 24px;
+  margin: 48px auto;
 }
 .display-4{
   text-align: center;
@@ -128,4 +127,10 @@ form button{
 }
 .btn-outline-primary {
   color: #fff !important;
+}
+.table td, .table th {
+  border-color: #d8dbe0 !important;
+}
+.table thead th {
+  border-color: #d8dbe0 !important;
 }

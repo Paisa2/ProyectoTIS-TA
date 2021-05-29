@@ -25,7 +25,7 @@
       @foreach($notificaciones as $notificacion)
       <div class="message">
         <div>
-          <small class="text-muted">Lukasz Holeczek</small>
+          <!-- <small class="text-muted">Lukasz Holeczek</small> -->
           <small class="text-muted float-right mt-1">{{$notificacion->created_at}}</small>
         </div>
         <div class="text-truncate font-weight-bold"><a class="aside-link" href="#">{{$notificacion->tipo_solicitud . " " . str_pad($notificacion->solicitud_id, 6, '0', STR_PAD_LEFT)}}</a></div>

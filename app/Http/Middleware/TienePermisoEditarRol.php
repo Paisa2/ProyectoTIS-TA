@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class TienePermisoCrearSolicitudItem
+class TienePermisoEditarRol
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,6 @@ class TienePermisoCrearSolicitudItem
      */
     public function handle($request, Closure $next)
     {
-        if (!session()->has('Crear solicitud de items')) {
-            abort(403);
-        }
         return $next($request);
     }
 }

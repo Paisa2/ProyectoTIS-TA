@@ -20,12 +20,14 @@
     <script>setTimeout("document.getElementById('error').classList.add('d-none');",3000);</script>
 @endif
 
-<div style="width:90%; margin:24px auto;" class="container-table">
+<div style="width:90%" class="container-table">
 
   <h1 class="display-4">Roles Registrados</h1>
+  @if(session()->has('Crear rol'))
   <div style="display:flex;justify-content:flex-end;" class="mb-3">
     <a href="{{ route('roles.create') }}" class="btn btn-primary">+Nuevo</a>
   </div>
+  @endif
   <table class="table">
     <thead>
       <tr>
@@ -57,6 +59,13 @@
                   <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                 </svg>Detalles
               </a>
+              @if(session()->has('Editar rol'))
+              <a class="dropdown-item" type="submit" href="{{ route('roles.edit', $rol->id) }}">
+                <svg class="c-icon mfe-2">
+                  <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
+                </svg>Editar
+              </a>
+              @endif
               @if(session()->has('Eliminar rol'))
               <form action="{{ route('roles.destroy', $rol->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
               <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">

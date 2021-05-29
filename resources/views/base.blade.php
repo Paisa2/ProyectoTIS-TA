@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CotySoft</title>
-  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
   <link rel="stylesheet" href="{{ asset('css/base.css') }}">
   <link rel="stylesheet" href="{{ asset('css/base2.css') }}">
   @yield('head')
@@ -33,21 +33,36 @@
           <li class="nav-item">
             <a class="nav-link {{ request()->is('Bienvenido') ? 'active' : '' }}" href="{{route('bienvenido')}}">Home</a>
           </li>
+          @if(session()->has('Visualizar unidad'))
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('unidades') || request()->is('unidades/*')) ? 'active' : '' }}" href="{{route('unidades.lista')}}">Unidades</a>
+            <a class="nav-link {{ (request()->is('unidades') || request()->is('unidades/*')) ? 'active' : '' }}" 
+            href="{{route('unidades.lista')}}">Unidades</a>
           </li>
+          @endif
+          @if(session()->has('Visualizar usuario'))
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('usuario') || request()->is('usuario/*')) ? 'active' : '' }}" href="{{route('usuario.index')}}">Usuarios</a>
+            <a class="nav-link {{ (request()->is('usuario') || request()->is('usuario/*')) ? 'active' : '' }}" 
+            href="{{route('usuario.index')}}">Usuarios</a>
           </li>
+          @endif
+          @if(session()->has('Visualizar item de gasto'))
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('itemsgastos') || request()->is('itemsgastos/*')) ? 'active' : '' }}" href="{{route('itemsgastos.index')}}">Items de gasto</a>
+            <a class="nav-link {{ (request()->is('itemsgastos') || request()->is('itemsgastos/*')) ? 'active' : '' }}" 
+            href="{{route('itemsgastos.index')}}">Items de gasto</a>
           </li>
+          @endif
+          @if(session()->has('Visualizar rol'))
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('roles') || request()->is('roles/*')) ? 'active' : '' }}" href="{{route('roles.index')}}">Roles de usuario</a>
+            <a class="nav-link {{ (request()->is('roles') || request()->is('roles/*')) ? 'active' : '' }}" 
+            href="{{route('roles.index')}}">Roles de usuario</a>
           </li>
+          @endif
+          @if(session()->has('Visualizar solicitud de items'))
           <li class="nav-item">
-            <a class="nav-link {{ (request()->is('solicitudes-de-items') || request()->is('solicitudes-de-items/*')) ? 'active' : '' }}" href="{{route('solicitudes-de-items.index')}}">Solicitudes de items</a>
+            <a class="nav-link {{ (request()->is('solicitudes-de-items') || request()->is('solicitudes-de-items/*')) ? 'active' : '' }}" 
+            href="{{route('solicitudes-de-items.index')}}">Solicitudes de items</a>
           </li>
+          @endif
         </ul>
         
       </div>
