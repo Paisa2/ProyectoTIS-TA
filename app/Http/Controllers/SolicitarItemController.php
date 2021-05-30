@@ -33,7 +33,7 @@ class SolicitarItemController extends Controller
         ->join('usuarios as para_usuario', 'solicitud_item.para_usuario_id', '=', 'para_usuario.id')
         ->select('solicitud_item.*', 'de_usuario.nombres as nombres_de', 'para_usuario.nombres as nombres_para')
         ->get();
-        return view("solicitudes-items.visualizarSolicitudesItems", compact('solicitudes'));
+        return view('solicitudes-items.visualizarSolicitudesItems', compact('solicitudes'));
     }
 
     /**
@@ -43,9 +43,9 @@ class SolicitarItemController extends Controller
      */
     public function create()
     {
-        $destinatarios = InfoUsuario::join("rol_tiene_permisos", "rol_tiene_permisos.rol_id", "=", "info_usuario.rol_id")
-        ->join("permisos", "permisos.id", "=", "rol_tiene_permisos.permiso_id")
-        ->where("permisos.nombre_clave", "Crear ítem de gasto")
+        $destinatarios = InfoUsuario::join('rol_tiene_permisos', 'rol_tiene_permisos.rol_id', '=', 'info_usuario.rol_id')
+        ->join('permisos', 'permisos.id', '=', 'rol_tiene_permisos.permiso_id')
+        ->where('permisos.nombre_clave', 'Crear ítem de gasto')
         ->where(function ($query) {
             $query->where('info_usuario.unidad_id', session('administrativa_id'))
                 ->orWhere('info_usuario.unidad_id', 1);
@@ -56,7 +56,7 @@ class SolicitarItemController extends Controller
         })
         ->select('info_usuario.id', 'info_usuario.nombres', 'info_usuario.apellidos', 'info_usuario.nombre_unidad', 'info_usuario.nombre_rol')
         ->get();
-        return view("solicitudes-items.crearSolicitudItem", compact('destinatarios'));
+        return view('solicitudes-items.crearSolicitudItem', compact('destinatarios'));
     }
 
     /**
@@ -78,9 +78,9 @@ class SolicitarItemController extends Controller
             'detalle_solicitud_item'=>['required', 'min:5', 'max:2000'],
         ], $mensajes);
         $solicitud = new SolicitudItem($request->all());
-        $solicitud->de_usuario_id = session("id");
+        $solicitud->de_usuario_id = session('id');
         $solicitud->save();
-        return redirect()->route("solicitudes-de-items.index")->with('confirm', 'Se envio la solicitud correctamente');
+        return redirect()->route('solicitudes-de-items.index')->with('confirm', 'Se envio la solicitud correctamente');
     }
 
     /**
@@ -91,7 +91,16 @@ class SolicitarItemController extends Controller
      */
     public function show($id)
     {
-        //
+        $solicitud = SolicitudItem::join('usuarios', 'usuarios.id', '=', 'solicitud_item.de_usuario_id')
+        ->join('usuarios as dest', 'dest.id', '=', 'solicitud_item.para_usuario_id')
+        ->where('solicitud_item.id', $id)
+        ->select('solicitud_item.*', 'usuarios.nombres', 'usuarios.apellidos', 'dest.nombres as nombres_dest', 'dest.apellidos as apellidos_dest')
+        ->first();
+        if ($solicitud) {
+            return view('solicitudes-items/mostrarSolicitudItems', compact('solicitud'));
+        } else {
+            abort(404);
+        }
     }
 
     /**

@@ -28,6 +28,7 @@
         <th scope="col">PARA</th>
         <th scope="col">DETALLE</th>
         <th scope="col">FECHA DE CREACIÓN</th>
+        <th class="options"></th>
       </tr>
     </thead>
     <tbody>
@@ -38,6 +39,23 @@
         <td>{{$solicitud->nombres_para}}</td>
         <td>{{$solicitud->detalle_solicitud_item}}</td>
         <td>{{$solicitud->created_at}}</td>
+        <td class="c-dark-theme options">
+          <div class="dropdown dropleft">
+            <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg class="c-icon mfe-2">
+                <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+              </svg>
+            </span>
+            <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+              <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+              <a class="dropdown-item" href="{{ route('solicitudes-de-items.show', $solicitud->id) }}">
+                <svg class="c-icon mfe-2">
+                  <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                </svg>Detalles
+              </a>
+            </div>
+          </div>
+        </td>
       </tr>
     @endforeach
     </tbody>

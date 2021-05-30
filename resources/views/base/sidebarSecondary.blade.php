@@ -1,5 +1,5 @@
 <div class="c-sidebar c-sidebar-lg c-sidebar-light c-sidebar-right c-sidebar-overlaid" id="aside">
-  <button class="c-sidebar-close c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-show" responsive="true" id="close-sidebar">
+  <button class="c-sidebar-close" type="button" data-target="_parent" data-class="c-sidebar-show" responsive="true" id="close-sidebar">
     <svg class="c-icon">
       <use xlink:href="{{asset('img/icons/x.svg#x')}}"></use>
     </svg>

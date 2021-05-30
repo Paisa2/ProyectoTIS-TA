@@ -34,7 +34,7 @@ Route::group(['middleware' => 'noauth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {  
     Route::resource('roles', 'RolesController');
-    Route::resource('solicitudes-de-items', 'SolicitarItemController', ['only' => ['index', 'create', 'store']]);
+    Route::resource('solicitudes-de-items', 'SolicitarItemController', ['only' => ['index', 'create', 'store', 'show']]);
     Route::resource('usuario', 'UsuariosController');
     Route::resource('itemsgastos','ItemgastoController');
     Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');

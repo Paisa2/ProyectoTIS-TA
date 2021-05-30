@@ -58,5 +58,8 @@ body {
 }
 
 .dropdown-item.active, .dropdown-item:active {
-    background-color: unset !important;
+  background-color: unset !important;
+}
+.font-large {
+  font-size: large;
 }

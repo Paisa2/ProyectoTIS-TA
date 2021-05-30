@@ -10,11 +10,10 @@
   <link rel="stylesheet" href="{{ asset('css/base2.css') }}">
   @yield('head')
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </head>
 <body class="c-dark-theme" id="app">
   
-  <nav class="navbar navbar-expand-lg navbar-dark navbar1">
+  <nav class="navbar navbar-expand-md navbar-dark navbar1">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{route('bienvenido')}}">CotySoft</a>
       <div class="d-flex justify-content-end">
@@ -22,7 +21,7 @@
       </div>
     </div>
   </nav>
-  <nav class="navbar navbar-expand-lg navbar-dark navbar2">
+  <nav class="navbar navbar-expand-md navbar-dark navbar2">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -77,6 +76,7 @@
   @yield('scripts')
 
   <script src="{{ asset('js/bundle.min.js') }}"></script>
+  <script src="{{ asset('js/base.js') }}"></script>
 
 </body>
 </html>
