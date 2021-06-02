@@ -37,6 +37,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource("solicitudCotizacion", "SolicitudCotizacionController");
     Route::get('formulario/{id}', 'StorageController@index')->name('formulario');
     Route::post('formulario/{i}', 'StorageController@save')->name('formpost');
+    Route::get('storage/{archivo}', function ($archivo) {
+        $public_path = public_path();
+        $url = $public_path.'/storage/'.$archivo;
+        //se verifica si el archivo existe y lo retorna
+        if (storage::exists($archivo))
+        {
+          return response()->download($url);
+        }
+        //si no se encuentra se lanza el error 404.
+        abort(404);
+    
+    });
     Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');
     Route::get('/unidades', 'UnidadesController@lista')->name('unidades.lista');
     Route::get('/unidades/registro', 'RegistroController@index');
@@ -55,15 +67,3 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-Route::get('formulario/{archivo}', function ($archivo) {
-    $public_path = public_path();
-    $url = $public_path.'/storage/'.$archivo;
-    //verificamos si el archivo existe y lo retornamos
-    if (storage::exists($archivo))
-    {
-      return response()->download($url);
-    }
-    //si no se encuentra lanzamos un error 404.
-    abort(404);
-
-});

@@ -54,8 +54,13 @@
                     <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
                       <a class="dropdown-item" href="{{ route('formulario', $cotizacion->id) }}">
                       <svg class="c-icon mfe-2">
-                        <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                        <use xlink:href="{{asset('img/icons/cloud-upload.svg#i-cloud-upload')}}"></use>
                       </svg>Agregar PDF
+                      </a>
+                      <a class="dropdown-item" href="{{asset('storage/ASO.pdf')}}" target="_blank">
+                      <svg class="c-icon mfe-2">
+                        <use xlink:href="{{asset('img/icons/external-link.svg#i-external-link')}}"></use>
+                      </svg>Visualizar PDF
                       </a>
                     </div>
                    </div>
