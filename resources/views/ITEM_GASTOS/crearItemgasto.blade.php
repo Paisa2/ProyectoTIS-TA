@@ -22,7 +22,7 @@ Crear item
     <br>
     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
     <!--{{ (old('tipo_item') == "Generico") ? "checked" : ""}}-->
-    <input type="radio" class="btn-check" name="tipo_item" id="btnradio1" autocomplete="off" value="Generico" checked>
+    <input type="radio" class="btn-check" name="tipo_item" id="btnradio1" autocomplete="off" value="Generico" checked="">
     <label class="btn btn-outline-primary" for="btnradio1">Generico</label>
     <!--{{ (old('tipo_item') == "Especifico") ? "checked" : ""}}-->
     <input type="radio" class="btn-check" name="tipo_item" id="btnradio2" autocomplete="off" value="Especifico">

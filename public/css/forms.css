@@ -2,8 +2,7 @@ form {
   background-color: #24252F;
   border-radius: 10px;
   padding:24px;
-  margin-top: 70px;
-  margin-bottom: 0px;
+  margin: 48px auto;
 }
 .display-4{
   text-align: center;
@@ -18,9 +17,9 @@ form *{
   width: 100%;
 }
 .form-control, .form-select {
-  color: #fff;
-  border-color: #fff;
-  background-color: #24252F;
+  color: #fff !important;
+  border-color: #fff !important;
+  background-color: #24252F !important;
 }
 .form-pdf [type=file] {
   cursor: pointer;
@@ -51,12 +50,12 @@ form *{
 background-color: gray;
 }
 .btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary{
-  background-color: #181924;
+  background-color: #181924 !important;
   border-color: rgb(255 255 255 / 88%);
 }
 .btn-check+.btn-outline-primary, .btn-check+.btn-outline-primary{
-  background-color: #dee2e6b3;
-  border-color: #fff;
+  background-color: #dee2e6b3 !important;
+  border-color: #fff !important;
 }
 .btn-check:active+.btn-outline-primary:focus, .btn-check:checked+.btn-outline-primary:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus, .btn-outline-primary:active:focus {
   box-shadow: 0 0 0 0.25rem rgb(175 171 171 / 92%);
@@ -96,11 +95,11 @@ option, select {
   justify-content: center;
   margin-bottom: 24px;
 }
-.btn {
-  color: #fff;
+.btn-primary {
+  color: #fff !important;
   margin-top: 1%;
-  background-color: #181924;
-  border: 1px solid #fff;
+  background-color: #181924 !important;
+  border: 1px solid #fff !important;
   align-items: center;
   width: 50%;
 }
@@ -171,4 +170,13 @@ background-color: #20212b;
   color: #24252F;
   background-color: rgb(255 255 255 / 90%);
   border-color: rgb(255 255 255 / 90%);
+}
+.btn-outline-primary {
+  color: #fff !important;
+}
+.table td, .table th {
+  border-color: #d8dbe0 !important;
+}
+.table thead th {
+  border-color: #d8dbe0 !important;
 }

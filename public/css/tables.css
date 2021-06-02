@@ -5,6 +5,7 @@
   background-color: #24252F;
   border-radius: 10px;
   padding: 24px;
+  margin: 48px auto;
 }
 .container-table * {
   color: #fff;
@@ -15,10 +16,16 @@
 .table > thead > tr {
   border-color: #fff;
 }
+.table td, .table th {
+  border-top-color: #d8dbe0 !important;
+}
+.table thead th {
+  border-bottom-color: #d8dbe0 !important;
+}
 .btn {
-  color: #fff;
-  background-color: #181924;
-  border: 1px solid #fff;
+  color: #fff !important;
+  background-color: #181924 !important;
+  border: 1px solid #fff !important;
   width: 18%;
 }
 
@@ -45,8 +52,13 @@ h1{
 }
 .alert-success{
   color: #fff !important;
-  background-color: rgb(4, 153, 28);
-  border-color: rgb(4, 153, 28);
+  background-color: rgb(4, 153, 28) !important;
+  border-color: rgb(4, 153, 28) !important;
+}
+.alert-danger{
+  color: #fff !important;
+  background-color: #960816 !important;
+  border-color: #960816 !important;
 }
 .alert{
   padding: 5px;

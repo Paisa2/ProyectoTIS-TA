@@ -16,8 +16,8 @@ class AutorizaciónPresupuestoController extends Controller
      */
     public function index()
     {
-       /* $autopresupuesto=Solicitud_adquisicion::where('id','1')->get();
-         return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopresupuesto'));*/
+        /* $autopresupuesto=Solicitud_adquisicion::where('id','1')->get();
+        return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopresupuesto'));*/
     }
 
     /**
@@ -49,12 +49,12 @@ class AutorizaciónPresupuestoController extends Controller
      */
     public function show($id)
     {
-       $autopresupuesto=Solicitud_adquisicion::join('usuarios','usuarios.id','=','solicitudes_adquisiciones.de_usuario_id')
-       ->join('unidades','unidades.id','=','usuarios.unidad_id')
-       ->join('presupuestos','presupuestos.unidad_id','=','unidades.id')
-       ->where('solicitudes_adquisiciones.id',$id)
-       ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad','presupuestos.monto')->get();     
-       
+        $autopresupuesto=Solicitud_adquisicion::join('usuarios','usuarios.id','=','solicitudes_adquisiciones.de_usuario_id')
+        ->join('unidades','unidades.id','=','usuarios.unidad_id')
+        ->join('presupuestos','presupuestos.unidad_id','=','unidades.id')
+        ->where('solicitudes_adquisiciones.id',$id)
+        ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad','presupuestos.monto')->get();     
+        
         return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopresupuesto'));
     }
 
@@ -80,11 +80,11 @@ class AutorizaciónPresupuestoController extends Controller
 
     {
         if($tipo=='aceptar'){
-         Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "proceso de cotizacion"]); 
+            Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Proceso de cotizacion"]); 
         }elseif($tipo=='rechazar'){
             Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Rechazado por falta de presupuesto"]); 
         }
-       return redirect()->route('lista.index');
+        return redirect()->route('lista.index');
     }
 
     /**

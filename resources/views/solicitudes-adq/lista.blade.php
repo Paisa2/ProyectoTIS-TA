@@ -1,7 +1,5 @@
 @extends('base')
 @section('head')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
 @endsection
 
@@ -56,22 +54,27 @@
             <td>{{$listadb->tipo_solicitud_a}}</td>
             <td>{{$listadb->estado_solicitud_a}}</td>
             <td class="c-dark-theme options">
-          <div class="dropdown dropleft">
-            <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <svg class="c-icon mfe-2">
-                <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
-              </svg>
-            </span>
-            <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
-              <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-              <a class="dropdown-item" href="{{ route('autopresupuesto', $listadb->id) }}">
-                <svg class="c-icon mfe-2">
-                  <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                </svg>Verificar
-              </a>
-            </div>
-          </div>
-        </td>
+              <div class="dropdown dropleft">
+                <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <svg class="c-icon mfe-2">
+                    <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+                  </svg>
+                </span>
+                <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+                  <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+                  <a class="dropdown-item" href="{{ route('autopresupuesto', $listadb->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                    </svg>Verificar
+                  </a>
+                  <a class="dropdown-item" href="{{ route('reenviar', $listadb->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/resend.svg#i-resend')}}"></use>
+                    </svg>Reenviar
+                  </a>
+                </div>
+              </div>
+            </td>
         </tr>
         @endforeach
         </tbody>
