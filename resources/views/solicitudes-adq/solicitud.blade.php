@@ -4,6 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+<link rel="stylesheet" href="{{ asset('css/solicitarAdq.css') }}">
 @endsection
 
 @section('main')
@@ -26,7 +27,7 @@
             </div>
             <div class="col-md-6">
                 <label for="fecha" class="form-label">Fecha de entrega</label>
-                <input type="date" name="fecha" id="" class="form-control" min=<?php $fecha=date("Y-m-d"); echo date("Y-m-d", strtotime($fecha."+ 3 days"));?>>
+                <input type="date" name="fecha" id="" value="{{old('fecha')}}" class="form-control" min=<?php $fecha=date("Y-m-d"); echo date("Y-m-d", strtotime($fecha."+ 3 days"));?>>
                 @foreach($errors->get('fecha') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
@@ -86,6 +87,12 @@
                         </tr>
                         @endfor
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td contenteditable="true" class="only-numbers"></td>
+                        </tr>
+                    </tfoot>
                </table>
             </div>
             <div class="col-md-12" id="tabla-alquiler">   
@@ -108,6 +115,12 @@
                     </tr>
                     @endfor
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">Total</td>
+                        <td contenteditable="true" class="only-numbers"></td>
+                    </tr>
+                </tfoot>
                 </table>
             </div>
         </div>

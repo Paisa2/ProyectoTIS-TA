@@ -14,6 +14,9 @@ class AdqController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function __construct(){
+    //     $this->middleware('SolicitaAdq',['only'=>['index']]);
+    // }
     public function index(Request $request)
     {
         $tipo1 = $request->get('todos');
