@@ -14,12 +14,16 @@ class AdqController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function __construct(){
+    //     $this->middleware('SolicitaAdq',['only'=>['index']]);
+    // }
     public function index(Request $request)
     {
-        $tipo = $request->get('buscar');
-        $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo%")->get();
-        // $compras=Solicitud_adquisicion::where('tipo_solicitud_a', 'compra')->get();
-        // $alquiler=Solicitud_adquisicion::where('tipo_solicitud_a', 'alquiler')->get();
+        $tipo1 = $request->get('todos');
+        $tipo2 = $request->get('compra');
+        $tipo3 = $request->get('alquiler');
+        // $todos=Solicitud_adquisicion::all();
+        $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")->where('tipo_solicitud_a', 'like', "%$tipo3%")->orderBy('updated_at','desc')->get();
         return view('solicitudes-adq.lista', compact('solicitudes'));
     }
 
@@ -51,7 +55,7 @@ class AdqController extends Controller
         $solicitudes->de_usuario_id = session('id');
         $solicitudes->para_unidad_id = session('administrativa_id');
         $solicitudes->save();
-        return redirect('lista');
+        return redirect('lista')->with('confirm', 'Solicitud de adquisición Enviada');
     }
 
     /**

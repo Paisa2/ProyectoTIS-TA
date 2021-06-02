@@ -25,8 +25,14 @@ class AdquisicionRequest extends FormRequest
     {
         return [
             'tipo' => 'required',
-            'fecha' => 'required',
-            'justificacion' => 'required'
+            'fecha' => ['required'],
+            'justificacion' => ['required','min:20']
+        ];
+    }
+    public function Adquisicion(){
+        return[
+            'justificacion.min' => 'La justificación debe tener por lo menos 20 caracteres'
+            // 'fecha.date' => 'Puede solicitar una adqusición para dentro de 3 dias'
         ];
     }
 }

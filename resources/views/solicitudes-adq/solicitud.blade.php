@@ -4,6 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+<link rel="stylesheet" href="{{ asset('css/solicitarAdq.css') }}">
 @endsection
 
 @section('main')
@@ -11,7 +12,7 @@
     <form action="{{route('solicitud.store')}}" method="post">
         {{csrf_field()}}
         <div class="col-md-12">
-            <h1>Solicitar Adquisicion</h1>
+            <h1 class="display-4">Solicitar Adquisicion</h1>
         </div>
         <div class="row g-3">
             <div class="col-md-6">
@@ -19,14 +20,14 @@
                 <select name="tipo" id="tipo" class="form-control">
                     <option value="compra">Compra</option>
                     <option value="alquiler">Alquiler</option>
-                </select>
+                </select><br>
                 @foreach($errors->get('tipo') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
             </div>
             <div class="col-md-6">
                 <label for="fecha" class="form-label">Fecha de entrega</label>
-                <input type="date" name="fecha" id="" class="form-control">
+                <input type="date" name="fecha" id="" value="{{old('fecha')}}" class="form-control" min=<?php $fecha=date("Y-m-d"); echo date("Y-m-d", strtotime($fecha."+ 3 days"));?>>
                 @foreach($errors->get('fecha') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
@@ -35,7 +36,7 @@
         <div class="row">
             <div class="mb-3 col-12">
                 <label for="justificacion" class="form-label">Justificacion</label>
-                <textarea name="justificacion" id="justificacion" class="form-control" cols="30" rows="0"></textarea><br>
+                <textarea name="justificacion" id="justificacion" class="form-control" cols="30" rows="0" style="resize: none">{{old('justificacion')}}</textarea>
                 @foreach($errors->get('justificacion') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
@@ -45,6 +46,11 @@
         <div class="row">
             <div class="col-md-12" id="tabla-compra">
                 <table class="table table-bordered" id="compra">
+                    <style>
+                        table{
+                            table-layout: fixed;
+                        }
+                    </style>
                     <thead>
                         <tr>
                             <th>Item</th>
@@ -81,6 +87,12 @@
                         </tr>
                         @endfor
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td contenteditable="true" class="only-numbers"></td>
+                        </tr>
+                    </tfoot>
                </table>
             </div>
             <div class="col-md-12" id="tabla-alquiler">   
@@ -88,7 +100,7 @@
                 <thead>
                     <tr>
                         <th>Servicio</th>
-                        <th>Duracion de Servicio</th>
+                        <th>Meses de Duracion</th>
                         {{--  <th>Precio Mensual</th>  --}}
                         <th>Precio</th>
                     </tr>
@@ -97,12 +109,18 @@
                     @for($i=0; $i<5; $i++)
                     <tr>
                         <th contenteditable="true"></th>
-                        <th contenteditable="true"></th>
+                        <th contenteditable="true" class="only-numbers"></th>
                         {{--  <th contenteditable="true"></th>  --}}
-                        <th contenteditable="true"></th>
+                        <th contenteditable="true" class="only-numbers"></th>
                     </tr>
                     @endfor
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">Total</td>
+                        <td contenteditable="true" class="only-numbers"></td>
+                    </tr>
+                </tfoot>
                 </table>
             </div>
         </div>
@@ -113,17 +131,21 @@
 </div>
 @endsection
 @section('scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>´
+//<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
     let selectorN = ".only-numbers";
     $(selectorN).on("keydown", function(e) {
-    if (!"0123456789".includes(e.key) && e.key!="Backspace") {
+    if(isNaN(parseInt(e.key)) && e.key!="Backspace"){
       e.preventDefault();
+    }else{
+        if("´@-*{}[]•◘○♦♣♠☺☻".includes(e.key)){
+            e.preventDefault();
+        }
     }
     });
     $(document).ready(function(){
-        $("#compra").hide();
-        $('#compra').prop("disabled", true);
+        $("#alquiler").hide();
         $("#tipo").change(function(){
             var selector = $("#tipo").val();
             console.log(selector);
@@ -155,7 +177,7 @@
       .replace(/<span class="d-none">/g, "")
       .replace(/<\/span>/g, "")
       .replace(/  /g, "")
-      .replace(/class="only-numbers"/g, "");
+      .replace(/class="only-numbers"/g,"");
       $("#detalle").val(html);
     });
     });

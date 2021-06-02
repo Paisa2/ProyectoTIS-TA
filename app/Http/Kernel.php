@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'noauth' => \App\Http\Middleware\noAuthenticated::class,
+        // 'SolicitaAdq' => \App\Http\Middleware\SolicitaAdq::class,
     ];
 }
