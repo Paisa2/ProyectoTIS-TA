@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Usuario;
 
 class Solicitud_adquisicion extends Model
 {
@@ -20,4 +21,9 @@ class Solicitud_adquisicion extends Model
     protected $fillable = [
         'tipo_solicitud_a', 'justificacion_solicitud_a', 'detalle_solicitud_a', 'fecha_entrega',
     ];
+
+        // public function usuario()
+        // {
+        //     return this->belongsTo(Usuario::class); solicitudAdquisicion->usuario->nombre
+        // }
 }

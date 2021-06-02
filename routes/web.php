@@ -7,7 +7,11 @@ use App\Http\Controllers\SolicitarItemController;
 use App\Http\Controllers\RolesController;
 use app\Http\Controllers\ItemgastoController;
 use App\Http\Controllers\UsuariosController;
+
 use App\Http\Controllers\SolicitudCotizacionController;
+
+use App\Http\Controllers\AutorizaciónPresupuestocontroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +31,12 @@ Route::get('/', function () {
 Route::group(['middleware' => 'noauth'], function () {  
     Route::get('login','LoginController@mostrarFormulario')->name('login');
     Route::post('autentificacion','LoginController@autentificar');
+    
+
+    
+    
 });
+
 
 Route::group(['middleware' => 'auth'], function () {  
     Route::resource("roles", "RolesController");
@@ -58,6 +67,14 @@ Route::group(['middleware' => 'auth'], function () {
         Auth::logout();
         return redirect()->route('login');
     })->name('logout');
+
+    /* Route::get('autopresupuesto', 'AutorizaciónPresupuestoController@index')->name('autopresupuesto');*/
+   Route::get('/autopresupuesto/{id}', 'AutorizaciónPresupuestoController@show')->name('autopresupuesto');
+
+    Route::get('/lista', 'AdqController@index')->name('lista.index');
+    Route::get('lista/solicitud', 'AdqController@create')->name('solicitud.create');
+    Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
+    Route::get('verificarpresupuesto/{tipo}/{id}', 'AutorizaciónPresupuestoController@update')->name('verificarpresupuesto');
 });
 
 //Route::get('/formpdf', [App\Http\Controllers\StorageController::class, 'mform'])->name('formpdf');
