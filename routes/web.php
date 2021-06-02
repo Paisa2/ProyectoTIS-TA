@@ -2,6 +2,7 @@
 <?php
 use App\Http\Controllers\phpLoginController;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SolicitarItemController;
 use App\Http\Controllers\RolesController;
@@ -63,3 +64,18 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('info', function () {
     echo dd(session()->all());
 });
+
+Route::get('pdf', function(){
+    $pdf = PDF::loadView('cotizacion-impresion')->setPaper('letter', 'landscape');
+    return $pdf->stream();
+});
+
+Route::get('prueba', function(){
+    return view('form');
+});
+Route::post('datos', function(Request $request){
+    // echo dd($request->detalles);
+    $datos = json_encode($request->detalles);
+    echo $datos;
+    // echo dd(json_decode($datos));
+})->name('datos');
