@@ -4,6 +4,13 @@
     <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
 @endsection
 
+@if(session()->has('confirm'))
+  <div class="alert alert-success" role="alert" id="confirm">
+      {{session()->get('confirm')}}
+  </div>
+  <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
+@endif
+
 @section('main')
 
 <!-- codigo importante -->
@@ -40,7 +47,7 @@
 
             <tr>
                 <td>{{ $loop->index +1 }}</td>
-                <td>{{str_pad($cotizacion->id, 6, '0', STR_PAD_LEFT)}}</td>
+                <td>{{$cotizacion->numero_cotizacion}}</td>
                 <td>{{$cotizacion->razon_social}}</td>
                 <td>{{$cotizacion->fecha_cotizacion}}</td>   
                 <td class="c-dark-theme options">
@@ -68,16 +75,9 @@
             </tr>
             @endforeach
             </tbody>    
-
-
-
-
-        </table>
-
-                       
+        </table>                      
     </form>
 </br>
-
 </div>
 
 <!-- fin codigo importante -->

@@ -18,19 +18,36 @@
         </div>
         <br>
             <div class="row">
-                <div class="mb-3 col-6 row">
+                <div class="mb-3 col-5">
+                    <div>
                     <label for="RazonSocial" class="form-label col-auto">Razón Social:</label>
-                    <input type="text" class="form-control col" name="razon_social" id="RazonSocial" value="{{old('razon_social')}}">
+                    <input type="text" class="form-control col" name="razon_social" id="RazonSocial" autocomplete="off" value="{{old('razon_social')}}">
+                    </div>
                     @foreach($errors->get('razon_social') as $message) 
                     <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
                     @endforeach
                 </div>
-
-                <div class="mb-3 col-6 row">
+                <div class="mb-3 col-3">
+                    <div>
                     <label for="Fechas" class="form-label col-auto">Fecha:</label>
                     <input class="form-control col" type="date" name="fecha_cotizacion">
+                    </div>
+                    @foreach($errors->get('fecha_cotizacion') as $message) 
+                    <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
+                    @endforeach
+                </div>
+                <div class="mb-3 col-4">
+                    <div>
+                    <label for="NumeroCotizacion" class="form-label col-auto">Número Cotización:</label>
+                    <input type="text" class="form-control col" name="numero_cotizacion" id="NumeroCotizacion" autocomplete="off" value="{{old('numero_cotizacion')}}">
+                    </div>
+                    @foreach($errors->get('numero_cotizacion') as $message) 
+                    <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
+                    @endforeach
                 </div>
             </div>
+
+
 
             <input class="d-none" type="text" name="detalle" id="detalle">
             <div id="table-detalle">
