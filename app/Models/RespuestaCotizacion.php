@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cotizacion_pdf extends Model
+class RespuestaCotizacion extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'cotizaciones_pdf';
+    protected $table = 'respuestas_cotizacion';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'ruta', 'resp_cot_id',
+        'razon_social', 'detalle_precios', 'cotizacion_id',
     ];
     public $timestamps = false;
 }
