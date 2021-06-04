@@ -97,6 +97,9 @@ Route::get('pdf', function(){
 Route::get('prueba', function(){
     return view('form');
 });
+Route::get('comparativo', function(){
+    return view('comparativo');
+});
 Route::post('datos', function(Request $request){
     // echo dd($request->detalles);
     $datos = json_encode($request->detalles);

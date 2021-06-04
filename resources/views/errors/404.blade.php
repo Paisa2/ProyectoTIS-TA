@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<title>Page not Found</title>
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/errors/error404.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/errors/404.css') }}">
 </head>
 <body>
 
