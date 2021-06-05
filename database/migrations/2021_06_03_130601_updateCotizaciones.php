@@ -12,13 +12,28 @@ class UpdateCotizaciones extends Migration
      * @return void
      */
     public function up()
-    {       
+    {    
+        Schema::create('solicitudes_adquisiciones', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('tipo_solicitud_a', 100);
+            $table->string('estado_solicitud_a', 100);
+            $table->string('numero_solicitud_a', 10);
+            $table->string('justificacion_solicitud_a', 800);
+            $table->json('detalle_solicitud_a');
+            $table->string('fecha_entrega');
+            $table->integer('de_usuario_id')->unsigned();
+            $table->foreign('de_usuario_id')->references('id')->on('usuarios');
+            $table->integer('para_unidad_id')->unsigned();
+            $table->foreign('para_unidad_id')->references('id')->on('unidades');
+            $table->timestamps();
+        });
         Schema::create('solicitudes_cotizaciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('numero_cotizacion', 10);
             $table->timestamp('fecha_cotizacion');
             $table->json('detalle_cotizacion');
-            $table->integer('para_usuario_id');
+            $table->integer('solicitud_a_id')->unsigned();
+            $table->foreign('solicitud_a_id')->references('id')->on('solicitudes_adquisiciones');
             $table->timestamps();
         });
         Schema::create('respuestas_cotizacion', function (Blueprint $table) {
@@ -44,6 +59,7 @@ class UpdateCotizaciones extends Migration
     public function down()
     {
         Schema::dropIfExists('respuestas_cotizacion');
+        Schema::drop('solicitudes_adquisiciones');
         Schema::drop('cotizaciones_pdf');
         Schema::drop('solicitudes_cotizaciones');
     }
