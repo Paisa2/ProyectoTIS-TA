@@ -48,10 +48,12 @@ class AdqController extends Controller
     {
         $solicitudes = new Solicitud_adquisicion;
         $solicitudes->tipo_solicitud_a = $request->tipo;
-        $solicitudes->estado_solicitud_a = 'pendiente';
+        $solicitudes->estado_solicitud_a = 'Registrado';
         $solicitudes->justificacion_solicitud_a = $request->justificacion;
-        $solicitudes->detalle_solicitud_a = $request->detalle;
+        $solicitudes->detalle_solicitud_a = json_encode($request->detalle);
         $solicitudes->fecha_entrega = $request->fecha;
+        $solicitudes->codigo_solicitud_a = 100000+$solicitudes->id;
+        $solicitudes->total_solicitud_a = $request->total;
         $solicitudes->de_usuario_id = session('id');
         $solicitudes->para_unidad_id = session('administrativa_id');
         $solicitudes->save();

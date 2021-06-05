@@ -72,6 +72,11 @@
                       <use xlink:href="{{asset('img/icons/resend.svg#i-resend')}}"></use>
                     </svg>Reenviar
                   </a>
+                  <a class="dropdown-item" href="{{ route('reenviar', $listadb->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/envelope-closed.svg#i-envelope-closed')}}"></use>
+                    </svg>Enviar
+                  </a>
                 </div>
               </div>
             </td>
