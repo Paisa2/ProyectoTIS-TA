@@ -32,17 +32,15 @@
 h1{
   color: #fff;
 }
-.btn:hover {
-  background-color: #c9c9c9;
-  color: #fff;
-}
 .btn-primary:hover {
-  border-color: #fff;
+  border-color: #fff !important;
+  background-color: #c9c9c9 !important;
+  color: black !important;
 }
 .btn-check:focus+.btn-primary, .btn-primary:focus{
-  background-color: rgb(205 210 209 / 78%);
-  border-color: rgb(255 255 255 / 78%);
-  box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 88%);
+  background-color: rgb(205 210 209 / 78%) !important;
+  border-color: rgb(255 255 255 / 78%) !important;
+  box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 88%) !important;
 }
 .btn-check:active+.btn-primary:focus, .btn-check:checked+.btn-primary:focus, .btn-primary.active:focus, .btn-primary:active:focus, .show>.btn-primary.dropdown-toggle:focus{
   box-shadow: 0 0 0 0.25rem rgb(205 210 209 / 78%);
@@ -77,8 +75,8 @@ h1{
   box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 88%);
 }
 .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
-  font-weight: bold;
-  color: #24252F;
-  background-color: rgb(255 255 255 / 90%);
-  border-color: rgb(255 255 255 / 90%);
+  font-weight: bold !important;
+  color: #24252F !important;
+  background-color: rgb(255 255 255 / 90%) !important;
+  border-color: rgb(255 255 255 / 90%) !important;
 }
