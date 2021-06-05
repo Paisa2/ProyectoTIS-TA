@@ -75,6 +75,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('lista/solicitud', 'AdqController@create')->name('solicitud.create');
     Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
     Route::get('verificarpresupuesto/{tipo}/{id}', 'AutorizaciónPresupuestoController@update')->name('verificarpresupuesto');
+
+    Route::get('contacto','LoginController@contacto')->name('contacto');
+    Route::get('soporte','LoginController@soporte')->name('soporte');
 });
 
 //Route::get('/formpdf', [App\Http\Controllers\StorageController::class, 'mform'])->name('formpdf');
