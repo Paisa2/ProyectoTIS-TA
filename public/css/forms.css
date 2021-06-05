@@ -108,18 +108,17 @@ option, select {
   color: #fff;
 }
 .alert-danger {
-  color: #fff;
-  background-color: #960816;
+  color: #fff !important; 
+  background-color: #960816 !important;
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #960816 !important;
 }
 form button{
   display: flex;
   justify-content: center;
 }
-.alert {
-  padding: 5px;
-  margin-top: 5px;
-  border: 1px solid #960816;
-}
+
 .btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
   box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 88%);
 }

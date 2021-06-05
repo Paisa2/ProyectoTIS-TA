@@ -12,7 +12,7 @@
 <div style="width:70%; margin:48px auto;">
   <form action="{{ route('roles.store') }}" method="post">
     {{csrf_field()}}
-    <h1>Registro de rol</h1>
+    <h1 class="display-4">Registro de rol</h1>
     <br>
 
     <div class="mb-3">

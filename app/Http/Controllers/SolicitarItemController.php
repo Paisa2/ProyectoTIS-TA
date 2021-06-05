@@ -45,7 +45,7 @@ class SolicitarItemController extends Controller
     {
         $destinatarios = InfoUsuario::join('rol_tiene_permisos', 'rol_tiene_permisos.rol_id', '=', 'info_usuario.rol_id')
         ->join('permisos', 'permisos.id', '=', 'rol_tiene_permisos.permiso_id')
-        ->where('permisos.nombre_clave', 'Crear ítem de gasto')
+        ->where('permisos.nombre_clave', 'Crear item de gasto')
         ->where(function ($query) {
             $query->where('info_usuario.unidad_id', session('administrativa_id'))
                 ->orWhere('info_usuario.unidad_id', 1);

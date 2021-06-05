@@ -13,7 +13,7 @@
     <form action="/usuario" method="post">
         {{csrf_field()}}
 
-        <h2  class="display-4">LISTA DE COTIZACIONES</h2>
+        <h2  class="display-4">Registro de Usuario</h2>
         <br>
             <div class="row">
                 <div class="mb-3 col-6">
@@ -38,8 +38,9 @@
                 <div class="mb-3 col-6">
                     <label for="" class="form-label">Rol:</label>
                     <select class="form-control" name="rol_id" id="">
+                    <option hidden selected value="">Seleccione</option>
                     @foreach($roles as $rol)
-                    <option value="{{$rol->id}}">{{$rol->nombre_rol}}</option>
+                    <option {{ old('rol_id') == $rol->id ? 'selected' : '' }} value="{{$rol->id}}">{{$rol->nombre_rol}}</option>
                     @endforeach
                     </select>
                     @foreach($errors->get('rol_id') as $message) 
@@ -50,9 +51,10 @@
                 <div class="mb-3 col-6">
                     <label for="" class="form-label">Pertenece a:</label>
                     <select class="form-control" name="unidad_id" id="">
+                    <option hidden selected value="">Seleccione</option>
                 
                     @foreach($unidades as $unidad)
-                    <option value="{{$unidad->id}}">{{$unidad->nombre_unidad}}</option>
+                    <option {{ old('unidad_id') == $unidad->id ? 'selected' : '' }}  value="{{$unidad->id}}">{{$unidad->nombre_unidad}}</option>
                     @endforeach
                     </select>
                     @foreach($errors->get('unidad_id') as $message) 
@@ -89,7 +91,7 @@
             </div>    
 
         <div class='d-flex justify-content-center'>
-			<button type='submit' class="btn btn-primary">Registrar</button>
+			<button type='submit' class="btn btn-primary">REGISTRAR</button>
 		</div>
       
     </form>

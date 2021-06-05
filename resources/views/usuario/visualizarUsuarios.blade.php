@@ -19,7 +19,7 @@
 
 <div class="container my-4 container-table" >
     <div class='d-flex justify-content-center'>
-        <h1>USUARIOS REGISTRADOS</h1>
+        <h1 class="display-4">Usuarios Registrados</h1>
     </div>
     <table class="table">
 

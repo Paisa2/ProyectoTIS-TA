@@ -7,7 +7,7 @@
 @section('main')
 
 <div style="width:70%" class="container-table">
-  <h1>Detalle de Solicitud</h1>
+  <h1 class="display-4">Detalle de Solicitud</h1>
   <br>
   <div class="mb-3 font-large">
     <div class="row">

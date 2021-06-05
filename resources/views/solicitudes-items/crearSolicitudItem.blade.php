@@ -10,7 +10,7 @@
 
   <form action="/solicitudes-de-items" method="post">
       {{csrf_field()}}
-    <h1>Solicitar registro de items</h1>
+    <h1 class="display-4">Solicitar registro de items</h1>
     <br>
     <div class="mb-3">
       <label for="para" class="form-label">Para:</label>

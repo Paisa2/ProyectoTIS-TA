@@ -13,7 +13,7 @@
 <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 @endif
 <div style="width: 90%; margin:24px auto;" class="container-table">
-    <h1>Unidades Registradas</h1>
+    <h1 class="display-4">Unidades Registradas</h1>
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('registro.store')}}" class="btn btn-primary">+ Nuevo</a>
     </div>
