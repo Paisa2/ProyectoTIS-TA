@@ -13,6 +13,9 @@ class UpdateCotizaciones extends Migration
      */
     public function up()
     {    
+        Schema::drop('solicitudes_adquisiciones');
+        Schema::drop('cotizaciones_pdf');
+        Schema::drop('solicitudes_cotizaciones');
         Schema::create('solicitudes_adquisiciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_solicitud_a', 100);
@@ -20,7 +23,7 @@ class UpdateCotizaciones extends Migration
             $table->string('numero_solicitud_a', 10);
             $table->string('justificacion_solicitud_a', 800);
             $table->json('detalle_solicitud_a');
-            $table->string('fecha_entrega');
+            $table->timestamp('fecha_entrega');
             $table->integer('de_usuario_id')->unsigned();
             $table->foreign('de_usuario_id')->references('id')->on('usuarios');
             $table->integer('para_unidad_id')->unsigned();
@@ -59,8 +62,5 @@ class UpdateCotizaciones extends Migration
     public function down()
     {
         Schema::dropIfExists('respuestas_cotizacion');
-        Schema::drop('solicitudes_adquisiciones');
-        Schema::drop('cotizaciones_pdf');
-        Schema::drop('solicitudes_cotizaciones');
     }
 }

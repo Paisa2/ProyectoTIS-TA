@@ -16,7 +16,7 @@ class CreateInformesAutorizacionTable extends Migration
         Schema::create('informes_autorizacion', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo_informe', 100);
-            $table->string('justificacion_informe', 255);
+            $table->string('justificacion_informe', 1000);
             $table->string('empresa_seleccionada', 255);
             $table->integer('comparativo_id')->unsigned();
             $table->foreign('comparativo_id')->references('id')->on('comparativo_cotizaciones');

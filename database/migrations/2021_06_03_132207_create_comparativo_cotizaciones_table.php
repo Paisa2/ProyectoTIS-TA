@@ -17,7 +17,7 @@ class CreateComparativoCotizacionesTable extends Migration
             $table->increments('id');
             $table->json('detalle_comparativo');
             $table->string('observaciones_comparativo', 500);
-            $table->string('empresa_recomendad', 255);
+            $table->string('empresa_recomendada', 255);
             $table->integer('cotizacion_id')->unsigned();
             $table->foreign('cotizacion_id')->references('id')->on('solicitudes_cotizaciones');
             $table->integer('tecnico_responsable_id')->unsigned();
