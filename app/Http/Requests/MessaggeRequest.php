@@ -29,7 +29,8 @@ class MessaggeRequest extends FormRequest
             'nombre_unidad' => [
                 'required','min:2','max:255', 'regex:/^[\pL\s\-]+$/u', 
                 Rule::unique('unidades')->ignore($this->route('registro'))],
-            'unidad_id' => 'required'
+            'unidad_id' => 'required',
+            'telefono_unidad' => ['required','numeric','digits_between:8,12']
             //
         ];
     }

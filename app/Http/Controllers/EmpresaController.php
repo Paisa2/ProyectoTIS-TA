@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MessaggeRequest;
-use App\Models\Unidad;
 use Illuminate\Http\Request;
 
-class RegistroController extends Controller
+class EmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +13,7 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        /*$unidades = Unidad::where('tipo_unidad', 'Institución')->orWhere('tipo_unidad', 'facultad')->get();*/
-        $facultades = Unidad::where('tipo_unidad', 'facultad')->get();
-        $instituciones = Unidad::where('tipo_unidad', 'Institución')->get();
-        return view('registro', compact('facultades', 'instituciones'));
-        //
+        return view('Empresas.ListaEmpresas');
     }
 
     /**
@@ -29,7 +23,7 @@ class RegistroController extends Controller
      */
     public function create()
     {
-        //
+        return view('Empresas.NuevaEmpresa');
     }
 
     /**
@@ -38,15 +32,9 @@ class RegistroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MessaggeRequest $request)
+    public function store(Request $request)
     {
-        $unidad = new Unidad;
-        $unidad->tipo_unidad = $request->tipo_unidad;
-        $unidad->nombre_unidad = $request->nombre_unidad;
-        $unidad->unidad_id = $request->unidad_id;
-        $unidad->telefono_unidad = $request->telefono_unidad;        
-        $unidad->save();
-        return redirect('unidades')->with('confirm', 'La unidad se registro correctamente');
+        //
     }
 
     /**

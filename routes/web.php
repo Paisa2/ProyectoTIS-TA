@@ -83,6 +83,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
 
     Route::get('verificarpresupuesto/{tipo}/{id}', 'AutorizaciónPresupuestoController@update')->name('verificarpresupuesto');
+
+    
+    Route::get('/ListaEmpresas','EmpresaController@index')->name('empresa.index');
+    Route::get('/ListaEmpresas/NuevaEmpresa','EmpresaController@create')->name('empresa.create');
+    
 });
 
 Route::get('info', function () {

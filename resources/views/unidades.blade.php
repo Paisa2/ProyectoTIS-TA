@@ -25,6 +25,8 @@
                 <th scope="col">NOMBRE DE UNIDAD</th>
                 <th scope="col">PERTENECE A</th>
                 <th scope="col">FECHA DE CREACIÓN</th>
+                <th scope="col">TELEFONO</th>
+                <th class="options"></th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +37,39 @@
             <td>{{$unidadbd->nombre_unidad}}</td>
             <td>{{$unidadbd->pertenece_a}}</td>
             <td>{{$unidadbd->created_at}}</td>
+            <td>{{$unidadbd->telefono_unidad}}</td>
+            <td class="c-dark-theme options">
+                <div class="dropdown dropleft">
+                  <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+                    </svg>
+                  </span>
+                  <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+                    <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+                    <a class="dropdown-item">
+                      <svg class="c-icon mfe-2">
+                        <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                      </svg>Detalles
+                    </a>
+                    @if(session()->has('Eliminar rol'))
+                    <a class="dropdown-item" type="submit">
+                      <svg class="c-icon mfe-2">
+                        <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
+                      </svg>Editar
+                    </a>
+                    @endif
+                    {{-- @if(session()->has('Eliminar rol'))
+                    <form action="{{method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
+                    <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
+                      <svg class="c-icon mfe-2">
+                        <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
+                      </svg>Eliminar
+                    </button>
+                    @endif --}}
+                  </div>
+                </div>
+              </td>
         </tr>
         @endforeach
         </tbody>

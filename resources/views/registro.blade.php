@@ -13,15 +13,38 @@
     {{ @csrf_field() }}
     <h1>Registrar Unidades</h1>
     <div class="form-group">
-        <label for="tipo">Tipo</label>
-        <select class="form-control" name="tipo_unidad" id="tipo_unidad">
-            <option value="unidad de gasto">Unidad De Gasto</option>
-            <option value="unidad administrativa">Unidad Administrativa</option>
-            <option value="facultad">Facultad</option>
-        </select>
-        @foreach($errors->get('tipo_unidad') as $message)
-            <div class="alert alert-danger" role="alert">{{$message}}</div>
-        @endforeach
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="tipo">Tipo</label>
+                <select class="form-control" name="tipo_unidad" id="tipo_unidad">
+                <option value="unidad de gasto">Unidad De Gasto</option>
+                <option value="unidad administrativa">Unidad Administrativa</option>
+                <option value="facultad">Facultad</option>
+                </select>
+                @foreach($errors->get('tipo_unidad') as $message)
+                <div class="alert alert-danger" role="alert">{{$message}}</div>
+                @endforeach
+            </div>
+            <div class="col-md-6">
+                {{-- <div class="form-group"> --}}
+                    <label for="pertenece_a">Pertenece A</label>
+                        <select name="unidad_id" id="institucion" class="form-control">
+                            @foreach($instituciones as $Institucion)
+                                <option value="{{ $Institucion->id }}">{{ $Institucion->nombre_unidad }}</option>
+                            @endforeach
+                        </select>
+                
+                        <select name="unidad_id" id="facultad" class="form-control">
+                            @foreach($facultades as $facultad)
+                                <option value="{{ $facultad->id }}">{{ $facultad->nombre_unidad }}</option>
+                            @endforeach
+                        </select> 
+                        @foreach($errors->get('unidad_id') as $message)
+                        <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
+                    </div>
+            {{-- </div> --}}
+        </div>
     </div>
 
     <div class="form-group">
@@ -33,23 +56,14 @@
     </div>
 
     <div class="form-group">
-    <label for="pertenece_a">Pertenece A</label>
-        <select name="unidad_id" id="institucion" class="form-control">
-            @foreach($instituciones as $Institucion)
-                <option value="{{ $Institucion->id }}">{{ $Institucion->nombre_unidad }}</option>
-            @endforeach
-        </select>
-
-        <select name="unidad_id" id="facultad" class="form-control">
-            @foreach($facultades as $facultad)
-                <option value="{{ $facultad->id }}">{{ $facultad->nombre_unidad }}</option>
-            @endforeach
-        </select> 
-        @foreach($errors->get('unidad_id') as $message)
-        <div class="alert alert-danger" role="alert">{{$message}}</div>
-    @endforeach
+        <label for="telefono_unidad">Telefono</label>
+        <input type="tel" name="telefono_unidad" class="form-control" autocomplete="off" value="{{old('telefono_unidad')}}">
+        @if($errors->has('telefono_unidad'))
+            <div class="alert alert-danger" role="alert">{{$errors->first('telefono_unidad')}}</div>
+        @endif
     </div>
-    <br>
+
+    
 
     <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-primary">Registrar</button>
