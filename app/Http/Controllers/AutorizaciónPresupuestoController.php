@@ -54,15 +54,19 @@ class AutorizaciónPresupuestoController extends Controller
         ->join('unidades','unidades.id','=','usuarios.unidad_id')
         ->where('solicitudes_adquisiciones.id',$id)
         ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad',"usuarios.unidad_id")->first(); 
-        $presupuesto=Presupuesto::where("unidad_id",$autopre->unidad_id)
-                                  ->where("estado",true)->orderBy("created_at","desc")->first();
-        $datos=json_decode($autopre->detalle_solicitud_a , true);      
-        $detalles=[];                     
-        foreach($datos as $columna){
-            array_push($detalles,array_values($columna));
-        };
-        //$detalles=array_values(json_decode($autopre->detalles_solicitud_a),true);
+        if($autopre){
+            $presupuesto=Presupuesto::where("unidad_id",$autopre->unidad_id)
+                                      ->where("estado",true)->orderBy("created_at","desc")->first();
+            $datos=json_decode($autopre->detalle_solicitud_a , true);      
+            $detalles=[];                     
+            foreach($datos as $columna){
+               array_push($detalles,array_values($columna));
+            };
         return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopre','presupuesto','detalles'));
+        }
+        else{
+            abort(404);
+        }
     }
 
     /**

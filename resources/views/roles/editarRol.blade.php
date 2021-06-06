@@ -73,7 +73,7 @@
     @endforeach
 
     <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary">Guardar</button>
+      <button id="guardar" type="submit" class="btn btn-primary">Guardar</button>
     </div>
     
   </form>
@@ -104,8 +104,8 @@
           }
         }
       });
-      $("#registrar").on("focus", function(){
-        checkboxes.removeAttr("disabled");
+      $("#guardar").on("focus", function(){
+        checkboxes.prop("disabled",false);
       });
     });
   </script>

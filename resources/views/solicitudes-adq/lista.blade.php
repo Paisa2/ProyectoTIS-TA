@@ -62,26 +62,39 @@
                 </span>
                 <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
                   <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+                  <a class="dropdown-item" href="{{ route('solicitud.show', $listadb->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                  </svg>Detalles
+                  </a>
+                  @if($listadb->estado_solicitud_a=="Pendiente" && session()->has('Editar solicitud de adquisicion') && session('tipo_unidad')!='unidad de gasto')
                   <a class="dropdown-item" href="{{ route('autopresupuesto', $listadb->id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                     </svg>Verificar
                   </a>
+                  @endif
+                  @if($listadb->estado_solicitud_a=="Plazo de espera vencido" && session()->has('Editar solicitud de adquisicion') && session('id')==$listadb->de_usuario_id)
                   <a class="dropdown-item" href="{{ route('reenviar', $listadb->id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/resend.svg#i-resend')}}"></use>
                     </svg>Reenviar
                   </a>
+                  @endif
+                  @if($listadb->estado_solicitud_a=="Registrado" && session()->has('Editar solicitud de adquisicion') && session('id')==$listadb->de_usuario_id)
                   <a class="dropdown-item" href="{{ route('reenviar', $listadb->id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/send.svg#i-send')}}"></use>
                     </svg>Enviar
                   </a>
-                  <a class="dropdown-item" href="{{ route('reenviar', $listadb->id) }}">
+                  @endif
+                  @if($listadb->estado_solicitud_a=="Proceso de cotizacion" && session()->has('Crear solicitud de cotizacion') && session('tipo_unidad')!='unidad de gasto' && $listadb->cotizacion < 1)
+                  <a class="dropdown-item" href="{{ route('generarCotizacion', $listadb->id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/list-low-priority.svg#i-list-low-priority')}}"></use>
                     </svg>Generar Cotización
                   </a>
+                  @endif
                 </div>
               </div>
             </td>

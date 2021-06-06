@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Solicitud_cotizacion;
+use App\Models\Solicitud_adquisicion;
 
 class SolicitudCotizacionController extends Controller
 {
@@ -64,9 +65,16 @@ class SolicitudCotizacionController extends Controller
             $cotizacion->codigo_cotizacion = $adquisicion->codigo_solicitud_a;
             $cotizacion->fecha_cotizacion = date("Y-m-d");
             $cotizacion->solicitud_a_id = $id;
-            $cotizacion->detalle_cotizacion = json_encode ($request->detalles);
+            $jason = json_decode($adquisicion->detalle_solicitud_a,true);
+            $detalle = array();
+            $detalle['numero'] = $jason['numero'];
+            $detalle['cantidad'] = $jason['cantidad'];
+            $detalle['unidad'] = $jason['unidad'];
+            $detalle['articulo'] = $jason['articulo'];
+            $cotizacion->detalle_cotizacion = json_encode ($detalle);
     
             $cotizacion->save();
+            return redirect()->route('solicitudCotizacion.show',$cotizacion->id);
         }
         
     }

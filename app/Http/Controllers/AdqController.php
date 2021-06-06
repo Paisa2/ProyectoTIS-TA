@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdquisicionRequest;
 use App\Models\Solicitud_adquisicion;
+use App\Models\Solicitud_cotizacion;
 use App\Models\ItemGasto;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,9 @@ class AdqController extends Controller
         $tipo3 = $request->get('alquiler');
         // $todos=Solicitud_adquisicion::all();
         $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")->where('tipo_solicitud_a', 'like', "%$tipo3%")->orderBy('updated_at','desc')->get();
+        foreach($solicitudes as $solicitud){
+            $solicitud->cotizacion=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->count();
+        }
         return view('solicitudes-adq.lista', compact('solicitudes'));
     }
 
@@ -70,7 +74,20 @@ class AdqController extends Controller
      */
     public function show($id)
     {
-        //
+        $autopre=Solicitud_adquisicion::join('usuarios','usuarios.id','=','solicitudes_adquisiciones.de_usuario_id')
+        ->join('unidades','unidades.id','=','usuarios.unidad_id')
+        ->where('solicitudes_adquisiciones.id',$id)
+        ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad',"usuarios.unidad_id")->first(); 
+        if($autopre){
+            $datos=json_decode($autopre->detalle_solicitud_a , true);      
+            $detalles=[];                     
+            foreach($datos as $columna){
+              array_push($detalles,array_values($columna));
+            };
+        return view('solicitudes-adq.detalleSolicitudA', compact('autopre','detalles'));
+        }else{
+            abort(404);
+        }
     }
 
     /**

@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('usuario', 'UsuariosController');
     Route::resource('itemsgastos','ItemgastoController');
     Route::resource("solicitudCotizacion", "SolicitudCotizacionController");
+    Route::get('generarCotizacion/{id}', 'SolicitudCotizacionController@generar')->name('generarCotizacion');
     Route::get('formulario/{id}', 'StorageController@index')->name('formulario');
     Route::post('formulario/{i}', 'StorageController@save')->name('formpost');
     Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');
@@ -56,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/lista', 'AdqController@index')->name('lista.index');
     Route::get('lista/solicitud', 'AdqController@create')->name('solicitud.create');
     Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
+    Route::get('lista/solicitud/{id}','AdqController@show')->name('solicitud.show');
     Route::get('verificarpresupuesto/{tipo}/{id}', 'AutorizaciónPresupuestoController@update')->name('verificarpresupuesto');
     Route::get('storage/{archivo}', function ($archivo) {
         $public_path = public_path();

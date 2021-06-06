@@ -81,6 +81,7 @@
           if (tipo == "c" || tipo == "u") {
             if (!($("#c-"+num).is(":checked")) && !($("#u-"+num).is(":checked"))) {
             $("#r-"+num).prop("disabled", false);
+            }
           }
         }
       });

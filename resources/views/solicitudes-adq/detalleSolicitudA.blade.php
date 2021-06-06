@@ -1,21 +1,15 @@
 @extends('base')
 @section('title')
-AtorizaciónPresupuesto
 @endsection
 
 @section('head')
-<title>AtorizaciónPresupuesto</title>
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 <link rel="stylesheet" href="{{ asset('css/AutorizaciónSolicitud.css') }}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="{{ asset('css/solicitarAdq.css') }}">
 
 @endsection
 @section('main')
 <div class="container ">
-
-  <div class="row">
-  <div class="col-8">
   <form >
    <div>
      <h2 class="display-4">Detalle de la Solicitud de Adquisición N° {{$autopre->codigo_solicitud_a}}</h2>
@@ -115,46 +109,7 @@ AtorizaciónPresupuesto
    </form>
 
   </div>
-  <div class="col-4">
 
-  <form >
-   <div >
-     <h3>VERIFICAR PRESUPUESTO</h3>
-     <br>
-   
-    <label  for="exampleInputEmail1" class="form-label"><b>UNIDAD QUE SOLICITA:</b> </label>
-    
-    <div>{{$autopre->nombre_unidad}}</div>
-    <br>
-    <label  for="exampleInputEmail1" class="form-label"><b>PRESUPUESTO:</b></label>
-    
-    <label>
-    @if($presupuesto)
-       {{$presupuesto->monto}} bs
-    @else
-       Sin presupuesto
-    @endif
-  </label>
-    <br>
-    <br>
-    
-    <div class="submit">
-    <a href="{{route('verificarpresupuesto',['aceptar', $autopre->id])}}" class="btn btn-primary">Aceptar</a>
-    </div>
-    <br>
-    <div class="submit">
-    <a href="{{route('verificarpresupuesto',['rechazar', $autopre->id])}}" class="btn btn-primary">Rechazar</a>
-     </div>
-   </div>
-   </form>
-
-  
-  </div>
-  
-  
-  
-  
-</div>
 
 
 
@@ -162,5 +117,4 @@ AtorizaciónPresupuesto
  
 @endsection
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 @endsection
