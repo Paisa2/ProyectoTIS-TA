@@ -42,4 +42,32 @@ class SolicitudCotizacionController extends Controller
         return redirect()->route('solicitudCotizacion.index')->with('confirm', 'Nuevo usuario registrado correctamente');           
 
     }
+    public function show($id){
+        $cotizacion=Solicitud_cotizacion::where('id',$id)->first();
+        if($cotizacion){
+            $datos=json_decode($cotizacion->detalle_cotizacion, true);      
+            $detalles=[];                     
+            foreach($datos as $columna){
+                array_push($detalles,array_values($columna));
+            };
+        }
+        else{
+            abort(404);
+        }
+        //echo dd($detalles);
+        return view("SolicitudCotizacion.detallesCotizacion", compact("cotizacion","detalles"));
+    }
+    public function generar($id){
+        $adquisicion = Solicitud_adquisicion::where("id",$id)->first();
+        if($adquisicion){
+            $cotizacion = new Solicitud_cotizacion;    
+            $cotizacion->codigo_cotizacion = $adquisicion->codigo_solicitud_a;
+            $cotizacion->fecha_cotizacion = date("Y-m-d");
+            $cotizacion->solicitud_a_id = $id;
+            $cotizacion->detalle_cotizacion = json_encode ($request->detalles);
+    
+            $cotizacion->save();
+        }
+        
+    }
 }

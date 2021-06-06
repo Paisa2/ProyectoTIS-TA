@@ -8,6 +8,7 @@ AtorizaciónPresupuesto
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 <link rel="stylesheet" href="{{ asset('css/AutorizaciónSolicitud.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ asset('css/solicitarAdq.css') }}">
 
 @endsection
 @section('main')
@@ -17,11 +18,8 @@ AtorizaciónPresupuesto
   <div class="col-8">
   <form >
    <div>
-     <h3>DETALLE DE LA SOLICITUD DE ADQUISICIÓN</h3>
+     <h2 class="display-4">Detalle de la Solicitud de Adquisición N° {{$autopre->codigo_solicitud_a}}</h2>
      <br>
-   
-    @foreach($autopresupuesto as $autopre)
-
     <label  for="exampleInputEmail1" class="form-label"><b>TIPO:</b></label>
     
     <label>{{$autopre->tipo_solicitud_a}}</label>
@@ -58,8 +56,61 @@ AtorizaciónPresupuesto
 
     <label class="soli" >{{$autopre->justificacion_solicitud_a}}</label>
     <br>
-    <label class="table">{!!$autopre->detalle_solicitud_a!!}</label>
-    @endforeach
+    @if($autopre->tipo_solicitud_a=="compra")
+    <table class="tabla-compra" id="compra">
+                    <thead>
+                      <tr>
+                        <th class="c-0">N°</th>
+                        <th class="c-1">Item</th>
+                        <th class="c-2">Cantidad</th>
+                        <th class="c-2">Unidad</th>
+                        <th class="c-2">Precio</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    @for($i=0; $i<10; $i++)
+                      <tr>
+                        <td>{{$detalles[0][$i]}}</td>
+                        <td class="articulo">{{$detalles[1][$i]}}</td>
+                        <td>{{$detalles[2][$i]}}</td>
+                        <td>{{$detalles[3][$i]}}</td>
+                        <td>{{$detalles[4][$i]}}</td>
+                      </tr>
+                      @endfor
+                      <tr>
+                        <td colspan="4">TOTAL</td>
+                        <td>{{$autopre->total_solicitud_a}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+    @else
+    <table class="tabla-alquiler" id="alquiler">
+                    <thead>
+                      <tr>
+                        <th class="c-0">N°</th>
+                        <th class="c-1">Servicio</th>
+                        <th class="c-2">Duracion</th>
+                        <th class="c-2">Periodo</th>
+                        <th class="c-2">Precio</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @for($i=0; $i<10; $i++)
+                      <tr>
+                        <td>{{$detalles[0][$i]}}</td>
+                        <td class="articulo">{{$detalles[1][$i]}}</td>
+                        <td>{{$detalles[2][$i]}}</td>
+                        <td>{{$detalles[3][$i]}}</td>
+                        <td>{{$detalles[4][$i]}}</td>
+                      </tr>
+                      @endfor
+                      <tr>
+                        <td colspan="4">TOTAL</td>
+                        <td>{{$autopre->total_solicitud_a}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+    @endif
    </div>
    </form>
 
@@ -71,14 +122,19 @@ AtorizaciónPresupuesto
      <h3>VERIFICAR PRESUPUESTO</h3>
      <br>
    
-    @foreach($autopresupuesto as $autopre)
     <label  for="exampleInputEmail1" class="form-label"><b>UNIDAD QUE SOLICITA:</b> </label>
     
     <div>{{$autopre->nombre_unidad}}</div>
     <br>
     <label  for="exampleInputEmail1" class="form-label"><b>PRESUPUESTO:</b></label>
     
-    <label>{{$autopre->monto}} bs</label>
+    <label>
+    @if($presupuesto)
+       {{$presupuesto->monto}} bs
+    @else
+       Sin presupuesto
+    @endif
+  </label>
     <br>
     <br>
     
@@ -89,8 +145,6 @@ AtorizaciónPresupuesto
     <div class="submit">
     <a href="{{route('verificarpresupuesto',['rechazar', $autopre->id])}}" class="btn btn-primary">Rechazar</a>
      </div>
-     
-    @endforeach
    </div>
    </form>
 

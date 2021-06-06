@@ -12,21 +12,21 @@
     <form action="{{route('solicitud.store')}}" method="post">
         {{csrf_field()}}
         <div class="col-md-12">
-            <h1 class="display-4">Solicitar Adquisicion</h1>
+            <h1 class="display-4">Solicitar Adquisición</h1>
         </div>
         <div class="row g-3">
             <div class="col-md-6">
-                <label for="tipo" class="form-label">Tipo</label>
+                <label for="tipo" class="form-label">Tipo:</label>
                 <select name="tipo" id="tipo" class="form-control">
-                    <option value="compra">Compra</option>
-                    <option value="alquiler">Alquiler</option>
+                    <option value="Compra">Compra</option>
+                    <option value="Alquiler">Alquiler</option>
                 </select><br>
                 @foreach($errors->get('tipo') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
             </div>
             <div class="col-md-6">
-                <label for="fecha" class="form-label">Fecha de entrega</label>
+                <label for="fecha" class="form-label">Fecha de entrega:</label>
                 <input type="date" name="fecha" id="" value="{{old('fecha')}}" class="form-control" min=<?php $fecha=date("Y-m-d"); echo date("Y-m-d", strtotime($fecha."+ 3 days"));?>>
                 @foreach($errors->get('fecha') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
@@ -35,20 +35,21 @@
         </div>
         <div class="row">
             <div class="mb-3 col-12">
-                <label for="justificacion" class="form-label">Justificacion</label>
+                <label for="justificacion" class="form-label">Justificacion:</label>
                 <textarea name="justificacion" id="justificacion" class="form-control" cols="30" rows="0" style="resize: none">{{old('justificacion')}}</textarea>
                 @foreach($errors->get('justificacion') as $message)
                 <div class="alert alert-danger" role="alert">{{$message}}</div>
                 @endforeach
             </div>
         </div>
-        <input class="d-none" type="text" name="detalle" id="detalle">
+        <br>
         <div class="row">
             <div class="col-md-12" id="tabla-compra">
                
                 <table class="tabla-compra" id="compra">
                     <thead>
                       <tr>
+                        <th class="c-0">N°</th>
                         <th class="c-1">Item</th>
                         <th class="c-2">Cantidad</th>
                         <th class="c-2">Unidad</th>
@@ -58,8 +59,9 @@
                     <tbody>
                     @for($i=0; $i<10; $i++)
                       <tr>
+                        <td><input id="nc-{{$i+1}}" type="text" name="detalle[numero][u{{$i}}]"></td>
                         <td class="articulo">
-                          <select name="detalle[articulo][a{{$i}}]">
+                          <select id="ac-{{$i+1}}" name="detalle[articulo][a{{$i}}]">
                             <option hidden selected value="">Seleccione</option>
                             @foreach($adquisicion as $solicitudes)
                                 <option value="{{ $solicitudes->nombre_item }}">{{ $solicitudes->nombre_item }}</option>
@@ -67,13 +69,13 @@
                           </select>
                         </td>
                         <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]"></td>
-                        <td><input type="number" min="1" name="detalle[unidad][u{{$i}}]"></td>
+                        <td><input type="text" name="detalle[unidad][u{{$i}}]"></td>
                         <td><input type="number" min="1" name="detalle[precio][p{{$i}}]"></td>
                       </tr>
                       @endfor
                       <tr>
-                        <td colspan="3">TOTAL</td>
-                        <td><input type="number" min="1" name="total" ></td>
+                        <td colspan="4">TOTAL</td>
+                        <td><input type="number" min="1" name="total" value="{{old('total')}}" ></td>
                       </tr>
                     </tbody>
                   </table>
@@ -81,6 +83,7 @@
                   <table class="tabla-alquiler" id="alquiler">
                     <thead>
                       <tr>
+                        <th class="c-0">N°</th>
                         <th class="c-1">Servicio</th>
                         <th class="c-2">Duracion</th>
                         <th class="c-2">Periodo</th>
@@ -90,7 +93,8 @@
                     <tbody>
                         @for($i=0; $i<10; $i++)
                       <tr>
-                        <td class="articulo"><input type="text" name="detalle[articulo][a{{$i}}]"></td>
+                        <td><input id="na-{{$i+1}}" type="text" name="detalle[numero][u{{$i}}]"></td>
+                        <td class="articulo"><input id="aa-{{$i+1}}" type="text" name="detalle[articulo][a{{$i}}]"></td>
                         <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]"></td>
                         <td>
                             <select name="detalle[unidad][u{{$i}}]">
@@ -105,13 +109,16 @@
                       </tr>
                       @endfor
                       <tr>
-                        <td colspan="3">TOTAL</td>
-                        <td><input type="number" min="1" name="total"></td>
+                        <td colspan="4">TOTAL</td>
+                        <td><input type="number" min="1" name="total" value="{{old('total')}}"></td>
                       </tr>
                     </tbody>
                   </table>
             </div>
         </div>
+        @foreach($errors->get('total') as $message)
+          <div class="alert alert-danger" role="alert">{{$message}}</div>
+        @endforeach
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary" id="enviar">Registrar</button>
         </div>
@@ -133,7 +140,7 @@
             var selector = $("#tipo").val();
             console.log(selector);
         
-        if(selector == "alquiler"){
+        if(selector == "Alquiler"){
             $('#alquiler').show();
             $('#compra').hide();
             $('#compra input,#compra select').prop('disabled', true);
@@ -146,7 +153,29 @@
             $('#alquiler input,#alquiler select').prop('disabled', true);
         }
         });
-
+        $("#compra select").change(function(){
+          let id=$(this).attr("id");
+          let tipo=id.charAt(1);
+          let numero=id.charAt(id.length-1);
+          if(id.charAt(id.length-2) != "-"){
+              numero=id.charAt(id.length-2)+numero;
+          }
+          $('#n'+tipo+'-'+numero).val(numero);
+        });
+        $("#alquiler .articulo input").on("keypress",function(){
+          if($(this).val() == ""){
+            let id=$(this).attr("id");
+            let tipo=id.charAt(1);
+            let numero=id.charAt(id.length-1);
+            if(id.charAt(id.length-2) != "-"){
+              numero=id.charAt(id.length-2)+numero;
+            }
+            $('#n'+tipo+'-'+numero).val(numero);
+          }
+        });
+        $("table tbody tr td:first-child").on("keydown",function(e){
+          e.preventDefault();
+        });
     });
     
   </script>

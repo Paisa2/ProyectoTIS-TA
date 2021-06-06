@@ -19,7 +19,7 @@
     <form action="/SolicitudCotizacion" method="table">
         {{csrf_field()}}
         <div class='d-flex justify-content-center'>
-            <h2>LISTA DE COTIZACIONES</h2>
+            <h2 class="display-4">Lista de Cotizaciones</h2>
         </div>    
         <table class="table">
 
@@ -40,7 +40,7 @@
             <tr>
                 <td>{{ $loop->index +1 }}</td>
                 <td>{{$cotizacion->codigo_cotizacion}}</td>
-                <td>{{$cotizacion->fecha_cotizacion}}</td>   
+                <td>{{date("Y-m-d",strtotime($cotizacion->fecha_cotizacion))}}</td>   
                 <td class="options">
                   <div class="dropdown dropleft">
                 <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,6 +60,11 @@
                       <use xlink:href="{{asset('img/icons/external-link.svg#i-external-link')}}"></use>
                     </svg>Visualizar PDF
                   </a>
+                  <a class="dropdown-item" href="{{ route('solicitudCotizacion.show', $cotizacion->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                  </svg>Detalles
+              </a>
                 </div>
               </div>
                 </td>       

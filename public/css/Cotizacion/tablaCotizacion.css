@@ -56,8 +56,10 @@ table {
   padding-left: 8px;
 
 }
-.cotizacion tbody tr td.d4 input{text-align: unset; padding-left: 8px;}
-
+.cotizacion tbody tr td.d4 input, .cotizacion tbody tr td.d4{
+  text-align: unset; 
+  padding-left: 8px !important;
+}
 .cotizacion tbody tr:first-child td{
   border-top: 1px solid #fff;
   border-radius: 5px 5px 0 0;

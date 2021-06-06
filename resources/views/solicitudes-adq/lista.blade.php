@@ -20,11 +20,11 @@
         <input type="submit" value="alquiler" class="btn btn-outline-primary" name="alquiler" id="alquiler">
       </div> --}}
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <input type="submit" class="btn btn-primary" name="todos" id="todos" value="todos" checked>
+        <input type="submit" class="btn btn-primary" name="todos" id="todos" value="Todos" checked>
       
-        <input type="submit" class="btn btn-primary" name="compra" id="compra" value="compra">
+        <input type="submit" class="btn btn-primary" name="compra" id="compra" value="Compra">
       
-        <input type="submit" class="btn btn-primery" name="alquiler" id="compra" value="alquiler" >
+        <input type="submit" class="btn btn-primery" name="alquiler" id="compra" value="Alquiler" >
       </div>
       </form>
       </div>
@@ -39,7 +39,7 @@
             <tr>
                 <th scope="col">NRO</th>
                 <th scope="col">JUSTIFICACION</th>
-                <th scope="col">FECHA</th>
+                <th scope="col">CODIGO</th>
                 <th scope="col">TIPO</th>
                 <th scope="col">ESTADO</th>
                 <th class="options"></th>
@@ -50,7 +50,7 @@
         <tr>
             <td scope="row">{{ $loop->index +1}}</td>
             <td>{{$listadb->justificacion_solicitud_a}}</td>
-            <td>{{$listadb->fecha_entrega}}</td>
+            <td>{{$listadb->codigo_solicitud_a}}</td>
             <td>{{$listadb->tipo_solicitud_a}}</td>
             <td>{{$listadb->estado_solicitud_a}}</td>
             <td class="c-dark-theme options">
@@ -74,8 +74,13 @@
                   </a>
                   <a class="dropdown-item" href="{{ route('reenviar', $listadb->id) }}">
                     <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/envelope-closed.svg#i-envelope-closed')}}"></use>
+                      <use xlink:href="{{asset('img/icons/send.svg#i-send')}}"></use>
                     </svg>Enviar
+                  </a>
+                  <a class="dropdown-item" href="{{ route('reenviar', $listadb->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/list-low-priority.svg#i-list-low-priority')}}"></use>
+                    </svg>Generar Cotización
                   </a>
                 </div>
               </div>

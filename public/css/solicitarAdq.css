@@ -25,17 +25,14 @@ table {
     border: 1px solid #fff;
     text-align: center;
   }
-  .tabla-compra thead tr th.c-1 {
-    width: 40%;
+  .tabla-compra thead tr th.c-0, .tabla-alquiler thead tr th.c-0{
+    width: 5%;
   }
-  .tabla-compra thead tr th.c-2 {
+  .tabla-compra thead tr th.c-1, .tabla-alquiler thead tr th.c-1{
+    width: 35%;
+  }
+  .tabla-compra thead tr th.c-2, .tabla-alquiler thead tr th.c-2{
     width: 20%;
-  }
-  .tabla-alquiler thead tr th.c-1 {
-    width: 66.6%;
-  }
-  .tabla-alquiler thead tr th.c-2 {
-    width: 33.3%;
   }
   td {
     padding: 0;
@@ -43,6 +40,7 @@ table {
   .tabla-compra tbody tr td, .tabla-alquiler tbody tr td{
     border: 1px solid #fff;
     height: 2rem;
+    text-align: center;
   }
   .tabla-compra tbody tr td > input, .tabla-alquiler tbody tr td > input,
   .tabla-compra tbody tr td > select, .tabla-alquiler tbody tr td > select{
@@ -56,7 +54,7 @@ table {
   option {
     background-color: #24252F;
   }
-  .articulo input{
+  .articulo input, .articulo:empty{
     text-align: left !important;
     padding-left: 1rem;
   }

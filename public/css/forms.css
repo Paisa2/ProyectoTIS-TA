@@ -177,3 +177,6 @@ background-color: #20212b;
 .table thead th {
   border-color: #d8dbe0 !important;
 }
+input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}

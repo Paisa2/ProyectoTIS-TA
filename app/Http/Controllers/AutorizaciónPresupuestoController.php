@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AutorizaciónPresupuestoController;
 use App\Models\Solicitud_adquisicion;
+use App\Models\Presupuesto;
 use Illuminate\Support\Facades\DB;
 
 class AutorizaciónPresupuestoController extends Controller
@@ -49,13 +50,19 @@ class AutorizaciónPresupuestoController extends Controller
      */
     public function show($id)
     {
-        $autopresupuesto=Solicitud_adquisicion::join('usuarios','usuarios.id','=','solicitudes_adquisiciones.de_usuario_id')
+        $autopre=Solicitud_adquisicion::join('usuarios','usuarios.id','=','solicitudes_adquisiciones.de_usuario_id')
         ->join('unidades','unidades.id','=','usuarios.unidad_id')
-        ->join('presupuestos','presupuestos.unidad_id','=','unidades.id')
         ->where('solicitudes_adquisiciones.id',$id)
-        ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad','presupuestos.monto')->get();     
-        
-        return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopresupuesto'));
+        ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad',"usuarios.unidad_id")->first(); 
+        $presupuesto=Presupuesto::where("unidad_id",$autopre->unidad_id)
+                                  ->where("estado",true)->orderBy("created_at","desc")->first();
+        $datos=json_decode($autopre->detalle_solicitud_a , true);      
+        $detalles=[];                     
+        foreach($datos as $columna){
+            array_push($detalles,array_values($columna));
+        };
+        //$detalles=array_values(json_decode($autopre->detalles_solicitud_a),true);
+        return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopre','presupuesto','detalles'));
     }
 
     /**
