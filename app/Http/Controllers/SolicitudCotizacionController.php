@@ -29,15 +29,14 @@ class SolicitudCotizacionController extends Controller
                         
         ];
         $this->validate($request, [
-            'razon_social'=>['required', 'min:2', 'max:40', 'regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ-]))+$/'],
+            //'razon_social'=>['required', 'min:2', 'max:40', 'regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ-]))+$/'],
             'numero_cotizacion'=>['required', 'digits_between:6,8', 'numeric'], 
             'fecha_cotizacion'=>['required'], 
             ], $mensages);
         $cotizacion = new Solicitud_cotizacion;    
-        $cotizacion->razon_social = $request->razon_social;
-        $cotizacion->numero_cotizacion = $request->numero_cotizacion;
+        $cotizacion->codigo_cotizacion = $request->numero_cotizacion;
         $cotizacion->fecha_cotizacion = $request->fecha_cotizacion;
-        $cotizacion->detalle_cotizacion = $request->detalle;
+        $cotizacion->detalle_cotizacion = json_encode ($request->detalles);
 
         $cotizacion->save();
         return redirect()->route('solicitudCotizacion.index')->with('confirm', 'Nuevo usuario registrado correctamente');           

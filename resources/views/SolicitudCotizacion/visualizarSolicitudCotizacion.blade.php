@@ -29,8 +29,7 @@
             <thead>
                 <tr>
                     <th scope="col">NRO</th>
-                    <th scope="col">NUMERO COTIZACIÓN</th>
-                    <th scope="col">RAZÓN SOCIAL</th>
+                    <th scope="col">CODIGO DE COTIZACIÓN</th>
                     <th scope="col">FECHA</th> 
                     <th class="options"></th>
                 </tr>
@@ -40,8 +39,7 @@
 
             <tr>
                 <td>{{ $loop->index +1 }}</td>
-                <td>{{$cotizacion->numero_cotizacion}}</td>
-                <td>{{$cotizacion->razon_social}}</td>
+                <td>{{$cotizacion->codigo_cotizacion}}</td>
                 <td>{{$cotizacion->fecha_cotizacion}}</td>   
                 <td class="options">
                   <div class="dropdown dropleft">
