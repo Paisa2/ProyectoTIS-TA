@@ -6,7 +6,7 @@
 
 @section('main')
 <!-- codigo importante -->
-<div style="width:90%; margin:24px auto;">
+<div style="width:70%; margin:24px auto;">
 
   <form action="/solicitudes-de-items" method="post">
       {{csrf_field()}}
@@ -15,8 +15,9 @@
     <div class="mb-3">
       <label for="para" class="form-label">Para:</label>
       <select name="para_usuario_id" id="para" class="form-control">
+        <option hidden selected value="">Seleccione</option>
         @foreach($destinatarios as $destinatario)
-        <option value="{{$destinatario->id}}">{{$destinatario->nombres . " " . $destinatario->apellidos}} / {{$destinatario->nombre_rol}} / {{$destinatario->nombre_unidad}}</option>
+        <option {{ old('para_usuario_id') == $destinatario->id ? 'selected' : '' }} value="{{$destinatario->id}}">{{$destinatario->nombres . " " . $destinatario->apellidos}} / {{$destinatario->nombre_rol}} / {{$destinatario->nombre_unidad}}</option>
         @endforeach
       </select>
       @foreach($errors->get('para_usuario_id') as $message)
@@ -25,7 +26,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="solicitud" class="form-label">Solicitud</label>
+      <label for="solicitud" class="form-label">Solicitud:</label>
       <br>
       <textarea name="detalle_solicitud_item" id="solicitud" class="form-control" rows="8"></textarea>
       @foreach($errors->get('detalle_solicitud_item') as $message)

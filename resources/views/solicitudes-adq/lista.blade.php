@@ -97,7 +97,7 @@
                     </svg>Generar Cotización
                   </a>
                   @endif
-                  @if($listadb->cotizacion > 0)
+                  @if(session()->has('Visualizar solicitud de cotizacion') && $listadb->cotizacion > 0)
                   <a class="dropdown-item" href="{{ route('solicitudCotizacion.show', $listadb->cotizacion_id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/quotation.svg#i-quotation')}}"></use>
