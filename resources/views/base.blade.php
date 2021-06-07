@@ -25,7 +25,7 @@
       </div>
     </div>
   </nav>
-  <nav class="navbar navbar-expand-md navbar-dark navbar2">
+  <nav class="navbar navbar-expand-md navbar-dark navbar2" id="navbar2">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -23,9 +23,11 @@
     </div>
     <table class="table">
 
-          <div style="display:flex;justify-content:flex-end;" class="mb-3">
-              <a class="btn btn-primary" href="{{url('usuario/create')}}">+ Nuevo</a>
-          </div>
+        @if(session()->has('Crear usuario'))
+        <div style="display:flex;justify-content:flex-end;" class="mb-3">
+            <a class="btn btn-primary" href="{{url('usuario/create')}}">+ Nuevo</a>
+        </div>
+        @endif
           <thead>
               <tr>
                   <th scope="col">NRO</th>

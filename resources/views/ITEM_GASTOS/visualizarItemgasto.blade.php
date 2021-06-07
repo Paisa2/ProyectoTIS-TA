@@ -14,9 +14,11 @@
 <div style="width:90%; margin:24px auto;" class="container-table">
 
   <h1 class="display-4">Items de Gasto Registrados</h1>
+  @if(session()->has('Crear item de gasto'))
   <div style="display:flex;justify-content:flex-end;" class="mb-3">
     <a class="btn btn-primary" href="{{url('itemsgastos/create')}}" role="button">+ Nuevo</a>
   </div>
+  @endif
   <table class="table">
     <thead>
       <tr>

@@ -54,9 +54,13 @@ table {
   option {
     background-color: #24252F;
   }
-  .articulo input, .articulo:empty{
+  .articulo input, .articulo span{
     text-align: left !important;
-    padding-left: 1rem;
+    padding-left: .8rem;
+  }
+  .articulo span {
+    display: inline-block;
+    width: 100%;
   }
   tr:last-child td:first-child {
     padding-left: 1rem;

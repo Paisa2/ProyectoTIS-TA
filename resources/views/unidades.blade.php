@@ -15,9 +15,11 @@
 @endif
 <div style="width: 90%; margin:24px auto;" class="container-table">
     <h1 class="display-4">Unidades Registradas</h1>
+    @if(session()->has('Crear unidad'))
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('registro.store')}}" class="btn btn-primary">+ Nuevo</a>
     </div>
+    @endif
     <table class="table">
         <thead>
             <tr>

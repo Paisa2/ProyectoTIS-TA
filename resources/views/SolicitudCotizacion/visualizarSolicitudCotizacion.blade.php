@@ -23,9 +23,11 @@
         </div>    
         <table class="table">
 
-            <div style="display:flex;justify-content:flex-end;" class="mb-3">
-                <a class="btn btn-primary" href="{{url('solicitudCotizacion/create')}}">+ Nuevo</a>
-            </div>
+          @if(session()->has('Crear solicitud de cotizacion'))
+          <div style="display:flex;justify-content:flex-end;" class="mb-3">
+            <a class="btn btn-primary" href="{{url('solicitudCotizacion/create')}}">+ Nuevo</a>
+          </div>
+          @endif
             <thead>
                 <tr>
                     <th scope="col">NRO</th>
@@ -50,21 +52,25 @@
                 </span>
                 <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
                   <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+                  <a class="dropdown-item" href="{{ route('solicitudCotizacion.show', $cotizacion->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                  </svg>Detalles
+                  </a>
+                  @if($cotizacion->pdf < 1)
                   <a class="dropdown-item" href="{{ route('formulario', $cotizacion->id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/cloud-upload.svg#i-cloud-upload')}}"></use>
                     </svg>Agregar PDF
                   </a>
-                  <a class="dropdown-item" href="{{asset('storage/ASO.pdf')}}" target="_blank">
+                  @endif
+                  @if($cotizacion->pdf > 0)
+                  <a class="dropdown-item" href="{{asset($cotizacion->pdf_ruta)}}" target="_blank">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/external-link.svg#i-external-link')}}"></use>
                     </svg>Visualizar PDF
                   </a>
-                  <a class="dropdown-item" href="{{ route('solicitudCotizacion.show', $cotizacion->id) }}">
-                    <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                  </svg>Detalles
-              </a>
+                  @endif
                 </div>
               </div>
                 </td>       
