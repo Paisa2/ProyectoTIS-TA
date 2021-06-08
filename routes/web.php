@@ -100,9 +100,9 @@ Route::get('comparativo', function(){
     return view('comparativo');
 });
 Route::post('datos', function(Request $request){
-    // echo dd($request->detalles);
-    $datos = json_encode($request->detalles);
+    echo dd($request->detalles);
+    // $datos = json_encode($request->detalles);
     //echo $datos;
-    echo dd(json_decode($datos));
+    // echo dd(json_decode($datos));
 })->name('datos');
 

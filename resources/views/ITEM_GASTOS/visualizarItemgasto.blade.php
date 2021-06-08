@@ -18,6 +18,8 @@
   <div style="display:flex;justify-content:flex-end;" class="mb-3">
     <a class="btn btn-primary" href="{{url('itemsgastos/create')}}" role="button">+ Nuevo</a>
   </div>
+  @else
+  <br><br>
   @endif
   <table class="table">
     <thead>

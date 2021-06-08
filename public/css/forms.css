@@ -180,3 +180,6 @@ background-color: #20212b;
 input::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+textarea {
+  resize: none;
+}

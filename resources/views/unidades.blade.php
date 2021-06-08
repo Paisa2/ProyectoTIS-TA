@@ -19,6 +19,8 @@
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('registro.store')}}" class="btn btn-primary">+ Nuevo</a>
     </div>
+    @else
+    <br><br>
     @endif
     <table class="table">
         <thead>
@@ -51,7 +53,7 @@
                         @if($unidadbd->presupuesto < 1 && session()->has('Crear presupuesto'))
                         <buttom class="dropdown-item" data-toggle="modal" data-target="#presupuesto" data-value="{{$unidadbd->id}}">
                             <svg class="c-icon mfe-2">
-                            <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
+                                <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
                             </svg>Presupuesto
                         </buttom>
                         @endif

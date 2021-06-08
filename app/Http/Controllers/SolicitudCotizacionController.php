@@ -34,12 +34,11 @@ class SolicitudCotizacionController extends Controller
             'regex' => 'El campo :attribute solo puede tener letras',
             'numero_cotizacion.numeric' => 'El campo Número Cotización solo puede tener números',
             'numero_cotizacion.digits_between'   => 'Número Cotización debe tener entre 6 y 8 dígitos',
-                        
         ];
         $this->validate($request, [
             //'razon_social'=>['required', 'min:2', 'max:40', 'regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ-]))+$/'],
             'numero_cotizacion'=>['required', 'digits_between:6,8', 'numeric'], 
-            'fecha_cotizacion'=>['required'], 
+            'fecha_cotizacion'=>['required'],
             ], $mensages);
         $cotizacion = new Solicitud_cotizacion;    
         $cotizacion->codigo_cotizacion = $request->numero_cotizacion;

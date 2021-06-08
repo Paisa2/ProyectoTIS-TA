@@ -68,9 +68,9 @@
                   @endforeach
                 </select>
               </td>
-              <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]"></td>
-              <td><input type="text" name="detalle[unidad][u{{$i}}]"></td>
-              <td><input id="pc-{{$i+1}}" type="number" min="1" name="detalle[precio][p{{$i}}]"></td>
+              <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]" autocomplete="off"></td>
+              <td><input type="text" name="detalle[unidad][u{{$i}}]" autocomplete="off"></td>
+              <td><input id="pc-{{$i+1}}" type="number" min="1" name="detalle[precio][p{{$i}}]" autocomplete="off"></td>
             </tr>
             @endfor
             <tr>
@@ -94,8 +94,8 @@
             @for($i=0; $i<10; $i++)
             <tr>
               <td><input id="na-{{$i+1}}" type="text" name="detalle[numero][u{{$i}}]" autocomplete="off"></td>
-              <td class="articulo"><input id="aa-{{$i+1}}" type="text" name="detalle[articulo][a{{$i}}]"></td>
-              <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]"></td>
+              <td class="articulo"><input id="aa-{{$i+1}}" type="text" name="detalle[articulo][a{{$i}}]" autocomplete="off"></td>
+              <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]" autocomplete="off"></td>
               <td>
                   <select name="detalle[unidad][u{{$i}}]">
                   <option hidden selected value="">Seleccione</option>
@@ -105,7 +105,7 @@
                     <option value="Años">Años</option>
                   </select>
                 </td>
-              <td><input id="pa-{{$i+1}}" type="number" min="1" name="detalle[precio][p{{$i}}]"></td>
+              <td><input id="pa-{{$i+1}}" type="number" min="1" name="detalle[precio][p{{$i}}]" autocomplete="off"></td>
             </tr>
             @endfor
             <tr>
@@ -120,7 +120,7 @@
       <div class="alert alert-danger" role="alert">{{$message}}</div>
     @endforeach
     <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary" id="enviar">Registrar</button>
+        <button type="submit" class="btn btn-primary" id="enviar">REGISTRAR</button>
     </div>
     {{-- <div class="d-flex justify">
         <button type="submit" class="btn btn-primary" id="enviar">Registrar y Enviar</button>
@@ -170,9 +170,9 @@
             $('#n'+tipo+'-'+numero).val(numero);
           }
         });
-        $("#total-c, #total-a").on("focus", function(){
-          let tipo = $(this).attr("id").charAt($(this).attr("id").length -1);
-          console.log(tipo);
+        $("#compra td:last-child input, #alquiler td:last-child input").on("keyup", function(){
+          let id = $(this).attr("id");
+          let tipo = id.charAt(1);
           let total = 0;
           let value = 0;
           for(var i=1; i<=16; i++){
@@ -182,7 +182,9 @@
             }
           }
           if(total > 0){
-            $(this).val(total);
+            $("#total-"+tipo).val(total);
+          }else{
+            $("#total-"+tipo).val("");
           }
         });
         $("table tbody tr td:first-child, #total-c, #total-a").on("keydown",function(e){

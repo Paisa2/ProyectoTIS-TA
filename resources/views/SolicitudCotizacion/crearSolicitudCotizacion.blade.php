@@ -29,7 +29,7 @@
         <div class="mb-3 col-6">
             <div class="row">
             <label for="Fechas" class="form-label col-auto">Fecha:</label>
-            <input class="form-control col" type="date" name="fecha_cotizacion">
+            <input class="form-control col" type="date" name="fecha_cotizacion" style="margin-right:1rem;">
             </div>
             @foreach($errors->get('fecha_cotizacion') as $message) 
             <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
@@ -54,9 +54,9 @@
         @for($i=0; $i<16; $i++)
           <tr>
             <td><input id="n-{{$i+1}}" type="text" name="detalles[numero][n{{$i}}]" autocomplete="off"></td>
-            <td><input type="number" min="1" name="detalles[cantidad][c{{$i}}]"></td>
-            <td><input type="text" name="detalles[unidad][ud{{$i}}]"></td>
-            <td class="d4"><input id="d-{{$i+1}}" type="text" name="detalles[detalle][d{{$i}}]"></td>
+            <td><input type="number" min="1" name="detalles[cantidad][c{{$i}}]" autocomplete="off"></td>
+            <td><input type="text" name="detalles[unidad][ud{{$i}}]" autocomplete="off"></td>
+            <td class="d4"><input id="d-{{$i+1}}" type="text" name="detalles[detalle][d{{$i}}]" autocomplete="off"></td>
             <td></td>
             <td></td>
 						<!-- <td><input type="number" min="1" name="detalles[unitario][uo{{$i}}]"></td>
@@ -65,10 +65,13 @@
         @endfor
       </tbody>
     </table>
+    @foreach($errors->get('detalles.numero.*') as $message)
+    <div class="alert alert-danger" role="alert">{{$message}}</div>
+    @endforeach
 
-            <div class='d-flex justify-content-center'>
-                <button id="registrar" type='submit' class="btn btn-primary">Registrar</button>
-            </div>     
+      <div class='d-flex justify-content-center'>
+          <button id="registrar" type='submit' class="btn btn-primary">REGISTRAR</button>
+      </div>     
     </form>
 </br>
 
