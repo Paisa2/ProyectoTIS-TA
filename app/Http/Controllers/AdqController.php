@@ -80,7 +80,7 @@ class AdqController extends Controller
         $solicitudes->de_unidad_id = session('unidad_id');
         $solicitudes->para_unidad_id = session('administrativa_id');
         $solicitudes->save();
-        return redirect('lista')->with('confirm', 'Solicitud de adquisición Enviada');
+        return redirect('lista')->with('confirm', 'Solicitud de adquisición Registrada');
     }
 
     /**

@@ -53,7 +53,7 @@
               <th class="c-1">Item</th>
               <th class="c-2">Cantidad</th>
               <th class="c-2">Unidad</th>
-              <th class="c-2">Precio</th>
+              <th class="c-2">Precio (Bs.)</th>
             </tr>
           </thead>
           <tbody>
@@ -87,7 +87,7 @@
               <th class="c-1">Servicio</th>
               <th class="c-2">Duracion</th>
               <th class="c-2">Periodo</th>
-              <th class="c-2">Precio</th>
+              <th class="c-2">Precio (Bs.)</th>
             </tr>
           </thead>
           <tbody>
