@@ -13,7 +13,7 @@
   <form action="{{ route('roles.update', $rol->id) }}" method="post">
     {{csrf_field()}}
     {{method_field('put')}}
-    <h1>Editar rol</h1>
+    <h1 class="display-4">Editar rol</h1>
     <br>
     <div class="mb-3">
       <label for="nombre" class="form-label">Nombre:</label>
@@ -73,7 +73,7 @@
     @endforeach
 
     <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary">Guardar</button>
+      <button id="guardar" type="submit" class="btn btn-primary">Guardar</button>
     </div>
     
   </form>
@@ -104,8 +104,8 @@
           }
         }
       });
-      $("#registrar").on("focus", function(){
-        checkboxes.prop("disabled", false);
+      $("#guardar").on("focus", function(){
+        checkboxes.prop("disabled",false);
       });
     });
   </script>

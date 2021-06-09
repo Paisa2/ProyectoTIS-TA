@@ -12,6 +12,6 @@ class Presupuesto extends Model
      * @var array
      */
     protected $fillable = [
-        'monto', 'unidad_id',
+        'monto', 'estado', 'unidad_id',
     ];
 }

@@ -25,8 +25,10 @@
   <h1 class="display-4">Roles Registrados</h1>
   @if(session()->has('Crear rol'))
   <div style="display:flex;justify-content:flex-end;" class="mb-3">
-    <a href="{{ route('roles.create') }}" class="btn btn-primary">+Nuevo</a>
+    <a href="{{ route('roles.create') }}" class="btn btn-primary">+ Nuevo</a>
   </div>
+  @else
+  <br><br>
   @endif
   <table class="table">
     <thead>

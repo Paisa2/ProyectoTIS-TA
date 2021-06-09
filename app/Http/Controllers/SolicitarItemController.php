@@ -29,10 +29,27 @@ class SolicitarItemController extends Controller
      */
     public function index()
     {
-        $solicitudes= SolicitudItem::join('usuarios as de_usuario', 'solicitud_item.de_usuario_id', '=', 'de_usuario.id')
-        ->join('usuarios as para_usuario', 'solicitud_item.para_usuario_id', '=', 'para_usuario.id')
-        ->select('solicitud_item.*', 'de_usuario.nombres as nombres_de', 'para_usuario.nombres as nombres_para')
-        ->get();
+        if(session('tipo_unidad') == 'unidad de gasto'){
+            $solicitudes= SolicitudItem::join('usuarios as de_usuario', 'solicitud_item.de_usuario_id', '=', 'de_usuario.id')
+            ->join('usuarios as para_usuario', 'solicitud_item.para_usuario_id', '=', 'para_usuario.id')
+            ->where('solicitud_item.de_usuario_id', session('id'))
+            ->orderBy('created_at', 'desc')
+            ->select('solicitud_item.*', 'de_usuario.nombres as nombres_de', 'para_usuario.nombres as nombres_para')
+            ->get();
+        }else if(session('tipo_unidad') == 'unidad administrativa'){
+            $solicitudes= SolicitudItem::join('usuarios as de_usuario', 'solicitud_item.de_usuario_id', '=', 'de_usuario.id')
+            ->join('usuarios as para_usuario', 'solicitud_item.para_usuario_id', '=', 'para_usuario.id')
+            ->where('solicitud_item.para_usuario_id', session('id'))
+            ->orderBy('created_at', 'desc')
+            ->select('solicitud_item.*', 'de_usuario.nombres as nombres_de', 'para_usuario.nombres as nombres_para')
+            ->get();
+        }else{
+            $solicitudes= SolicitudItem::join('usuarios as de_usuario', 'solicitud_item.de_usuario_id', '=', 'de_usuario.id')
+            ->join('usuarios as para_usuario', 'solicitud_item.para_usuario_id', '=', 'para_usuario.id')
+            ->orderBy('created_at', 'desc')
+            ->select('solicitud_item.*', 'de_usuario.nombres as nombres_de', 'para_usuario.nombres as nombres_para')
+            ->get();
+        }
         return view('solicitudes-items.visualizarSolicitudesItems', compact('solicitudes'));
     }
 
@@ -45,7 +62,7 @@ class SolicitarItemController extends Controller
     {
         $destinatarios = InfoUsuario::join('rol_tiene_permisos', 'rol_tiene_permisos.rol_id', '=', 'info_usuario.rol_id')
         ->join('permisos', 'permisos.id', '=', 'rol_tiene_permisos.permiso_id')
-        ->where('permisos.nombre_clave', 'Crear ítem de gasto')
+        ->where('permisos.nombre_clave', 'Crear item de gasto')
         ->where(function ($query) {
             $query->where('info_usuario.unidad_id', session('administrativa_id'))
                 ->orWhere('info_usuario.unidad_id', 1);

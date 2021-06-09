@@ -18,12 +18,21 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuario::join('usuario_tiene_roles','usuarios.id','=','usuario_tiene_roles.usuario_id')
-        -> join ('roles','roles.id','=','usuario_tiene_roles.rol_id')
-        -> join ('unidades','unidades.id','=','usuarios.unidad_id')
-        -> where ('estado',1) -> where('roles.nombre_rol', '!=', 'Superusuario') -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
-        -> get ();
-        
+        if(session('tipo_unidad') == 'Institución'){
+            $usuarios = Usuario::join('usuario_tiene_roles','usuarios.id','=','usuario_tiene_roles.usuario_id')
+            -> join ('roles','roles.id','=','usuario_tiene_roles.rol_id')
+            -> join ('unidades','unidades.id','=','usuarios.unidad_id')
+            -> where ('estado',1) -> where('roles.nombre_rol', '!=', 'Superusuario') -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
+            -> get ();
+        }else{
+            $usuarios = Usuario::join('usuario_tiene_roles','usuarios.id','=','usuario_tiene_roles.usuario_id')
+            -> join ('roles','roles.id','=','usuario_tiene_roles.rol_id')
+            -> join ('unidades','unidades.id','=','usuarios.unidad_id')
+            -> where ('estado',1) -> where('roles.nombre_rol', '!=', 'Superusuario') 
+            -> where ('usuarios.unidad_id', session('unidad_id'))
+            -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
+            -> get ();
+        }
         return view("usuario.visualizarUsuarios",compact('usuarios'));
 
     }

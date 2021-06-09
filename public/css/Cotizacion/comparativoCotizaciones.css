@@ -1,0 +1,92 @@
+.titulo span {
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  color: #fff;
+}
+.fecha {
+  width: 10rem; 
+}
+.fecha th {
+  border: 1px solid #fff;
+  text-align: center;
+}
+.fecha td {
+  border: 1px solid #fff;
+  height: 3rem;
+}
+.numero {
+  display: block;
+  text-align: center;
+  margin: .5rem 0;
+  color: #fff;
+}
+div.row-0 {
+  border: 1px solid #fff;
+  color: #fff;
+  text-align: right;
+  letter-spacing: .7rem;
+  padding-right: 10.1%;
+}
+.comparativo th {
+  border: 1px solid #fff;
+  text-align: center;
+  font-weight: normal;
+}
+.comparativo thead tr th.c-1 {
+  width: 5.5%;
+}
+.comparativo thead tr th.c-2 {
+  width: 4.5%;
+}
+.comparativo thead tr th.c-3 {
+  width: 45%;
+  letter-spacing: .7rem;
+}
+.comparativo thead tr th.c-4 {
+  width: 10.1%;
+}
+.comparativo tbody tr td {
+  height: 2em;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  border-bottom: 1px dotted #fff;
+}
+.comparativo tbody tr:last-child td {
+  border-bottom: 1px solid #fff;
+}
+.observaciones {
+  color: #fff;
+}
+.form-label {
+  margin: 0 !important;
+  margin-right: 3px !important;
+}
+#observaciones {
+  display: inline-block;
+  width: 90%;
+  line-height: 1em;
+  border: none;
+  border-bottom: 1px dotted #fff;
+  border-radius: 0;
+  padding-bottom: 0;
+  padding-left: 5px;
+}
+.form-control:focus {
+  box-shadow: none !important;
+}
+.informacion th {
+  border: 1px solid #fff;
+  text-align: center;
+  font-weight: normal;
+}
+.informacion td {
+  border: 1px solid #fff;
+  height: 4rem;
+}

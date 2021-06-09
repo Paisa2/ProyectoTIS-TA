@@ -30,7 +30,7 @@ Subir PDF
         @endforeach
       </select>-->
       @foreach($cotizaciones as $cotizacion)
-      <input type="text" class="form-control" id="cotizacion_id" name="cotizacion_id" value='{{$cotizacion->numero_cotizacion}}' disabled>
+      <input type="text" class="form-control" id="cotizacion_id" name="cotizacion_id" value='{{$cotizacion->codigo_cotizacion}}' disabled style="font-weight:bold;">
       @endforeach
       <div class="br"> </div>
        @foreach($errors->get('cotizacion_id') as $message)

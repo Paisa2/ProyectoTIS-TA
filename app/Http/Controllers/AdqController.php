@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdquisicionRequest;
 use App\Models\Solicitud_adquisicion;
+use App\Models\Solicitud_cotizacion;
 use App\Models\ItemGasto;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,26 @@ class AdqController extends Controller
         $tipo2 = $request->get('compra');
         $tipo3 = $request->get('alquiler');
         // $todos=Solicitud_adquisicion::all();
-        $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")->where('tipo_solicitud_a', 'like', "%$tipo3%")->orderBy('updated_at','desc')->get();
+        if(session('tipo_unidad') == 'unidad de gasto'){
+            $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")
+            ->where('tipo_solicitud_a', 'like', "%$tipo3%")
+            ->where('de_unidad_id', session('unidad_id'))
+            ->orderBy('updated_at','desc')->get();
+        }else if(session('tipo_unidad') == 'unidad administrativa'){
+            $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")
+            ->where('tipo_solicitud_a', 'like', "%$tipo3%")
+            ->where('para_unidad_id', session('unidad_id'))
+            ->where('estado_solicitud_a', '!=', 'Registrado')
+            ->orderBy('updated_at','desc')->get();
+        }else{
+            $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")->where('tipo_solicitud_a', 'like', "%$tipo3%")->orderBy('updated_at','desc')->get();
+        }
+        foreach($solicitudes as $solicitud){
+            $solicitud->cotizacion=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->count();
+            if($solicitud->cotizacion > 0){
+                $solicitud->cotizacion_id=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->first()->id;
+            }
+        }
         return view('solicitudes-adq.lista', compact('solicitudes'));
     }
 
@@ -46,16 +66,21 @@ class AdqController extends Controller
      */
     public function store(AdquisicionRequest $request)
     {
+        $traendodatos=Solicitud_adquisicion::max("id");
+
         $solicitudes = new Solicitud_adquisicion;
         $solicitudes->tipo_solicitud_a = $request->tipo;
-        $solicitudes->estado_solicitud_a = 'pendiente';
+        $solicitudes->estado_solicitud_a = 'Registrado';
         $solicitudes->justificacion_solicitud_a = $request->justificacion;
-        $solicitudes->detalle_solicitud_a = $request->detalle;
+        $solicitudes->detalle_solicitud_a = json_encode($request->detalle);
         $solicitudes->fecha_entrega = $request->fecha;
+        $solicitudes->codigo_solicitud_a = 100000+$traendodatos;
+        $solicitudes->total_solicitud_a = $request->total;
         $solicitudes->de_usuario_id = session('id');
+        $solicitudes->de_unidad_id = session('unidad_id');
         $solicitudes->para_unidad_id = session('administrativa_id');
         $solicitudes->save();
-        return redirect('lista')->with('confirm', 'Solicitud de adquisición Enviada');
+        return redirect('lista')->with('confirm', 'Solicitud de adquisición Registrada');
     }
 
     /**
@@ -66,7 +91,20 @@ class AdqController extends Controller
      */
     public function show($id)
     {
-        //
+        $autopre=Solicitud_adquisicion::join('usuarios','usuarios.id','=','solicitudes_adquisiciones.de_usuario_id')
+        ->join('unidades','unidades.id','=','usuarios.unidad_id')
+        ->where('solicitudes_adquisiciones.id',$id)
+        ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad',"usuarios.unidad_id")->first(); 
+        if($autopre){
+            $datos=json_decode($autopre->detalle_solicitud_a , true);      
+            $detalles=[];                     
+            foreach($datos as $columna){
+              array_push($detalles,array_values($columna));
+            };
+        return view('solicitudes-adq.detalleSolicitudA', compact('autopre','detalles'));
+        }else{
+            abort(404);
+        }
     }
 
     /**
