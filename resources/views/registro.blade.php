@@ -62,7 +62,6 @@
 @endsection
 
 @section('scripts')
-<script src="https://code.jquery.com/jquery-1.6.2.min.js"></script>
 <script>
     $(document).ready(function(){
         $("#institucion").hide();
@@ -74,14 +73,14 @@
         if(selector == "facultad"){
             $('#institucion').show();
             $('#facultad').hide();
-            $('#institucion').removeProp("disabled");
+            $('#institucion').prop("disabled", false);
             $('#facultad').prop("disabled", true);
         }
         else{
             $('#institucion').hide();
             $('#facultad').show();
             $('#institucion').prop("disabled", true);
-            $('#facultad').removeProp("disabled");
+            $('#facultad').prop("disabled", false);
         }
         });
     });
