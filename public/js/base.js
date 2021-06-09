@@ -6,13 +6,10 @@ $(window).on("load", function(){
   });
 
   $("form button[type='submit']:not(.dropdown-item)").on("click", function(){
-    $(this).attr("type", "button");
-    $(this).prop("disabled", true);
+    $(this).addClass("disabled");
+    $(this).off("click");
+    $(this).on("click", function(e){
+      e.preventDefault();
+    });
   });
 });
-function goBack() {
-  history.go(-1);
-}
-function goNext() {
-  history.go(+1);
-}

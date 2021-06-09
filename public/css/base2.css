@@ -93,7 +93,7 @@ body {
     display: none;
   }
 }
-form button:disabled:not(.dropdown-item), form button:disabled:not(.dropdown-item):hover{
+form button[type='submit'].disabled:not(.dropdown-item), form button[type='submit'].disabled:not(.dropdown-item):hover{
   cursor: default;
   color: #24252F !important;
   background-color: rgb(255 255 255 / 90%) !important;

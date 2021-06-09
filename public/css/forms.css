@@ -181,8 +181,8 @@ input::-webkit-calendar-picker-indicator {
 .form-select:disabled{
   background-color: #dee2e6b3 !important;
 }
-.form-control, .form-input:disabled{
- color: #20212b !important;
+.form-control:disabled, .form-input:disabled{
+  color: #20212b !important;
 }
 textarea {
   resize: none;
