@@ -10,6 +10,7 @@ use app\Http\Controllers\ItemgastoController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\SolicitudCotizacionController;
+use App\Http\Controllers\RespuestasCotizacionController;
 
 use App\Http\Controllers\AutorizaciónPresupuestocontroller;
 
@@ -45,6 +46,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('usuario', 'UsuariosController');
     Route::resource('itemsgastos','ItemgastoController');
     Route::resource("solicitudCotizacion", "SolicitudCotizacionController");
+    Route::resource("respuestasCotizacion", "RespuestasCotizacionController", ['only' => ['show']]);
+    Route::get("respuestasCotizacion/create/{id}", "RespuestasCotizacionController@create")->name('respuestasCotizacion.create');
+    Route::post("respuestasCotizacion/{id}", "RespuestasCotizacionController@store")->name('respuestasCotizacion.store');
+    Route::get("respuestasCotizacion/list/{id}", "RespuestasCotizacionController@index")->name('respuestasCotizacion.index');
     Route::resource('presupuestos', 'PresupuestoController');
     Route::get('generarCotizacion/{id}', 'SolicitudCotizacionController@generar')->name('generarCotizacion');
     Route::get('formulario/{id}', 'StorageController@index')->name('formulario');

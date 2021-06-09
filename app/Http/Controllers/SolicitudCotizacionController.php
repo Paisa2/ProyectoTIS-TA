@@ -7,16 +7,19 @@ use Illuminate\Http\Request;
 use App\Models\Solicitud_cotizacion;
 use App\Models\Solicitud_adquisicion;
 use App\Models\CotizacionPdf;
+use App\Models\RespuestaCotizacion;
 
 class SolicitudCotizacionController extends Controller
 {
     public function index(){
         $cotizaciones = Solicitud_cotizacion::all();
         foreach($cotizaciones as $cotizacion){
-            $cotizacion->pdf=CotizacionPdf::where('cotizacion_id',$cotizacion->id)->count();
-            if($cotizacion->pdf > 0){
-                $cotizacion->pdf_ruta=CotizacionPdf::where('cotizacion_id',$cotizacion->id)->first()->ruta;
-            }
+        //    $cotizacion->pdf=CotizacionPdf::where('cotizacion_id',$cotizacion->id)->count();
+        //    if($cotizacion->pdf > 0){
+        //        $cotizacion->pdf_ruta=CotizacionPdf::where('cotizacion_id',$cotizacion->id)->first()->ruta;
+        //    }
+        $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
+
         }
         return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones"));
     }

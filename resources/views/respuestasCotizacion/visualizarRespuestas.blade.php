@@ -21,21 +21,15 @@
         <div class='d-flex justify-content-center'>
             <h2 class="display-4">Lista de Cotizaciones</h2>
         </div>    
+        <br><br>
         <table class="table">
-
-          @if(session()->has('Crear solicitud de cotizacion'))
-          <div style="display:flex;justify-content:flex-end;" class="mb-3">
-            <a class="btn btn-primary" href="{{url('solicitudCotizacion/create')}}">+ Nuevo</a>
-          </div>
-          @else
-          <br><br>
-          @endif
+          
             <thead>
                 <tr>
                     <th scope="col">NRO</th>
                     <th scope="col">CODIGO DE COTIZACIÓN</th>
-                    <th scope="col">CANTIDAD DE RESPUESTAS</th>
-                    <th scope="col">FECHA</th> 
+                    <th scope="col">RAZON SOCIAL</th>
+                    <th scope="col">FECHA</th>  
                     <th class="options"></th>
                 </tr>
             </thead>
@@ -45,7 +39,7 @@
             <tr>
                 <td>{{ $loop->index +1 }}</td>
                 <td>{{$cotizacion->codigo_cotizacion}}</td>
-                <td>{{$cotizacion->respuestas}}</td>
+                <td>{{$cotizacion->razon_social}}</td>
                 <td>{{date("Y-m-d",strtotime($cotizacion->fecha_cotizacion))}}</td>   
                 <td class="options">
                   <div class="dropdown dropleft">
@@ -56,24 +50,24 @@
                 </span>
                 <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
                   <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-                  <a class="dropdown-item" href="{{ route('solicitudCotizacion.show', $cotizacion->id) }}">
+                  <a class="dropdown-item" href="{{ route('respuestasCotizacion.show', $cotizacion->resp_cot_id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                   </svg>Detalles
+                  </a>              
+                  @if($cotizacion->pdf < 1)
+                  <a class="dropdown-item" href="{{ route('formulario', $cotizacion->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/cloud-upload.svg#i-cloud-upload')}}"></use>
+                    </svg>Agregar PDF
                   </a>
-                  @if($cotizacion->respuestas>0)
-                  <a class="dropdown-item" href="{{ route('respuestasCotizacion.index', $cotizacion->id) }}">
-                    <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                  </svg>Ver Respuestas
-                  </a>                  
                   @endif
-                  @if($cotizacion->respuestas<5)
-                  <a class="dropdown-item" href="{{ route('respuestasCotizacion.create', $cotizacion->id) }}">
+                  @if($cotizacion->pdf > 0)
+                  <a class="dropdown-item" href="{{asset($cotizacion->pdf_ruta)}}" target="_blank">
                     <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
-                  </svg>Añadir Respuesta
-                  </a>                  
+                      <use xlink:href="{{asset('img/icons/external-link.svg#i-external-link')}}"></use>
+                    </svg>Visualizar PDF
+                  </a>
                   @endif
                 </div>
               </div>
@@ -88,4 +82,3 @@
 
 <!-- fin codigo importante -->
 @endsection
-
