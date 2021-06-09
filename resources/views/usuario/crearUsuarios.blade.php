@@ -37,7 +37,7 @@
             <div class="row">     
                 <div class="mb-3 col-6">
                     <label for="" class="form-label">Rol:</label>
-                    <select class="form-control" name="rol_id" id="">
+                    <select class="form-control" name="rol_id">
                     <option hidden selected value="">Seleccione</option>
                     @foreach($roles as $rol)
                     <option {{ old('rol_id') == $rol->id ? 'selected' : '' }} value="{{$rol->id}}">{{$rol->nombre_rol}}</option>
@@ -50,7 +50,7 @@
 
                 <div class="mb-3 col-6">
                     <label for="" class="form-label">Pertenece a:</label>
-                    <select class="form-control" name="unidad_id" id="">
+                    <select class="form-control" name="unidad_id">
                     <option hidden selected value="">Seleccione</option>
                 
                     @foreach($unidades as $unidad)

@@ -54,7 +54,8 @@ table {
   color: #fff;
   text-align: center;
   padding-left: 8px;
-
+  margin: 0 !important;
+  border: none;
 }
 .cotizacion tbody tr td.d4 input, .cotizacion tbody tr td.d4 span{
   text-align: unset; 
