@@ -15,21 +15,36 @@
 </head>
 <body>
     <nav class= "nav">
-         <ul>
-           <li><a href="/contacto">Información</a></li>
-           <li><a href="/soporte">Soporte</a></li>
-           <li><a href="/login">Inicio Sesión</a></li>
-         </ul> 
+
+    <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link " href="/contacto">Contactos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="/soporte">Soporte</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="/informacion">Acerca de Sistema</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link " href="/login">Inicio Sesión</a>
+  </li>
+  
+</ul>
+        
+       
     </nav>
        <div class="container">
           <div class='row'>
-             <div class='col-4'>
+             <div class='col-6'>
              <br>
-            
-                
+             <br>
+             <br>
+             <br>
                  
                <h2>Contactos</h2>
-                   <h3>Relaciones Publicas</h3>
+                   <h4>Relaciones Publicas</h4>
                    
                   <div style="display: flex; padding: 0px 15px 0px 15px;">
                       
@@ -48,7 +63,7 @@
                   <i class="fas fa-fax"></i>
                    <label class='alin'>(+591)4 4525161</label>
                   </div> 
-                  <h3>Secretaria General</h3>
+                  <h4>Secretaria General</h4>
                   
                   <div style="display: flex;  padding: 0px 15px 0px 15px;">
                       
@@ -67,37 +82,31 @@
                   <i class="fas fa-fax"></i>
                    <label class='alin'>(+591)4 4524772</label>
                   </div> 
-                  <h3>Información General</h3>
+                  <h4>Información General</h4>
 
                   <div style="display: flex; padding: 0px 15px 0px 15px;">
                       
                       <div class="iconCheck"><i class="fas fa-envelope"></i></div> 
                       <label class='alin'>información@umss.edu.bo</label>
                      </div> 
-                     <div class='imagen'>
-                 <img src="/imagenes/cotysoft1.png"> 
-                 </div>
+                     <h4>Dirección</h4>
+                     <div style="display: flex; padding: 0px 15px 0px 15px;">
+                         
+                         <i class="fas fa-route"></i>
+                        <label class='alin'> Campus Central: Av.Oquendo final Jordan, Cochabamba Bolivia </label>
+                         </div>
+                   
                    
              </div>
-             <div class='col-4'>
+             <div class='col-6'>
                  <br>
                  <br>
-                 <br>
-             <a class='image'>
-                 <img src="/imagenes/coty.png"> 
-                 </a>
+                 
+                <div class='user-img'>
+                 <img src="/imagenes/contactos.jpg"> 
+                </div>
              </div>
-             <div class='col-4'>
-             <br>
-             <br>
-             <br>
-             <h2>Sistema de Información</h2>
-                 <div class='bt_bb_headline_subheadline'>
-                     "Queremos asesorarle de principio a fin ayudandole a cotizar de manera trasparante e instantanea para tu institución"
-                 </div>
-                 <br>
-                 <h2>Soporte</h2>
-              </div>
+             
 
            </div>
         </div>

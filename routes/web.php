@@ -78,6 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('contacto','LoginController@contacto')->name('contacto');
     Route::get('soporte','LoginController@soporte')->name('soporte');
+    Route::get('informacion','LoginController@informacion')->name('informacion');
 });
 
 //Route::get('/formpdf', [App\Http\Controllers\StorageController::class, 'mform'])->name('formpdf');

@@ -6,9 +6,9 @@
 }
 body, html{
     height: 100%;
-    color: cornsilk;
+    
 }
-
+/*
 body{
     background-image: url(../imagenes/citysoft.jpg);
     background-position: center center;
@@ -18,7 +18,7 @@ body{
 }
 */
 nav{
-    background-color: rgb(25, 25, 114);
+    background-color: rgb(6, 6, 65);
     padding: 10px;
     font-size: 15px;
 }
@@ -32,10 +32,17 @@ a{
     color: #ffffff;
     padding: 0px 30px;
 }
-img{
-    width: 200px; height: 200px;
+
+.user-img img{
+    width: 500px; height: 500px;
 }
-div .imagen{
-    height: 100px;
+
+h2{
+    color: #180952;
+    font-weight:600;
     
+}
+h4{
+    color: rgb(4, 4, 12);
+    font-weight:600;
 }
