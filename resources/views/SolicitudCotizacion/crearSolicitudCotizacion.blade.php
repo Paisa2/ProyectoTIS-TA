@@ -13,36 +13,33 @@
 <div class="container my-4">
 
     <form action="/solicitudCotizacion" method="post">
-        {{csrf_field()}}
-        <div class='d-flex justify-content-center'>
-            <h1>SOLICITUD DE COTIZACIÓN</h1>
+      {{csrf_field()}}
+      <h1 class="display-4">Solicitud de Cotización</h1>
+      <br>
+      <div class="row">
+        <div class="mb-3 col-6">
+          <div class="row">
+          <label for="NumeroCotizacion" class="form-label col-auto">Número Cotización:</label>
+          <input type="text" class="form-control col" name="numero_cotizacion" id="NumeroCotizacion" autocomplete="off" value="{{old('numero_cotizacion')}}">
+          </div>
+          @foreach($errors->get('numero_cotizacion') as $message) 
+          <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
+          @endforeach
         </div>
-        <br>
+        <div class="mb-3 col-6">
             <div class="row">
-                    <div class="mb-3 col-6">
-                    <div>
-                    <label for="NumeroCotizacion" class="form-label col-auto">Número Cotización:</label>
-                    <input type="text" class="form-control col" name="numero_cotizacion" id="NumeroCotizacion" autocomplete="off" value="{{old('numero_cotizacion')}}">
-                    </div>
-                    @foreach($errors->get('numero_cotizacion') as $message) 
-                    <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
-                    @endforeach
-                </div>
-                <div class="mb-3 col-6">
-                    <div>
-                    <label for="Fechas" class="form-label col-auto">Fecha:</label>
-                    <input class="form-control col" type="date" name="fecha_cotizacion">
-                    </div>
-                    @foreach($errors->get('fecha_cotizacion') as $message) 
-                    <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
-                    @endforeach
-                </div>
-
+            <label for="Fechas" class="form-label col-auto">Fecha:</label>
+            <input class="form-control col" type="date" name="fecha_cotizacion" style="margin-right:1rem;">
             </div>
+            @foreach($errors->get('fecha_cotizacion') as $message) 
+            <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
+            @endforeach
+        </div>
+      </div>
 
 
 
-            <table class="cotizacion">
+    <table class="cotizacion" id="cotizacion">
       <thead>
         <tr>
           <th class="c-1">N°</th>
@@ -56,10 +53,10 @@
       <tbody>
         @for($i=0; $i<16; $i++)
           <tr>
-            <td><input type="number" min="1" max="16" name="detalles[numero][n{{$i}}]"></td>
-            <td><input type="number" min="1" name="detalles[cantidad][c{{$i}}]"></td>
-            <td><input type="text" name="detalles[unidad][ud{{$i}}]"></td>
-            <td class="d4"><input type="text" name="detalles[detalle][d{{$i}}]"></td>
+            <td><input id="n-{{$i+1}}" type="text" name="detalles[numero][n{{$i}}]" autocomplete="off"></td>
+            <td><input type="number" min="1" name="detalles[cantidad][c{{$i}}]" autocomplete="off"></td>
+            <td><input type="text" name="detalles[unidad][ud{{$i}}]" autocomplete="off"></td>
+            <td class="d4"><input id="d-{{$i+1}}" type="text" name="detalles[detalle][d{{$i}}]" autocomplete="off"></td>
             <td></td>
             <td></td>
 						<!-- <td><input type="number" min="1" name="detalles[unitario][uo{{$i}}]"></td>
@@ -68,10 +65,13 @@
         @endfor
       </tbody>
     </table>
+    @foreach($errors->get('detalles.numero.*') as $message)
+    <div class="alert alert-danger" role="alert">{{$message}}</div>
+    @endforeach
 
-            <div class='d-flex justify-content-center'>
-                <button id="registrar" type='submit' class="btn btn-primary">Registrar</button>
-            </div>     
+      <div class='d-flex justify-content-center'>
+          <button id="registrar" type='submit' class="btn btn-primary">REGISTRAR</button>
+      </div>     
     </form>
 </br>
 
@@ -85,11 +85,20 @@
 @section("scripts")
 <script type="text/javascript">
 
-  $("#registrar").on("focus", function(){
-    let html = $("#table-detalle").html();
-    html = html.replace(/contenteditable="true"/g, "")
-    .replace(/  /g, "");
-    $("#detalle").val(html);
+  $(window).on("load", function(){
+    $("#cotizacion .d4 input").on("keypress",function(){
+      if($(this).val() == ""){
+        let id=$(this).attr("id");
+        let numero=id.charAt(id.length-1);
+        if(id.charAt(id.length-2) != "-"){
+          numero=id.charAt(id.length-2)+numero;
+        }
+        $('#n-'+numero).val(numero);
+      }
+    });
+    $("table tbody tr td:first-child").on("keydown",function(e){
+      e.preventDefault();
+    });
   });
 
 </script>

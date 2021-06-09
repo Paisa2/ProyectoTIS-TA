@@ -6,11 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Models\Solicitud_cotizacion;
 use App\Models\Solicitud_adquisicion;
+use App\Models\CotizacionPdf;
 
 class SolicitudCotizacionController extends Controller
 {
     public function index(){
         $cotizaciones = Solicitud_cotizacion::all();
+        foreach($cotizaciones as $cotizacion){
+            $cotizacion->pdf=CotizacionPdf::where('cotizacion_id',$cotizacion->id)->count();
+            if($cotizacion->pdf > 0){
+                $cotizacion->pdf_ruta=CotizacionPdf::where('cotizacion_id',$cotizacion->id)->first()->ruta;
+            }
+        }
         return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones"));
     }
 
@@ -27,12 +34,11 @@ class SolicitudCotizacionController extends Controller
             'regex' => 'El campo :attribute solo puede tener letras',
             'numero_cotizacion.numeric' => 'El campo Número Cotización solo puede tener números',
             'numero_cotizacion.digits_between'   => 'Número Cotización debe tener entre 6 y 8 dígitos',
-                        
         ];
         $this->validate($request, [
             //'razon_social'=>['required', 'min:2', 'max:40', 'regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ-]))+$/'],
             'numero_cotizacion'=>['required', 'digits_between:6,8', 'numeric'], 
-            'fecha_cotizacion'=>['required'], 
+            'fecha_cotizacion'=>['required'],
             ], $mensages);
         $cotizacion = new Solicitud_cotizacion;    
         $cotizacion->codigo_cotizacion = $request->numero_cotizacion;

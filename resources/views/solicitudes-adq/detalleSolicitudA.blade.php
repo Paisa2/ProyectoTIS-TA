@@ -11,13 +11,12 @@
 @section('main')
 <div class="container ">
   <form >
-   <div>
-     <h2 class="display-4">Detalle de la Solicitud de Adquisición N° {{$autopre->codigo_solicitud_a}}</h2>
-     <br>
-    <label  for="exampleInputEmail1" class="form-label"><b>TIPO:</b></label>
-    
-    <label>{{$autopre->tipo_solicitud_a}}</label>
-   
+    <div>
+      <h2 class="display-4">Detalle de la Solicitud de Adquisición</h2>
+      <h2 class="display-5">N° {{$autopre->codigo_solicitud_a}}</h2>
+      <br>
+      <label  for="exampleInputEmail1" class="form-label"><b>TIPO:</b></label>
+      <label>{{$autopre->tipo_solicitud_a}}</label>
 
     <div class='row'>
     <div class='col-6'>
@@ -52,58 +51,58 @@
     <br>
     @if($autopre->tipo_solicitud_a=="Compra")
     <table class="tabla-compra" id="compra">
-                    <thead>
-                      <tr>
-                        <th class="c-0">N°</th>
-                        <th class="c-1">Item</th>
-                        <th class="c-2">Cantidad</th>
-                        <th class="c-2">Unidad</th>
-                        <th class="c-2">Precio</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    @for($i=0; $i<10; $i++)
-                      <tr>
-                        <td>{{$detalles[0][$i]}}</td>
-                        <td class="articulo">{{$detalles[1][$i]}}</td>
-                        <td>{{$detalles[2][$i]}}</td>
-                        <td>{{$detalles[3][$i]}}</td>
-                        <td>{{$detalles[4][$i]}}</td>
-                      </tr>
-                      @endfor
-                      <tr>
-                        <td colspan="4">TOTAL</td>
-                        <td>{{$autopre->total_solicitud_a}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+      <thead>
+        <tr>
+          <th class="c-0">N°</th>
+          <th class="c-1">Item</th>
+          <th class="c-2">Cantidad</th>
+          <th class="c-2">Unidad</th>
+          <th class="c-2">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+      @for($i=0; $i<10; $i++)
+        <tr>
+          <td>{{$detalles[0][$i]}}</td>
+          <td class="articulo"><span>{{$detalles[1][$i]}}</span></td>
+          <td>{{$detalles[2][$i]}}</td>
+          <td>{{$detalles[3][$i]}}</td>
+          <td>{{$detalles[4][$i]}}</td>
+        </tr>
+        @endfor
+        <tr>
+          <td colspan="4">TOTAL</td>
+          <td>{{$autopre->total_solicitud_a}}</td>
+        </tr>
+      </tbody>
+    </table>
     @else
     <table class="tabla-alquiler" id="alquiler">
-                    <thead>
-                      <tr>
-                        <th class="c-0">N°</th>
-                        <th class="c-1">Servicio</th>
-                        <th class="c-2">Duracion</th>
-                        <th class="c-2">Periodo</th>
-                        <th class="c-2">Precio</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @for($i=0; $i<10; $i++)
-                      <tr>
-                        <td>{{$detalles[0][$i]}}</td>
-                        <td class="articulo">{{$detalles[1][$i]}}</td>
-                        <td>{{$detalles[2][$i]}}</td>
-                        <td>{{$detalles[3][$i]}}</td>
-                        <td>{{$detalles[4][$i]}}</td>
-                      </tr>
-                      @endfor
-                      <tr>
-                        <td colspan="4">TOTAL</td>
-                        <td>{{$autopre->total_solicitud_a}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+      <thead>
+        <tr>
+          <th class="c-0">N°</th>
+          <th class="c-1">Servicio</th>
+          <th class="c-2">Duracion</th>
+          <th class="c-2">Periodo</th>
+          <th class="c-2">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+          @for($i=0; $i<10; $i++)
+        <tr>
+          <td>{{$detalles[0][$i]}}</td>
+          <td class="articulo"><span>{{$detalles[1][$i]}}</span></td>
+          <td>{{$detalles[2][$i]}}</td>
+          <td>{{$detalles[3][$i]}}</td>
+          <td>{{$detalles[4][$i]}}</td>
+        </tr>
+        @endfor
+        <tr>
+          <td colspan="4">TOTAL</td>
+          <td>{{$autopre->total_solicitud_a}}</td>
+        </tr>
+      </tbody>
+    </table>
     @endif
    </div>
    </form>

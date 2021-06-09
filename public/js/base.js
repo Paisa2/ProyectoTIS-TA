@@ -5,3 +5,9 @@ $(window).on("load", function(){
     $(".c-sidebar-backdrop.c-fade.c-show").addClass("d-none");
   });
 });
+function goBack() {
+  history.go(-1);
+}
+function goNext() {
+  history.go(+1);
+}

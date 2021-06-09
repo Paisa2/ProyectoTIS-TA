@@ -25,8 +25,11 @@
       </div>
     </div>
   </nav>
-  <nav class="navbar navbar-expand-md navbar-dark navbar2">
+  <nav class="navbar navbar-expand-md navbar-dark navbar2" id="navbar2">
     <div class="container-fluid">
+      <svg class="c-icon mfe-2" onclick="goBack()">
+        <use xlink:href="{{asset('img/icons/chevron-circle-left.svg#i-chevron-circle-left')}}"></use>
+      </svg>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -78,9 +81,12 @@
             href="{{route('solicitudCotizacion.index')}}">Solicitudes de cotizacion</a>
           </li>
           @endif
-        </ul>
-        
+        </ul>       
       </div>
+
+      <svg class="c-icon mfe-2" onclick="goNext()">
+        <use xlink:href="{{asset('img/icons/chevron-circle-right.svg#i-chevron-circle-right')}}"></use>
+      </svg>
     </div>
   </nav>
   @include('base.sidebarSecondary')

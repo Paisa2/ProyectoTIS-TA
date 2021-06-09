@@ -37,7 +37,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Rol::all();
+        $roles = Rol::orderBy('updated_at', 'desc')->get();
         foreach ($roles as $rol) {
             $permisos = RolTienePermiso::where('rol_id', $rol->id)->get();
             $rol->numero_permisos = count($permisos);

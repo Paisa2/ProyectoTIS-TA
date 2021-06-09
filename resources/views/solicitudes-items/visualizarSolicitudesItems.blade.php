@@ -19,6 +19,8 @@
   <div style="display:flex;justify-content:flex-end;" class="mb-3">
     <a href="{{url('solicitudes-de-items/create')}}" class="btn btn-primary">+ Nuevo</a>
   </div>
+  @else
+  <br><br>
   @endif
   <table class="table">
     <thead>

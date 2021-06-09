@@ -2,7 +2,7 @@ form {
   background-color: #24252F;
   border-radius: 10px;
   padding:24px;
-  margin: 48px auto;
+  margin: 24px auto;
 }
 .display-4{
   text-align: center;
@@ -183,4 +183,7 @@ input::-webkit-calendar-picker-indicator {
 }
 .form-control, .form-input:disabled{
  color: #20212b !important;
+}
+textarea {
+  resize: none;
 }
