@@ -74,6 +74,7 @@
 			display: inline-block;
 			width: 14rem;
 			border-bottom: 2px dotted #000;
+			text-align: center;
 		}
 		table {
 			border-collapse: separate;
@@ -162,9 +163,9 @@
 	</div>
 	<div style="height:.5rem; clear:both;"></div>
 	<div class="titulo">SOLICITUD DE COTIZACIÓN</div>
-	<div class="numero">N°<span style="margin-left:-8px;margin-right: 16px;">.</span> 022772</div>
+	<div class="numero">N°<span style="margin-left:-8px;margin-right: 16px;">.</span> {{$cotizacion->codigo_cotizacion}}</div>
 	<p class="informacion">
-		Razón Social: <span class="razon-social"></span> Fecha: <span class="fecha"></span>
+		Razón Social: <span class="razon-social"></span> Fecha: <span class="fecha"> {{date("d-m-Y",strtotime($cotizacion->fecha_cotizacion))}} </span>
 	</p>
 	<p class="agradecimiento">
 		Agradecemos a Uds. cotizarnos, los articulos que a continuación se detallan. 
@@ -191,134 +192,16 @@
 			</tr>
 		</thead>
 		<tbody>
+			@for($i=0; $i<16; $i++)
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
+				<td>{{$detalles["numero"][$i]}}</td>
+				<td>{{$detalles["cantidad"][$i]}}</td>
+				<td>{{$detalles["unidad"][$i]}}</td>
+				<td class="d4">{{$detalles["detalle"][$i]}}</td>
 				<td></td>
 				<td></td>
 			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td class="d4"></td>
-				<td></td>
-				<td></td>
-			</tr>
+			@endfor
 		</tbody>
 	</table>
 	

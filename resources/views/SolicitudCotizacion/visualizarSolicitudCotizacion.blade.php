@@ -73,6 +73,11 @@
                     </svg>Visualizar PDF
                   </a>
                   @endif
+                  <a class="dropdown-item" href="{{ route('generarCotPdf', $cotizacion->id) }}" target="_blank">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
+                    </svg>Imprimir
+                  </a>
                 </div>
               </div>
                 </td>       

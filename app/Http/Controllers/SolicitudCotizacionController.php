@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Solicitud_cotizacion;
 use App\Models\Solicitud_adquisicion;
 use App\Models\CotizacionPdf;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class SolicitudCotizacionController extends Controller
 {
@@ -83,5 +84,20 @@ class SolicitudCotizacionController extends Controller
             return redirect()->route('solicitudCotizacion.show',$cotizacion->id);
         }
         
+    }
+
+    public function generarPdf($id){
+        $cotizacion = Solicitud_cotizacion::where('id', $id)->first();
+        if($cotizacion){
+            $datos = json_decode($cotizacion->detalle_cotizacion, true);
+            $detalles['numero'] = array_values($datos['numero']);                   
+            $detalles['cantidad'] = array_values($datos['cantidad']);                   
+            $detalles['unidad'] = array_values($datos['unidad']);                   
+            $detalles['detalle'] = array_values($datos['detalle']); 
+            $pdf = PDF::loadView('modelosPdf.cotizacionImpresion', compact('cotizacion', 'detalles'))->setPaper('letter', 'landscape');
+        }else{
+            abort(404);
+        }
+        return $pdf->stream();
     }
 }

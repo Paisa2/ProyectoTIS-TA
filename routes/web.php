@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('usuario', 'UsuariosController');
     Route::resource('itemsgastos','ItemgastoController');
     Route::resource("solicitudCotizacion", "SolicitudCotizacionController");
+    Route::get('generarCotizacionPdf/{id}', 'SolicitudCotizacionController@generarPdf')->name('generarCotPdf');
     Route::resource('presupuestos', 'PresupuestoController');
     Route::get('generarCotizacion/{id}', 'SolicitudCotizacionController@generar')->name('generarCotizacion');
     Route::get('formulario/{id}', 'StorageController@index')->name('formulario');
@@ -89,7 +90,7 @@ Route::get('info', function () {
 });
 
 Route::get('pdf', function(){
-    $pdf = PDF::loadView('cotizacion-impresion')->setPaper('letter', 'landscape');
+    $pdf = PDF::loadView('modelosPdf.comparativoImpresion')->setPaper('letter', 'landscape');
     return $pdf->stream();
 });
 

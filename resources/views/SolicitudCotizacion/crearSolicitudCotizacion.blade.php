@@ -12,7 +12,7 @@
 <!-- codigo importante -->
 <div class="container my-4">
 
-    <form action="/solicitudCotizacion" method="post">
+    <form action="/solicitudCotizacion" method="post" novalidate>
       {{csrf_field()}}
       <h1 class="display-4">Solicitud de Cotización</h1>
       <br>

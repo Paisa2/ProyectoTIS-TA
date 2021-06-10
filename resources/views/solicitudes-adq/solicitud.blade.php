@@ -9,7 +9,7 @@
 
 @section('main')
 <div class="container my-4">
-  <form action="{{route('solicitud.store')}}" method="post">
+  <form action="{{route('solicitud.store')}}" method="post" novalidate>
     {{csrf_field()}}
     <div class="col-md-12">
         <h1 class="display-4">Solicitar Adquisición</h1>
