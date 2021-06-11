@@ -11,7 +11,7 @@
     <link  href="{{ asset('css/forms.css') }}"  rel="stylesheet">
     <link  href="{{ asset('css/contacto.css') }}"  rel="stylesheet">
 
-    <title>contacto</title>
+    <title>Información</title>
 </head>
 <body>
     <nav class= "nav">
@@ -48,6 +48,7 @@
                  <br>
                  <br>
                  <h2> Sistema de Información</h2>
+                 <br>
                  <p _ngcontent-sjr-c70 class="textP">
                  “Queremos asesorarle de principio a fin ayudándole a cotizar de manera 
                  transparente e instantánea el sistema de información web que requiere tu institución"

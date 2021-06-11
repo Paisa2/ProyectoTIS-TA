@@ -19,8 +19,9 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    position: relative;
-    height: 30%;
+    
+
+    
 }
 .form{
     width: 35%;

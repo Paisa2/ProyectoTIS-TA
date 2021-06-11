@@ -11,49 +11,55 @@
     <link  href="{{ asset('css/forms.css') }}"  rel="stylesheet">
     <link  href="{{ asset('css/contacto.css') }}"  rel="stylesheet">
 
-    <title>contacto</title>
+    <title>Soporte</title>
 </head>
 <body>
-    <nav class= "nav">
-    <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link " href="/contacto">Contactos</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link " href="/soporte">Soporte</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link " href="/informacion">Acerca de Sistema</a>
-  </li>
+       
+         <nav class= "nav">
+            
+                    <ul class="nav nav-tabs">
+                 <li class="nav-item">
+                      <a class="nav-link " href="/contacto">Contactos</a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link " href="/soporte">Soporte</a>
+                 </li>
+                <li class="nav-item">
+                     <a class="nav-link " href="/informacion">Acerca de Sistema</a>
+                </li>
 
-  <li class="nav-item">
-    <a class="nav-link " href="/login">Inicio Sesión</a>
-  </li>
-
-  
-  
-</ul>
-    </nav>
+                <li class="nav-item">
+                     <a class="nav-link " href="/login">Inicio Sesión</a>
+                 </li>
+              </ul>
+             
+            </nav>
+         
        <div class="container">
           <div class='row'>
                 <div class='col-6'>
                 <br>
                  <br>
                  <br>
+                 <h2>Soporte</h2>
+                 <br>
                  <h2>Ayuda</h2>
-                 <h4>¿No recuerdo mi cuenta para iniciar sesión?</h4>
+                 <h4>¿No recuerda su cuenta para iniciar sesión?</h4>
                  <p _ngcontent-sjr-c70 class="textP">
                  En caso de olvidar la información requerida para iniciar Sesión 
                  el usuario debe solicitar al encargado del sistema sus credenciales
                   para poder ingresar al sistema.
                  </p>
 
-                 <h4>¿Fallas de Sistema?</h4>
+                 <h4>¿ Tiene Fallas de Sistema?</h4>
                  <p _ngcontent-sjr-c70 class="textP">
                  En caso de presentar fallas en el sistema contactar con la empresa responsable
                  </p>
                         <div class='row'>
                               <div class='col-6'>
+                                  <div class='user-imagen'>
+                                      <img src="/imagenes/TecnoAvance.PNG"> 
+                                  </div>
                               </div>
                               <div class='col-6'>
                                    <div style="display: flex;  padding: 0px 15px 0px 15px;">

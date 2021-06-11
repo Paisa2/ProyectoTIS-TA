@@ -25,12 +25,15 @@ use App\Http\Controllers\AutorizaciónPresupuestocontroller;
 */
 Route::get('/', function () {
     // return view('welcome');
-    return redirect()->route('login');
+    return redirect()->route('informacion');
 });
 
 Route::group(['middleware' => 'noauth'], function () {  
     Route::get('login','LoginController@mostrarFormulario')->name('login');
     Route::post('autentificacion','LoginController@autentificar');
+    Route::get('soporte','LoginController@soporte')->name('soporte');
+    Route::get('contacto','LoginController@contacto')->name('contacto');
+    Route::get('informacion','LoginController@informacion')->name('informacion');
     
 
     
@@ -75,10 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('lista/solicitud', 'AdqController@create')->name('solicitud.create');
     Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
     Route::get('verificarpresupuesto/{tipo}/{id}', 'AutorizaciónPresupuestoController@update')->name('verificarpresupuesto');
-
-    Route::get('contacto','LoginController@contacto')->name('contacto');
-    Route::get('soporte','LoginController@soporte')->name('soporte');
-    Route::get('informacion','LoginController@informacion')->name('informacion');
+    Route::get('emitirinforme','EmitirInformeController@emitirinforme')->name('emitirinforme');
+    
 });
 
 //Route::get('/formpdf', [App\Http\Controllers\StorageController::class, 'mform'])->name('formpdf');
