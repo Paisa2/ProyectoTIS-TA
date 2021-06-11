@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,7 @@ class Empresa extends Model
      *
      * @var array
      */
+    
     protected $fillable = [
         'nombre_empresa', 'representante_legal', 'direccion_empresa', 
         'nit_empresa', 'rubro_empresa', 'telefono_empresa', 'email_empresa',

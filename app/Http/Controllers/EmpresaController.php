@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmpresaRequest;
+use App\Models\Empresa;
+use App\Models\RespuestaCotizacion;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -11,9 +14,17 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Empresas.ListaEmpresas');
+        $rubros = $request->get('rubro');
+        $todos = $request;
+        /*$registros = Empresa::get();*/
+        if($rubros){
+            $registros = Empresa::where('rubro_empresa','like','rubros')->get();
+        }else{
+            $registros = Empresa::get();
+        }
+        return view('Empresas.ListaEmpresas', compact('registros'));
     }
 
     /**
@@ -23,7 +34,8 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        return view('Empresas.NuevaEmpresa');
+        $rubro = RespuestaCotizacion::get();
+        return view('Empresas.NuevaEmpresa', compact('rubro'));
     }
 
     /**
@@ -32,9 +44,19 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaRequest $request)
     {
-        //
+        $empresas = new Empresa;
+        $empresas->nombre_empresa     =$request->Empresa;
+        $empresas->representante_legal=$request->Representante_Legal;
+        $empresas->direccion_empresa  =$request->Direccion;
+        $empresas->nit_empresa        =$request->Nit;
+        $empresas->rubro_empresa      =$request->Rubro;
+        $empresas->telefono_empresa   =$request->Telefono;
+        $empresas->email_empresa      =$request->Correo_Electronico;
+        $empresas->save();
+        return redirect('ListaEmpresas')->with('confirm', 'La empresa ha sido registrada');
+        
     }
 
     /**

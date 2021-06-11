@@ -9,16 +9,31 @@
 @endsection
 
 @section('main')
-{{-- @if(session('confirm'))
+@if(session('confirm'))
 <div class="alert alert-success" role="alert" id="confirm">
     {!! session('confirm') !!}
 </div>
 <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
-@endif --}}
+@endif
     <div style="width: 90%; margin:24px auto;" class="container-table">
         <div><h1 class="display-4">Empresas Registradas</h1></div>
         <div class="row g-2">
             <div class="col-md">
+                <form action="" method="get">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="true">
+                      Todos
+                    </button>
+                    <ul class="dropdown-menu show" aria-labelledby="dropdownMenu2">
+                        <li><button class="dropdown-item" type="submit" name="todos" id="todos">Todos</button></li>
+                        <input type="hidden" name="rubro" value="todos">
+                    @foreach ($registros as $select)
+                    <li><button class="dropdown-item" type="submit" name="rubro" id="rubro">{{$select->rubro_empresa}}</button></li>
+                    @endforeach
+                    <input type="hidden" name="rubro" value={{$registros}}>
+                    </ul>
+                  </div>
+                </form>
             </div>
             <div class="col-md">
             <div class="d-flex justify-content-end mb-3">
@@ -33,9 +48,19 @@
                     <th scope="col">NOMBRE</th>
                     <th scope="col">RUBRO</th>
                     <th scope="col">REPRESENTANTE LEGAL</th>
+                    <th class="options"></th>
                 </tr>
             </thead>
+            <tbody>
+                @foreach ($registros as $registro)
+                    <tr>
+                        <td scope="row">{{ $loop->index +1}}</td>
+                        <td>{{$registro->nombre_empresa}}</td>
+                        <td>{{$registro->rubro_empresa}}</td>
+                        <td>{{$registro->representante_legal}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
-
     </div>    
 @endsection

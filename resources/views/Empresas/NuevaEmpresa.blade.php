@@ -8,66 +8,89 @@
 
 @section('main')
     <div class="container my-4">
-        <form action="">
+        <form action="{{route('empresa.store')}}" method="post">
             {{csrf_field()}}
-            <h1>Registrar Empresa</h1>
+            <h1 class="display-4">Registrar Empresa</h1>
             <div class="row g-3">
                 <div class="col-md-4">
-                    <label for="empresa" class="form-label">Empresa</label>
-                    <input list="browsers" name="browser" class="form-control" autocomplete="off">
-                    <datalist id="browsers">
-                        <option value="Internet Explorer">
-                        <option value="Firefox">
-                        <option value="Chrome">
-                        <option value="Opera">
-                        <option value="Safari">
-                    </datalist>
-                    {{-- <select onchange="this.nextElementSibling.value=this.value" class="form-control">
-                        <option value=""></option>
-                        <option value="115x175 mm">115x175 mm</option>
-                        <option value="120x160 mm">120x160 mm</option>
-                        <option value="120x287 mm">120x287 mm</option>
-                      </select> --}}
-                </div>
-                <div class="col-md-4">
-                    <label for="nit" class="form-label">Nit</label>
-                    <input type="text" name="nit" class="form-control" autocomplete="off" value="{{old('nit')}}">
-                </div>
-                <div class="col-md-4">
-                    <label for="rubro" class="form-label">Rubro</label>
-                    <select name="rubro" id="rubro" class="form-control"> 
-                        <option value=""></option>
-                        <option value="115x175 mm">115x175 mm</option>
-                        <option value="120x160 mm">120x160 mm</option>
-                        <option value="120x287 mm">120x287 mm</option>
+                    <label for="Empresa" class="form-label">Empresa</label>
+                    <select name="Empresa" id="Empresa" class="form-control">
+                        @foreach($rubro as $rubros)
+                        <option hidden selected value="">Seleccione</option>
+                        <option value="{{ $rubros->razon_social }}">{{ $rubros->razon_social }}</option>
+                        @endforeach 
                     </select>
+                        @foreach($errors->get('Empresa') as $message)
+                        <div class="alert alert-danger" role="alert">{{$message}}</div>
+                        @endforeach
+                </div>
+                <div class="col-md-4">
+                    <label for="Nit" class="form-label">Nit</label>
+                    <input type="text" name="Nit" class="form-control" autocomplete="off" value="{{old('Nit')}}">
+                    @foreach($errors->get('Nit') as $message)
+                        <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
+                </div>
+                <div class="col-md-4">
+                    <label for="Rubro" class="form-label">Rubro</label>
+                    <select name="Rubro" id="rubro" class="form-control"> 
+                        <option hidden selected value="">Seleccione</option>
+                        <option value="Construccion">Construcción</option>
+                        <option value="Educacion">Educacion</option>
+                        <option value="Electricidad">Electricidad</option>
+                        <option value="Industrial">Industrial</option>
+                        <option value="Software">Software</option>
+                        <option value="Telecomunicaciones">Telecomunicaciones</option>
+                        <option value="Transporte">Transporte</option>
+                    </select>
+                    @foreach($errors->get('Rubro') as $message)
+                    <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
                 </div>
             </div><br>
 
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="representante_legal" class="form-label">Representante Legal</label>
-                    <input type="text" name="representante_legal" class="form-control" autocomplete="off" value="{{old('representante_legal')}}">
+                    <label for="Representante_Legal" class="form-label">Representante Legal</label>
+                    <input type="text" name="Representante_Legal" class="form-control" autocomplete="off" value="{{old('Representante_Legal')}}">
+                    @foreach($errors->get('Representante_Legal') as $message)
+                        <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
                 </div>
                 <div class="col-md-6">
-                    <label for="direccion" class="form-label">Dirección</label>
-                    <input type="text" name="direccion" class="form-control" autocomplete="off" value="{{old('direccion')}}">
+                    <label for="Direccion" class="form-label">Dirección</label>
+                    <input type="text" name="Direccion" class="form-control" autocomplete="off" value="{{old('Direccion')}}">
+                    @foreach($errors->get('Direccion') as $message)
+                        <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
                 </div>
             </div><br>
 
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="email" class="form-label">Correo Electronico</label>
-                    <input type="email" name="email" id="email" class="form-control" autocomplete="off" value="{{old('email')}}">
+                    <label for="Correo_Electronico" class="form-label">Correo Electronico</label>
+                    <input type="text" name="Correo_Electronico" id="email" class="form-control" autocomplete="off" value="{{old('Correo_Electronico')}}">
+                    @foreach($errors->get('Correo_Electronico') as $message)
+                    <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
                 </div>
                 <div class="col-md-6">
-                    <label for="telefono" class="form-label">Telefono</label>
-                    <input type="text" name="telefono" class="form-control" autocomplete="off" value="{{old('telefono')}}">
+                    <label for="Telefono" class="form-label">Telefono</label>
+                    <input type="text" name="Telefono" class="form-control" autocomplete="off" value="{{old('Telefono')}}">
+                    @foreach($errors->get('Telefono') as $message)
+                    <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
                 </div>
             </div><br>
             <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary" id="registrar">Registrar</button>
+                <button type="submit" class="btn btn-primary" id="registrar">REGISTRAR</button>
             </div>
         </form>
     </div>
+@endsection
+@section('scripts')
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+        $('#Empresa').editableSelect();
+</script>
 @endsection
