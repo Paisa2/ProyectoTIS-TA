@@ -29,6 +29,10 @@ body{
     border: 1px solid #fff;
     box-shadow:none;
 }
+.form * {
+    color: #fff !important;
+    border-color: #ebedef !important;
+}
 .form-control::placeholder {
     color: #CCC;
 }

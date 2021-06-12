@@ -95,7 +95,7 @@ Route::get('pdf', function(){
 });
 
 Route::get('prueba', function(){
-    return view('form');
+    return view('prueba');
 });
 Route::get('comparativo', function(){
     return view('comparativo');

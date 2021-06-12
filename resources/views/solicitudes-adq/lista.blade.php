@@ -24,7 +24,7 @@
       
         <input type="submit" class="btn btn-primary" name="compra" id="compra" value="Compra">
       
-        <input type="submit" class="btn btn-primery" name="alquiler" id="compra" value="Alquiler" >
+        <input type="submit" class="btn btn-primary" name="alquiler" id="compra" value="Alquiler" >
       </div>
       </form>
       </div>

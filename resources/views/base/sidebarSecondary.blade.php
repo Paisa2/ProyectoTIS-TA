@@ -28,7 +28,7 @@
           <!-- <small class="text-muted">Lukasz Holeczek</small> -->
           <small class="text-muted float-right mt-1">{{$notificacion->created_at}}</small>
         </div>
-        <div class="text-truncate font-weight-bold"><a class="aside-link" href="#">{{$notificacion->tipo_solicitud . " " . str_pad($notificacion->solicitud_id, 6, '0', STR_PAD_LEFT)}}</a></div>
+        <div class="text-truncate font-weight-bold"><a class="aside-link" href="#">{{$notificacion->tipo_solicitud . " " . $notificacion->codigo}}</a></div>
         <small class="text-muted">
           {{$notificacion->mensaje_notificacion}}
         </small>
@@ -37,16 +37,17 @@
       @endforeach
     </div>
     <div class="tab-pane p-3" id="settings" role="tabpanel">
-      <h6>Settings</h6>
+      <h6>Configuraciones</h6>
       <div class="c-aside-options">
-        <div class="clearfix mt-4"><small><b>Option 1</b></small>
-        <label class="c-switch c-switch-label c-switch-pill c-switch-success c-switch-sm float-right">
-        <input class="c-switch-input" type="checkbox" checked=""><span class="c-switch-slider" data-checked="On" data-unchecked="Off"></span>
+        <div class="clearfix mt-4"><small><b>Modo Oscuro</b></small>
+        <label class="c-switch c-switch-label c-switch-pill c-switch-success c-switch-sm float-right" id="mode-dark">
+          <input class="c-switch-input" type="checkbox" checked>
+          <span class="c-switch-slider" data-checked="On" data-unchecked="Off"></span>
         </label>
         </div>
-        <div><small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small></div>
+        <!-- <div><small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small></div> -->
       </div>
-      <div class="c-aside-options">
+      <!-- <div class="c-aside-options">
         <div class="clearfix mt-3"><small><b>Option 2</b></small>
         <label class="c-switch c-switch-label c-switch-pill c-switch-success c-switch-sm float-right">
         <input class="c-switch-input" type="checkbox"><span class="c-switch-slider" data-checked="On" data-unchecked="Off"></span>
@@ -67,7 +68,7 @@
           <input class="c-switch-input" type="checkbox" checked=""><span class="c-switch-slider" data-checked="On" data-unchecked="Off"></span>
           </label>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

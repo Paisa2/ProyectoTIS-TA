@@ -47,7 +47,7 @@
         <td>{{$rol->nombre_rol}}</td>
         <td>{{$rol->numero_permisos}}</td>
         <td>{{$rol->created_at}}</td>
-        <td class="c-dark-theme options">
+        <td>
           <div class="dropdown dropleft">
             <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <svg class="c-icon mfe-2">

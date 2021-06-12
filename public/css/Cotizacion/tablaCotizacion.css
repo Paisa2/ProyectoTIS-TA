@@ -3,10 +3,13 @@ table {
   border-spacing: 2px 0;
   table-layout: fixed;
   width: 100%;
+}
+.c-dark-theme table *{
   color: #fff;
+  border-color: #fff;
 }
 .cotizacion thead tr th {
-  border: 1px solid #fff;
+  border: 1px solid #000;
   border-radius: 5px;
   font-weight: normal;
   text-align: center;
@@ -41,9 +44,9 @@ table {
 .cotizacion tbody tr td{
   padding: 0 !important;
   height: 2rem;
-  border-left: 1px solid #fff;
-  border-right: 1px solid #fff;
-  border-bottom: 1px dotted #fff;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px dotted #000;
   border-top: 0;
 
 }
@@ -51,11 +54,10 @@ table {
   width: 100%;
   height: 100%;
   background-color: transparent;
-  color: #fff;
   text-align: center;
   padding-left: 8px;
   margin: 0 !important;
-  border: none;
+  border: 0 !important;
 }
 .cotizacion tbody tr td.d4 input, .cotizacion tbody tr td.d4 span{
   text-align: unset; 
@@ -66,10 +68,10 @@ table {
   width: 100%;
 }
 .cotizacion tbody tr:first-child td{
-  border-top: 1px solid #fff;
+  border-top: 1px solid #000;
   border-radius: 5px 5px 0 0;
 }
 .cotizacion tbody tr:last-child td input{
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #000;
   border-radius: 0 0 5px 5px;
 }

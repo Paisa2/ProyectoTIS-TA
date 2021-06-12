@@ -12,7 +12,7 @@
     <link  href="{{ asset('css/login.css') }}"  rel="stylesheet">
     <title>CotySoft</title>
   </head>
-<body>
+<body class="c-dark-theme">
   <div id="sesion_cliente">
       <div class="abs-center">     
         <form  action="/autentificacion"  class="border p-3 form"     method="POST">

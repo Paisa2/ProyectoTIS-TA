@@ -17,7 +17,7 @@
 </head>
 <body class="c-dark-theme" id="app">
   
-  <nav class="navbar navbar-expand-md navbar-dark navbar1">
+  <nav class="navbar navbar-expand-md navbar1">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{route('bienvenido')}}">CotySoft</a>
       <div class="d-flex justify-content-end">
@@ -25,14 +25,14 @@
       </div>
     </div>
   </nav>
-  <nav class="navbar navbar-expand-md navbar-dark navbar2" id="navbar2">
+  <nav class="navbar navbar-expand-md navbar2" id="navbar2">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav nav-underline nav-underline-primary me-auto">
           <li class="nav-item">
             <a class="nav-link {{ request()->is('Bienvenido') ? 'active' : '' }}" href="{{route('bienvenido')}}">Home</a>
           </li>
