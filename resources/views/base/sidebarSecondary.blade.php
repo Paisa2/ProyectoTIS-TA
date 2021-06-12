@@ -47,6 +47,22 @@
         </div>
         <!-- <div><small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small></div> -->
       </div>
+      <div class="c-aside-options">
+        <div class="clearfix mt-4"><small><b>Barra de navegacion vertical</b></small>
+        <label class="c-switch c-switch-label c-switch-pill c-switch-success c-switch-sm float-right" id="navbar-vertical">
+          <input class="c-switch-input" type="checkbox" checked>
+          <span class="c-switch-slider" data-checked="On" data-unchecked="Off"></span>
+        </label>
+        </div>
+      </div>
+      <div class="c-aside-options">
+        <div class="clearfix mt-4"><small><b>Fondo con imagen</b></small>
+        <label class="c-switch c-switch-label c-switch-pill c-switch-success c-switch-sm float-right" id="bg-image">
+          <input class="c-switch-input" type="checkbox" checked>
+          <span class="c-switch-slider" data-checked="On" data-unchecked="Off"></span>
+        </label>
+        </div>
+      </div>
       <!-- <div class="c-aside-options">
         <div class="clearfix mt-3"><small><b>Option 2</b></small>
         <label class="c-switch c-switch-label c-switch-pill c-switch-success c-switch-sm float-right">

@@ -1,27 +1,72 @@
 body {
-  /* background-color: #181924; */
-  background-image: url(../imagenes/citysoft-2.jpg);
+  min-width: 360px;  
+}
+body.bg-image {
+  background-image: url(../imagenes/quotation.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
-/* estilos navbar -------------------------------------- */
+body.bg-image.c-dark-theme {
+  background-image: url(../imagenes/citysoft-2.jpg);
+}
+.m-0 {
+  margin: 0;
+}
+/* estilos barra lateral izquierda -----------------------------------------  */
+.c-sidebar-nav-link {
+  padding-left: 2rem;
+}
+.c-sidebar-nav-link.active {
+  border-right: 2px solid #22222F;
+}
+.c-sidebar-nav-link:hover {
+  background-color: rgba(255, 255, 255, .05) !important;
+}
+/* estilos barra lateral izquierda dark ------------------------------------  */
+.c-dark-theme .c-dark-theme .c-sidebar-nav-link.active {
+  border-color: #fff;
+}
+/* ---------------------------------------------------------------------------------------- */
+/* estilos navbar ----------------------------------------------------- */
 .navbar-brand {
   font-weight: 700;
   font-size:36px; 
   line-height: 1;
+  color: #22222F;
 }
-.navbar1 {
+.navbar-brand:hover {
+  color: #22222F;
+}
+.c-sidebar .navbar-brand {
+  color: #fff;
+}
+.c-sidebar .navbar-brand:hover {
+  color: #fff;
+}
+.c-header {
+  color: #22222F;
   background-color: #ebedef;
+  padding-top: .5rem;
+}
+.c-header > a.navbar-brand{
+  margin-left: 2rem;
 }
 .navbar2 {
-  padding: .5rem 1rem 0 .5rem;
+  padding: .5rem 0 0 0;
   background-color: #f8f9fa;
   /* border-bottom: 1px solid #ebedef; */
   z-index: 100;
   position: sticky;
   top: 0;
+}
+.navbar2 > div.container-fluid {
+  padding: 0;
+}
+.navbar2 > div.container-fluid > div.navbar-collapse > ul.navbar-nav {
+  width: 100%;
+  padding-left: 2rem;
 }
 .navbar2 .c-icon {
   width:1.5rem;
@@ -31,6 +76,10 @@ body {
 @media (max-width: 768px) {
   .navbar2 {
     padding-bottom: .5rem;
+  }
+  .navbar2 .nav-link,
+  .navbar .nav-underline {
+    border: none;
   }
 }
 .navbar .navbar-brand,
@@ -62,8 +111,14 @@ body {
 .navbar .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 21, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
+
 /* estilos navbar dark ---------------------------------------------------------------- */
-.c-dark-theme .navbar1 {
+.c-dark-theme .navbar-brand,
+.c-dark-theme .navbar-brand:hover {
+  color: #fff;
+}
+.c-dark-theme .c-header {
+  color: #fff;
   background-color: #22222F;
 }
 .c-dark-theme .navbar2 {

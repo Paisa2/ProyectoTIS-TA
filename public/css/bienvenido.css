@@ -1,14 +1,43 @@
 .navar{
-    color: cornsilk;
+    display: flex;
+    justify-content: flex-end;
+    color: #22222F;
     text-align: right;
-    margin: 150px 150px 0 0 ;
+    margin: 8.5rem 8.5rem 0 0 ;
     
 }
+body.bg-image .navar,
+.c-dark-theme .navar {
+    color: cornsilk;
+}
+.navar div {
+    padding: 1rem;
+    border-radius: .5rem;
+}
+body.bg-image .navar div {
+    background-color: rgba(0, 0, 0, .5);
+}
+.c-dark-theme .navar div {
+    background-color: transparent !important;
+}
+
 .navar h1{
-    font-size: 50px; 
+    font-size: 3.2rem; 
 }
-
 .navar .parrafo{
-    font-size: 25px; 
+    font-size: 1.6rem; 
 }
-
+@media (max-width: 450px) {
+    .navar h1{
+    font-size: 2rem; 
+    }
+    .navar .parrafo{
+        font-size: 1rem; 
+    }
+}
+@media (max-width: 710px) {
+    .navar{
+        margin: 8.5rem 0;
+        justify-content: center;
+    }
+}
