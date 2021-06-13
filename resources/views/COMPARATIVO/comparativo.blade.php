@@ -13,7 +13,7 @@
     <form action="/solicitudCotizacion" method="post">
       {{csrf_field()}}
       <div class="titulo d-flex justify-content-center">
-    <h1>Cuadro Comparativo de Cotizaciones</h1>
+    <h1 class="display-4">Cuadro Comparativo de Cotizaciones</h1>
   </div>
   <div class="d-flex justify-content-end" style="margin-top:-5rem;">
     <div class="fecha">
@@ -25,13 +25,13 @@
         </thead>
         <tbody>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{date("d",strtotime($datoscomparativo->fecha_comparativo))}}</td>
+            <td>{{date("m",strtotime($datoscomparativo->fecha_comparativo))}}</td>
+            <td>{{date("Y",strtotime($datoscomparativo->fecha_comparativo))}}</td>
           </tr>
         </tbody>
       </table>
-      <label class="numero">N° XXXXXX</label>
+      <label class="numero">N° {{$datoscomparativo->codigo_cotizacion}}</label>
     </div>
   </div>
   
@@ -50,17 +50,50 @@
       </tr>
     </thead>
     <tbody>
-      @for($i=0; $i<16; $i++)
+      @for($i=0; $i<count($propuestas[2]); $i++)
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{$propuestas[0][$i]}}</td>
+          <td>@if(is_array($propuestas[1]))
+                {{$propuestas[1][$i]}}
+              @endif
+          </td>
+          <td>@if(is_array($propuestas[2]))
+                {{$propuestas[2][$i]}}
+              @endif
+          </td>
+          <td>@if(is_array($propuestas[3]))
+                {{$propuestas[3][$i]}}
+              @endif
+          </td>
+          <td>@if(is_array($propuestas[4]))
+                {{$propuestas[4][$i]}}
+              @endif
+          </td>
+          <td>@if(is_array($propuestas[5]))
+                {{$propuestas[5][$i]}}
+              @endif
+          </td>
+          <td>@if(is_array($propuestas[6])
+                {{$propuestas[6][$i]}}
+              @endif
+          </td>
+          <td>@if(is_array($propuestas[7]))
+                {{$propuestas[7][$i]}}
+              @endif
+          </td>
         </tr>
+      @endfor
+      @for($i=0; $i<16-count($propuestas[2]); $i++)
+       <tr>
+       <td></td>
+       <td></td>
+       <td></td>
+       <td></td>
+       <td></td>
+       <td></td>
+       <td></td>
+       <td></td>
+       </tr>
       @endfor
     </tbody>
   </table>

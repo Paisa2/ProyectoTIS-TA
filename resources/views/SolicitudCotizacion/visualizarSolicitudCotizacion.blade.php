@@ -75,7 +75,7 @@
                   </svg>Añadir Respuesta
                   </a>                  
                   @endif
-                  <a class="dropdown-item" href="{{ route('comparativo.create', $cotizacion->id) }}">
+                  <a class="dropdown-item" href="{{ route('comparativo.generar', $cotizacion->id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/list-low-priority.svg#i-list-low-priority')}}"></use>
                   </svg>Generar Cuadro Comparativo
