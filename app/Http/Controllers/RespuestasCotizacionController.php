@@ -16,7 +16,8 @@ class RespuestasCotizacionController extends Controller
      */
     public function index($id)
     {
-        $cotizaciones=InfoCotizacion::where('id', $id)->get();
+        $cotizaciones=InfoCotizacion::join("respuestas_cotizacion","respuestas_cotizacion.cotizacion_id","=","info_cotizacion.id")->where('info_cotizacion.id', $id)
+        ->select("info_cotizacion.*","respuestas_cotizacion.razon_social","respuestas_cotizacion.id as resp_cot_id")->get();
         return view("respuestasCotizacion.visualizarRespuestas", compact("cotizaciones"));
     }
 
@@ -78,7 +79,8 @@ class RespuestasCotizacionController extends Controller
      */
     public function show($id)
     {
-        $cotizacion=InfoCotizacion::where('resp_cot_id',$id)->first();
+        $cotizacion=InfoCotizacion::join("respuestas_cotizacion","respuestas_cotizacion.cotizacion_id","=","info_cotizacion.id")->where('respuestas_cotizacion.id', $id)
+        ->select("info_cotizacion.*","respuestas_cotizacion.razon_social","respuestas_cotizacion.id as resp_cot_id","respuestas_cotizacion.detalle_precios")->first();
         if($cotizacion){
             $datos=json_decode($cotizacion->detalle_cotizacion, true);      
             $detalles=[];                     

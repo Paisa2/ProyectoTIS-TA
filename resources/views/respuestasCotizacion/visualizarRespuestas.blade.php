@@ -19,7 +19,7 @@
     <form action="/SolicitudCotizacion" method="table">
         {{csrf_field()}}
         <div class='d-flex justify-content-center'>
-            <h2 class="display-4">Lista de Cotizaciones</h2>
+            <h2 class="display-4">Propuestas de Cotizaciones por Parte de las Empresas</h2>
         </div>    
         <br><br>
         <table class="table">

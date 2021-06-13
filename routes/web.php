@@ -13,6 +13,7 @@ use App\Http\Controllers\SolicitudCotizacionController;
 use App\Http\Controllers\RespuestasCotizacionController;
 
 use App\Http\Controllers\AutorizaciónPresupuestocontroller;
+//use app\Http\Controllers\ComparativoController;
 
 
 /*
@@ -51,6 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post("respuestasCotizacion/{id}", "RespuestasCotizacionController@store")->name('respuestasCotizacion.store');
     Route::get("respuestasCotizacion/list/{id}", "RespuestasCotizacionController@index")->name('respuestasCotizacion.index');
     Route::resource('presupuestos', 'PresupuestoController');
+    Route::get("comparativo/{id}", "ComparativoController@create")->name('comparativo.create');
     Route::get('generarCotizacion/{id}', 'SolicitudCotizacionController@generar')->name('generarCotizacion');
     Route::get('formulario/{id}', 'StorageController@index')->name('formulario');
     Route::post('formulario/{i}', 'StorageController@save')->name('formpost');
