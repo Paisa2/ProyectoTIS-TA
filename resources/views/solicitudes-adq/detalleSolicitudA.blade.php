@@ -34,7 +34,7 @@
     <div class="col-6">
     
     <label  for="exampleInputEmail1" class="form-label"><b>FECHA DE PEDIDO:</b></label>
-    <label>{{$autopre->created_at}}</label>
+    <label>{{date("Y-m-d",strtotime($autopre->created_at))}}</label>
     </div>
     <div class="col-6">
     <label  for="exampleInputEmail1" class="form-label"><b>FECHA DE ENTREGA:</b></label>

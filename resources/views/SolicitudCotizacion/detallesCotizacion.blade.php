@@ -14,13 +14,13 @@
       <h2 class="display-4">N°{{$cotizacion->codigo_cotizacion}}</h2>
       <br>
       <div class="row">
-        <div class="mb-3 col-9">
+        <div class="mb-3 col-sm-8 col-lg-9">
           <div>
             <label for="NumeroCotizacion" class="form-label"><b>RAZON SOCIAL:</b></label>
             <span style="border-bottom: 1px dotted #fff; width: calc(100% - 110px); display: inline-block;color:transparent !important;">l</span>
           </div>  
         </div>
-        <div class="mb-3 col-3">
+        <div class="mb-3 col-sm-4 col-lg-3">
           <div>
             <label class="form-label"><b>FECHA:</b></label>
             <label style="border-bottom: 1px dotted #fff; width: calc(100% - 55px); display: inline-block;text-align:center;">{{date("Y-m-d",strtotime($cotizacion->fecha_cotizacion))}}</label>

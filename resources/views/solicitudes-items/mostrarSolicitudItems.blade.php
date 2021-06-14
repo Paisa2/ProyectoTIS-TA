@@ -11,11 +11,11 @@
   <br>
   <div class="mb-3 font-large">
     <div class="row">
-      <div class="col-6">
+      <div class="col-lg-6">
         <label><b>De:</b></label>
         <label>{{$solicitud->nombres}} {{$solicitud->apellidos}}</label>
       </div>
-      <div class="col-6">
+      <div class="col-lg-6">
         <label><b>Para:</b></label>
         <label>{{$solicitud->nombres_dest}} {{$solicitud->apellidos_dest}}</label>
       </div>

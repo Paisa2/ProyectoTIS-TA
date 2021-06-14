@@ -11,60 +11,62 @@
   <h1 class="display-4">Detalle de Rol: {{$rol->nombre_rol}}</h1>
   <br>
   <label class="form-label">Permisos:</label>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Modulo</th>
-          <th>Visualizar</th>
-          <th>Crear</th>
-          <th>Editar</th>
-          <th>Eliminar</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach($modulos as $modulo)
-        <tr>
-          <td class="module">{{$modulo->modulo}}</td>
-          <td>
-            <svg class="c-icon mfe-2">
-              @if($modulo->visualizar)
-              <use xlink:href="{{asset('img/icons/checked.svg#i-checked')}}"></use>
-              @else
-              <use xlink:href="{{asset('img/icons/unchecked.svg#i-unchecked')}}"></use>
-              @endif
-            </svg>
-          </td>
-          <td>
-            <svg class="c-icon mfe-2">
-              @if($modulo->crear)
-              <use xlink:href="{{asset('img/icons/checked.svg#i-checked')}}"></use>
-              @else
-              <use xlink:href="{{asset('img/icons/unchecked.svg#i-unchecked')}}"></use>
-              @endif
-            </svg>
-          </td>
-          <td>
-            <svg class="c-icon mfe-2">
-              @if($modulo->editar)
-              <use xlink:href="{{asset('img/icons/checked.svg#i-checked')}}"></use>
-              @else
-              <use xlink:href="{{asset('img/icons/unchecked.svg#i-unchecked')}}"></use>
-              @endif
-            </svg>
-          </td>
-          <td>
-            <svg class="c-icon mfe-2">
-              @if($modulo->eliminar)
-              <use xlink:href="{{asset('img/icons/checked.svg#i-checked')}}"></use>
-              @else
-              <use xlink:href="{{asset('img/icons/unchecked.svg#i-unchecked')}}"></use>
-              @endif
-            </svg>
-          </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+    <div class="overflow-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Modulo</th>
+            <th>Visualizar</th>
+            <th>Crear</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($modulos as $modulo)
+          <tr>
+            <td class="module">{{$modulo->modulo}}</td>
+            <td>
+              <svg class="c-icon mfe-2">
+                @if($modulo->visualizar)
+                <use xlink:href="{{asset('img/icons/checked.svg#i-checked')}}"></use>
+                @else
+                <use xlink:href="{{asset('img/icons/unchecked.svg#i-unchecked')}}"></use>
+                @endif
+              </svg>
+            </td>
+            <td>
+              <svg class="c-icon mfe-2">
+                @if($modulo->crear)
+                <use xlink:href="{{asset('img/icons/checked.svg#i-checked')}}"></use>
+                @else
+                <use xlink:href="{{asset('img/icons/unchecked.svg#i-unchecked')}}"></use>
+                @endif
+              </svg>
+            </td>
+            <td>
+              <svg class="c-icon mfe-2">
+                @if($modulo->editar)
+                <use xlink:href="{{asset('img/icons/checked.svg#i-checked')}}"></use>
+                @else
+                <use xlink:href="{{asset('img/icons/unchecked.svg#i-unchecked')}}"></use>
+                @endif
+              </svg>
+            </td>
+            <td>
+              <svg class="c-icon mfe-2">
+                @if($modulo->eliminar)
+                <use xlink:href="{{asset('img/icons/checked.svg#i-checked')}}"></use>
+                @else
+                <use xlink:href="{{asset('img/icons/unchecked.svg#i-unchecked')}}"></use>
+                @endif
+              </svg>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
 </div>
 
 @endsection

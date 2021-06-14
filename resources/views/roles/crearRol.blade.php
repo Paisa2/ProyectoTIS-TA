@@ -9,7 +9,7 @@
 @section('main')
 <!-- codigo importante -->
 
-<div class="container-table">
+<div style="width:70%;" class="container-table">
   <form action="{{ route('roles.store') }}" method="post">
     {{csrf_field()}}
     <h1 class="display-4">Registro de rol</h1>
@@ -24,32 +24,34 @@
     </div>
 
     <label class="form-label">Permisos:</label>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Modulo</th>
-          <th>Visualizar</th>
-          <th>Crear</th>
-          <th>Editar</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach($modulos as $modulo)
-        <tr>
-          <td class="module">{{$modulo->modulo}}</td>
-          <td>
-            <input type="checkbox" name="permisos[]" value="{{$modulo->visualizar_id}}" id="r-{{$loop->index +1}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->visualizar_id, old('permisos'))) checked @endif>
-          </td>
-          <td>
-            <input type="checkbox" name="permisos[]" value="{{$modulo->crear_id}}" id="c-{{$loop->index +1}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->crear_id, old('permisos'))) checked @endif>
-          </td>
-          <td>
-            <input type="checkbox" name="permisos[]" value="{{$modulo->editar_id}}" id="u-{{$loop->index +1}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->editar_id, old('permisos'))) checked @endif>
-          </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+    <div class="overflow-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Modulo</th>
+            <th>Visualizar</th>
+            <th>Crear</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($modulos as $modulo)
+          <tr>
+            <td class="module">{{$modulo->modulo}}</td>
+            <td>
+              <input type="checkbox" name="permisos[]" value="{{$modulo->visualizar_id}}" id="r-{{$loop->index +1}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->visualizar_id, old('permisos'))) checked @endif>
+            </td>
+            <td>
+              <input type="checkbox" name="permisos[]" value="{{$modulo->crear_id}}" id="c-{{$loop->index +1}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->crear_id, old('permisos'))) checked @endif>
+            </td>
+            <td>
+              <input type="checkbox" name="permisos[]" value="{{$modulo->editar_id}}" id="u-{{$loop->index +1}}" class="form-check-input" @if(is_array(old('permisos')) && in_array($modulo->editar_id, old('permisos'))) checked @endif>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
     @foreach($errors->get('permisos') as $message)
     <div class="alert alert-danger" role="alert">{{$message}}</div>
     @endforeach

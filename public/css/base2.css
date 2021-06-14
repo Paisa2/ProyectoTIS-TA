@@ -38,7 +38,10 @@ body.bg-image.c-dark-theme {
   background-color: unset !important;
 }
 /* estilos dropdown dark ----------------------------------------------------- */
-.dropdown-item.active, .dropdown-item:active {
+.c-dark-theme .dropdown-menu {
+  border-color: #565656 !important;
+}
+.c-dark-theme .dropdown-item.active, .dropdown-item:active {
   color: #22222F;
 }
 /* estilos barra lateral izquierda -----------------------------------------  */
@@ -275,6 +278,11 @@ body.bg-image.c-dark-theme {
 }
 .display-6 {
   font-size: 1.5rem !important;
+}
+@media (max-width: 420px){
+  .display-4 {
+    font-size: 2.5rem;
+  }
 }
 form button[type='submit'].disabled:not(.dropdown-item), form button[type='submit'].disabled:not(.dropdown-item):hover{
   cursor: default;

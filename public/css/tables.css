@@ -1,5 +1,8 @@
+table {
+  min-width: 625px;
+}
 th.options {
-  width: 24px;
+  width: 1.5rem;
 }
 .dropdown-menu {
   padding-top: 0 !important;
@@ -18,6 +21,12 @@ th.options {
 .container-table * {
   color: #24252F;
   border-color: #24252F !important;
+}
+@media (max-width: 768px){
+  .container-table {
+    width: 90% !important;
+    margin: 16px auto;
+  }
 }
 /* estilos contenedor dark -------------------------------------------- */
 .c-dark-theme .container-table {

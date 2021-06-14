@@ -22,46 +22,48 @@
   @else
   <br><br>
   @endif
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">NRO</th>
-        <th scope="col">DE</th>
-        <th scope="col">PARA</th>
-        <th scope="col">DETALLE</th>
-        <th scope="col">FECHA DE CREACIÓN</th>
-        <th class="options"></th>
-      </tr>
-    </thead>
-    <tbody>
-    @foreach($solicitudes as $solicitud)
-      <tr>
-        <th scope="row">{{$loop->index +1}}</th>
-        <td>{{$solicitud->nombres_de}}</td>
-        <td>{{$solicitud->nombres_para}}</td>
-        <td>{{$solicitud->detalle_solicitud_item}}</td>
-        <td>{{$solicitud->created_at}}</td>
-        <td class="c-dark-theme options">
-          <div class="dropdown dropleft">
-            <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <svg class="c-icon mfe-2">
-                <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
-              </svg>
-            </span>
-            <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
-              <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-              <a class="dropdown-item" href="{{ route('solicitudes-de-items.show', $solicitud->id) }}">
+  <div class="overflow-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center options">NRO</th>
+          <th>DE</th>
+          <th>PARA</th>
+          <th>DETALLE</th>
+          <th class="text-center">FECHA DE CREACIÓN</th>
+          <th class="options"></th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach($solicitudes as $solicitud)
+        <tr>
+          <th scope="row" class="text-center">{{$loop->index +1}}</th>
+          <td>{{$solicitud->nombres_de}}</td>
+          <td>{{$solicitud->nombres_para}}</td>
+          <td>{{$solicitud->detalle_solicitud_item}}</td>
+          <td class="text-center">{{date("Y-m-d",strtotime($solicitud->created_at))}}</td>
+          <td class="c-dark-theme options">
+            <div class="dropdown dropleft">
+              <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <svg class="c-icon mfe-2">
-                  <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                </svg>Detalles
-              </a>
+                  <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+                </svg>
+              </span>
+              <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+                <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+                <a class="dropdown-item" href="{{ route('solicitudes-de-items.show', $solicitud->id) }}">
+                  <svg class="c-icon mfe-2">
+                    <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                  </svg>Detalles
+                </a>
+              </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    @endforeach
-    </tbody>
-  </table>
+          </td>
+        </tr>
+      @endforeach
+      </tbody>
+    </table>
+  </div>
 
 </div>
 <!-- fin codigo importante -->

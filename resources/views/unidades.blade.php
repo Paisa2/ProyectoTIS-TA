@@ -22,7 +22,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">NRO</th>
+                <th scope="col" class="options">NRO</th>
                 <th scope="col">TIPO DE UNIDAD</th>
                 <th scope="col">NOMBRE DE UNIDAD</th>
                 <th scope="col">PERTENECE A</th>

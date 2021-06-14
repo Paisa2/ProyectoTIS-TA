@@ -32,7 +32,7 @@
         @endif
         <thead>
                 <tr>
-                    <th scope="col">NRO</th>
+                    <th scope="col" class="options">NRO</th>
                     <th scope="col">NOMBRES</th>
                     <th scope="col">APELLIDOS</th>
                     <th scope="col">ROL</th>

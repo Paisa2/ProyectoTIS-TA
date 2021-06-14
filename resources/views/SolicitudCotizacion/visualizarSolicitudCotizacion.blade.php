@@ -31,7 +31,7 @@
           @endif
             <thead>
                 <tr>
-                    <th scope="col">NRO</th>
+                    <th scope="col" class="options">NRO</th>
                     <th scope="col">CODIGO DE COTIZACIÓN</th>
                     <th scope="col">FECHA</th> 
                     <th class="options"></th>

@@ -24,7 +24,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">NRO</th>
+        <th scope="col" class="options">NRO</th>
         <th scope="col">TIPO</th>
         <th scope="col">NOMBRE</th>
         <th scope="col">PERTENECE A</th>
