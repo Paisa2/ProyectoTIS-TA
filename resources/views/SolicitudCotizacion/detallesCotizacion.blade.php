@@ -20,7 +20,7 @@
         <div class="mb-3 col-9">
           <div>
             <label for="NumeroCotizacion" class="form-label"><b>RAZON SOCIAL:</b></label>
-            <span style="border-bottom: 1px dotted #fff; width: calc(100% - 110px); display: inline-block;color:transparent;">l</span>
+            <span style="border-bottom: 1px dotted #fff; width: calc(100% - 110px); display: inline-block;color:transparent !important;">l</span>
           </div>  
         </div>
         <div class="mb-3 col-3">
