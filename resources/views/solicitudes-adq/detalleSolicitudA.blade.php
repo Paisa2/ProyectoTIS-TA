@@ -9,8 +9,8 @@
 
 @endsection
 @section('main')
-<div class="container ">
-  <form >
+<div class="container-form">
+    <form>
     <div>
       <h2 class="display-4">Detalle de la Solicitud de Adquisición</h2>
       <h2 class="display-5">N° {{$autopre->codigo_solicitud_a}}</h2>
@@ -105,9 +105,8 @@
     </table>
     @endif
    </div>
-   </form>
-
-  </div>
+</form>
+</div>
 
 
 

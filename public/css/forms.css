@@ -4,12 +4,13 @@
 textarea {
   resize: none;
 }
-.btn {
+form .btn {
   margin-top: 1rem;
 }
 /* estilos form ------------------------------------------------ */
-form {
+.container-form {
   background-color: #ebedef;
+  width: 90%;
   border-radius: 10px;
   padding:24px;
   margin: 24px auto;
@@ -19,7 +20,7 @@ form *{
   border-color:#181924 !important;
 }
 /* estilos form dark ---------------------------------------------- */
-.c-dark-theme form {
+.c-dark-theme .container-form {
   background-color: #24252F;
 }
 .c-dark-theme form *{
@@ -36,7 +37,8 @@ form *{
   background-color: #ebedef;
 }
 /* estilos inputs dark ------------------------------------------------------ */
-.c-dark-theme .form-control, .form-select {
+.c-dark-theme .form-control:not(.bg-transparent), 
+.form-select:not(.bg-transparent) {
   background-color: #24252F !important;
 }
 .c-dark-theme .form-control:focus, 
@@ -52,57 +54,6 @@ form *{
 border-color: rgba(0, 0, 21, 0.3) !important;
 }
 /* ------------------------------------------------------------------------------------ */
-/* estilos botones ------------------------------------------------------- */
-.btn-primary {
-  color: #181924;
-  background-color: #fff;
-  border: 1px solid #181924;
-  width: 8rem;
-}
-.btn-primary:hover {
-  color: #181924;
-  background-color: #d8dbe0;
-}
-.btn-check:focus + .btn-primary, 
-.btn-primary:focus {
-  color: #181924;
-  background-color: #d8dbe0;
-  box-shadow: 0 0 0 0.25rem rgba(36, 37, 47, 0.5);
-}
-.btn-primary:not(:disabled):not(.disabled):active, 
-.show > .btn-primary.dropdown-toggle {
-  font-weight: bold;
-  color: #fff !important;
-  background-color: #181924;
-}
-.btn-primary:not(:disabled):not(.disabled):active:focus, 
-.show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.25rem rgba(36, 37, 47, 0.5);
-}
-/* estilos botones dark -------------------------------------------------- */
-.c-dark-theme .btn-primary {
-  background-color: #181924;
-}
-.c-dark-theme .btn-primary:hover {
-  background-color: #c9c9c9;
-  color: #181924;
-}
-.c-dark-theme .btn-check:focus + .btn-primary, 
-.c-dark-theme .btn-primary:focus {
-  color: #181924 !important;
-  background-color: #d8dbe0;
-  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
-}
-.c-dark-theme .btn-primary:not(:disabled):not(.disabled):active, 
-.c-dark-theme .show > .btn-primary.dropdown-toggle {
-  color: #181924 !important;
-  background-color: #d8dbe0;
-}
-.c-dark-theme .btn-primary:not(:disabled):not(.disabled):active:focus, 
-.c-dark-theme .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
-}
-/* --------------------------------------------------------------------------------------- */
 /* estilos grupo de botones ---------------------------------------------- */
 .btn-group, .btn-group-vertical {
   width: 100%;
@@ -153,5 +104,58 @@ border-color: rgba(0, 0, 21, 0.3) !important;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-
-
+/* ---------------------------------------------------------------------------------------- */
+/* estilos select editable ------------------------------------------------------ */
+.select-editable {
+  position: relative;
+}
+.select-editable > input {
+  position:absolute; 
+  top:0px; 
+  left:0px; 
+  border:none; 
+  box-shadow:none !important; 
+  width:93%;
+  background-color: transparent !important;
+}
+.select-editable .dropdown button.dropdown-toggle{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: transparent !important;
+}
+.select-editable .dropdown .dropdown-menu {
+  padding-top: .5rem !important;
+  width: 100%;
+  box-shadow: 0 4px 5px 0 rgba(var(--elevation-base-color), .14), 0 1px 10px 0 rgba(var(--elevation-base-color), .12), 0 2px 4px -1px rgba(var(--elevation-base-color), .20);
+}
+.select-editable .dropdown .dropdown-menu .dropdown-item {
+  cursor: pointer;
+}
+.c-dark-theme .select-editable .dropdown .dropdown-menu {
+  background-color: #34353e;
+}
+.select-editable .dropdown .dropdown-menu .options{
+  display: block;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+.select-editable .dropdown-menu .search, 
+.select-editable .dropdown-menu .without {
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0rem .5rem;
+  clear: both;
+  background-color: transparent;
+  border: 0;
+}
+.select-editable .dropdown-menu .without {
+  padding: 0.5rem 1.25rem 0 1.25rem;
+  color: #757575 !important;
+}
+.select-editable .dropdown-menu .search input{
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+/* ----------------------------------------------------------------------------------- */

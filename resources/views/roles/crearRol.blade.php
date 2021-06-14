@@ -9,7 +9,7 @@
 @section('main')
 <!-- codigo importante -->
 
-<div style="width:70%; margin:48px auto;">
+<div class="container-table">
   <form action="{{ route('roles.store') }}" method="post">
     {{csrf_field()}}
     <h1 class="display-4">Registro de rol</h1>

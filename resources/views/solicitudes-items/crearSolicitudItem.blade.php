@@ -6,7 +6,7 @@
 
 @section('main')
 <!-- codigo importante -->
-<div style="width:70%; margin:24px auto;">
+<div class="container-form">
 
   <form action="/solicitudes-de-items" method="post">
       {{csrf_field()}}

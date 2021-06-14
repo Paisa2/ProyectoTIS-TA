@@ -1,7 +1,6 @@
 @extends('base')
 @section('head')
 <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
-<link rel="stylesheet" href="{{ asset('css/unidades/visualizarUnidades.css') }}">
 @endsection
 
 @section('main')
@@ -39,7 +38,7 @@
             <td>{{$unidadbd->nombre_unidad}}</td>
             <td>{{$unidadbd->pertenece_a}}</td>
             <td>{{$unidadbd->created_at}}</td>
-            <td class="c-dark-theme options">
+            <td class="options">
                 <div class="dropdown dropleft">
                     <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg class="c-icon mfe-2">
@@ -49,11 +48,11 @@
                     <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
                         <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
                         @if($unidadbd->presupuesto < 1 && session()->has('Crear presupuesto'))
-                        <buttom class="dropdown-item" data-toggle="modal" data-target="#presupuesto" data-value="{{$unidadbd->id}}">
+                        <button class="dropdown-item" data-toggle="modal" data-target="#presupuesto" data-value="{{$unidadbd->id}}">
                             <svg class="c-icon mfe-2">
                                 <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
                             </svg>Presupuesto
-                        </buttom>
+                        </button>
                         @endif
                     </div>
                 </div>
@@ -81,10 +80,10 @@
                         <div>
                             <label class="form-label" for="monto">Monto:</label>
                             <input type="text" name="monto" id="monto" class="form-control">
-                            <div class="alert alert-danger d-none" role="alert" id="required">El campo monto es requerido</div>
-                            <div class="alert alert-danger d-none" role="alert" id="numeric">El campo debe ser numerico</div>
                         </div>
                     </form>
+                    <div class="alert alert-danger d-none" role="alert" id="required-m">El campo monto es requerido</div>
+                    <div class="alert alert-danger d-none" role="alert" id="numeric-m">El campo debe ser numerico</div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

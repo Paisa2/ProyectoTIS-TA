@@ -33,10 +33,10 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">NRO</th>
-        <th scope="col">ROL</th>
-        <th scope="col">NÚMERO DE PERMISOS</th>
-        <th scope="col">FECHA DE CREACIÓN</th>
+        <th>NRO</th>
+        <th>ROL</th>
+        <th>NÚMERO DE PERMISOS</th>
+        <th>FECHA DE CREACIÓN</th>
         <th class="options"></th>
       </tr>
     </thead>

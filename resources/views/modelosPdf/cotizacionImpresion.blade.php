@@ -52,11 +52,6 @@
 		p {
 			margin-left: .5rem;
 		}
-		p.informacion {
-			clear:both;
-			font-size: 18px;
-			margin-bottom: 0;
-		}
 		p.agradecimiento {
 			font-size: 15px;
 			line-height: 1.15em;
@@ -65,9 +60,15 @@
 			margin-bottom: .7rem;
 			margin-right: -5px;
 		}
+		p.informacion {
+			clear:both;
+			font-size: 18px;
+			margin-bottom: 0;
+		}
 		.razon-social {
 			display: inline-block;
-			width: 34rem;
+			width: 33.5rem;
+			padding-left: .5rem;
 			border-bottom: 2px dotted #000;
 		}
 		.fecha {
@@ -165,7 +166,7 @@
 	<div class="titulo">SOLICITUD DE COTIZACIÓN</div>
 	<div class="numero">N°<span style="margin-left:-8px;margin-right: 16px;">.</span> {{$cotizacion->codigo_cotizacion}}</div>
 	<p class="informacion">
-		Razón Social: <span class="razon-social"></span> Fecha: <span class="fecha"> {{date("d-m-Y",strtotime($cotizacion->fecha_cotizacion))}} </span>
+		Razón Social: <span class="razon-social">{{$empresa}}</span> Fecha: <span class="fecha"> {{date("d-m-Y",strtotime($cotizacion->fecha_cotizacion))}} </span>
 	</p>
 	<p class="agradecimiento">
 		Agradecemos a Uds. cotizarnos, los articulos que a continuación se detallan. 

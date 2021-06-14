@@ -1,17 +1,14 @@
 @extends('base')
 
 @section('head')
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/Cotizacion/crearSolicitudCotizacion.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Cotizacion/tablaCotizacion.css') }}">
 @endsection
 
 @section('main')
 
 <!-- codigo importante -->
-<div class="container my-4">
-
+<div class="container-form">
     <form>
       <h2 class="display-4">Detalle de solicitud de Cotización</h2>
       <h2 class="display-4">N°{{$cotizacion->codigo_cotizacion}}</h2>
@@ -62,8 +59,6 @@
             <div class='d-flex justify-content-center'>
             </div>     
     </form>
-</br>
-
 </div>
 
 

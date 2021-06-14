@@ -2,6 +2,7 @@
 
 @section('head')
   <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 @endsection
 
 @section('main')
@@ -14,10 +15,8 @@
   <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 @endif
 
-<div class="container my-4 container-table">
+<div class="container-table">
 
-    <form action="/SolicitudCotizacion" method="table">
-        {{csrf_field()}}
         <div class='d-flex justify-content-center'>
             <h2 class="display-4">Lista de Cotizaciones</h2>
         </div>    
@@ -73,11 +72,11 @@
                     </svg>Visualizar PDF
                   </a>
                   @endif
-                  <a class="dropdown-item" href="{{ route('generarCotPdf', $cotizacion->id) }}" target="_blank">
+                  <button class="dropdown-item" data-toggle="modal" data-target="#generar-pdf" data-value="{{$cotizacion->id}}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
                     </svg>Imprimir
-                  </a>
+                  </button>
                 </div>
               </div>
                 </td>       
@@ -85,10 +84,58 @@
             @endforeach
             </tbody>    
         </table>                      
-    </form>
+
 </br>
+</div>
+
+<div class="modal fade" id="generar-pdf" tabindex="-1" aria-labelledby="presupestoLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title d-flex kustify-content-center" id="presupestoLabel">Generar cotizacion en pdf</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('generarCotPdf') }}" method="post" id="generar-form">
+          {{ csrf_field() }}
+          <input type="text" name="cotizacion_id" class="d-none form-control" id="cotizacion_id">
+          <label class="c-switch c-switch-label c-switch-pill c-switch-success c-switch-sm float-right" id="with-business">
+            <input class="c-switch-input" type="checkbox" checked="">
+            <span class="c-switch-slider" data-checked="On" data-unchecked="Off"></span>
+          </label>
+          <label class="form-label">Razon social:</label>
+          <div class="select-editable" id="business">
+            <div class="dropdown">
+              <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <span class="search"><input type="text" class="form-control" ></span>
+                <span class="options">
+                  @foreach($empresas as $empresa)
+                  <span class="dropdown-item" id="{{str_replace(' ', '_', $empresa->nombre_empresa)}}">{{$empresa->nombre_empresa}}</span>
+                  @endforeach
+                </span>
+                <span class="without d-none">Sin resultados</span>
+              </div>
+            </div>
+            <input type="text" name="razon_social" id="razon_social" class="form-control bg-transparent">
+          </div>
+        </form>
+        <div class="alert alert-danger d-none" role="alert" id="required-rs">El campo razon social es requerido</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="generar-cot-pdf" form="generar-form">Generar</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- fin codigo importante -->
 @endsection
 
+@section('scripts')
+  <script src="{{asset('js/solicitudesCotizacion/visualizarSolicitudCotizacion.js')}}"></script>
+@endsection

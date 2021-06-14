@@ -1,5 +1,6 @@
 body {
   min-width: 360px;  
+  background-color: #fff;
 }
 body.bg-image {
   background-image: url(../imagenes/quotation.jpg);
@@ -14,8 +15,31 @@ body.bg-image.c-dark-theme {
 .m-0 {
   margin: 0;
 }
+.modal-dialog {
+  margin: 5rem auto;
+}
+/* estilos slider on/off ----------------------------------------------------- */
+.c-switch-input:focus ~ .c-switch-slider {
+  box-shadow: 0 0 0 0.2rem rgba(36, 37, 47, 0.5);
+}
+/* estilos slider on/off dark ------------------------------------------------ */
+.c-dark-theme .c-switch-input:focus ~ .c-switch-slider {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
+}
+.c-dark-theme .c-switch-success .c-switch-input:checked + .c-switch-slider {
+  background-color: #181924;
+  border-color: #fff;
+}
+/* estilos dropdown ---------------------------------------------------------- */
 .dropdown-menu {
-  border: 0 !important;
+  border-color: #d8dbe0 !important;
+}
+.dropdown-item.active, .dropdown-item:active {
+  background-color: unset !important;
+}
+/* estilos dropdown dark ----------------------------------------------------- */
+.dropdown-item.active, .dropdown-item:active {
+  color: #22222F;
 }
 /* estilos barra lateral izquierda -----------------------------------------  */
 .c-sidebar-nav-link {
@@ -55,6 +79,9 @@ body.bg-image.c-dark-theme {
 }
 .c-header > a.navbar-brand{
   margin-left: 2rem;
+}
+.c-header > .c-header-toggler {
+  margin: 1rem;
 }
 .navbar2 {
   padding: .5rem 0 0 0;
@@ -231,9 +258,6 @@ body.bg-image.c-dark-theme {
   padding: 5px;
 }
 /* --------------------------------------------------------------------------------------- */
-.dropdown-item.active, .dropdown-item:active {
-  background-color: unset !important;
-}
 .font-large {
   font-size: large;
 }
@@ -257,3 +281,64 @@ form button[type='submit'].disabled:not(.dropdown-item), form button[type='submi
   color: #24252F !important;
   background-color: rgb(255 255 255 / 90%) !important;
 }
+/* estilos botones ------------------------------------------------------- */
+.btn-primary {
+  color: #181924;
+  background-color: #fff;
+  border: 1px solid #181924;
+  width: 8rem;
+}
+.btn-primary:hover {
+  color: #181924;
+  background-color: #d8dbe0;
+  border-color: #181924;
+}
+.btn-check:focus + .btn-primary, 
+.btn-primary:focus {
+  color: #181924;
+  background-color: #d8dbe0;
+  box-shadow: 0 0 0 0.25rem rgba(36, 37, 47, 0.5);
+  border-color: #181924;
+}
+.btn-primary:not(:disabled):not(.disabled):active, 
+.show > .btn-primary.dropdown-toggle {
+  font-weight: bold;
+  color: #fff !important;
+  background-color: #181924;
+  border-color: #181924;
+}
+.btn-primary:not(:disabled):not(.disabled):active:focus, 
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgba(36, 37, 47, 0.5);
+}
+/* estilos botones dark -------------------------------------------------- */
+.c-dark-theme .btn-primary {
+  background-color: #181924;
+  border-color: #fff;
+}
+.c-dark-theme .btn-primary:hover {
+  background-color: #c9c9c9;
+  color: #181924 !important;
+  border-color: #fff;
+}
+.c-dark-theme .btn-primary:focus-within {
+  border-color: #fff;
+}
+.c-dark-theme .btn-check:focus + .btn-primary, 
+.c-dark-theme .btn-primary:focus {
+  color: #181924 !important;
+  background-color: #d8dbe0;
+  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
+}
+.c-dark-theme .btn-primary:not(:disabled):not(.disabled):active, 
+.c-dark-theme .show > .btn-primary.dropdown-toggle {
+  color: #181924 !important;
+  background-color: #d8dbe0;
+  border-color: #fff;
+}
+.c-dark-theme .btn-primary:not(:disabled):not(.disabled):active:focus, 
+.c-dark-theme .show > .btn-primary.dropdown-toggle:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
+}
+/* ------------------------------------------------------------------------------------- */

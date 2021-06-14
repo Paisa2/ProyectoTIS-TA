@@ -8,7 +8,7 @@
 
 @section('main')
 
-<div class="container my-4">
+<div class="container-form">
     <form action="{{route('registro.store')}}" method="POST">
     {{ @csrf_field() }}
     <h1 class="display-4">Registro de Unidad</h1>

@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('usuario', 'UsuariosController');
     Route::resource('itemsgastos','ItemgastoController');
     Route::resource("solicitudCotizacion", "SolicitudCotizacionController");
-    Route::get('generarCotizacionPdf/{id}', 'SolicitudCotizacionController@generarPdf')->name('generarCotPdf');
+    Route::post('generarCotizacionPdf', 'SolicitudCotizacionController@generarPdf')->name('generarCotPdf');
     Route::resource('presupuestos', 'PresupuestoController');
     Route::get('generarCotizacion/{id}', 'SolicitudCotizacionController@generar')->name('generarCotizacion');
     Route::get('formulario/{id}', 'StorageController@index')->name('formulario');

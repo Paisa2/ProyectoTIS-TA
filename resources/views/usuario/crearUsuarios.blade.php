@@ -7,9 +7,7 @@
 @section('main')
 
 <!-- codigo importante -->
-
-<div class="container my-4">
-
+<div class="container-form">
     <form action="/usuario" method="post">
         {{csrf_field()}}
 
@@ -93,7 +91,7 @@
         <div class='d-flex justify-content-center'>
 			<button type='submit' class="btn btn-primary">REGISTRAR</button>
 		</div>
-      
+    
     </form>
     @if(session()->has('confirm'))
             <div class="alert alert-success" role="alert" id="confirm">
@@ -101,9 +99,6 @@
             </div>
             <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",1500);</script>
     @endif
-
-</br>
-
 </div>
 
 

@@ -1,17 +1,14 @@
 @extends('base')
 
 @section('head')
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/Cotizacion/crearSolicitudCotizacion.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Cotizacion/tablaCotizacion.css') }}">
 @endsection
 
 @section('main')
 
 <!-- codigo importante -->
-<div class="container my-4">
-
+<div class="container-form">
     <form action="/solicitudCotizacion" method="post" novalidate>
       {{csrf_field()}}
       <h1 class="display-4">Solicitud de Cotización</h1>
@@ -73,10 +70,8 @@
           <button id="registrar" type='submit' class="btn btn-primary">REGISTRAR</button>
       </div>     
     </form>
-</br>
 
 </div>
-
 
 <!-- fin codigo impo-->
 

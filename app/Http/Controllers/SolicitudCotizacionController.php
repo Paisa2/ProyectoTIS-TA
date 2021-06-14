@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Solicitud_cotizacion;
 use App\Models\Solicitud_adquisicion;
 use App\Models\CotizacionPdf;
+use App\Models\TodaEmpresa;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class SolicitudCotizacionController extends Controller
@@ -19,7 +20,8 @@ class SolicitudCotizacionController extends Controller
                 $cotizacion->pdf_ruta=CotizacionPdf::where('cotizacion_id',$cotizacion->id)->first()->ruta;
             }
         }
-        return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones"));
+        $empresas = TodaEmpresa::all();
+        return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones", "empresas"));
     }
 
     public function create(){
@@ -86,15 +88,20 @@ class SolicitudCotizacionController extends Controller
         
     }
 
-    public function generarPdf($id){
-        $cotizacion = Solicitud_cotizacion::where('id', $id)->first();
+    public function generarPdf(Request $request){
+        if($request->razon_social){
+            $empresa = $request->razon_social;
+        }else{
+            $empresa = '';
+        }
+        $cotizacion = Solicitud_cotizacion::where('id', $request->cotizacion_id)->first();
         if($cotizacion){
             $datos = json_decode($cotizacion->detalle_cotizacion, true);
             $detalles['numero'] = array_values($datos['numero']);                   
             $detalles['cantidad'] = array_values($datos['cantidad']);                   
             $detalles['unidad'] = array_values($datos['unidad']);                   
             $detalles['detalle'] = array_values($datos['detalle']); 
-            $pdf = PDF::loadView('modelosPdf.cotizacionImpresion', compact('cotizacion', 'detalles'))->setPaper('letter', 'landscape');
+            $pdf = PDF::loadView('modelosPdf.cotizacionImpresion', compact('cotizacion', 'detalles', 'empresa'))->setPaper('letter', 'landscape');
         }else{
             abort(404);
         }

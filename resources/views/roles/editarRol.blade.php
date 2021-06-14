@@ -9,7 +9,7 @@
 @section('main')
 <!-- codigo importante -->
 
-<div style="width:70%; margin:48px auto;">
+<div class="container-table">
   <form action="{{ route('roles.update', $rol->id) }}" method="post">
     {{csrf_field()}}
     {{method_field('put')}}

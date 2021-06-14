@@ -1,14 +1,12 @@
 @extends('base')
 
 @section('head')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 <link rel="stylesheet" href="{{ asset('css/solicitarAdq.css') }}">
 @endsection
 
 @section('main')
-<div class="container my-4">
+<div class="container-form">
   <form action="{{route('solicitud.store')}}" method="post" novalidate>
     {{csrf_field()}}
     <div class="col-md-12">
@@ -61,7 +59,7 @@
             <tr>
               <td><input id="nc-{{$i+1}}" type="text" name="detalle[numero][u{{$i}}]" autocomplete="off"></td>
               <td class="articulo">
-                <select id="ac-{{$i+1}}" name="detalle[articulo][a{{$i}}]">
+                <select id="ac-{{$i+1}}" name="detalle[detalle][d{{$i}}]">
                   <option hidden selected value="">Seleccione</option>
                   @foreach($adquisicion as $solicitudes)
                       <option value="{{ $solicitudes->nombre_item }}">{{ $solicitudes->nombre_item }}</option>
@@ -94,7 +92,7 @@
             @for($i=0; $i<10; $i++)
             <tr>
               <td><input id="na-{{$i+1}}" type="text" name="detalle[numero][u{{$i}}]" autocomplete="off"></td>
-              <td class="articulo"><input id="aa-{{$i+1}}" type="text" name="detalle[articulo][a{{$i}}]" autocomplete="off"></td>
+              <td class="articulo"><input id="aa-{{$i+1}}" type="text" name="detalle[detalle][d{{$i}}]" autocomplete="off"></td>
               <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]" autocomplete="off"></td>
               <td>
                   <select name="detalle[unidad][u{{$i}}]">

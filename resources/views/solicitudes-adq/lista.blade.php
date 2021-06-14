@@ -55,7 +55,7 @@
             <td>{{$listadb->codigo_solicitud_a}}</td>
             <td>{{$listadb->tipo_solicitud_a}}</td>
             <td>{{$listadb->estado_solicitud_a}}</td>
-            <td class="c-dark-theme options">
+            <td class="options">
               <div class="dropdown dropleft">
                 <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <svg class="c-icon mfe-2">

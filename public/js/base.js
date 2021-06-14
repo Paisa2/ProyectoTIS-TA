@@ -91,4 +91,29 @@ $(window).on('load', function(){
     }
   });
 
+  $(".select-editable > input").on("focus", function(){
+    $(this).prev().children(":first-child").addClass("focus");
+  });
+  $(".select-editable > input").on("blur", function(){
+    $(this).prev().children(":first-child").removeClass("focus");
+  });
+  $(".select-editable .dropdown-item").on("click", function(){
+    $(this).parent().parent().parent().next().val($(this).attr("id").replace(/_/g, " "));
+    $(".select-editable .search input").val("");
+  });
+
+  $(".select-editable .search input").on("keyup", function(){
+    let value = $(this).val().replace(/ /g, "_")
+    if(value != ""){
+      $(this).parent(".search").siblings(".options").children(":not([id*='"+value+"'])").addClass("d-none");
+      $(this).parent(".search").siblings(".options").children("[id*='"+value+"']").removeClass("d-none");
+    }else {
+      $(this).parent(".search").siblings(".options").children().removeClass("d-none");
+    }
+    if($(this).parent(".search").siblings(".options").children(".d-none").length == $(this).parent(".search").siblings(".options").children().length){
+      $(this).parent(".search").siblings(".without").removeClass("d-none");
+    }else{
+      $(this).parent(".search").siblings(".without").addClass("d-none");
+    }
+  });
 });
