@@ -65,7 +65,7 @@
                   <a class="dropdown-item" href="{{ route('respuestasCotizacion.index', $cotizacion->id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                  </svg>Ver Respuestas
+                  </svg>Ver Propuestas
                   </a>                  
                   @endif
                   @if($cotizacion->respuestas<5)
@@ -74,6 +74,20 @@
                       <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
                   </svg>Añadir Respuesta
                   </a>                  
+                  @endif
+                  @if($cotizacion->comparativo<1)
+                  <a class="dropdown-item" href="{{ route('comparativo.generar', $cotizacion->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/list-low-priority.svg#i-list-low-priority')}}"></use>
+                  </svg>Generar Cuadro Comparativo
+                  </a>   
+                  @endif
+                  @if($cotizacion->comparativo>0)
+                  <a class="dropdown-item" href="{{ route('comparativo.detalle', $cotizacion->comparativo_id) }}">
+                    <svg class="c-icon mfe-2">
+                    <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                  </svg>Detalles del Cuadro Comparativo
+                  </a>
                   @endif
                 </div>
               </div>

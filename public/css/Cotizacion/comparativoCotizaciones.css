@@ -9,6 +9,7 @@ table {
   table-layout: fixed;
   width: 100%;
   color: #fff;
+  margin-bottom: 15px;
 }
 .fecha {
   width: 10rem; 
@@ -19,7 +20,7 @@ table {
 }
 .fecha td {
   border: 1px solid #fff;
-  height: 3rem;
+  height: 2rem;
 }
 .numero {
   display: block;
@@ -78,9 +79,6 @@ div.row-0 {
   padding-bottom: 0;
   padding-left: 5px;
 }
-.form-control:focus {
-  box-shadow: none !important;
-}
 .informacion th {
   border: 1px solid #fff;
   text-align: center;
@@ -88,5 +86,18 @@ div.row-0 {
 }
 .informacion td {
   border: 1px solid #fff;
-  height: 4rem;
+  height: 2.5rem;
+}
+.lavelcompa{
+  margin-bottom: 10px;
+}
+td{
+  text-align: center;
+}
+.dd{
+  text-align: unset; 
+  padding-left: 10px !important;
+}
+.lavelcompad{
+  margin-bottom: 0px !important; 
 }
