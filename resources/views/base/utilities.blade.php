@@ -1,7 +1,7 @@
-<ul class="c-header-nav">
+<ul class="c-header-nav mfs-auto" style="margin-right: 1.5rem;">
   <li class="c-header-nav-item">
     <div class="dropdown">
-      <span class="text-white" id="btn-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+      <span id="btn-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
         @if(Auth::check())
         {{Auth::user()->nombres}}
         @endif

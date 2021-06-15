@@ -2,32 +2,30 @@
 
 @section('head')
     <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/Cotizacion/crearSolicitudCotizacion.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Cotizacion/tablaCotizacion.css') }}">
 @endsection
 
 @section('main')
 
 <!-- codigo importante -->
-<div class="container my-4">
-
-    <form action="/solicitudCotizacion" method="post">
+<div class="container-form">
+    <form action="/solicitudCotizacion" method="post" novalidate>
       {{csrf_field()}}
       <h1 class="display-4">Solicitud de Cotización</h1>
       <br>
       <div class="row">
-        <div class="mb-3 col-6">
-          <div class="row">
-          <label for="NumeroCotizacion" class="form-label col-auto">Número Cotización:</label>
-          <input type="text" class="form-control col" name="numero_cotizacion" id="NumeroCotizacion" autocomplete="off" value="{{old('numero_cotizacion')}}">
+        <div class="mb-3 col-lg-6">
+          <div class="row align-items-center">
+          <label for="NumeroCotizacion" class="col-auto" style="margin: 0;">Número Cotización:</label>
+          <input type="text" class="form-control col" name="numero_cotizacion" id="NumeroCotizacion" autocomplete="off" value="{{old('numero_cotizacion')}}" style="margin-right:1rem;">
           </div>
           @foreach($errors->get('numero_cotizacion') as $message) 
           <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
           @endforeach
         </div>
-        <div class="mb-3 col-6">
-            <div class="row">
-            <label for="Fechas" class="form-label col-auto">Fecha:</label>
+        <div class="mb-3 col-lg-6">
+            <div class="row align-items-center">
+            <label for="Fechas" class="col-auto" style="margin: 0;">Fecha:</label>
             <input class="form-control col" type="date" name="fecha_cotizacion" style="margin-right:1rem;">
             </div>
             @foreach($errors->get('fecha_cotizacion') as $message) 
@@ -72,10 +70,8 @@
           <button id="registrar" type='submit' class="btn btn-primary">REGISTRAR</button>
       </div>     
     </form>
-</br>
 
 </div>
-
 
 <!-- fin codigo impo-->
 

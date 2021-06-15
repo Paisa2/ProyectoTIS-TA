@@ -7,7 +7,7 @@
 @endsection
 
 @section('main')
-    <div class="container my-4">
+    <div class="container-form">
         <form action="{{route('empresa.store')}}" method="post">
             {{csrf_field()}}
             <h1 class="display-4">Registrar Empresa</h1>

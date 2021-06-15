@@ -15,7 +15,7 @@ Subir PDF
 
 @section('main')
 
-<div class="container my-4">
+<div class="container-form">
     @foreach($cotizaciones as $cotizacion)
   <form method="POST" action="{{ route('formpost', $cotizacion->id) }}" accept-charset="UTF-8" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">

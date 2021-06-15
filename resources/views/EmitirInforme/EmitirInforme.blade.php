@@ -11,7 +11,7 @@ AtorizaciónPresupuesto
 
 @endsection
 @section('main')
-<div class="container ">
+<div class="container-form">
         
     <form  action="{{route('guardarinforme', $comparativo->id)}}" method="post" >
     {{csrf_field()}}

@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get("respuestasCotizacion/create/{id}", "RespuestasCotizacionController@create")->name('respuestasCotizacion.create');
     Route::post("respuestasCotizacion/{id}", "RespuestasCotizacionController@store")->name('respuestasCotizacion.store');
     Route::get("respuestasCotizacion/list/{id}", "RespuestasCotizacionController@index")->name('respuestasCotizacion.index');
+    Route::post('generarCotizacionPdf', 'SolicitudCotizacionController@generarPdf')->name('generarCotPdf');
     Route::resource('presupuestos', 'PresupuestoController');
     Route::get("comparativo/{id}", "ComparativoController@create")->name('comparativo.create');
     Route::get("comparativo/detalle/{id}", "ComparativoController@show")->name('comparativo.show');
@@ -74,6 +75,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
     Route::get('lista/solicitud/{id}','AdqController@show')->name('solicitud.show');
     Route::get('verificarpresupuesto/{tipo}/{id}', 'AutorizaciónPresupuestoController@update')->name('verificarpresupuesto');
+    Route::get('emitirinforme/{id}','EmitirInformeController@emitirinforme')->name('emitirinforme');
+    Route::post('emitirinforme/{id}','EmitirInformeController@store')->name('guardarinforme');
+    Route::get('emitirinforme/detalle/{id}','EmitirInformeController@show')->name('detalleinforme');
+    Route::get('/ListaEmpresas','EmpresaController@index')->name('empresa.index');
+    Route::get('/ListaEmpresas/NuevaEmpresa','EmpresaController@create')->name('empresa.create');
+    Route::post('/ListaEmpresas/NuevaEmpresa','EmpresaController@store')->name('empresa.store');
+    Route::get('/ListaEmpresas/DetalleEmpresa','EmpresaController@show')->name('empresa.show');
+    
     Route::get('storage/{archivo}', function ($archivo) {
         $public_path = public_path();
         $url = $public_path.'/storage/'.$archivo;
@@ -96,22 +105,6 @@ Route::group(['middleware' => 'auth'], function () {
         return redirect()->route('lista.index');
     })->name('reenviar');
 
-
-
-    Route::get('emitirinforme/{id}','EmitirInformeController@emitirinforme')->name('emitirinforme');
-    Route::post('emitirinforme/{id}','EmitirInformeController@store')->name('guardarinforme');
-    Route::get('emitirinforme/detalle/{id}','EmitirInformeController@show')->name('detalleinforme');
-
-
-    
-    Route::get('/ListaEmpresas','EmpresaController@index')->name('empresa.index');
-    Route::get('/ListaEmpresas/NuevaEmpresa','EmpresaController@create')->name('empresa.create');
-    Route::post('/ListaEmpresas/NuevaEmpresa','EmpresaController@store')->name('empresa.store');
-    Route::get('/ListaEmpresas/DetalleEmpresa','EmpresaController@show')->name('empresa.show');
-    
-
-    
-
 });
 
 Route::get('info', function () {
@@ -119,12 +112,12 @@ Route::get('info', function () {
 });
 
 Route::get('pdf', function(){
-    $pdf = PDF::loadView('cotizacion-impresion')->setPaper('letter', 'landscape');
+    $pdf = PDF::loadView('modelosPdf.comparativoImpresion')->setPaper('letter', 'landscape');
     return $pdf->stream();
 });
 
 Route::get('prueba', function(){
-    return view('form');
+    return view('prueba');
 });
 Route::get('comparativo', function(){
     return view('comparativo');

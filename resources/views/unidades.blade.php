@@ -1,9 +1,6 @@
 @extends('base')
 @section('head')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
-<link rel="stylesheet" href="{{ asset('css/unidades/visualizarUnidades.css') }}">
 @endsection
 
 @section('main')
@@ -25,7 +22,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">NRO</th>
+                <th scope="col" class="options">NRO</th>
                 <th scope="col">TIPO DE UNIDAD</th>
                 <th scope="col">NOMBRE DE UNIDAD</th>
                 <th scope="col">PERTENECE A</th>
@@ -45,42 +42,8 @@
             <td>{{$unidadbd->nombre_unidad}}</td>
             <td>{{$unidadbd->pertenece_a}}</td>
             <td>{{$unidadbd->created_at}}</td>
-
             <td>{{$unidadbd->telefono_unidad}}</td>
-            {{-- <td class="c-dark-theme options">
-                <div class="dropdown dropleft">
-                  <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
-                    </svg>
-                  </span>
-                  <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
-                    <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-                    <a class="dropdown-item">
-                      <svg class="c-icon mfe-2">
-                        <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                      </svg>Detalles
-                    </a>
-                    @if(session()->has('Eliminar rol'))
-                    <a class="dropdown-item" type="submit">
-                      <svg class="c-icon mfe-2">
-                        <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
-                      </svg>Editar
-                    </a>
-                    @endif
-                    @if(session()->has('Eliminar rol'))
-                    <form action="{{method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
-                    <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
-                      <svg class="c-icon mfe-2">
-                        <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
-                      </svg>Eliminar
-                    </button>
-                    @endif
-                  </div>
-                </div>
-              </td> --}}
-
-            <td class="c-dark-theme options">
+            <td class="options">
                 <div class="dropdown dropleft">
                     <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg class="c-icon mfe-2">
@@ -90,11 +53,11 @@
                     <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
                         <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
                         @if($unidadbd->presupuesto < 1 && session()->has('Crear presupuesto'))
-                        <buttom class="dropdown-item" data-toggle="modal" data-target="#presupuesto" data-value="{{$unidadbd->id}}">
+                        <button class="dropdown-item" data-toggle="modal" data-target="#presupuesto" data-value="{{$unidadbd->id}}">
                             <svg class="c-icon mfe-2">
                                 <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
                             </svg>Presupuesto
-                        </buttom>
+                        </button>
                         @endif
                     </div>
                 </div>
@@ -123,10 +86,10 @@
                         <div>
                             <label class="form-label" for="monto">Monto:</label>
                             <input type="text" name="monto" id="monto" class="form-control">
-                            <div class="alert alert-danger d-none" role="alert" id="required">El campo monto es requerido</div>
-                            <div class="alert alert-danger d-none" role="alert" id="numeric">El campo debe ser numerico</div>
                         </div>
                     </form>
+                    <div class="alert alert-danger d-none" role="alert" id="required-m">El campo monto es requerido</div>
+                    <div class="alert alert-danger d-none" role="alert" id="numeric-m">El campo debe ser numerico</div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

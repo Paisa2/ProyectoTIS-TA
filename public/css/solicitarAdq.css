@@ -16,53 +16,61 @@ ul{
     padding: 0%;
 } */
 table {
-    border-collapse: collapse;
-    table-layout: fixed;
-    width: 100%;
-    color: #fff;
-  }
-  .tabla-compra thead tr th, .tabla-alquiler thead tr th {
-    border: 1px solid #fff;
-    text-align: center;
-  }
-  .tabla-compra thead tr th.c-0, .tabla-alquiler thead tr th.c-0{
-    width: 5%;
-  }
-  .tabla-compra thead tr th.c-1, .tabla-alquiler thead tr th.c-1{
-    width: 35%;
-  }
-  .tabla-compra thead tr th.c-2, .tabla-alquiler thead tr th.c-2{
-    width: 20%;
-  }
-  td {
-    padding: 0;
-  }
-  .tabla-compra tbody tr td, .tabla-alquiler tbody tr td{
-    border: 1px solid #fff;
-    height: 2rem;
-    text-align: center;
-  }
-  .tabla-compra tbody tr td > input, .tabla-alquiler tbody tr td > input,
-  .tabla-compra tbody tr td > select, .tabla-alquiler tbody tr td > select{
-    background-color: transparent;
-    width: 100%;
-    height: 100%;
-    border: none;
-    color: #fff;
-    text-align: center;
-  }
-  option {
-    background-color: #24252F;
-  }
-  .articulo input, .articulo span{
-    text-align: left !important;
-    padding-left: .8rem;
-  }
-  .articulo span {
-    display: inline-block;
-    width: 100%;
-  }
-  tr:last-child td:first-child {
-    padding-left: 1rem;
-    font-weight: bold;
-  }
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+.c-dark-theme table{
+  color: #fff;
+}
+.c-dark-theme table *{
+  color: #fff;
+  border-color: #fff;
+}
+.tabla-compra thead tr th, .tabla-alquiler thead tr th {
+  border: 1px solid #fff;
+  text-align: center;
+}
+.tabla-compra thead tr th.c-0, .tabla-alquiler thead tr th.c-0{
+  width: 5%;
+}
+.tabla-compra thead tr th.c-1, .tabla-alquiler thead tr th.c-1{
+  width: 35%;
+}
+.tabla-compra thead tr th.c-2, .tabla-alquiler thead tr th.c-2{
+  width: 20%;
+}
+td {
+  padding: 0;
+}
+.tabla-compra tbody tr td, .tabla-alquiler tbody tr td{
+  border: 1px solid #000;
+  height: 2rem;
+  text-align: center;
+}
+.tabla-compra tbody tr td > input, .tabla-alquiler tbody tr td > input,
+.tabla-compra tbody tr td > select, .tabla-alquiler tbody tr td > select{
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: center;
+}
+option {
+  background-color: #ebedef;
+}
+.c-dark-theme option {
+  background-color: #24252F;
+}
+.articulo input, .articulo span{
+  text-align: left !important;
+  padding-left: .8rem;
+}
+.articulo span {
+  display: inline-block;
+  width: 100%;
+}
+tr:last-child td:first-child {
+  padding-left: 1rem;
+  font-weight: bold;
+}

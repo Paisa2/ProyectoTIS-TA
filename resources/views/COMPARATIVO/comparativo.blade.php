@@ -8,7 +8,7 @@
 @section('main')
 
 <!-- codigo importante -->
-<div class="container my-4">
+<div class="container-form">
 
     <form action="{{route('comparativo.update',$datoscomparativo->id)}}" method="post">
       {{csrf_field()}}

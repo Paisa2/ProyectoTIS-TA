@@ -128,17 +128,18 @@ class LoginController extends Controller
    private function verificarFechas() {
       date_default_timezone_set('America/La_Paz');
       if (VerificacionFechas::where("verificado", true)->whereDate("created_at", Date("Y-m-d"))->count() < 1) {
-         $adquisiciones = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->whereDate("updated_at", Date("Y-m-d", strtotime("-2 day")))->get();
-         $vencidas = Solicitud_adquisicion::where("estado_solicitud_a", "pendiente")->where("updated_at", "<", Date("Y-m-d", strtotime("-3 day")))->get();
+         $adquisiciones = Solicitud_adquisicion::where("estado_solicitud_a", "Pendiente")->whereDate("updated_at", Date("Y-m-d", strtotime("-2 day")))->get();
+         $vencidas = Solicitud_adquisicion::where("estado_solicitud_a", "Pendiente")->where("updated_at", "<", Date("Y-m-d", strtotime("-3 day")))->get();
          DB::beginTransaction();
          $verificacion = new VerificacionFechas();
          $verificacion->verificado = true;
          $verificacion->save();
          foreach ($adquisiciones as $adquisicion) {
             $notificacion = new Notificacion;
-            $notificacion->mensaje_notificacion = "El plazo de espera de la solicitud de adquisicion " . str_pad($adquisicion->id, 6, '0', STR_PAD_LEFT) . " vence en 1 día";
+            $notificacion->mensaje_notificacion = "El plazo de espera de la solicitud de adquisicion " . str_pad($adquisicion->codigo_solicitud_a, 6, '0', STR_PAD_LEFT) . " vence en 1 día";
             $notificacion->solicitud_id = $adquisicion->id;
             $notificacion->tipo_solicitud = "adquisicion";
+            $notificacion->codigo = $adquisicion->codigo_solicitud_a;
             $notificacion->unidad_id = $adquisicion->para_unidad_id;
             $notificacion->save();
             unset($notificacion);

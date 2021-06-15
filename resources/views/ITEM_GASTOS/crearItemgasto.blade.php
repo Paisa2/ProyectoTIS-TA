@@ -12,7 +12,7 @@ Crear item
 @endsection
 
 @section('main')
-<div class="container my-4">
+<div class="container-form">
 
 <form method="post" action="{{ route('itemsgastos') }}">
   {{csrf_field()}}

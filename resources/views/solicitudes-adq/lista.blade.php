@@ -10,7 +10,7 @@
 </div>
 <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 @endif
-<div style="width: 90%; margin:24px auto;" class="container-table">
+<div class="container-table">
   <div><h1 class="display-4">Solicitudes de Adquisiciones</h1></div>  
     <div class="row g-2">
       <div class="col-md" style="margin-bottom: 1rem;">
@@ -24,7 +24,7 @@
       
         <input type="submit" class="btn btn-primary" name="compra" id="compra" value="Compra">
       
-        <input type="submit" class="btn btn-primery" name="alquiler" id="compra" value="Alquiler" >
+        <input type="submit" class="btn btn-primary" name="alquiler" id="compra" value="Alquiler" >
       </div>
       </form>
       </div>
@@ -39,7 +39,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">NRO</th>
+                <th scope="col" class="options">NRO</th>
                 <th scope="col">JUSTIFICACION</th>
                 <th scope="col">CODIGO</th>
                 <th scope="col">TIPO</th>
@@ -55,7 +55,7 @@
             <td>{{$listadb->codigo_solicitud_a}}</td>
             <td>{{$listadb->tipo_solicitud_a}}</td>
             <td>{{$listadb->estado_solicitud_a}}</td>
-            <td class="c-dark-theme options">
+            <td class="options">
               <div class="dropdown dropleft">
                 <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <svg class="c-icon mfe-2">

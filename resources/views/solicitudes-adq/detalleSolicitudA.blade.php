@@ -9,8 +9,8 @@
 
 @endsection
 @section('main')
-<div class="container ">
-  <form >
+<div class="container-form">
+    <form>
     <div>
       <h2 class="display-4">Detalle de la Solicitud de Adquisición</h2>
       <h2 class="display-5">N° {{$autopre->codigo_solicitud_a}}</h2>
@@ -34,7 +34,7 @@
     <div class="col-6">
     
     <label  for="exampleInputEmail1" class="form-label"><b>FECHA DE PEDIDO:</b></label>
-    <label>{{$autopre->created_at}}</label>
+    <label>{{date("Y-m-d",strtotime($autopre->created_at))}}</label>
     </div>
     <div class="col-6">
     <label  for="exampleInputEmail1" class="form-label"><b>FECHA DE ENTREGA:</b></label>
@@ -105,9 +105,8 @@
     </table>
     @endif
    </div>
-   </form>
-
-  </div>
+</form>
+</div>
 
 
 

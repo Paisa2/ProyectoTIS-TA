@@ -1,19 +1,19 @@
-$(window).on("load", function(e){
+$(window).on("load", function(){
 
-  $("buttom.dropdown-item"). on("click", function(){
+  $("button.dropdown-item"). on("click", function(){
     $("#unidad_id").val($(this).attr("data-value")); 
   });
-  $("#asignar").on("click", function(){
+  $("#asignar").on("click", function(e){
     if($("#monto").val() == ""){
       e.preventDefault();
-      $("#numeric").addClass("d-none");
-      $("#required").removeClass("d-none");
-      setTimeout(function(){$("#required").addClass("d-none")},3000);
+      $("#numeric-m").addClass("d-none");
+      $("#required-m").removeClass("d-none");
+      setTimeout(function(){$("#required-m").addClass("d-none")},3000);
     }else if(isNaN(parseInt($("#monto").val()))){
       e.preventDefault();
-      $("#required").addClass("d-none");
-      $("#numeric").removeClass("d-none");
-      setTimeout(function(){$("#numeric").addClass("d-none")},3000);
+      $("#required-m").addClass("d-none");
+      $("#numeric-m").removeClass("d-none");
+      setTimeout(function(){$("#numeric-m").addClass("d-none")},3000);
     }
   });
 
