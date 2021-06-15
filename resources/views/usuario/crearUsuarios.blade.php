@@ -34,6 +34,26 @@
                 </div>
             </div>
 
+            <div class="row">   
+                
+                <div class="mb-3 col-6">
+                    <label for="CiUsuario" class="form-label">CI:</label>
+                    <input type="text" class="form-control " name="ci_usuario" id="CiUsuario" autocomplete="off" value="{{old('ci_usuario')}}">
+                    @foreach($errors->get('ci_usuario') as $message) 
+                    <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
+                    @endforeach
+                </div>
+
+                <div class="mb-3 col-6">
+                    <label for="TelefonoUsuario" class="form-label">Teléfono:</label>
+                    <input type="text" class="form-control " name="telefono_usuario" id="TelefonoUsuario" autocomplete="off" value="{{old('telefono_usuario')}}">
+                    @foreach($errors->get('telefono_usuario') as $message) 
+                    <div class="alert alert-danger col-12" role="alert">{{$message}}</div>
+                    @endforeach
+                </div>
+
+            </div>
+
             <div class="row">     
                 <div class="mb-3 col-6">
                     <label for="" class="form-label">Rol:</label>
