@@ -148,7 +148,7 @@ background-color: gray;
   position:absolute; 
   top:0px; 
   left:0px; 
-  border:none; 
+  border:none !important; 
   box-shadow:none !important; 
   width:93%;
   background-color: transparent !important;

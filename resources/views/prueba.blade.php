@@ -2,7 +2,7 @@
 @section('head')
 <link rel="stylesheet" href="{{asset('css/forms.css')}}">
 <style>
-.select-editable {
+/* .select-editable {
   position: relative;
 }
 .select-editable > input {
@@ -51,15 +51,15 @@
 .select-editable .dropdown-menu .search input{
   background-color: transparent !important;
   box-shadow: none !important;
-}
+} */
 
 </style>
 @endsection
 
 @section('main')
-<form style="width:50%; height:40rem;">
+<div class="container-form">
   
-
+<form>
   <div class="select-editable">
     <div class="dropdown">
       <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,14 +80,14 @@
         <span class="without d-none">Sin resultados</span>
       </div>
     </div>
-    <input type="text" value="" class="form-control">
+    <input type="text" value="" class="form-control bg-transparent">
   </div>
-
 </form>
+</div>
 @endsection
 
 @section('scripts')
-<script>
+<!-- <script>
   $(window).on("load", function(){
 
     $(".select-editable > input").on("focus", function(){
@@ -117,5 +117,5 @@
     });
 
   });
-</script>
+</script> -->
 @endsection
