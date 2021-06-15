@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Cotizacion_pdf;
+use App\Models\CotizacionPdf;
 use App\Models\Solicitud_cotizacion;
 
 class StorageController extends Controller
@@ -41,7 +41,7 @@ class StorageController extends Controller
        //indicando que se quiere guardar un nuevo archivo en el disco local
        \Storage::disk('local')->put($nombre,  \File::get($file));
        $rutaaa="storage/".$nombre;
-       $datospdf=new Cotizacion_pdf;
+       $datospdf=new CotizacionPdf;
        $datospdf->ruta=$rutaaa;
        //$datospdf->cotizacion_id=$request->cotizacion_id;
        $datospdf->cotizacion_id=$valor;

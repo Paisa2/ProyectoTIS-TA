@@ -105,3 +105,18 @@
                 }
             }
             ?>
+
+
+
+
+
+<div class=" col-7 d-flex" >
+                               <label   class=" col-5 form-label">Empresa Recomendada:</label>
+                                  <select name="empresa"  class="form-control">
+                                     <option {{ old('empresa') == $comparativo->empresa_recomendada ? 'selected' : '' }} value="{{$comparativo->empresa_recomendada}}">{{$comparativo->empresa_recomendada}}</option>
+                               
+                                 </select>
+                              </div>
+                               @foreach($errors->get('tipo') as $message)
+                               <div class="alert alert-danger" role="alert">{{$message}}</div>
+                               @endforeach

@@ -1,0 +1,18 @@
+.card{
+    margin: 0;
+}
+.col-10{
+    padding: center;
+}
+select.form-control{
+    padding: 0;
+    border: 0;
+    border-bottom: 1px dotted #fff;
+
+}
+.card{
+    border-width: 2px 2px 2px 2px #fff;
+    
+   
+    
+}

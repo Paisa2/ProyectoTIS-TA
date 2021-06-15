@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AutorizaciónPresupuestoController;
 use App\Models\Solicitud_adquisicion;
+use App\Models\Presupuesto;
 use Illuminate\Support\Facades\DB;
 
 class AutorizaciónPresupuestoController extends Controller
@@ -16,8 +17,8 @@ class AutorizaciónPresupuestoController extends Controller
      */
     public function index()
     {
-       /* $autopresupuesto=Solicitud_adquisicion::where('id','1')->get();
-         return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopresupuesto'));*/
+        /* $autopresupuesto=Solicitud_adquisicion::where('id','1')->get();
+        return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopresupuesto'));*/
     }
 
     /**
@@ -49,13 +50,23 @@ class AutorizaciónPresupuestoController extends Controller
      */
     public function show($id)
     {
-       $autopresupuesto=Solicitud_adquisicion::join('usuarios','usuarios.id','=','solicitudes_adquisiciones.de_usuario_id')
-       ->join('unidades','unidades.id','=','usuarios.unidad_id')
-       ->join('presupuestos','presupuestos.unidad_id','=','unidades.id')
-       ->where('solicitudes_adquisiciones.id',$id)
-       ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad','presupuestos.monto')->get();     
-       
-        return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopresupuesto'));
+        $autopre=Solicitud_adquisicion::join('usuarios','usuarios.id','=','solicitudes_adquisiciones.de_usuario_id')
+        ->join('unidades','unidades.id','=','usuarios.unidad_id')
+        ->where('solicitudes_adquisiciones.id',$id)
+        ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad',"usuarios.unidad_id")->first(); 
+        if($autopre){
+            $presupuesto=Presupuesto::where("unidad_id",$autopre->unidad_id)
+                                      ->where("estado",true)->orderBy("created_at","desc")->first();
+            $datos=json_decode($autopre->detalle_solicitud_a , true);      
+            $detalles=[];                     
+            foreach($datos as $columna){
+               array_push($detalles,array_values($columna));
+            };
+        return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopre','presupuesto','detalles'));
+        }
+        else{
+            abort(404);
+        }
     }
 
     /**
@@ -80,11 +91,11 @@ class AutorizaciónPresupuestoController extends Controller
 
     {
         if($tipo=='aceptar'){
-         Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "proceso de cotizacion"]); 
+            Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Proceso de cotizacion"]); 
         }elseif($tipo=='rechazar'){
             Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Rechazado por falta de presupuesto"]); 
         }
-       return redirect()->route('lista.index');
+        return redirect()->route('lista.index');
     }
 
     /**

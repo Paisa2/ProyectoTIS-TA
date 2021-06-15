@@ -18,6 +18,7 @@ class Solicitud_cotizacion extends Model
      * @var array
      */
     protected $fillable = [
-        'razon_social', 'detalle_cotizacion',
+        'detalle_cotizacion', 'numero_cotizacion', 
+        'fecha_cotizacion', 'para_usuario_id',
     ];
 }

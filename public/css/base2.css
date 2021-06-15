@@ -18,6 +18,24 @@ body {
   background-size: cover;
 }
 
+/*estilos aside*/
+.c-icon {
+  fill: #fff;
+}
+.dropdown-item {
+  word-wrap: break-word;
+}
+.c-dark-theme .nav-underline-primary .nav-link.active, .c-dark-theme .nav-underline-primary .show > .nav-link {
+  border-color: #fff;
+}
+.aside-link {
+  color: rgba(255, 255, 255, 0.6) !important;
+  text-decoration: none;
+}
+.aside-link:hover {
+  text-decoration: none;
+}
+
 #user-image {
   display: inline-flex;
   justify-content: center;
@@ -37,4 +55,46 @@ body {
 #btn-user {
   display: flex;
   align-items: center;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  background-color: unset !important;
+}
+.font-large {
+  font-size: large;
+}
+.display-4 {
+  font-size: 3rem;
+}
+.display-5, .display-6 {
+  text-align: center;
+  font-weight: 300;
+  line-height: 1.2;
+}
+.display-5 {
+  font-size: 2.5rem !important;
+}
+.display-6 {
+  font-size: 1.5rem !important;
+}  
+#navbar2 {
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgb(94, 94, 94);
+}
+#navbar2 .c-icon {
+  width:1.5rem;
+  height:1.5rem;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  #navbar2 .c-icon {
+    display: none;
+  }
+}
+form button[type='submit'].disabled:not(.dropdown-item), form button[type='submit'].disabled:not(.dropdown-item):hover{
+  cursor: default;
+  color: #24252F !important;
+  background-color: rgb(255 255 255 / 90%) !important;
 }

@@ -7,19 +7,29 @@
 @section('main')
   
 <!-- codigo importante -->
-@if(session()->has('confirm'))
-    <div class="alert alert-success" role="alert" id="confirm">
-        {{ session()->get('confirm') }}
+@if(session()->has('success'))
+    <div class="alert alert-success" role="alert" id="success">
+        {{ session()->get('success') }}
     </div>
-    <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
+    <script>setTimeout("document.getElementById('success').classList.add('d-none');",3000);</script>
+@endif
+@if(session()->has('error'))
+    <div class="alert alert-danger" role="alert" id="error">
+        {{ session()->get('error') }}
+    </div>
+    <script>setTimeout("document.getElementById('error').classList.add('d-none');",3000);</script>
 @endif
 
-<div style="width:90%; margin:24px auto;" class="container-table">
+<div style="width:90%" class="container-table">
 
   <h1 class="display-4">Roles Registrados</h1>
+  @if(session()->has('Crear rol'))
   <div style="display:flex;justify-content:flex-end;" class="mb-3">
-    <a href="{{ route('roles.create') }}" class="btn btn-primary">+Nuevo</a>
+    <a href="{{ route('roles.create') }}" class="btn btn-primary">+ Nuevo</a>
   </div>
+  @else
+  <br><br>
+  @endif
   <table class="table">
     <thead>
       <tr>
@@ -33,7 +43,7 @@
     <tbody>
     @foreach($roles as $rol)
       <tr>
-        <th scope="row">{{$loop->index +1}}</th>
+        <td scope="row">{{$loop->index +1}}</td>
         <td>{{$rol->nombre_rol}}</td>
         <td>{{$rol->numero_permisos}}</td>
         <td>{{$rol->created_at}}</td>
@@ -51,6 +61,21 @@
                   <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                 </svg>Detalles
               </a>
+              @if(session()->has('Editar rol'))
+              <a class="dropdown-item" type="submit" href="{{ route('roles.edit', $rol->id) }}">
+                <svg class="c-icon mfe-2">
+                  <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
+                </svg>Editar
+              </a>
+              @endif
+              @if(session()->has('Eliminar rol'))
+              <form action="{{ route('roles.destroy', $rol->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
+              <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
+                <svg class="c-icon mfe-2">
+                  <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
+                </svg>Eliminar
+              </button>
+              @endif
             </div>
           </div>
         </td>

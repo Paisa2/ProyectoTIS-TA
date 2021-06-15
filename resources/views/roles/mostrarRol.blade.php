@@ -2,13 +2,13 @@
 
 @section('head')
   <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/roles/mostrarRol.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/roles/tableRol.css') }}">
 @endsection
 
 @section('main')
 
-<div style="width:70%; margin:24px auto;" class="container-table">
-  <h1>Detalle Rol: {{$rol->nombre_rol}}</h1>
+<div style="width:70%" class="container-table">
+  <h1 class="display-4">Detalle de Rol: {{$rol->nombre_rol}}</h1>
   <br>
   <label class="form-label">Permisos:</label>
     <table class="table">

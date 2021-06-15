@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\EmitirInformeController;
 use App\Models\Solicitud_adquisicion;
 use Illuminate\Support\Facades\DB;
+use App\Models\InfoComparativo;
+use App\Models\InformeAutorizacion;
+
 
 class EmitirInformeController extends Controller
 {
@@ -14,9 +17,23 @@ class EmitirInformeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show($id)
     {
-      
+        $informe=InformeAutorizacion::where('id',$id)->first();
+        
+        if($informe){
+            $comparativo=InfoComparativo::where('id',$informe->comparativo_id)->first();
+            $meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+            
+            
+            return view( 'EmitirInforme.DetalleInforme', compact('meses', 'comparativo','informe'));
+
+ 
+        }else{
+           abort(404); 
+        }
+        
+       
     }
 
     /**
@@ -35,9 +52,32 @@ class EmitirInformeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $mensajes = [
+            
+            'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
+          
+        ];
+        $this->validate($request, [
+            'tipo'=>['required'], 
+            'justificacion'=>['required','min:20'],
+            ], $mensajes);
+        $informe=new InformeAutorizacion;
+        $informe->comparativo_id=$id;
+        $informe->tipo_informe=$request->tipo;
+        $informe->justificacion_informe=$request->justificacion;
+        if($request->tipo=='Aceptado'){
+            $informe->empresa_seleccionada=$request->empresa;
+        }
+          if($request->formato){
+            $informe->con_formato=true;
+          }else{
+            $informe->con_formato=false;   
+          }
+        
+        $informe->save();
+        return redirect()->route('bienvenido');
     }
 
     /**
@@ -46,11 +86,21 @@ class EmitirInformeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function emitirinforme()
+    public function emitirinforme($id)
     {
-          
+        $comparativo=InfoComparativo::where('id',$id)->first();
+        if($comparativo){
+            $meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+            
+            
+            return view( 'EmitirInforme.EmitirInforme', compact('meses', 'comparativo'));
+
+ 
+        }else{
+           abort(404); 
+        }
+        
        
-        return view('EmitirInforme.EmitirInforme');
     }
 
     /**
