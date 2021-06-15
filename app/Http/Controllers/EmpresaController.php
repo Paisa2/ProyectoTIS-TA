@@ -2,24 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MessaggeRequest;
-use App\Models\Unidad;
+use App\Http\Requests\EmpresaRequest;
+use App\Models\Empresa;
+use App\Models\RespuestaCotizacion;
 use Illuminate\Http\Request;
 
-class RegistroController extends Controller
+class EmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        /*$unidades = Unidad::where('tipo_unidad', 'Institución')->orWhere('tipo_unidad', 'facultad')->get();*/
-        $facultades = Unidad::where('tipo_unidad', 'facultad')->get();
-        $instituciones = Unidad::where('tipo_unidad', 'Institución')->get();
-        return view('registro', compact('facultades', 'instituciones'));
-        //
+        $rubros = $request->get('rubro');
+        $todos = $request;
+        /*$registros = Empresa::get();*/
+        if($rubros){
+            $registros = Empresa::where('rubro_empresa','like','rubros')->get();
+        }else{
+            $registros = Empresa::get();
+        }
+        return view('Empresas.ListaEmpresas', compact('registros'));
     }
 
     /**
@@ -29,7 +34,8 @@ class RegistroController extends Controller
      */
     public function create()
     {
-        //
+        $rubro = RespuestaCotizacion::get();
+        return view('Empresas.NuevaEmpresa', compact('rubro'));
     }
 
     /**
@@ -38,15 +44,19 @@ class RegistroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MessaggeRequest $request)
+    public function store(EmpresaRequest $request)
     {
-        $unidad = new Unidad;
-        $unidad->tipo_unidad = $request->tipo_unidad;
-        $unidad->nombre_unidad = $request->nombre_unidad;
-        $unidad->unidad_id = $request->unidad_id;
-        $unidad->telefono_unidad = $request->telefono_unidad;        
-        $unidad->save();
-        return redirect('unidades')->with('confirm', 'La unidad se registro correctamente');
+        $empresas = new Empresa;
+        $empresas->nombre_empresa     =$request->Empresa;
+        $empresas->representante_legal=$request->Representante_Legal;
+        $empresas->direccion_empresa  =$request->Direccion;
+        $empresas->nit_empresa        =$request->Nit;
+        $empresas->rubro_empresa      =$request->Rubro;
+        $empresas->telefono_empresa   =$request->Telefono;
+        $empresas->email_empresa      =$request->Correo_Electronico;
+        $empresas->save();
+        return redirect('ListaEmpresas')->with('confirm', 'La empresa ha sido registrada');
+        
     }
 
     /**
@@ -57,6 +67,8 @@ class RegistroController extends Controller
      */
     public function show($id)
     {
+        
+        return view('Empresas.DetalleEmpresa');
         //
     }
 

@@ -97,13 +97,19 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('reenviar');
 
 
-    Route::get('/lista', 'AdqController@index')->name('lista.index');
-    Route::get('lista/solicitud', 'AdqController@create')->name('solicitud.create');
-    Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
-    Route::get('verificarpresupuesto/{tipo}/{id}', 'AutorizaciónPresupuestoController@update')->name('verificarpresupuesto');
+
     Route::get('emitirinforme/{id}','EmitirInformeController@emitirinforme')->name('emitirinforme');
     Route::post('emitirinforme/{id}','EmitirInformeController@store')->name('guardarinforme');
     Route::get('emitirinforme/detalle/{id}','EmitirInformeController@show')->name('detalleinforme');
+
+
+    
+    Route::get('/ListaEmpresas','EmpresaController@index')->name('empresa.index');
+    Route::get('/ListaEmpresas/NuevaEmpresa','EmpresaController@create')->name('empresa.create');
+    Route::post('/ListaEmpresas/NuevaEmpresa','EmpresaController@store')->name('empresa.store');
+    Route::get('/ListaEmpresas/DetalleEmpresa','EmpresaController@show')->name('empresa.show');
+    
+
     
 
 });
