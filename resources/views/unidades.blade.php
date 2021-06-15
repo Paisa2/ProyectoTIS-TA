@@ -47,7 +47,7 @@
             <td>{{$unidadbd->created_at}}</td>
 
             <td>{{$unidadbd->telefono_unidad}}</td>
-            <td class="c-dark-theme options">
+            {{-- <td class="c-dark-theme options">
                 <div class="dropdown dropleft">
                   <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <svg class="c-icon mfe-2">
@@ -68,17 +68,17 @@
                       </svg>Editar
                     </a>
                     @endif
-                    {{-- @if(session()->has('Eliminar rol'))
+                    @if(session()->has('Eliminar rol'))
                     <form action="{{method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
                     <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
                       <svg class="c-icon mfe-2">
                         <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
                       </svg>Eliminar
                     </button>
-                    @endif --}}
+                    @endif
                   </div>
                 </div>
-              </td>
+              </td> --}}
 
             <td class="c-dark-theme options">
                 <div class="dropdown dropleft">

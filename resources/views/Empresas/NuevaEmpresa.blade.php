@@ -14,12 +14,13 @@
             <div class="row g-3">
                 <div class="col-md-4">
                     <label for="Empresa" class="form-label">Empresa</label>
-                    <select name="Empresa" id="Empresa" class="form-control">
+                    <select name="Empresa" id="Empresa" class="form-control" aria-hidden="true">
+                        {{-- <option hidden selected value="" id="Empresa">Seleccione</option> --}}
                         @foreach($rubro as $rubros)
-                        <option hidden selected value="">Seleccione</option>
                         <option value="{{ $rubros->razon_social }}">{{ $rubros->razon_social }}</option>
                         @endforeach 
                     </select>
+                    {{-- <input type="text" class="form-control" name="Empresa" id="Empresa"> --}}
                         @foreach($errors->get('Empresa') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
                         @endforeach
@@ -33,15 +34,15 @@
                 </div>
                 <div class="col-md-4">
                     <label for="Rubro" class="form-label">Rubro</label>
-                    <select name="Rubro" id="rubro" class="form-control"> 
+                    <select name="Rubro" id="Rubro" class="form-control"> 
                         <option hidden selected value="">Seleccione</option>
-                        <option value="Construccion">Construcción</option>
-                        <option value="Educacion">Educacion</option>
-                        <option value="Electricidad">Electricidad</option>
-                        <option value="Industrial">Industrial</option>
-                        <option value="Software">Software</option>
-                        <option value="Telecomunicaciones">Telecomunicaciones</option>
-                        <option value="Transporte">Transporte</option>
+                        <option {{ old('Rubro') == "Construccion" ? 'selected' : '' }} value="Construccion">Construcción</option>
+                        <option {{ old('Rubro') == "Educacion" ? 'selected' : '' }} value="Educacion">Educacion</option>
+                        <option {{ old('Rubro') == "Electricidad" ? 'selected' : '' }} value="Electricidad">Electricidad</option>
+                        <option {{ old('Rubro') == "Industrial" ? 'selected' : '' }} value="Industrial">Industrial</option>
+                        <option {{ old('Rubro') == "Software" ? 'selected' : '' }} value="Software">Software</option>
+                        <option {{ old('Rubro') == "Telecomunicaciones" ? 'selected' : '' }} value="Telecomunicaciones">Telecomunicaciones</option>
+                        <option {{ old('Rubro') == "Transporte" ? 'selected' : '' }} value="Transporte">Transporte</option>
                     </select>
                     @foreach($errors->get('Rubro') as $message)
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
@@ -89,7 +90,7 @@
     </div>
 @endsection
 @section('scripts')
-<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script>
         $('#Empresa').editableSelect();
 </script>

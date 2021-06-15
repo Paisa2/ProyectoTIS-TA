@@ -21,7 +21,7 @@
             <div class="col-md">
                 <form action="" method="get">
                   <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="true">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                       Todos
                     </button>
                     <ul class="dropdown-menu show" aria-labelledby="dropdownMenu2">
@@ -58,6 +58,23 @@
                         <td>{{$registro->nombre_empresa}}</td>
                         <td>{{$registro->rubro_empresa}}</td>
                         <td>{{$registro->representante_legal}}</td>
+                        <td class="c-dark-theme options">
+                            <div class="dropdown dropleft">
+                              <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <svg class="c-icon mfe-2">
+                                  <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+                                </svg>
+                              </span>
+                              <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+                                <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+                                <a class="dropdown-item" href="{{ route('empresa.show')}}">
+                                  <svg class="c-icon mfe-2">
+                                    <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                                </svg>Detalles
+                                </a>       
+                              </div>
+                            </div>
+                          </td>
                     </tr>
                 @endforeach
             </tbody>
