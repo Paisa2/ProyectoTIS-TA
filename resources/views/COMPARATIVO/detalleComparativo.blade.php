@@ -10,10 +10,10 @@
 <!-- codigo importante -->
 <div class="container my-4">
 
-    <form action="{{route('comparativo.update',$datoscomparativo->id)}}" method="post">
+    <form action="{{route('comparativo.update',$datoscomparativo->id)}}" method="get">
       {{csrf_field()}}
       <div class="titulo d-flex justify-content-center">
-    <h1 class="display-4">Cuadro Comparativo de Cotizaciones</h1>
+    <h1 class="display-4">Detalles del Cuadro Comparativo</h1>
   </div>
   <div class="d-flex justify-content-end" style="margin-top:-5rem;">
     <div class="fecha">
@@ -98,15 +98,12 @@
     </tbody>
   </table>
   <div class="mb-3">
-  <label for="observaciones" class="labelcompa">Empresa Recomendada: </label>
-  <select class="form-control" name="empresa" id="item_id">
-  <option value="{{$datoscomparativo->empresa_recomendada}}">{{$datoscomparativo->empresa_recomendada}}</option>
-  </select>
+  <label for="observaciones" class="labelcompad"><b>EMPRESA RECOMENDADA: </b></label>
+  <label class="labelcompad"> {{$datoscuadrocomparativo->empresa_recomendada}}</label>
   </div>
   <div class="mb-3">
-    <label for="observaciones" class="labelcompa">Observaciones: </label>
-    <br>
-    <input type="text"  name="observaciones" class="form-control">
+    <label for="observaciones" class="labelcompad"><b>OBSERVACIONES:</b> </label>
+    <label class="labelcompad">{{$datoscuadrocomparativo->observaciones_comparativo}}</label>
   </div>
   <table class="informacion">
     <thead>
@@ -125,10 +122,7 @@
         <td>{{$datoscomparativo->nombre_jefe_administrativo}}</td>
       </tr>
     </tbody>
-  </table> 
-  <div style=display:flex;justify-content:center;>
-    <button type="submit" class="btn btn-primary">EMITIR INFORME</button>
-  </div>    
+  </table>   
     </form>
 </br>
 

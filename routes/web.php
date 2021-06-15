@@ -54,7 +54,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('presupuestos', 'PresupuestoController');
     Route::get("comparativo/{id}", "ComparativoController@create")->name('comparativo.create');
     Route::get("comparativo/detalle/{id}", "ComparativoController@show")->name('comparativo.show');
+    Route::get("comparativo/detallecomparativo/{id}", "ComparativoController@detalle")->name('comparativo.detalle');
     Route::get("comparativo/generar/{id}", "ComparativoController@generar")->name('comparativo.generar');
+    Route::post("comparativo/editar/{id}", "ComparativoController@update")->name('comparativo.update');
     Route::get('generarCotizacion/{id}', 'SolicitudCotizacionController@generar')->name('generarCotizacion');
     Route::get('formulario/{id}', 'StorageController@index')->name('formulario');
     Route::post('formulario/{i}', 'StorageController@save')->name('formpost');

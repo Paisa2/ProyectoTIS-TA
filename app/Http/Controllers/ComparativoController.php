@@ -43,6 +43,23 @@ class ComparativoController extends Controller
         }
            
     }
+    public function detalle($id){
+        $datoscuadrocomparativo=ComparativoCotizacion::where("id",$id)->first();
+        $datoscomparativo=InfoComparativo::where("id",$id)->first();
+        if($datoscomparativo){
+            $datos=json_decode($datoscomparativo->detalle_comparativo, true);      
+            $propuestas=[];
+            //echo dd($datoscomparativo);                     
+            foreach($datos as $columna){
+                array_push($propuestas,array_values($columna));
+            }
+            return view("COMPARATIVO.detalleComparativo", compact("datoscomparativo","propuestas","datoscuadrocomparativo"));
+        }
+        else{
+            abort(404);
+        }
+    }
+
     public function generar($id){
         $cotizacion=InfoCotizacion::where("id",$id)->first();
         $respuestas=RespuestaCotizacion::where("cotizacion_id",$id)->get();
@@ -90,7 +107,20 @@ class ComparativoController extends Controller
      */
     public function show($id)
     {
-        return view("COMPARATIVO.comparativo", compact("clave"));
+        $datoscomparativo=InfoComparativo::where("id",$id)->first();
+        if($datoscomparativo){
+            $datos=json_decode($datoscomparativo->detalle_comparativo, true);      
+            $propuestas=[];
+            //echo dd($datoscomparativo);                     
+            foreach($datos as $columna){
+                array_push($propuestas,array_values($columna));
+            }
+            return view("COMPARATIVO.comparativo", compact("datoscomparativo","propuestas"));
+        }
+        else{
+            abort(404);
+        }
+        return view("COMPARATIVO.detalleComparativo", compact("clave"));
     }
 
     /**
@@ -113,7 +143,7 @@ class ComparativoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        ComparativoCotizacion::where("id", $id)->update(["empresa_recomendada" => $request->empresa,"observaciones_comparativo"=>$request->observaciones]);
     }
 
     /**

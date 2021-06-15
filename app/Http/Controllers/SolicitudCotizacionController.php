@@ -8,16 +8,17 @@ use App\Models\Solicitud_cotizacion;
 use App\Models\Solicitud_adquisicion;
 use App\Models\CotizacionPdf;
 use App\Models\RespuestaCotizacion;
+use App\Models\ComparativoCotizacion;
 
 class SolicitudCotizacionController extends Controller
 {
     public function index(){
         $cotizaciones = Solicitud_cotizacion::all();
         foreach($cotizaciones as $cotizacion){
-        //    $cotizacion->pdf=CotizacionPdf::where('cotizacion_id',$cotizacion->id)->count();
-        //    if($cotizacion->pdf > 0){
-        //        $cotizacion->pdf_ruta=CotizacionPdf::where('cotizacion_id',$cotizacion->id)->first()->ruta;
-        //    }
+            $cotizacion->comparativo=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->count();
+            if($cotizacion->comparativo > 0){
+                $cotizacion->comparativo_id=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->first()->id;
+            }
         $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
 
         }
