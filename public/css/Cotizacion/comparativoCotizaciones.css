@@ -101,3 +101,18 @@ td{
 .lavelcompad{
   margin-bottom: 0px !important; 
 }
+.c-dark-theme .r-1.active{
+  background-color: orange;
+}
+.c-dark-theme .r-2.active{
+  background-color: orange;
+}
+.c-dark-theme .r-3.active{
+  background-color: orange;
+}
+.c-dark-theme .r-4.active{
+  background-color: orange;
+}
+.c-dark-theme .r-5.active{
+  background-color: orange;
+}
