@@ -15,7 +15,7 @@
                 <div class="col-md-4">
                     <label for="Empresa" class="form-label">Empresa</label>
                     <select name="Empresa" id="Empresa" class="form-control" aria-hidden="true">
-                        {{-- <option hidden selected value="" id="Empresa">Seleccione</option> --}}
+                        <option hidden selected value="" id="Empresa">Seleccione</option>
                         @foreach($rubro as $rubros)
                         <option value="{{ $rubros->razon_social }}">{{ $rubros->razon_social }}</option>
                         @endforeach 

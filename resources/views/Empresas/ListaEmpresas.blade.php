@@ -19,7 +19,7 @@
         <div><h1 class="display-4">Empresas Registradas</h1></div>
         <div class="row g-2">
             <div class="col-md">
-                <form action="" method="get">
+                {{--  <form action="" method="get">
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                       Todos
@@ -33,7 +33,7 @@
                     <input type="hidden" name="rubro" value={{$registros}}>
                     </ul>
                   </div>
-                </form>
+                </form>  --}}
             </div>
             <div class="col-md">
             <div class="d-flex justify-content-end mb-3">
@@ -48,7 +48,8 @@
                     <th scope="col">NOMBRE</th>
                     <th scope="col">RUBRO</th>
                     <th scope="col">REPRESENTANTE LEGAL</th>
-                    <th class="options"></th>
+                    <th scope="col">TELEFONO</th>
+                    {{--  <th class="options"></th>  --}}
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +59,8 @@
                         <td>{{$registro->nombre_empresa}}</td>
                         <td>{{$registro->rubro_empresa}}</td>
                         <td>{{$registro->representante_legal}}</td>
-                        <td class="c-dark-theme options">
+                        <td>{{$registro->telefono_empresa}}</td>
+                        {{--  <td class="c-dark-theme options">
                             <div class="dropdown dropleft">
                               <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <svg class="c-icon mfe-2">
@@ -74,7 +76,7 @@
                                 </a>       
                               </div>
                             </div>
-                          </td>
+                          </td>  --}}
                     </tr>
                 @endforeach
             </tbody>
