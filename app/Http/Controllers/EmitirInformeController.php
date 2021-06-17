@@ -8,6 +8,10 @@ use App\Models\Solicitud_adquisicion;
 use Illuminate\Support\Facades\DB;
 use App\Models\InfoComparativo;
 use App\Models\InformeAutorizacion;
+use App\Models\Presupuesto;
+use App\Models\InfoCotizacion;
+use App\Models\ProcesoCotizacionId;
+use App\Models\RespuestaCotizacion;
 
 
 class EmitirInformeController extends Controller
@@ -25,8 +29,9 @@ class EmitirInformeController extends Controller
             $comparativo=InfoComparativo::where('id',$informe->comparativo_id)->first();
             $meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
             
+            $respuestas=RespuestaCotizacion::where('cotizacion_id',$comparativo->cotizacion_id)->get();
             
-            return view( 'EmitirInforme.DetalleInforme', compact('meses', 'comparativo','informe'));
+            return view( 'EmitirInforme.DetalleInforme', compact('meses', 'comparativo','informe','respuestas'));
 
  
         }else{
@@ -77,6 +82,12 @@ class EmitirInformeController extends Controller
           }
         
         $informe->save();
+        $comparativo=InfoComparativo::where('id',$id)->first();
+        if($request->tipo=='Aceptado'){
+            Solicitud_adquisicion::where("id", $comparativo->solicitud_a_id)->update(["estado_solicitud_a" => "Aceptado"]); 
+        }elseif($request->tipo=='Rechazado'){
+            Solicitud_adquisicion::where("id", $comparativo->solicitud_a_id)->update(["estado_solicitud_a" => "Rechazado"]); 
+        }
         return redirect()->route('bienvenido');
     }
 
@@ -91,9 +102,19 @@ class EmitirInformeController extends Controller
         $comparativo=InfoComparativo::where('id',$id)->first();
         if($comparativo){
             $meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-            
-            
-            return view( 'EmitirInforme.EmitirInforme', compact('meses', 'comparativo'));
+            $presupuesto=Presupuesto::where('unidad_id',InfoCotizacion::where('id',$comparativo->cotizacion_id)->first()->unidad_solicitante_id)->where('estado', true)->first()->monto;
+            $monto="";
+            foreach(json_decode($comparativo->empresas_comparativo, true) as $empresa){
+                $datos=array_values($empresa);
+                
+                if($datos[2]){
+                      $monto=$datos[1];
+                      
+                }
+             
+            }
+            $respuestas=RespuestaCotizacion::where('cotizacion_id',$comparativo->cotizacion_id)->get();
+            return view( 'EmitirInforme.EmitirInforme', compact('meses', 'comparativo','presupuesto','monto','respuestas'));
 
  
         }else{

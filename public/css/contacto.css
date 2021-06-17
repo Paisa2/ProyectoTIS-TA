@@ -17,10 +17,12 @@ body{
     background-size: cover;
 }
 */
+
 nav{
-    background-color: rgb(6, 6, 65);
+    background-color: #24252F !important;
     padding: 10px;
     font-size: 15px;
+  
 }
 li{
     list-style: none;
@@ -34,7 +36,7 @@ a{
 }
 
 .user-img img{
-    width: 500px; height: 500px;
+    width: 450px; height: 450px;
 }
 
 .user-imagen img{

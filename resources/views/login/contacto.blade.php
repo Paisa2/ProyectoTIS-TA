@@ -14,11 +14,12 @@
     <title>contacto</title>
 </head>
 <body>
-    <nav class= "nav">
+  
+    <nav class= "nav d-flex justify-content-end"  >
 
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" >
   <li class="nav-item">
-    <a class="nav-link " href="/contacto">Contactos</a>
+    <a class="nav-link  " href="/contacto">Contactos</a>
   </li>
   <li class="nav-item">
     <a class="nav-link " href="/soporte">Soporte</a>

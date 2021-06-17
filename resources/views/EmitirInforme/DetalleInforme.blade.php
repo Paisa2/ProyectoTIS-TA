@@ -77,7 +77,11 @@ AtorizaciónPresupuesto
                   </div>
                   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                      <div class="card-body">
-                     Some placeholder content for the second accordion panel. This panel is hidden by default.
+                     <label for=""><b>Cuadro Comparativo de Cotizaciones:</b>&nbsp;  <a href="{{route('comparativo.detalle', $comparativo->id)}}" class="btn btn-dark btn-sm">N° {{$comparativo->codigo_cotizacion}} </a></label><br>
+                                 @foreach($respuestas as $respuesta)
+                                 <label for=""><b>Propuesta {{$loop->index+1}}:</b>&nbsp; <a href="{{route('respuestasCotizacion.show', $respuesta->id)}}" class="btn btn-dark btn-sm">N° {{$comparativo->codigo_cotizacion}} </a></label><br>
+                                 @endforeach
+                                 <label for=""><b>Solicitud de Adquisicion:</b>&nbsp; <a href="{{route('solicitud.show', $comparativo->solicitud_a_id)}}"class="btn btn-dark btn-sm">N° {{$comparativo->codigo_solicitud_a}} </a></label><br>
                      </div>
                   </div>
                </div>

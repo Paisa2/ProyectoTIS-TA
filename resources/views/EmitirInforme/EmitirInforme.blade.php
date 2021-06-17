@@ -31,18 +31,21 @@ AtorizaciónPresupuesto
                      <label for="tipo" class="form-label">Señor: {{$comparativo->nombre_solicitante}}</label>
                      <br>
                      <label for="tipo" class="form-label">PRESENTE</label>
-                     <div class="d-flex justify-content-center"> REF: INFORME DE LA SOLICITUD DE ADQUISICIÓN</div>
+                     <div class="d-flex justify-content-center"> REF: INFORME DE LA SOLICITUD DE ADQUISICIÓN {{ $comparativo->empresa_recomendada !=''? 'ACEPTADO':'RECHAZADO'}}</div>
                      <div id="con-formato">
                      <br>
                      <label for="tipo" class="form-label">De mi consideración</label>
                      <div class=" d-flex align-items-baseline justify-content-start mb-3">
-                     <label for="tipo" class="form-label">A travez de este presente tengo el bien de informarte a la Unidad de solicitud de adquisición N° {{$comparativo->codigo_solicitud_a}} , ha sido &nbsp;</label>
-                     <select name="tipo" id="tipo-c" class=" col-2 form-control">
-                     <option {{ old('tipo') == "Aceptado" ? 'selected' : '' }} value="Aceptado">Aceptado</option>
-                     <option {{ old('tipo') == "Rechazado" ? 'selected' : '' }} value="Rechazado">Rechazado</option>
-                     </select><br>
+                     <label for="tipo" class="form-label">A travez de este presente tengo el bien de informarte a la Unidad de solicitud de adquisición N° {{$comparativo->codigo_solicitud_a}} , ha sido  {{ $comparativo->empresa_recomendada !=''? 'ACEPTADO':'RECHAZADO'}}</label>
+                     
+                     
+                     
+                     
                       </div>
-                      <textarea name="justificacion" id="justificacion-c" class="form-control" cols="30" rows="6" style="resize: none">{{old('justificacion')}}</textarea>
+                      
+                      <textarea name="justificacion" id="justificacion-c" class="form-control" cols="30" rows="6" style="resize: none"> Teniendo en cuenta que su unidad {{$comparativo->unidad_solicitante}} tiene un presupuesto anual {{$presupuesto}} bs, {{ $comparativo->empresa_recomendada !=''? 'Como resultado del proceso de cotización la empresa seleccionada es '.$comparativo->empresa_recomendada.' que cotizo la solicitud de adquisición por un monto de: '.$monto.' bs':''}}
+                    
+                      </textarea>
                       <label for="tipo" class="form-label">Sin otro en particular mos despedimos de us persona muy cordialmente deseandoles exitos en sus funcionaes que desempeñan actualmente.</label>
                         @foreach($errors->get('tipo') as $message)
                           <div class="alert alert-danger" role="alert">{{$message}}</div>
@@ -58,16 +61,7 @@ AtorizaciónPresupuesto
                             <div class="alert alert-danger" role="alert">{{$message}}</div>
                           @endforeach
                       <br>
-                      <div class=" col-7 d-flex" >
-                        <label  for="tipo" class=" col-5 form-label">Solicitud de Adquisición:</label>
-                        <select name="tipo" id="tipo-s" class="form-control">
-                               <option {{ old('tipo') == "Aceptado" ? 'selected' : '' }} value="Aceptado">Aceptado</option>
-                               <option {{ old('tipo') == "Rechazado" ? 'selected' : '' }} value="Rechazado">Rechazado</option>
-                        </select>
-                        </div>
-                        @foreach($errors->get('tipo') as $message)
-                            <div class="alert alert-danger" role="alert">{{$message}}</div>
-                          @endforeach
+                      <input name="tipo"  class=" d-none" value="{{ $comparativo->empresa_recomendada !=''? 'Aceptado':'Rechazado'}}">
                   </div>
                <!--  inicio de Acordion--->
                <br>
@@ -93,7 +87,7 @@ AtorizaciónPresupuesto
                           <label for="tipo" class="form-label"><b>Tecnico Responsable:</b> {{$comparativo->nombre_tecnico_responsable}}</label>
                           <br>
                           <label for="tipo" class="form-label"><b>Empresa Recomendada:</b> {{$comparativo->empresa_recomendada}}</label>
-                          <input type="text" value="{{$comparativo->empresa_recomendada}}" class="d-none">
+                          <input type="text" value="{{$comparativo->empresa_recomendada}}"  name="empresa" class="d-none">
                          
                           </div>
 
@@ -111,7 +105,11 @@ AtorizaciónPresupuesto
                             </div>
                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                <div class="card-body">
-                                 Some placeholder content for the second accordion panel. This panel is hidden by default.
+                                 <label for=""><b>Cuadro Comparativo de Cotizaciones:</b>&nbsp;  <a href="{{route('comparativo.detalle', $comparativo->id)}}" class="btn btn-dark btn-sm">N° {{$comparativo->codigo_cotizacion}} </a></label><br>
+                                 @foreach($respuestas as $respuesta)
+                                 <label for=""><b>Propuesta {{$loop->index+1}}:</b>&nbsp; <a href="{{route('respuestasCotizacion.show', $respuesta->id)}}" class="btn btn-dark btn-sm">N° {{$comparativo->codigo_cotizacion}} </a></label><br>
+                                 @endforeach
+                                 <label for=""><b>Solicitud de Adquisicion:</b>&nbsp; <a href="{{route('solicitud.show', $comparativo->solicitud_a_id)}}"class="btn btn-dark btn-sm">N° {{$comparativo->codigo_solicitud_a}} </a></label><br>
                                </div>
                            </div>
                       </div>
@@ -121,6 +119,7 @@ AtorizaciónPresupuesto
             
                 <br>
                 <input type="checkbox" name="formato" id="formato" checked class="d-none">
+                <input name="tipo"  class=" d-none" value="{{ $comparativo->empresa_recomendada !=''? 'Aceptado':'Rechazado'}}">
 
              <div class="d-flex justify-content-center">
                <button type="submit" class="btn btn-primary" id="enviar">ENVIAR INFORME</button>
