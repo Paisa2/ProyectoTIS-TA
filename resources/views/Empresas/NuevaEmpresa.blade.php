@@ -1,7 +1,6 @@
 @extends('base')
 
 @section('head')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 @endsection
@@ -12,21 +11,46 @@
             {{csrf_field()}}
             <h1 class="display-4">Registrar Empresa</h1>
             <div class="row g-3">
-                <div class="col-md-4">
-                    <label for="Empresa" class="form-label">Empresa</label>
-                    <select name="Empresa" id="Empresa" class="form-control" aria-hidden="true">
+                <div class="col-md-12">
+                    <label for="" class="form-label">Razón Social</label>
+                    <div class="select-editable" id="business">
+                        <div class="dropdown">
+                          <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <span class="search"><input type="text" class="form-control" ></span>
+                            <span class="options">
+                              @foreach($razon as $razonempresa)
+                              <span class="dropdown-item" id="{{str_replace(' ', '_', $razonempresa->razon_social)}}">{{$razonempresa->razon_social}}</span>
+                              @endforeach
+                            </span>
+                            <span class="without d-none">Sin resultados</span>
+                          </div>
+                        </div>
+                        <input type="text" name="razon" id="razon" autocomplete="off" value="{{old('razon')}}" class="form-control bg-transparent">
+                    </div>
+                    @foreach($errors->get('Empresa') as $message)
+                    <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
+                    {{-- <select name="Empresa" id="Empresa" class="form-control" aria-hidden="true">
                         <option hidden selected value="" id="Empresa">Seleccione</option>
                         @foreach($rubro as $rubros)
                         <option value="{{ $rubros->razon_social }}">{{ $rubros->razon_social }}</option>
                         @endforeach 
-                    </select>
+                    </select> --}}
+                </div>
+            </div><br>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="Nombre_Comercial" class="form-label">Nombre Comercial</label>
+                    <input type="text" class="form-control" name="Nombre_Comercial" autocomplete="off">
                     {{-- <input type="text" class="form-control" name="Empresa" id="Empresa"> --}}
-                        @foreach($errors->get('Empresa') as $message)
+                        @foreach($errors->get('Nombre_Comercial') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
                         @endforeach
                 </div>
                 <div class="col-md-4">
-                    <label for="Nit" class="form-label">Nit</label>
+                    <label for="Nit" class="form-label">NIT</label>
                     <input type="text" name="Nit" class="form-control" autocomplete="off" value="{{old('Nit')}}">
                     @foreach($errors->get('Nit') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
@@ -34,7 +58,23 @@
                 </div>
                 <div class="col-md-4">
                     <label for="Rubro" class="form-label">Rubro</label>
-                    <select name="Rubro" id="Rubro" class="form-control"> 
+                    <div class="select-editable" id="business">
+                        <div class="dropdown">
+                          <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <span class="search"><input type="text" class="form-control" ></span>
+                            <span class="options">
+                              @foreach($rubro as $rubros)
+                              <span class="dropdown-item" id="{{str_replace(' ', '_', $rubros->rubro_empresa)}}">{{$rubros->rubro_empresa}}</span>
+                              @endforeach
+                            </span>
+                            <span class="without d-none">Sin resultados</span>
+                          </div>
+                        </div>
+                        <input type="text" name="Rubro" id="Rubro" autocomplete="off" value="{{old('Rubro')}}" class="form-control bg-transparent">
+                    </div>
+                    {{-- <select name="Rubro" id="Rubro" class="form-control"> 
                         <option hidden selected value="">Seleccione</option>
                         <option {{ old('Rubro') == "Construccion" ? 'selected' : '' }} value="Construccion">Construcción</option>
                         <option {{ old('Rubro') == "Educacion" ? 'selected' : '' }} value="Educacion">Educacion</option>
@@ -43,7 +83,7 @@
                         <option {{ old('Rubro') == "Software" ? 'selected' : '' }} value="Software">Software</option>
                         <option {{ old('Rubro') == "Telecomunicaciones" ? 'selected' : '' }} value="Telecomunicaciones">Telecomunicaciones</option>
                         <option {{ old('Rubro') == "Transporte" ? 'selected' : '' }} value="Transporte">Transporte</option>
-                    </select>
+                    </select> --}}
                     @foreach($errors->get('Rubro') as $message)
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
@@ -89,9 +129,14 @@
         </form>
     </div>
 @endsection
-@section('scripts')
+{{-- @section('scripts')
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script>
         $('#Empresa').editableSelect();
+</script>
+@endsection --}}
+@section('scripts')
+<script>
+
 </script>
 @endsection

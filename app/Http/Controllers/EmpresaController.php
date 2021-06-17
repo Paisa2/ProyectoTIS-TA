@@ -14,17 +14,16 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function rubro($id){
+    //     $tipo = Empresa::where('empresas.id', $id)->select('empresas.*')->first();
+    //     return view('Empresas.ListaEmpresas', compact('tipo'));
+    // }
     public function index(Request $request)
-    {
-        $rubros = $request->get('rubro');
-        $todos = $request;
-        /*$registros = Empresa::get();*/
-        if($rubros){
-            $registros = Empresa::where('rubro_empresa','like','rubros')->get();
-        }else{
-            $registros = Empresa::get();
-        }
-        return view('Empresas.ListaEmpresas', compact('registros'));
+    {   
+        $tipo1 = $request->get('rubro');
+        $registros = Empresa::select('rubro_empresa')->distinct()->get();
+        $tabla = Empresa::where('rubro_empresa', 'like', "%$tipo1%")->orderBy('created_at', 'desc')->get();
+        return view('Empresas.ListaEmpresas', compact('registros','tabla','tipo1'));
     }
 
     /**
@@ -34,8 +33,9 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        $rubro = RespuestaCotizacion::get();
-        return view('Empresas.NuevaEmpresa', compact('rubro'));
+        $razon = RespuestaCotizacion::select('razon_social')->distinct()->get();
+        $rubro = Empresa::select('rubro_empresa')->distinct()->get();
+        return view('Empresas.NuevaEmpresa', compact('razon', 'rubro'));
     }
 
     /**
@@ -48,6 +48,7 @@ class EmpresaController extends Controller
     {
         $empresas = new Empresa;
         $empresas->nombre_empresa     =$request->Empresa;
+        $empresas->acronimo_empresa    =$request->Nombre_Comercial;
         $empresas->representante_legal=$request->Representante_Legal;
         $empresas->direccion_empresa  =$request->Direccion;
         $empresas->nit_empresa        =$request->Nit;
@@ -55,7 +56,7 @@ class EmpresaController extends Controller
         $empresas->telefono_empresa   =$request->Telefono;
         $empresas->email_empresa      =$request->Correo_Electronico;
         $empresas->save();
-        return redirect('ListaEmpresas')->with('confirm', 'La empresa ha sido registrada');
+        return redirect('ListaEmpresas')->with('confirm', 'La empresa se registro correctamente');
         
     }
 
@@ -67,8 +68,8 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
-        
-        return view('Empresas.DetalleEmpresa');
+        $registro = Empresa::where('empresas.id', $id)->select('empresas.*')->first();
+        return view('Empresas.DetalleEmpresa', compact('registro'));
         //
     }
 
@@ -93,6 +94,9 @@ class EmpresaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $tipo = $request->get($id);
+        $registro = Empresa::where('empresas.id', $id)->select('empresas.*')->first();
+
     }
 
     /**

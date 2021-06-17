@@ -19,21 +19,32 @@
         <div><h1 class="display-4">Empresas Registradas</h1></div>
         <div class="row g-2">
             <div class="col-md">
-                {{--  <form action="" method="get">
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                      Todos
-                    </button>
-                    <ul class="dropdown-menu show" aria-labelledby="dropdownMenu2">
-                        <li><button class="dropdown-item" type="submit" name="todos" id="todos">Todos</button></li>
-                        <input type="hidden" name="rubro" value="todos">
-                    @foreach ($registros as $select)
-                    <li><button class="dropdown-item" type="submit" name="rubro" id="rubro">{{$select->rubro_empresa}}</button></li>
-                    @endforeach
-                    <input type="hidden" name="rubro" value={{$registros}}>
-                    </ul>
+              <div class="d-flex justify-content-first mb-3">
+              <form action="" method="GET">
+                {{-- <nav class="navbar navbar-light float-left">
+                  <div class="container-fluid">
+                    <form class="d-flex">
+                      <input name="rubro" class="form-control me-2" type="search" aria-label="Search" autocomplete="off">
+                      <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
                   </div>
-                </form>  --}}
+                </nav> --}}
+              <div class="dropdown">
+                <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{$tipo1==''?'Todos':$tipo1}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <span class="options">
+                    <button class="dropdown-item" type="submit" name="rubro" value="" id="rubro">Todos</button>
+                    @foreach($registros as $rubros)
+                    <button class="dropdown-item" type="submit" name="rubro" value="{{$rubros->rubro_empresa}}" id="rubro">{{$rubros->rubro_empresa}}</button>
+                    @endforeach
+                  </span>
+                  <span class="without d-none">Sin resultados</span>
+                </div>
+              </div>
+             </form>
+            </div>
             </div>
             <div class="col-md">
             <div class="d-flex justify-content-end mb-3">
@@ -49,18 +60,18 @@
                     <th scope="col">RUBRO</th>
                     <th scope="col">REPRESENTANTE LEGAL</th>
                     <th scope="col">TELEFONO</th>
-                    {{--  <th class="options"></th>  --}}
+                    <th class="options"></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($registros as $registro)
+                @foreach ($tabla as $registro)
                     <tr>
                         <td scope="row">{{ $loop->index +1}}</td>
                         <td>{{$registro->nombre_empresa}}</td>
                         <td>{{$registro->rubro_empresa}}</td>
                         <td>{{$registro->representante_legal}}</td>
                         <td>{{$registro->telefono_empresa}}</td>
-                        {{--  <td class="c-dark-theme options">
+                        <td class="c-dark-theme options">
                             <div class="dropdown dropleft">
                               <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <svg class="c-icon mfe-2">
@@ -69,14 +80,14 @@
                               </span>
                               <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
                                 <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-                                <a class="dropdown-item" href="{{ route('empresa.show')}}">
+                                <a class="dropdown-item" href="{{route('empresa.show', $registro->id)}}">
                                   <svg class="c-icon mfe-2">
                                     <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                                 </svg>Detalles
                                 </a>       
                               </div>
                             </div>
-                          </td>  --}}
+                          </td>
                     </tr>
                 @endforeach
             </tbody>

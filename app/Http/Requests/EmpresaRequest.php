@@ -24,7 +24,8 @@ class EmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-            'Empresa' => 'required',
+            'Empresa' => ['required','regex:/^[\pL\s\-]+$/u'],
+            'Nombre_Comercial' => 'required',
             'Representante_Legal' => ['required','regex:/^[\pL\s\-]+$/u'],
             'Direccion' => 'required',
             'Nit' => ['required','numeric'],

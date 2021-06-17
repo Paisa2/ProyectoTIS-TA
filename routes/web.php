@@ -81,7 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/ListaEmpresas','EmpresaController@index')->name('empresa.index');
     Route::get('/ListaEmpresas/NuevaEmpresa','EmpresaController@create')->name('empresa.create');
     Route::post('/ListaEmpresas/NuevaEmpresa','EmpresaController@store')->name('empresa.store');
-    Route::get('/ListaEmpresas/DetalleEmpresa','EmpresaController@show')->name('empresa.show');
+    Route::get('/ListaEmpresas/DetalleEmpresa/{id}','EmpresaController@show')->name('empresa.show');
     
     Route::get('storage/{archivo}', function ($archivo) {
         $public_path = public_path();
