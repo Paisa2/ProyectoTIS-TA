@@ -8,7 +8,7 @@
 @section('main')
 
 <div style="width:70%" class="container-table">
-  <h1 class="display-4">Detalle de Rol: {{$rol->nombre_rol}}</h1>
+  <h1 class="display-4">{{$rol->nombre_rol}}</h1>
   <br>
   <label class="form-label">Permisos:</label>
     <div class="overflow-auto">

@@ -15,14 +15,15 @@ use Barryvdh\DomPDF\Facade as PDF;
 class SolicitudCotizacionController extends Controller
 {
     public function index(){
-        $cotizaciones = Solicitud_cotizacion::all();
+        $cotizaciones = Solicitud_cotizacion::join('solicitudes_adquisiciones', 'solicitudes_adquisiciones.id', '=', 'solicitudes_cotizaciones.solicitud_a_id')
+        ->where('solicitudes_adquisiciones.para_unidad_id', session('unidad_id'))
+        ->select('solicitudes_cotizaciones.*')->get();
         foreach($cotizaciones as $cotizacion){
             $cotizacion->comparativo=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->count();
             if($cotizacion->comparativo > 0){
                 $cotizacion->comparativo_id=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->first()->id;
             }
         $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
-
         }
         $empresas = TodaEmpresa::all();
         return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones", "empresas"));

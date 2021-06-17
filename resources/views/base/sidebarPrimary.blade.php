@@ -36,10 +36,18 @@
       href="{{route('roles.index')}}">Roles de usuario</a>
     </li>
     @endif
+    @if(session()->has('Visualizar empresa'))
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ (request()->is('ListaEmpresas') || request()->is('ListaEmpresas/*')) ? 'active' : '' }}" 
+      <a class="c-sidebar-nav-link {{ (request()->is('ListaEmpresas') || request()->is('ListaEmpresas/*')) ? 'c-active' : '' }}" 
       href="{{route('empresa.index')}}">Empresas</a>
     </li>
+    @endif
+    @if(session('rol') == 'Superusuario')
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link {{ (request()->is('bitacora') || request()->is('bitacora/*')) ? 'c-active' : '' }}" 
+        href="{{route('bitacora.index')}}">Bitacora</a>
+      </li>
+      @endif
     <li class="c-sidebar-nav-title">Solicitudes</li>
     @if(session()->has('Visualizar solicitud de items'))
     <li class="c-sidebar-nav-item">

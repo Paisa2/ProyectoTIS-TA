@@ -28,6 +28,18 @@ body.bg-image.c-dark-theme {
 .modal-dialog {
   margin: 5rem auto;
 }
+.c-sidebar .text-truncate a {
+  color: #3c4b64 !important;
+}
+.c-dark-theme .c-sidebar .text-truncate a {
+  color: #fff !important;
+}
+.text-muted a{
+  color: #768192 !important;
+}
+.c-dark-theme .text-muted a{
+  color: rgba(255, 255, 255, 0.6) !important;
+}
 /* estilos slider on/off ----------------------------------------------------- */
 .c-switch-input:focus ~ .c-switch-slider {
   box-shadow: 0 0 0 0.2rem rgba(36, 37, 47, 0.5);

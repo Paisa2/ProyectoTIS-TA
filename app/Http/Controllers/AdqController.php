@@ -24,20 +24,39 @@ class AdqController extends Controller
         $tipo2 = $request->get('compra');
         $tipo3 = $request->get('alquiler');
         // $todos=Solicitud_adquisicion::all();
+        $unidadId = session('unidad_id');
         if(session('tipo_unidad') == 'unidad de gasto'){
-            $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")
-            ->where('tipo_solicitud_a', 'like', "%$tipo3%")
-            ->where('de_unidad_id', session('unidad_id'))
-            ->orderBy('updated_at','desc')->get();
+            $columnaUnidad = 'de_unidad_id';
+            $estadoSolicitud = '';
         }else if(session('tipo_unidad') == 'unidad administrativa'){
-            $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")
-            ->where('tipo_solicitud_a', 'like', "%$tipo3%")
-            ->where('para_unidad_id', session('unidad_id'))
-            ->where('estado_solicitud_a', '!=', 'Registrado')
-            ->orderBy('updated_at','desc')->get();
+            $columnaUnidad = 'para_unidad_id';
+            $estadoSolicitud = 'Registrado';
         }else{
-            $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")->where('tipo_solicitud_a', 'like', "%$tipo3%")->orderBy('updated_at','desc')->get();
+            $columnaUnidad = '1';
+            $unidadId = '1';
+            $estadoSolicitud = '';
         }
+        $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")
+            ->where('tipo_solicitud_a', 'like', "%$tipo3%")
+            ->whereRaw($columnaUnidad . '=' . $unidadId)
+            ->where('estado_solicitud_a', '!=', $estadoSolicitud)
+            ->orderBy('updated_at','desc')->get();
+        // if(session('tipo_unidad') == 'unidad de gasto'){
+        //     $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")
+        //     ->where('tipo_solicitud_a', 'like', "%$tipo3%")
+        //     ->where('de_unidad_id', session('unidad_id'))
+        //     ->orderBy('updated_at','desc')->get();
+        // }else if(session('tipo_unidad') == 'unidad administrativa'){
+        //     $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")
+        //     ->where('tipo_solicitud_a', 'like', "%$tipo3%")
+        //     ->where('para_unidad_id', session('unidad_id'))
+        //     ->where('estado_solicitud_a', '!=', 'Registrado')
+        //     ->orderBy('updated_at','desc')->get();
+        // }else{
+        //     $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")
+        //     ->where('tipo_solicitud_a', 'like', "%$tipo3%")
+        //     ->orderBy('updated_at','desc')->get();
+        // }
         foreach($solicitudes as $solicitud){
             $solicitud->cotizacion=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->count();
             if($solicitud->cotizacion > 0){

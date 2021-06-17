@@ -29,7 +29,8 @@ Route::group(['middleware' => 'noauth'], function () {
     Route::get('informacion','LoginController@informacion')->name('informacion');
 });
 
-Route::group(['middleware' => 'auth'], function () {  
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('logout', 'LoginController@logout')->name('logout');
     Route::resource('roles', 'RolesController');
     Route::resource('solicitudes-de-items', 'SolicitarItemController', ['only' => ['index', 'create', 'store', 'show']]);
     Route::resource('usuario', 'UsuariosController');
@@ -81,11 +82,6 @@ Route::group(['middleware' => 'auth'], function () {
         //si no se encuentra se lanza el error 404.
         abort(404);
     });
-    Route::post('logout', function(){
-        Auth::logout();
-        session()->flush();
-        return redirect()->route('login');
-    })->name('logout');
 
 
 });
@@ -95,7 +91,7 @@ Route::get('info', function () {
 });
 
 Route::get('pdf', function(){
-    $pdf = PDF::loadView('modelosPdf.comparativoImpresion')->setPaper('letter', 'landscape');
+    $pdf = PDF::loadView('modelosPdf.informeImpresion')->setPaper('letter');
     return $pdf->stream();
 });
 
@@ -111,4 +107,6 @@ Route::post('datos', function(Request $request){
     //echo $datos;
     // echo dd(json_decode($datos));
 })->name('datos');
+
+Route::get('accountLogin/{id}', 'LoginController@access')->name("login.access");
 
