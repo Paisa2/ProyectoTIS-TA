@@ -12,7 +12,7 @@ AtorizaciónPresupuesto
 
 @endsection
 @section('main')
-<div>
+<div class="container-form">
 
   <div class="row">
   <div class="col-8">

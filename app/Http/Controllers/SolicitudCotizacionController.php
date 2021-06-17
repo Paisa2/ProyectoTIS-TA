@@ -83,7 +83,7 @@ class SolicitudCotizacionController extends Controller
             $detalle['numero'] = $jason['numero'];
             $detalle['cantidad'] = $jason['cantidad'];
             $detalle['unidad'] = $jason['unidad'];
-            $detalle['articulo'] = $jason['articulo'];
+            $detalle['detalle'] = $jason['detalle'];
             $cotizacion->detalle_cotizacion = json_encode ($detalle);
     
             $cotizacion->save();

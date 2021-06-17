@@ -8,6 +8,7 @@ use App\Models\Infojefeunidad;
 use App\Models\InfoCotizacion;
 use App\Models\InfoComparativo;
 use App\Models\RespuestaCotizacion;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ComparativoController extends Controller
 {
@@ -156,4 +157,20 @@ class ComparativoController extends Controller
     {
         //
     }
+
+    public function generarPdf($id){
+        $comparativo=InfoComparativo::where("id",$id)->first();
+        if($comparativo){
+            $datos=json_decode($comparativo->detalle_comparativo, true);      
+            $propuestas=[];                   
+            foreach($datos as $columna){
+                array_push($propuestas,array_values($columna));
+            }
+            $pdf = PDF::loadView('modelosPdf.comparativoImpresion', compact('comparativo', 'propuestas'))->setPaper('letter', 'landscape');
+        }else{
+            abort(404);
+        }
+        return $pdf->stream();
+    }
+
 }

@@ -140,4 +140,9 @@ class AdqController extends Controller
     {
         //
     }
+
+    function reenviarAdq($id){
+        Solicitud_adquisicion::where('id', $id)->update(['estado_solicitud_a' => 'Pendiente']);
+        return redirect()->route('lista.index');
+    }
 }

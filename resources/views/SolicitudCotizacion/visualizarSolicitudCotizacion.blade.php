@@ -127,7 +127,7 @@
               <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <span class="search"><input type="text" class="form-control" ></span>
+                <span class="search"><input type="text" class="form-control" placeholder="Buscar"></span>
                 <span class="options">
                   @foreach($empresas as $empresa)
                   <span class="dropdown-item" id="{{str_replace(' ', '_', $empresa->nombre_empresa)}}">{{$empresa->nombre_empresa}}</span>

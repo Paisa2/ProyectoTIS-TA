@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Solicitud_cotizacion;
 use App\Models\RespuestaCotizacion;
 use App\Models\InfoCotizacion;
+use App\Models\TodaEmpresa;
 
 class RespuestasCotizacionController extends Controller
 {
@@ -41,7 +42,8 @@ class RespuestasCotizacionController extends Controller
             abort(404);
         }
         //echo dd($detalles);
-        return view("respuestasCotizacion.crearRespuestasCotizacion", compact("cotizacion","detalles"));
+        $empresas = TodaEmpresa::all();
+        return view("respuestasCotizacion.crearRespuestasCotizacion", compact("cotizacion","detalles", "empresas"));
     }
 
     /**

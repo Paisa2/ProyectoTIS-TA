@@ -47,7 +47,7 @@
         @endif
         @if(session()->has('Visualizar solicitud de cotizacion'))
         <li class="nav-item">
-          <a class="nav-link {{ (request()->is('solicitudCotizacion') || request()->is('solicitudCotizacion/*')) || (request()->is('comparativo') || request()->is('comparativo/*')) ? 'active' : '' }}" 
+          <a class="nav-link {{ (request()->is('solicitudCotizacion') || request()->is('solicitudCotizacion/*')) || (request()->is('comparativo') || request()->is('comparativo/*')) || (request()->is('respuestasCotizacion') || request()->is('respuestasCotizacion/*')) ? 'active' : '' }}" 
           href="{{route('solicitudCotizacion.index')}}">Solicitudes de cotizacion</a>
         </li>
         @endif
