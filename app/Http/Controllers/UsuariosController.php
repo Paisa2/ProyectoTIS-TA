@@ -8,6 +8,7 @@ use App\Models\Unidad;
 use Illuminate\Support\Facades\DB;
 use App\Models\Usuario;
 use App\Models\UsuarioTieneRol;
+use App\Models\InfoUsuario;
 
 class UsuariosController extends Controller
 {
@@ -115,7 +116,13 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        //
+        $usuario=InfoUsuario::where("id", $id)->first();
+        if($usuario){
+            return view ("usuario.detalleUsuario", compact("usuario"));
+        }
+        else{
+            abort(404);
+        }
     }
 
     /**
@@ -149,6 +156,17 @@ class UsuariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuario = usuario::where('id', $id)->first();
+        if ($usuario) {
+            $nombre = $usuario->nombres;
+            $apellido = $usuario->apellidos;
+            try {
+                $usuario->delete();
+                return redirect()->back()->withSuccess('Se elimino el usuario '.$nombre.' '.$apellido.' correctamente.');   
+            } catch (QueryException $e) {
+                return redirect()->back()->withError('El usuario ' .$nombre.' '.$apellido. ' esta en uso.');   
+            }
+        }
+        return redirect()->back()->withError('Ocurrio un error al momento de eliminar el usuario, intentelo de nuevo.');   
     }
 }

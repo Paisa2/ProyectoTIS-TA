@@ -9,7 +9,7 @@
 @section('main')
 
 <!-- codigo importante -->
-<div class="container my-4">
+<div class="container-form">
 
     <form action='{{route("respuestasCotizacion.store", $cotizacion->id)}}' method="post">
       <h2 class="display-4">Solicitud de Cotización</h2>

@@ -39,65 +39,65 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($cotizaciones as $cotizacion)
+              @foreach($cotizaciones as $cotizacion)
 
-            <tr>
+              <tr>
                 <td>{{ $loop->index +1 }}</td>
                 <td>{{$cotizacion->codigo_cotizacion}}</td>
                 <td>{{$cotizacion->respuestas}}</td>
                 <td>{{date("Y-m-d",strtotime($cotizacion->fecha_cotizacion))}}</td>   
                 <td class="options">
                   <div class="dropdown dropleft">
-                <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg class="c-icon mfe-2">
-                    <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
-                  </svg>
-                </span>
-                <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
-                  <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-                  <a class="dropdown-item" href="{{ route('solicitudCotizacion.show', $cotizacion->id) }}">
-                    <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                  </svg>Detalles
-                  </a>
-                  @if($cotizacion->respuestas>0)
-                  <a class="dropdown-item" href="{{ route('respuestasCotizacion.index', $cotizacion->id) }}">
-                    <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                  </svg>Ver Propuestas
-                  </a>                  
-                  @endif
-                  @if($cotizacion->respuestas<5)
-                  <a class="dropdown-item" href="{{ route('respuestasCotizacion.create', $cotizacion->id) }}">
-                    <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
-                  </svg>Añadir Respuesta
-                  </a>                  
-                  @endif
-                  @if($cotizacion->comparativo<1)
-                  <a class="dropdown-item" href="{{ route('comparativo.generar', $cotizacion->id) }}">
-                    <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/list-low-priority.svg#i-list-low-priority')}}"></use>
-                  </svg>Generar Cuadro Comparativo
-                  </a>   
-                  @endif
-                  @if($cotizacion->comparativo>0)
-                  <a class="dropdown-item" href="{{ route('comparativo.detalle', $cotizacion->comparativo_id) }}">
-                    <svg class="c-icon mfe-2">
-                    <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                  </svg>Detalles del Cuadro Comparativo
-                  </a>
-                  @endif
-                  <button class="dropdown-item" data-toggle="modal" data-target="#generar-pdf" data-value="{{$cotizacion->id}}">
-                    <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
-                    </svg>Imprimir
-                  </button>
-                </div>
-              </div>
+                    <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <svg class="c-icon mfe-2">
+                        <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+                      </svg>
+                    </span>
+                    <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+                      <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+                        <a class="dropdown-item" href="{{ route('solicitudCotizacion.show', $cotizacion->id) }}">
+                          <svg class="c-icon mfe-2">
+                            <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                          </svg>Detalles
+                        </a>
+                      @if($cotizacion->respuestas>0)
+                      <a class="dropdown-item" href="{{ route('respuestasCotizacion.index', $cotizacion->id) }}">
+                        <svg class="c-icon mfe-2">
+                          <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                        </svg>Ver Propuestas
+                      </a>                  
+                      @endif
+                      @if($cotizacion->respuestas<5)
+                      <a class="dropdown-item" href="{{ route('respuestasCotizacion.create', $cotizacion->id) }}">
+                        <svg class="c-icon mfe-2">
+                          <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
+                        </svg>Añadir Respuesta
+                      </a>                  
+                      @endif
+                      @if($cotizacion->comparativo<1)
+                      <a class="dropdown-item" href="{{ route('comparativo.generar', $cotizacion->id) }}">
+                        <svg class="c-icon mfe-2">
+                          <use xlink:href="{{asset('img/icons/list-low-priority.svg#i-list-low-priority')}}"></use>
+                        </svg>Generar Cuadro Comparativo
+                      </a>   
+                      @endif
+                      @if($cotizacion->comparativo>0)
+                      <a class="dropdown-item" href="{{ route('comparativo.detalle', $cotizacion->comparativo_id) }}">
+                        <svg class="c-icon mfe-2">
+                          <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                        </svg>Detalles del Cuadro Comparativo
+                      </a>
+                      @endif
+                      <button class="dropdown-item" data-toggle="modal" data-target="#generar-pdf" data-value="{{$cotizacion->id}}">
+                        <svg class="c-icon mfe-2">
+                          <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
+                        </svg>Imprimir
+                      </button>
+                    </div>
+                  </div>
                 </td>       
-            </tr>
-            @endforeach
+              </tr>
+              @endforeach
             </tbody>    
         </table>                      
 
