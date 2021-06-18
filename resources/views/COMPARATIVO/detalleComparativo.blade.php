@@ -47,7 +47,7 @@
     </div>
     <div class="d-flex align-items-center mb-3">
       <div class="comparativo-options">
-        <a href="{{$datoscomparativo->informe_id? route('emitirinforme', $datoscomparativo->id) : route('detalleinforme', $datoscomparativo->informe_id)}}">
+        <a href="{{$datoscomparativo->informe_id? route('detalleinforme', $datoscomparativo->informe_id) : route('emitirinforme', $datoscomparativo->id)}}">
           <svg class="c-icon c-icon-lg">
             <use xlink:href="{{asset('img/icons/clipboard.svg#i-clipboard')}}"></use>
           </svg>

@@ -10,8 +10,10 @@ use App\Models\InfoComparativo;
 use App\Models\InformeAutorizacion;
 use App\Models\Presupuesto;
 use App\Models\InfoCotizacion;
+use App\Models\InfoUsuario;
 use App\Models\ProcesoCotizacionId;
 use App\Models\RespuestaCotizacion;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 class EmitirInformeController extends Controller
@@ -33,12 +35,9 @@ class EmitirInformeController extends Controller
             
             return view( 'EmitirInforme.DetalleInforme', compact('meses', 'comparativo','informe','respuestas'));
 
- 
         }else{
-           abort(404); 
+            abort(404); 
         }
-        
-       
     }
 
     /**
@@ -153,5 +152,22 @@ class EmitirInformeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function generarPdf($id){
+        $informe=InformeAutorizacion::where('id',$id)->first();
+        if($informe){
+            $comparativo=InfoComparativo::where('id',$informe->comparativo_id)->first();
+            $meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+            $empresas=[];                     
+            foreach(json_decode($comparativo->empresas_comparativo, true) as $columna){
+                array_push($empresas,array_values($columna));
+            }
+            $remitente = InfoUsuario::where('id', session('id'))->first();
+            $pdf = PDF::loadView('modelosPdf.informeImpresion', compact('meses', 'informe', 'comparativo', 'empresas', 'remitente'))->setPaper('letter');
+            return $pdf->stream();
+        }else{
+            abort(404);
+        }
     }
 }

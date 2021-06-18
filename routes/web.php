@@ -67,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('emitirinforme/{id}','EmitirInformeController@emitirinforme')->name('emitirinforme');
     Route::post('emitirinforme/{id}','EmitirInformeController@store')->name('guardarinforme');
     Route::get('emitirinforme/detalle/{id}','EmitirInformeController@show')->name('detalleinforme');
+    Route::get('generarInformePdf/{id}','EmitirInformeController@generarPdf')->name('informe.generarpdf');
     Route::get('/ListaEmpresas','EmpresaController@index')->name('empresa.index');
     Route::get('/ListaEmpresas/NuevaEmpresa','EmpresaController@create')->name('empresa.create');
     Route::post('/ListaEmpresas/NuevaEmpresa','EmpresaController@store')->name('empresa.store');

@@ -7,7 +7,6 @@ AtorizaciónPresupuesto
 <title>AtorizaciónPresupuesto</title>
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 <link rel="stylesheet" href="{{ asset('css/EmitirInforme.css') }}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 @endsection
 @section('main')
@@ -25,7 +24,16 @@ AtorizaciónPresupuesto
          <div class="d-flex justify-content-end"> Cochabamba,{{date("d",strtotime($informe->created_at))}} de {{$meses[date("n",strtotime($informe->created_at))-1]}} de {{date("Y",strtotime($informe->created_at))}}</div>
          <label for="tipo" class="form-label">Señor: {{$comparativo->nombre_solicitante}}</label>
          <br>
-         <label for="tipo" class="form-label">PRESENTE</label>
+         <div class="d-flex justify-content-between">
+            <label for="tipo" class="form-label">PRESENTE</label>
+            <div class="informe-options">
+               <a href="{{route('informe.generarpdf', $informe->id)}}">
+                  <svg class="c-icon c-icon-lg">
+                     <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
+                  </svg>
+               </a>
+            </div>
+         </div>
          <div class="d-flex justify-content-center"> REF: INFORME DE LA SOLICITUD DE ADQUISICIÓN {{ strtoupper ( $informe->tipo_informe )}}</div>
          <br>
 
