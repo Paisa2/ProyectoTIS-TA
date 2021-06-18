@@ -43,7 +43,7 @@ AtorizaciónPresupuesto
                      
                       </div>
                       
-                      <textarea name="justificacion" id="justificacion-c" class="form-control" cols="30" rows="6" style="resize: none"> Teniendo en cuenta que su unidad {{$comparativo->unidad_solicitante}} tiene un presupuesto anual {{$presupuesto}} bs, {{ $comparativo->empresa_recomendada !=''? 'Como resultado del proceso de cotización la empresa seleccionada es '.$comparativo->empresa_recomendada.' que cotizo la solicitud de adquisición por un monto de: '.$monto.' bs':''}}
+                      <textarea name="justificacion" id="justificacion-c" class="form-control" cols="30" rows="6" style="resize: none"> Teniendo en cuenta que su unidad {{$comparativo->unidad_solicitante}} tiene un presupuesto anual {{$presupuesto}} Bs, {{ $comparativo->empresa_recomendada !=''? 'Como resultado del proceso de cotización la empresa seleccionada es '.$comparativo->empresa_recomendada.' que cotizo la solicitud de adquisición por un monto de: '.$monto.' Bs':''}}
                     
                       </textarea>
                       <label for="tipo" class="form-label">Sin otro en particular mos despedimos de us persona muy cordialmente deseandoles exitos en sus funcionaes que desempeñan actualmente.</label>

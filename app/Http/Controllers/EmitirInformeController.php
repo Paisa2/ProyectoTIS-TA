@@ -88,7 +88,7 @@ class EmitirInformeController extends Controller
         }elseif($request->tipo=='Rechazado'){
             Solicitud_adquisicion::where("id", $comparativo->solicitud_a_id)->update(["estado_solicitud_a" => "Rechazado"]); 
         }
-        return redirect()->route('bienvenido');
+        return redirect()->route('bienvenido')->with('confirm', 'Nuevo usuario registrado correctamente');         ;
     }
 
     /**
