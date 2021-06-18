@@ -34,7 +34,15 @@
       <label class="numero"><b>N°</b> {{$datoscomparativo->codigo_cotizacion}}</label>
     </div>
   </div>
-  
+  <div class="mb-3">
+  <label for="observaciones" class="labelcompad"><b>DESICION:&nbsp;</b></label>
+  <label class="labelcompad"> {{$datoscuadrocomparativo->empresa_recomendada?"Adquisicion Aceptada":"Adquisicion Rechazada"}}</label>
+  <br>
+  <div class="mb-3">
+  <label for="observaciones" class="labelcompad"><b>EMPRESA RECOMENDADA:&nbsp;</b></label>
+  <label class="labelcompad">{{$datoscuadrocomparativo->empresa_recomendada}}</label>
+  </div>
+  </div>
   <div class="row-0"><b>CASAS COMERCIALES</b></div>
   <table class="comparativo">
     <thead>
@@ -42,11 +50,31 @@
         <th class="c-1"><b>CANT.</b></th>
         <th class="c-2"><b>UND.</b></th>
         <th class="c-3"><b>DESCRIPCION</b></th>
-        <th class="c-4"><b>1</b></th>
-        <th class="c-4"><b>2</b></th>
-        <th class="c-4"><b>3</b></th>
-        <th class="c-4"><b>4</b></th>
-        <th class="c-4"><b>5</b></th>
+        <th class="c-4 r-1">
+              @if(0<count($empresas))
+                {{$empresas[0][0]}}
+              @endif
+              <br><b>1</b></th>
+        <th class="c-4 r-2">
+              @if(1<count($empresas))
+                {{$empresas[1][0]}}
+              @endif
+              <br><b>2</b></th>
+        <th class="c-4 r-3">
+              @if(2<count($empresas))
+                {{$empresas[2][0]}}
+              @endif
+              <br><b>3</b></th>
+        <th class="c-4 r-4">
+              @if(3<count($empresas))
+                {{$empresas[3][0]}}
+              @endif
+              <br><b>4</b></th>
+        <th class="c-4 r-5">
+              @if(4<count($empresas))
+                {{$empresas[4][0]}}
+              @endif
+              <br><b>5</b></th>
       </tr>
     </thead>
     <tbody>
@@ -95,12 +123,36 @@
        <td></td>
        </tr>
       @endfor
+      <tr>
+       <td colspan="3"><b>TOTALES</b></td>
+       <td class="r-1">
+       @if(0<count($empresas))
+          {{$empresas[0][1]}}
+       @endif
+        </td>
+       <td class="r-2">
+       @if(1<count($empresas))
+          {{$empresas[1][1]}}
+       @endif
+        </td>
+       <td class="r-3">
+       @if(2<count($empresas))
+          {{$empresas[2][1]}}
+       @endif
+        </td>
+       <td class="r-4">
+       @if(3<count($empresas))
+          {{$empresas[3][1]}}
+       @endif
+        </td>
+       <td class="r-5">
+       @if(4<count($empresas))
+          {{$empresas[4][1]}}
+       @endif
+        </td>
+       </tr>
     </tbody>
   </table>
-  <div class="mb-3">
-  <label for="observaciones" class="labelcompad"><b>EMPRESA RECOMENDADA: </b></label>
-  <label class="labelcompad"> {{$datoscuadrocomparativo->empresa_recomendada}}</label>
-  </div>
   <div class="mb-3">
     <label for="observaciones" class="labelcompad"><b>OBSERVACIONES:</b> </label>
     <label class="labelcompad">{{$datoscuadrocomparativo->observaciones_comparativo}}</label>

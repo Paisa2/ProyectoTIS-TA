@@ -5,11 +5,24 @@
 @endsection
 
 @section('main')
+
 @if(session()->has('confirm'))
   <div class="alert alert-success" role="alert" id="confirm">
   {{session()->get('confirm')}}
   </div>
   <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",4000);</script>
+@endif
+@if(session()->has('success'))
+    <div class="alert alert-success" role="alert" id="success">
+        {{ session()->get('success') }}
+    </div>
+    <script>setTimeout("document.getElementById('success').classList.add('d-none');",3000);</script>
+@endif
+@if(session()->has('error'))
+    <div class="alert alert-danger" role="alert" id="error">
+        {{ session()->get('error') }}
+    </div>
+    <script>setTimeout("document.getElementById('error').classList.add('d-none');",3000);</script>
 @endif
 <div style="width:90%; margin:24px auto;" class="container-table">
 
@@ -29,6 +42,7 @@
         <th scope="col">NOMBRE</th>
         <th scope="col">PERTENECE A</th>
         <th scope="col">DETALLE DE CREACIÓN</th>
+        <th class="options"></th>
       </tr>
     </thead>
     <tbody>
@@ -39,6 +53,30 @@
         <td>{{$itemgasto->nombre_item}}</td>
         <td>{{$itemgasto->pertenece_a}}</td>
         <td>{{$itemgasto->created_at}}</td>
+        <td class="options">
+                  <div class="dropdown dropleft">
+                <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <svg class="c-icon mfe-2">
+                    <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+                  </svg>
+                </span>
+                <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+                  <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+                  <a class="dropdown-item" type="submit" href="">
+                  <svg class="c-icon mfe-2">
+                    <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
+                  </svg>Editar
+                </a>
+
+                <form action="{{ route('itemsgastos.destroy', $itemgasto->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
+                <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
+                  <svg class="c-icon mfe-2">
+                    <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
+                  </svg>Eliminar
+                </button>
+                  </div>
+              </div>
+                </td> 
       </tr>
     @endforeach
     </tbody>
