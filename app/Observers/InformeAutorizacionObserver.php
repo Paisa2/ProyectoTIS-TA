@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\InformeAutorizacion;
+use App\Models\InformeComparativo;
 use App\Models\Bitacora;
 
 class InformeAutorizacionObserver
@@ -10,32 +11,34 @@ class InformeAutorizacionObserver
   /**
    * Listen to the User created event.
    *
-   * @param  ComparativoCotizacion  $data
+   * @param  InformeAutorizacion  $data
    * @return void
    */
-  public function created(ComparativoCotizacion $data)
+  public function created(InformeAutorizacion $data)
   {
+    $codigo = InfoComparativo::where("id", $data->cotizacion_id)->first()->codigo_solicitud_a;
     $bitacora = new Bitacora;
     $bitacora->usuario_id = session("id");
     $bitacora->operacion = "Registrar";
-    $bitacora->modulo = "Informe autorizacion";
-    $bitacora->detalle = "Informe autorizacion de la solicitud de adquisicion N° " . " registrado";
+    $bitacora->modulo = "Informe de autorizacion";
+    $bitacora->detalle = "Informe de autorizacion de la solicitud de adquisicion N° " . $codigo . " registrado";
     $bitacora->save();
   }
 
   /**
    * Listen to the User deleting event.
    *
-   * @param  ComparativoCotizacion  $data
+   * @param  InformeAutorizacion  $data
    * @return void
    */
-  public function deleting(ComparativoCotizacion $data)
+  public function deleting(InformeAutorizacion $data)
   {
+    $codigo = InfoComparativo::where("id", $data->cotizacion_id)->first()->codigo_solicitud_a;
     $bitacora = new Bitacora;
     $bitacora->usuario_id = session("id");
     $bitacora->operacion = "Eliminar";
-    $bitacora->modulo = "Informe autorizacion";
-    $bitacora->detalle = "Informe autorizacion de la solicitud de adquisicion N° " . " eliminado";
+    $bitacora->modulo = "Informe de autorizacion";
+    $bitacora->detalle = "Informe de autorizacion de la solicitud de adquisicion N° " . $codigo . " eliminado";
     $bitacora->save();
   }
 }

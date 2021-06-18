@@ -12,10 +12,10 @@ AtorizaciónPresupuesto
 
 @endsection
 @section('main')
-<div class="container-form">
+<div>
 
   <div class="row">
-  <div class="col-8">
+  <div class="col-8 container-pane">
   <form >
     <div>
       <h2 class="display-4">Detalle de la Solicitud de Adquisición N° {{$autopre->codigo_solicitud_a}}</h2>
@@ -113,7 +113,7 @@ AtorizaciónPresupuesto
   </form>
 
   </div>
-  <div class="col-4">
+  <div class="col-4 container-pane">
 
   <form >
     <div >
