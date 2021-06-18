@@ -11,6 +11,12 @@ AtorizaciónPresupuesto
 
 @endsection
 @section('main')
+@if(session('confirm'))
+<div class="alert alert-success" role="alert" id="confirm">
+    {!! session('confirm') !!}
+</div>
+<script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
+@endif
 <div class="container-form">
 
    <form>
