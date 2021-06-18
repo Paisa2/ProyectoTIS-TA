@@ -6,6 +6,7 @@ use App\Http\Requests\AdquisicionRequest;
 use App\Models\Solicitud_adquisicion;
 use App\Models\Solicitud_cotizacion;
 use App\Models\ItemGasto;
+use App\Models\ProcesoCotizacionId;
 use Illuminate\Http\Request;
 
 class AdqController extends Controller
@@ -40,8 +41,12 @@ class AdqController extends Controller
         }
         foreach($solicitudes as $solicitud){
             $solicitud->cotizacion=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->count();
+            $solicitud->informes=ProcesoCotizacionId::where('solicitud_a_id',$solicitud->id)->count();
             if($solicitud->cotizacion > 0){
                 $solicitud->cotizacion_id=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->first()->id;
+            }
+            if($solicitud->informes > 0){
+                $solicitud->informe_id=ProcesoCotizacionId::where('solicitud_a_id',$solicitud->id)->first()->informe_autorizacion_id;
             }
         }
         return view('solicitudes-adq.lista', compact('solicitudes'));

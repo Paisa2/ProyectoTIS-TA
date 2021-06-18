@@ -14,8 +14,10 @@
     <title>Información</title>
 </head>
 <body>
-    <nav class= "nav">
-    <ul class="nav nav-tabs">
+
+    <nav class= "nav d-flex justify-content-end" >
+    
+    <ul class="nav nav-tabs ">
   <li class="nav-item">
     <a class="nav-link " href="/contacto">Contactos</a>
   </li>
@@ -31,6 +33,7 @@
   </li>
   
 </ul>
+
     </nav>
        <div class="container">
           <div class='row'>

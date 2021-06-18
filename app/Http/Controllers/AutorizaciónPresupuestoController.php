@@ -90,12 +90,23 @@ class AutorizaciónPresupuestoController extends Controller
     public function update(Request $request,$tipo, $id)
 
     {
-        if($tipo=='aceptar'){
+        $solicitud=Solicitud_adquisición::where('id',$id)->first();
+       if($solicitud){
+            if($tipo=='aceptar'){
             Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Proceso de cotizacion"]); 
-        }elseif($tipo=='rechazar'){
+            $mensaje="Se Acepto la solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." para la cotización";
+           }elseif($tipo=='rechazar'){
             Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Rechazado por falta de presupuesto"]); 
-        }
-        return redirect()->route('lista.index');
+            $mensaje="Se Rechazo la solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." por falta de presupuesto";
+          
+            }
+            else{
+                $mensaje="La solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." no se pudo verificar";
+            }
+        return redirect()->route('lista.index')->with('confirm',$mensaje);
+       }else{
+           abort(404);
+       }
     }
 
     /**

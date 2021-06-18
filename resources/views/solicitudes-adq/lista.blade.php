@@ -104,6 +104,13 @@
                     </svg>Ver Cotización
                   </a>
                   @endif
+                  @if($listadb->informes > 0)
+                  <a class="dropdown-item" href="{{ route('detalleinforme', $listadb->informe_id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/quotation.svg#i-quotation')}}"></use>
+                    </svg>Ver Informe
+                  </a>
+                  @endif
                 </div>
               </div>
             </td>

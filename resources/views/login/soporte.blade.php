@@ -15,7 +15,7 @@
 </head>
 <body>
        
-         <nav class= "nav">
+         <nav class= "nav d-flex justify-content-end">
             
                     <ul class="nav nav-tabs">
                  <li class="nav-item">
