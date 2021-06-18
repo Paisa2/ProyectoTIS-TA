@@ -14,7 +14,7 @@
   <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 @endif
 
-<div class="container my-4 container-table">
+<div class="container-table">
 
     <form action="/SolicitudCotizacion" method="table">
         {{csrf_field()}}

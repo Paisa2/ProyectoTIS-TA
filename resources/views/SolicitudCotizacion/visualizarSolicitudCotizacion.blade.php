@@ -40,16 +40,16 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($cotizaciones as $cotizacion)
+              @foreach($cotizaciones as $cotizacion)
 
-            <tr>
+              <tr>
                 <td>{{ $loop->index +1 }}</td>
                 <td>{{$cotizacion->codigo_cotizacion}}</td>
                 <td>{{$cotizacion->respuestas}}</td>
                 <td>{{$cotizacion->informes<1? 'Proceso de cotizacion' : 'Concluido'}}</td>
                 <td>{{date("Y-m-d",strtotime($cotizacion->fecha_cotizacion))}}</td>   
                 <td class="options">
-                  <div class="dropdown dropleft">
+                <div class="dropdown dropleft">
                 <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <svg class="c-icon mfe-2">
                     <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
@@ -100,8 +100,8 @@
                 </div>
               </div>
                 </td>       
-            </tr>
-            @endforeach
+              </tr>
+              @endforeach
             </tbody>    
         </table>                      
 
