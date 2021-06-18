@@ -1,8 +1,8 @@
 @extends('base')
 
 @section('head')
-<link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
+<link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 <link rel="stylesheet" href="{{ asset('css/roles/tableRol.css') }}">
 @endsection
 

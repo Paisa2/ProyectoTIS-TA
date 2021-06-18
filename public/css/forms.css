@@ -9,6 +9,7 @@ form .btn {
 }
 /* estilos form ------------------------------------------------ */
 .container-form {
+  min-height: 30rem;
   background-color: #ebedef;
   width: 90%;
   border-radius: 10px;
@@ -150,7 +151,7 @@ background-color: gray;
   left:0px; 
   border:none !important; 
   box-shadow:none !important; 
-  width:93%;
+  width: calc(100% - 2rem);
   background-color: transparent !important;
 }
 .select-editable .dropdown button.dropdown-toggle{

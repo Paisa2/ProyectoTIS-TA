@@ -15,7 +15,7 @@
       <div class="titulo d-flex justify-content-center">
     <h1 class="display-4">Detalles del Cuadro Comparativo</h1>
   </div>
-  <div class="d-flex justify-content-end" style="margin-top:-5rem;">
+  <div class="d-flex justify-content-end" style="margin-top:-3rem;">
     <div class="fecha">
       <table>
         <thead>
@@ -34,14 +34,33 @@
       <label class="numero"><b>N°</b> {{$datoscomparativo->codigo_cotizacion}}</label>
     </div>
   </div>
-  <div class="mb-3">
-  <label for="observaciones" class="labelcompad"><b>DESICION:&nbsp;</b></label>
-  <label class="labelcompad"> {{$datoscuadrocomparativo->empresa_recomendada?"Adquisicion Aceptada":"Adquisicion Rechazada"}}</label>
-  <br>
-  <div class="mb-3">
-  <label for="observaciones" class="labelcompad"><b>EMPRESA RECOMENDADA:&nbsp;</b></label>
-  <label class="labelcompad">{{$datoscuadrocomparativo->empresa_recomendada}}</label>
-  </div>
+  <div class="d-flex justify-content-between">
+    <div class="mb-3">
+      <div class="mb-3">
+        <label for="observaciones" class="labelcompad"><b>DESICION:&nbsp;</b></label>
+        <label class="labelcompad"> {{$datoscuadrocomparativo->empresa_recomendada?"Adquisicion Aceptada":"Adquisicion Rechazada"}}</label>
+      </div>
+      <div>
+        <label for="observaciones" class="labelcompad"><b>EMPRESA SELECCIONADA:&nbsp;</b></label>
+        <label class="labelcompad">{{$datoscuadrocomparativo->empresa_recomendada ? $datoscuadrocomparativo->empresa_recomendada : 'Ninguna empresa'}}</label>
+      </div>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <div class="comparativo-options">
+        <a href="{{$datoscomparativo->informe_id? route('emitirinforme', $datoscomparativo->id) : route('detalleinforme', $datoscomparativo->informe_id)}}">
+          <svg class="c-icon c-icon-lg">
+            <use xlink:href="{{asset('img/icons/clipboard.svg#i-clipboard')}}"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="comparativo-options">
+        <a href="{{route('comparativo.generarpdf', $datoscomparativo->id)}}">
+          <svg class="c-icon c-icon-lg">
+            <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
   <div class="row-0"><b>CASAS COMERCIALES</b></div>
   <table class="comparativo">
@@ -155,7 +174,7 @@
   </table>
   <div class="mb-3">
     <label for="observaciones" class="labelcompad"><b>OBSERVACIONES:</b> </label>
-    <label class="labelcompad">{{$datoscuadrocomparativo->observaciones_comparativo}}</label>
+    <label class="labelcompad">{{$datoscuadrocomparativo->observaciones_comparativo ? $datoscuadrocomparativo->observaciones_comparativo : 'Sin observaciones'}}</label>
   </div>
   <table class="informacion">
     <thead>

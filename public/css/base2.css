@@ -12,11 +12,33 @@ body.bg-image {
 body.bg-image.c-dark-theme {
   background-image: url(../imagenes/citysoft-2.jpg);
 }
+.container-pane {
+  min-height: 30rem;
+  background-color: #ebedef;
+  border-radius: 10px;
+  padding:24px;
+  margin: 24px auto;
+}
+.c-dark-theme .container-pane {
+  background-color: #24252F;
+}
 .m-0 {
   margin: 0;
 }
 .modal-dialog {
   margin: 5rem auto;
+}
+.c-sidebar .text-truncate a {
+  color: #3c4b64 !important;
+}
+.c-dark-theme .c-sidebar .text-truncate a {
+  color: #fff !important;
+}
+.text-muted a{
+  color: #768192 !important;
+}
+.c-dark-theme .text-muted a{
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 /* estilos slider on/off ----------------------------------------------------- */
 .c-switch-input:focus ~ .c-switch-slider {
@@ -48,14 +70,14 @@ body.bg-image.c-dark-theme {
 .c-sidebar-nav-link {
   padding-left: 2rem;
 }
-.c-sidebar-nav-link.active {
+.c-sidebar-nav-link.c-active {
   border-right: 2px solid #22222F;
 }
 .c-sidebar-nav-link:hover {
   background-color: rgba(255, 255, 255, .05) !important;
 }
 /* estilos barra lateral izquierda dark ------------------------------------  */
-.c-dark-theme .c-dark-theme .c-sidebar-nav-link.active {
+.c-dark-theme .c-sidebar-nav-link.c-active {
   border-color: #fff;
 }
 /* ---------------------------------------------------------------------------------------- */
@@ -351,5 +373,20 @@ form button[type='submit'].disabled:not(.dropdown-item), form button[type='submi
 .c-dark-theme .show > .btn-primary.dropdown-toggle:focus {
   border-color: #fff;
   box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
+}
+/* ------------------------------------------------------------------------------------- */
+/* estilos paginacion --------------------------------------------------*/
+.page-item.active .page-link,
+.c-dark-theme .page-item.active .page-link {
+  background-color: #181924;
+  color: #fff;
+  border-color: #fff;
+}
+.page-link:focus {
+  box-shadow: 0 0 0 0.1rem rgba(36, 37, 47, 0.25);
+}
+/* estilos paginacion dark ---------------------------------------------*/
+.c-dark-theme .page-link:focus {
+  box-shadow: 0 0 0 0.1rem rgba(216, 219, 224, 0.25);
 }
 /* ------------------------------------------------------------------------------------- */

@@ -9,7 +9,7 @@
 @section('main')
 
 <!-- codigo importante -->
-<div class="container my-4">
+<div class="container-form my-4">
 
     <form>
       <h2 class="display-4">Detalle de solicitud de Cotización</h2>

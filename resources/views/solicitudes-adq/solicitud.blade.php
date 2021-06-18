@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-6">
             <label for="fecha" class="form-label">Fecha de entrega:</label>
-            <input type="date" name="fecha" id="" value="{{old('fecha')}}" class="form-control" min=<?php $fecha=date("Y-m-d"); echo date("Y-m-d", strtotime($fecha."+ 3 days"));?>>
+            <input type="date" name="fecha" id="" value="{{ old('fecha') }}" class="form-control" min=<?php $fecha=date("Y-m-d"); echo date("Y-m-d", strtotime($fecha."+ 3 days"));?>>
             @foreach($errors->get('fecha') as $message)
             <div class="alert alert-danger" role="alert">{{$message}}</div>
             @endforeach
@@ -57,18 +57,18 @@
           <tbody>
           @for($i=0; $i<10; $i++)
             <tr>
-              <td><input id="nc-{{$i+1}}" type="text" name="detalle[numero][u{{$i}}]" autocomplete="off"></td>
+              <td><input id="nc-{{$i+1}}" type="text" name="detalle[numero][u{{$i}}]" value="{{old('detalle.numero.u'.$i)}}" autocomplete="off"></td>
               <td class="articulo">
                 <select id="ac-{{$i+1}}" name="detalle[detalle][d{{$i}}]">
                   <option hidden selected value="">Seleccione</option>
                   @foreach($adquisicion as $solicitudes)
-                      <option value="{{ $solicitudes->nombre_item }}">{{ $solicitudes->nombre_item }}</option>
+                      <option value="{{ $solicitudes->nombre_item }}" {{ old('detalle.detalle.d'.$i) == $solicitudes->nombre_item ? 'selected' : '' }}>{{ $solicitudes->nombre_item }}</option>
                   @endforeach
                 </select>
               </td>
-              <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]" autocomplete="off"></td>
-              <td><input type="text" name="detalle[unidad][u{{$i}}]" autocomplete="off"></td>
-              <td><input id="pc-{{$i+1}}" type="number" min="1" name="detalle[precio][p{{$i}}]" autocomplete="off"></td>
+              <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]" value="{{old('detalle.cantidad.c'.$i)}}" autocomplete="off"></td>
+              <td><input type="text" name="detalle[unidad][u{{$i}}]" value="{{old('detalle.unidad.u'.$i)}}" autocomplete="off"></td>
+              <td><input id="pc-{{$i+1}}" type="number" min="1" name="detalle[precio][p{{$i}}]" value="{{old('detalle.precio.p'.$i)}}" autocomplete="off"></td>
             </tr>
             @endfor
             <tr>
@@ -91,24 +91,24 @@
           <tbody>
             @for($i=0; $i<10; $i++)
             <tr>
-              <td><input id="na-{{$i+1}}" type="text" name="detalle[numero][u{{$i}}]" autocomplete="off"></td>
-              <td class="articulo"><input id="aa-{{$i+1}}" type="text" name="detalle[detalle][d{{$i}}]" autocomplete="off"></td>
-              <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]" autocomplete="off"></td>
+              <td><input id="na-{{$i+1}}" type="text" name="detalle[numero][u{{$i}}]" value="{{old('detalle.numero.u'.$i)}}" autocomplete="off"></td>
+              <td class="articulo"><input id="aa-{{$i+1}}" type="text" name="detalle[detalle][d{{$i}}]" value="{{old('detalle.detalle.d'.$i)}}" autocomplete="off"></td>
+              <td><input type="number" min="1" name="detalle[cantidad][c{{$i}}]" value="{{old('detalle.cantidad.c'.$i)}}" autocomplete="off"></td>
               <td>
                   <select name="detalle[unidad][u{{$i}}]">
                   <option hidden selected value="">Seleccione</option>
-                    <option value="Horas">Horas</option>
-                    <option value="Dias">Dias</option>
-                    <option value="Meses">Meses</option>
-                    <option value="Años">Años</option>
+                    <option value="Horas" {{ old('detalle.unidad.u'.$i) == 'Horas' ? 'selected' : '' }}>Horas</option>
+                    <option value="Dias" {{ old('detalle.unidad.u'.$i) == 'Dias' ? 'selected' : '' }}>Dias</option>
+                    <option value="Meses" {{ old('detalle.unidad.u'.$i) == 'Meses' ? 'selected' : '' }}>Meses</option>
+                    <option value="Años" {{ old('detalle.unidad.u'.$i) == 'Años' ? 'selected' : '' }}>Años</option>
                   </select>
                 </td>
-              <td><input id="pa-{{$i+1}}" type="number" min="1" name="detalle[precio][p{{$i}}]" autocomplete="off"></td>
+              <td><input id="pa-{{$i+1}}" type="number" min="1" name="detalle[precio][p{{$i}}]" value="{{old('detalle.precio.p'.$i)}}" autocomplete="off"></td>
             </tr>
             @endfor
             <tr>
               <td colspan="4">TOTAL</td>
-              <td><input id="total-a" type="text" name="total" value="{{old('total')}}" autocomplete="off"></td>
+              <td><input id="total-a" type="text" name="total" value="{{old('total')}}" autocomplete="off" style="user-select: none;"></td>
             </tr>
           </tbody>
         </table>

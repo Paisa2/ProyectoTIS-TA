@@ -36,10 +36,19 @@
       href="{{route('roles.index')}}">Roles de usuario</a>
     </li>
     @endif
+    @if(session()->has('Visualizar empresa'))
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ (request()->is('ListaEmpresas') || request()->is('ListaEmpresas/*')) ? 'active' : '' }}" 
+      <a class="c-sidebar-nav-link {{ (request()->is('ListaEmpresas') || request()->is('ListaEmpresas/*')) ? 'c-active' : '' }}" 
       href="{{route('empresa.index')}}">Empresas</a>
     </li>
+    @endif
+    <li class="c-sidebar-nav-title">Actividades</li>
+    @if(session('rol') == 'Superusuario')
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link {{ (request()->is('bitacora') || request()->is('bitacora/*')) ? 'c-active' : '' }}" 
+      href="{{route('bitacora.index')}}">Bitacora</a>
+    </li>
+    @endif
     <li class="c-sidebar-nav-title">Solicitudes</li>
     @if(session()->has('Visualizar solicitud de items'))
     <li class="c-sidebar-nav-item">
@@ -55,7 +64,7 @@
     @endif
     @if(session()->has('Visualizar solicitud de cotizacion'))
     <li class="c-sidebar-nav-item">
-      <a class="c-sidebar-nav-link {{ (request()->is('solicitudCotizacion') || request()->is('solicitudCotizacion/*')) || (request()->is('comparativo') || request()->is('comparativo/*')) ? 'c-active' : '' }}" 
+      <a class="c-sidebar-nav-link {{ (request()->is('solicitudCotizacion') || request()->is('solicitudCotizacion/*')) || (request()->is('comparativo') || request()->is('comparativo/*')) || (request()->is('respuestasCotizacion') || request()->is('respuestasCotizacion/*')) ? 'c-active' : '' }}" 
       href="{{route('solicitudCotizacion.index')}}">Solicitudes de cotizacion</a>
     </li>
     @endif

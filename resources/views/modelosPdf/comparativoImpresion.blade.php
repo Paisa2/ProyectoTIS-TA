@@ -43,19 +43,21 @@
     }
     .fecha .contenido {
       width: 100%;
-      height: 3rem;
+      height: 2rem;
       border-left: 1px solid #000;
       border-right: 1px solid #000;
       border-bottom: 1px solid #000;
       text-align: center;
+      padding-top: 1rem;
     }
-    .fecha .contenido span {
-      display: inline-block;
-      margin: 0 auto;
-      width: 33.33%;
+    .sep {
+      margin-right: -6.6rem;
       height: 3rem;
-      border-left: 1px solid #000;
+      width: 3.3rem;
+      float: right;
       border-right: 1px solid #000;
+      border-left: 1px solid #000;
+      margin-top: 1.3rem;
     }
     .numero {
       display: block;
@@ -101,26 +103,34 @@
       width: 5%;
     }
     .comparativo thead tr th.c-2 {
-      width: 5%;
+      width: 8%;
     }
     .comparativo thead tr th.c-3 {
-      width: 45%;
+      width: 44.5%;
       letter-spacing: .5rem;
     }
     .comparativo thead tr th.c-4 {
-      width: 10.1%;
+      width: 8.5%;
     }
     .comparativo tbody tr td {
       height: 1.3rem;
       border-left: 1px solid #000;
       border-right: 1px solid #000;
       border-bottom: 1px dotted #000;
+      font-size: .95rem;
+    }
+    .comparativo tbody tr td {
+      text-align: center;
+    }
+    .comparativo tbody tr td.dd {
+      padding-left: .5rem;
+      text-align: start;
     }
     .comparativo tbody tr:last-child td {
       border-bottom: 1px solid #000;
     }
     .observaciones {
-      margin-top: .5rem;
+      margin-top: .6rem;
       font-size: .9rem;
     }
     .observaciones span {
@@ -145,6 +155,8 @@
     .informacion td {
       border: 1px solid #000;
       height: 3.5rem;
+      text-align: center;
+      vertical-align: bottom;
     }
   </style>
 </head>
@@ -166,11 +178,14 @@
       <div class="fecha">
         <div class="head"><b>EMISION</b></div>
         <div class="contenido">
-          <span></span>
+          {{date("d")}} &nbsp; &nbsp; &nbsp; &nbsp;
+          {{date("m")}} &nbsp; &nbsp; &nbsp; &nbsp;
+          {{date("Y")}}
         </div>
-        <label class="numero">N° XXXXXX</label>
+        <label class="numero">N° {{$comparativo->codigo_cotizacion}}</label>
       </div>
     </div>
+    <div class="sep"></div>
 	</div>
   <div style="clear:both;"></div>
   <div class="row-0">CASAS COMERCIALES</div>
@@ -188,11 +203,50 @@
       </tr>
     </thead>
     <tbody>
-      @for($i=0; $i<20; $i++)
+      @for($i=0; $i<count($propuestas[2]); $i++)
+        <tr>
+          <td>{{$propuestas[1][$i]}}</td>
+          <td>
+            @if(2<count($propuestas))
+              {{$propuestas[2][$i]}}
+            @endif
+          </td>
+          <td class="dd">
+            @if(3<count($propuestas))
+              {{$propuestas[3][$i]}}
+            @endif
+          </td>
+          <td>
+            @if(4<count($propuestas))
+              {{$propuestas[4][$i]}}
+            @endif
+          </td>
+          <td>@if(5<count($propuestas))
+                {{$propuestas[5][$i]}}
+              @endif
+          </td>
+          <td>
+            @if(6<count($propuestas))
+              {{$propuestas[6][$i]}}
+            @endif
+          </td>
+          <td>
+            @if(7<count($propuestas))
+              {{$propuestas[7][$i]}}
+            @endif
+          </td>
+          <td>
+            @if(8<count($propuestas))
+              {{$propuestas[8][$i]}}
+            @endif
+          </td>
+        </tr>
+      @endfor
+      @for($i=0; $i<20-count($propuestas[2]); $i++)
         <tr>
           <td></td>
           <td></td>
-          <td></td>
+          <td class="dd"></td>
           <td></td>
           <td></td>
           <td></td>
@@ -204,8 +258,12 @@
   </table>
   <div class="observaciones">
     <label>Observaciones: </label>
-    <span></span>
-    <span></span>
+    <span>{{substr($comparativo->observaciones_comparativo, 0, 135)}}</span>
+    <span>
+    @if(strlen($comparativo->observaciones_comparativo) > 135)
+      {{substr($comparativo->observaciones_comparativo, 135, strlen($comparativo->observaciones_comparativo)-1)}}
+    @endif
+    </span>
   </div>
   <table class="informacion">
     <thead>
@@ -218,10 +276,10 @@
     </thead>
     <tbody>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{$comparativo->unidad_solicitante}}</td>
+        <td>{{$comparativo->nombre_jefe_solicitante}}</td>
+        <td>{{$comparativo->nombre_tecnico_responsable}}</td>
+        <td>{{$comparativo->nombre_jefe_administrativo}}</td>
       </tr>
     </tbody>
   </table>

@@ -33,28 +33,36 @@
           href="{{route('roles.index')}}">Roles de usuario</a>
         </li>
         @endif
-        @if(session()->has('Visualizar solicitud de items'))
+        @if(session()->has('Visualizar solicitud de items') && session('rol') != 'Superusuario')
         <li class="nav-item">
           <a class="nav-link {{ (request()->is('solicitudes-de-items') || request()->is('solicitudes-de-items/*')) ? 'active' : '' }}" 
           href="{{route('solicitudes-de-items.index')}}">Solicitudes de items</a>
         </li>
         @endif
-        @if(session()->has('Visualizar solicitud de adquisicion'))
+        @if(session()->has('Visualizar solicitud de adquisicion') && session('rol') != 'Superusuario')
         <li class="nav-item">
           <a class="nav-link {{ (request()->is('lista') || request()->is('lista/*')) ? 'active' : '' }}" 
           href="{{route('lista.index')}}">Solicitudes de adquisicion</a>
         </li>
         @endif
-        @if(session()->has('Visualizar solicitud de cotizacion'))
+        @if(session()->has('Visualizar solicitud de cotizacion') && session('rol') != 'Superusuario')
         <li class="nav-item">
-          <a class="nav-link {{ (request()->is('solicitudCotizacion') || request()->is('solicitudCotizacion/*')) || (request()->is('comparativo') || request()->is('comparativo/*')) ? 'active' : '' }}" 
+          <a class="nav-link {{ (request()->is('solicitudCotizacion') || request()->is('solicitudCotizacion/*')) || (request()->is('comparativo') || request()->is('comparativo/*')) || (request()->is('respuestasCotizacion') || request()->is('respuestasCotizacion/*')) ? 'active' : '' }}" 
           href="{{route('solicitudCotizacion.index')}}">Solicitudes de cotizacion</a>
         </li>
         @endif
+        @if(session()->has('Visualizar empresa'))
         <li class="nav-item">
           <a class="nav-link {{ (request()->is('ListaEmpresas') || request()->is('ListaEmpresas/*')) ? 'active' : '' }}" 
           href="{{route('empresa.index')}}">Empresas</a>
         </li>
+        @endif
+        @if(session('rol') == 'Superusuario')
+        <li class="nav-item">
+          <a class="nav-link {{ (request()->is('bitacora') || request()->is('bitacora/*')) ? 'active' : '' }}" 
+          href="{{route('bitacora.index')}}">Bitacora</a>
+        </li>
+        @endif
       </ul>       
     </div>
 

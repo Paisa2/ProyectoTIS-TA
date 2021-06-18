@@ -9,6 +9,9 @@ use App\Models\InfoCotizacion;
 use App\Models\InfoComparativo;
 use App\Models\RespuestaCotizacion;
 use App\Models\Presupuesto;
+use App\Models\ProcesoCotizacionId;
+
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ComparativoController extends Controller
 {
@@ -62,6 +65,10 @@ class ComparativoController extends Controller
             foreach(json_decode($datoscomparativo->empresas_comparativo, true) as $columna){
                 array_push($empresas,array_values($columna));
             }
+            $datoscomparativo->informes = ProcesoCotizacionId::where('comparativo_id', $id)->first();
+            if($datoscomparativo->informes){
+                $datoscomparativo->informe_id = $datoscomparativo->informes->informe_autorizacion_id;
+            } 
             return view("COMPARATIVO.detalleComparativo", compact("datoscomparativo","propuestas","datoscuadrocomparativo","empresas"));
         }
         else{
@@ -75,7 +82,7 @@ class ComparativoController extends Controller
         if($cotizacion){
         $eliminar=ComparativoCotizacion::where("cotizacion_id",$id)->first();
         if($eliminar){
-          ComparativoCotizacion::where("id",$eliminar->id)->first()->delete();
+            ComparativoCotizacion::where("id",$eliminar->id)->first()->delete();
         }
         $respuestas=RespuestaCotizacion::where("cotizacion_id",$id)->get();
         $detalles=json_decode($cotizacion->detalle_cotizacion,true);
@@ -189,4 +196,20 @@ class ComparativoController extends Controller
     {
         //
     }
+
+    public function generarPdf($id){
+        $comparativo=InfoComparativo::where("id",$id)->first();
+        if($comparativo){
+            $datos=json_decode($comparativo->detalle_comparativo, true);      
+            $propuestas=[];                   
+            foreach($datos as $columna){
+                array_push($propuestas,array_values($columna));
+            }
+            $pdf = PDF::loadView('modelosPdf.comparativoImpresion', compact('comparativo', 'propuestas'))->setPaper('letter', 'landscape');
+        }else{
+            abort(404);
+        }
+        return $pdf->stream();
+    }
+
 }

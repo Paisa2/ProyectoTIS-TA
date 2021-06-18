@@ -41,17 +41,17 @@ div.row-0 {
   font-weight: normal;
 }
 .comparativo thead tr th.c-1 {
-  width: 5.5%;
+  width: 5%;
 }
 .comparativo thead tr th.c-2 {
-  width: 4.5%;
+  width: 6.5%;
 }
 .comparativo thead tr th.c-3 {
-  width: 45%;
+  width: 41%;
   letter-spacing: .7rem;
 }
 .comparativo thead tr th.c-4 {
-  width: 10.1%;
+  width: 9.5%;
 }
 .comparativo tbody tr td {
   height: 2em;
@@ -104,18 +104,15 @@ td{
 .lavelcompad{
   margin-bottom: 0px !important; 
 }
-.c-dark-theme .r-1.active{
-  background-color: #AA5511;
-}
-.c-dark-theme .r-2.active{
-  background-color: #AA5511;
-}
-.c-dark-theme .r-3.active{
-  background-color: #AA5511;
-}
-.c-dark-theme .r-4.active{
-  background-color: #AA5511;
-}
+.c-dark-theme .r-1.active,
+.c-dark-theme .r-2.active,
+.c-dark-theme .r-3.active,
+.c-dark-theme .r-4.active,
 .c-dark-theme .r-5.active{
   background-color: #AA5511;
+}
+.comparativo-options a svg{
+  width: 1.7rem !important;
+  height: 1.7rem !important;
+  margin-left: 1.5rem;
 }

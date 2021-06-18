@@ -12,6 +12,7 @@ th.options {
 }
 /* estilos contenedor -------------------------------------------- */
 .container-table {
+  min-height: 30rem;
   background-color: #ebedef;
   border-radius: 10px;
   padding: 24px;

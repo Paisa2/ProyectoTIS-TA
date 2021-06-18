@@ -14,9 +14,9 @@ AtorizaciónPresupuesto
 @section('main')
 <div>
 
-  <div class="row">
+  <div class="row" style="width:90%;margin:auto;">
   <div class="col-8">
-  <form >
+  <form class="container-pane">
     <div>
       <h2 class="display-4">Detalle de la Solicitud de Adquisición N° {{$autopre->codigo_solicitud_a}}</h2>
       <br>
@@ -115,7 +115,7 @@ AtorizaciónPresupuesto
   </div>
   <div class="col-4">
 
-  <form >
+  <form class="container-pane">
     <div >
       <h3 class="display-6">VERIFICAR PRESUPUESTO</h3>
       <br>

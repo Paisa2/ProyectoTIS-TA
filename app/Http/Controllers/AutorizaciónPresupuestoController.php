@@ -90,7 +90,7 @@ class AutorizaciónPresupuestoController extends Controller
     public function update(Request $request,$tipo, $id)
 
     {
-        $solicitud=Solicitud_adquisición::where('id',$id)->first();
+        $solicitud=Solicitud_adquisicion::where('id',$id)->first();
        if($solicitud){
             if($tipo=='aceptar'){
             Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Proceso de cotizacion"]); 

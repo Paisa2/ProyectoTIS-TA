@@ -10,19 +10,22 @@ use App\Models\CotizacionPdf;
 use App\Models\RespuestaCotizacion;
 use App\Models\ComparativoCotizacion;
 use App\Models\TodaEmpresa;
+use App\Models\ProcesoCotizacionId;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class SolicitudCotizacionController extends Controller
 {
     public function index(){
-        $cotizaciones = Solicitud_cotizacion::all();
+        $cotizaciones = Solicitud_cotizacion::join('solicitudes_adquisiciones', 'solicitudes_adquisiciones.id', '=', 'solicitudes_cotizaciones.solicitud_a_id')
+        ->where('solicitudes_adquisiciones.para_unidad_id', session('unidad_id'))
+        ->select('solicitudes_cotizaciones.*')->orderBy('created_at', 'desc')->get();
         foreach($cotizaciones as $cotizacion){
             $cotizacion->comparativo=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->count();
             if($cotizacion->comparativo > 0){
                 $cotizacion->comparativo_id=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->first()->id;
             }
-        $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
-
+            $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
+            $cotizacion->informes = ProcesoCotizacionId::where('cotizacion_id', $cotizacion->id)->count();
         }
         $empresas = TodaEmpresa::all();
         return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones", "empresas"));
@@ -83,7 +86,7 @@ class SolicitudCotizacionController extends Controller
             $detalle['numero'] = $jason['numero'];
             $detalle['cantidad'] = $jason['cantidad'];
             $detalle['unidad'] = $jason['unidad'];
-            $detalle['articulo'] = $jason['articulo'];
+            $detalle['detalle'] = $jason['detalle'];
             $cotizacion->detalle_cotizacion = json_encode ($detalle);
     
             $cotizacion->save();

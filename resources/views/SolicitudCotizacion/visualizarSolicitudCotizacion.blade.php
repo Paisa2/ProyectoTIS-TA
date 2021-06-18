@@ -34,6 +34,7 @@
                     <th scope="col" class="options">NRO</th>
                     <th scope="col">CODIGO DE COTIZACIÓN</th>
                     <th scope="col">CANTIDAD DE RESPUESTAS</th>
+                    <th scope="col">ESTADO</th>
                     <th scope="col">FECHA</th> 
                     <th class="options"></th>
                 </tr>
@@ -45,6 +46,7 @@
                 <td>{{ $loop->index +1 }}</td>
                 <td>{{$cotizacion->codigo_cotizacion}}</td>
                 <td>{{$cotizacion->respuestas}}</td>
+                <td>{{$cotizacion->informes<1? 'Proceso de cotizacion' : 'Concluido'}}</td>
                 <td>{{date("Y-m-d",strtotime($cotizacion->fecha_cotizacion))}}</td>   
                 <td class="options">
                   <div class="dropdown dropleft">
@@ -71,10 +73,10 @@
                   <a class="dropdown-item" href="{{ route('respuestasCotizacion.create', $cotizacion->id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
-                  </svg>Añadir Respuesta
+                  </svg>Añadir Propuesta
                   </a>                  
                   @endif
-                  @if($cotizacion->respuestas>2 && session()->has("Crear cuadro comparativo"))
+                  @if($cotizacion->respuestas>2 && $cotizacion->informes<1 && session()->has("Crear cuadro comparativo"))
                   <a class="dropdown-item" href="{{ route('comparativo.generar', $cotizacion->id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/list-low-priority.svg#i-list-low-priority')}}"></use>
@@ -129,7 +131,7 @@
               <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <span class="search"><input type="text" class="form-control" ></span>
+                <span class="search"><input type="text" class="form-control" placeholder="Buscar"></span>
                 <span class="options">
                   @foreach($empresas as $empresa)
                   <span class="dropdown-item" id="{{str_replace(' ', '_', $empresa->nombre_empresa)}}">{{$empresa->nombre_empresa}}</span>
