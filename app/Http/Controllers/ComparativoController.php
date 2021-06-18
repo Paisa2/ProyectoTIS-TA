@@ -40,7 +40,7 @@ class ComparativoController extends Controller
             foreach(json_decode($datoscomparativo->empresas_comparativo, true) as $columna){
                 array_push($empresas,array_values($columna));
             }
-            $presupuesto=Presupuesto::where("unidad_id",$datoscomparativo->unidad_solicitante_id)->where("estado",true)->first();
+            $presupuesto=Presupuesto::where("unidad_id",$datoscomparativo->unidad_solicitante_id)->where("estado",true)->first()->monto;
             return view("COMPARATIVO.comparativo", compact("datoscomparativo","propuestas","presupuesto","empresas"));
         }
         else{
@@ -58,7 +58,11 @@ class ComparativoController extends Controller
             foreach($datos as $columna){
                 array_push($propuestas,array_values($columna));
             }
-            return view("COMPARATIVO.detalleComparativo", compact("datoscomparativo","propuestas","datoscuadrocomparativo"));
+            $empresas=[];                     
+            foreach(json_decode($datoscomparativo->empresas_comparativo, true) as $columna){
+                array_push($empresas,array_values($columna));
+            }
+            return view("COMPARATIVO.detalleComparativo", compact("datoscomparativo","propuestas","datoscuadrocomparativo","empresas"));
         }
         else{
             abort(404);
@@ -130,7 +134,7 @@ class ComparativoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    /*public function show($id)
     {
         $datoscomparativo=InfoComparativo::where("id",$id)->first();
         if($datoscomparativo){
@@ -140,13 +144,16 @@ class ComparativoController extends Controller
             foreach($datos as $columna){
                 array_push($propuestas,array_values($columna));
             }
-            return view("COMPARATIVO.comparativo", compact("datoscomparativo","propuestas"));
+            $empresas=[];                     
+            foreach(json_decode($datoscomparativo->empresas_comparativo, true) as $columna){
+                array_push($empresas,array_values($columna));
+            }
+            return view("COMPARATIVO.comparativo", compact("datoscomparativo","propuestas","empresas"));
         }
         else{
             abort(404);
         }
-        return view("COMPARATIVO.detalleComparativo", compact("clave"));
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.
@@ -169,6 +176,7 @@ class ComparativoController extends Controller
     public function update(Request $request, $id)
     {
         ComparativoCotizacion::where("id", $id)->update(["empresa_recomendada" => $request->empresa,"observaciones_comparativo"=>$request->observaciones]);
+        return redirect()->route("comparativo.detalle",$id);
     }
 
     /**

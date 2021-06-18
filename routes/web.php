@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('formulario/{id}', 'StorageController@index')->name('formulario');
     Route::post('formulario/{i}', 'StorageController@save')->name('formpost');
     Route::post('itemsgastos','ItemgastoController@store')->name('itemsgastos');
+    Route::post('itemsgastos/{id}','ItemgastoController@destroy')->name('itemsgastos.destroy');
     Route::get('/unidades', 'UnidadesController@lista')->name('unidades.lista');
     Route::get('/unidades/registro', 'RegistroController@index');
     Route::post('/unidades/registro', 'RegistroController@store')->name('registro.store');

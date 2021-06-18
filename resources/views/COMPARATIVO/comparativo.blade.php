@@ -42,27 +42,27 @@
         <th class="c-1"><b>CANT.</b></th>
         <th class="c-2"><b>UND.</b></th>
         <th class="c-3"><b>DESCRIPCION</b></th>
-        <th class="c-4 r-1 {{0<count($empresas)?$empresas[0][2]==true?'active':'':''}}">
+        <th class="c-4 r-1">
               @if(0<count($empresas))
                 {{$empresas[0][0]}}
               @endif
               <br><b>1</b></th>
-        <th class="c-4 r-2 {{1<count($empresas)?$empresas[1][2]==true?'active':'':''}}">
+        <th class="c-4 r-2">
               @if(1<count($empresas))
                 {{$empresas[1][0]}}
               @endif
               <br><b>2</b></th>
-        <th class="c-4 r-3 {{2<count($empresas)?$empresas[2][2]==true?'active':'':''}}">
+        <th class="c-4 r-3">
               @if(2<count($empresas))
                 {{$empresas[2][0]}}
               @endif
               <br><b>3</b></th>
-        <th class="c-4 r-4 {{3<count($empresas)?$empresas[3][2]==true?'active':'':''}}">
+        <th class="c-4 r-4">
               @if(3<count($empresas))
                 {{$empresas[3][0]}}
               @endif
               <br><b>4</b></th>
-        <th class="c-4 r-5 {{4<count($empresas)?$empresas[4][2]==true?'active':'':''}}">
+        <th class="c-4 r-5">
               @if(4<count($empresas))
                 {{$empresas[4][0]}}
               @endif
@@ -146,6 +146,19 @@
     </tbody>
   </table>
   <div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label">Presupuesto de la Unidad Solicitante:</label>
+  <label for="exampleInputEmail1" class="form-label">{{$presupuesto}} Bs.</label>
+  <br>
+  <br>
+  <label for="exampleInputEmail1" class="form-label">Desicion:</label>
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    <!--{{ (old('tipo_item') == "Generico") ? "checked" : ""}}-->
+    <input type="radio" class="btn-check" name="tipo_item" id="btnradio1" autocomplete="off" value="ACEPTAR" checked="">
+    <label class="btn btn-outline-primary bb" for="btnradio1">ACEPTAR</label>
+    <!--{{ (old('tipo_item') == "Especifico") ? "checked" : ""}}-->
+    <input type="radio" class="btn-check" name="tipo_item" id="btnradio2" autocomplete="off" value="RECHAZAR">
+    <label class="btn btn-outline-primary bb" for="btnradio2">RECHAZAR</label>
+    </div>
   <label for="observaciones" class="labelcompa">Empresa Recomendada: </label>
   <select class="form-control" name="empresa" id="empresas">
      @foreach($empresas as $empresa)
@@ -181,7 +194,7 @@
     </tbody>
   </table> 
   <div style=display:flex;justify-content:center;>
-    <button type="submit" class="btn btn-primary">EMITIR INFORME</button>
+    <button type="submit" class="btn btn-primary">GUARDAR</button>
   </div>    
     </form>
 </br>
@@ -207,5 +220,12 @@ $(window).on("load",function(){
   });
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script>
+    $('input[name="tipo_item"]').on('change',function()
+    {
+      $('select[name="empresa"]').attr('disabled',this.value=="RECHAZAR")
+    });
+    </script>
 
 @endsection

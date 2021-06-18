@@ -91,6 +91,9 @@ div.row-0 {
 .lavelcompa{
   margin-bottom: 10px;
 }
+.bb{
+  margin-top: 0.5rem !important;
+}
 td{
   text-align: center;
 }
@@ -102,17 +105,17 @@ td{
   margin-bottom: 0px !important; 
 }
 .c-dark-theme .r-1.active{
-  background-color: orange;
+  background-color: #AA5511;
 }
 .c-dark-theme .r-2.active{
-  background-color: orange;
+  background-color: #AA5511;
 }
 .c-dark-theme .r-3.active{
-  background-color: orange;
+  background-color: #AA5511;
 }
 .c-dark-theme .r-4.active{
-  background-color: orange;
+  background-color: #AA5511;
 }
 .c-dark-theme .r-5.active{
-  background-color: orange;
+  background-color: #AA5511;
 }

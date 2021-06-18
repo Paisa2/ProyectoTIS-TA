@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;    
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\ItemGasto;
@@ -99,7 +100,8 @@ class ItemgastoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $itemgasto = ItemGasto::where('id', $id)->first();
+        return view('ITEM_GASTOS.editaritemgasto', compact('itemgasto'));
     }
 
     /**
@@ -111,7 +113,21 @@ class ItemgastoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mensajes = [
+            'tipo_item.required' => 'Debe de seleccionar el tipo de item',
+            'nombre_item.required' => 'Debe de llenar el campo nombre',
+            'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
+            'max'   => 'El :attribute no puede tener más de :max caracteres.',
+            'regex' => 'El campo :attribute solo puede tener letras',
+            'numeric'=> 'Debe de seleccionar el item generico al que pertenece',
+            //'permisos.required' => 'Debe seleccionar por lo menos un permiso.',
+        ];
+        $this->validate($request, [
+            
+            'nombre_item'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
+            'tipo_item'=>'required',
+            'item_id'=>'numeric',
+            ], $mensajes);
     }
 
     /**
@@ -122,6 +138,18 @@ class ItemgastoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = ItemGasto::where('id', $id)->first();
+        $nombredeitem = $item->nombre_item;
+        if ($item) {
+            try {
+                $item->delete();
+                return redirect()->back()->withSuccess('El item de gasto '.$nombredeitem.' se ha eliminado correctamente.');   
+            } catch (QueryException $e) {
+                return redirect()->back()->withError('El item de gasto '.$item->nombre_item.' esta en uso.');   
+            }
+        }
+        else{
+        return redirect()->back()->withError('Ocurrio un error al momento de eliminar el item de gasto, intentelo de nuevo.'); 
+        }  
     }
-}
+}   
