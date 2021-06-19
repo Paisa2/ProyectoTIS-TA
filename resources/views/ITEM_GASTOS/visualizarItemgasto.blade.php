@@ -62,11 +62,6 @@
                 </span>
                 <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
                   <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-                  <a class="dropdown-item" type="submit" href="">
-                  <svg class="c-icon mfe-2">
-                    <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
-                  </svg>Editar
-                </a>
 
                 <form action="{{ route('itemsgastos.destroy', $itemgasto->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
                 <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">

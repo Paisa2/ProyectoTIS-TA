@@ -173,7 +173,10 @@
   <div class="mb-3">
     <label for="observaciones" class="labelcompa">Observaciones: </label>
     <br>
-    <input type="text"  name="observaciones" class="form-control">
+    <input type="text"  name="observaciones" class="form-control" value="{{ old('observaciones') }}" autocomplete="off">
+     @foreach($errors->get('observaciones') as $message)
+      <div class="alert alert-danger">{{$message}}</div>
+      @endforeach
   </div>
   <table class="informacion">
     <thead>
