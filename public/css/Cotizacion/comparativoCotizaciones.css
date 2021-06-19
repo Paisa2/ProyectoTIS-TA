@@ -11,6 +11,16 @@ table {
   color: #fff;
   margin-bottom: 15px;
 }
+table,
+table td,
+table th {
+  border-color: #24252F !important;
+}
+.c-dark-theme table,
+.c-dark-theme table td,
+.c-dark-theme table th {
+  border-color: #fff !important;
+}
 .fecha {
   width: 10rem; 
 }
@@ -29,11 +39,14 @@ table {
   color: #fff;
 }
 div.row-0 {
-  border: 1px solid #fff;
+  border: 1px solid #24252F ;
   color: #fff;
   text-align: right;
   letter-spacing: .7rem;
   padding-right: 10.1%;
+}
+.c-dark-theme div.row-0 {
+  border: 1px solid #fff;
 }
 .comparativo th {
   border: 1px solid #fff;

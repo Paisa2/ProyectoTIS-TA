@@ -24,14 +24,14 @@
     </div>
 
     <label class="form-label">Permisos:</label>
-    <div class="overflow-auto">
+    <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
             <th>Modulo</th>
-            <th>Visualizar</th>
-            <th>Crear</th>
-            <th>Editar</th>
+            <th scope="col">Visualizar</th>
+            <th scope="col">Crear</th>
+            <th scope="col">Editar</th>
           </tr>
         </thead>
         <tbody>

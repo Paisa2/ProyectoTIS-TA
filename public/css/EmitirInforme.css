@@ -19,3 +19,17 @@ select.form-control{
     height: 1.7rem !important;
     margin-left: 1.5rem;
 }
+.c-dark-theme ul.nav-tabs {
+    border-color: #fff;
+}
+.c-dark-theme .nav-tabs .nav-link.active, 
+.c-dark-theme .nav-tabs .nav-item.show .nav-link {
+    background-color: #24252F;
+    border-color: #fff #fff #24252F #fff;
+}
+.accordion .card-header {
+    padding: 0;
+}
+.accordion .btn:focus {
+    box-shadow: none;
+}

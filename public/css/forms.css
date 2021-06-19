@@ -9,7 +9,6 @@ form .btn {
 }
 /* estilos form ------------------------------------------------ */
 .container-form {
-  min-height: 30rem;
   background-color: #ebedef;
   width: 90%;
   border-radius: 10px;
@@ -24,6 +23,8 @@ form .btn {
 }
 form *{
   color:#181924 !important;
+}
+form .form-control:not(:disabled):not(.disabled) {
   border-color:#181924 !important;
 }
 /* estilos form dark ---------------------------------------------- */
@@ -32,6 +33,8 @@ form *{
 }
 .c-dark-theme form *{
   color:#fff !important;
+}
+.c-dark-theme form .form-control:not(:disabled):not(.disabled){
   border-color:#fff !important;
 }
 /* ------------------------------------------------------------------------------------ */
@@ -124,14 +127,14 @@ border-color: rgba(0, 0, 21, 0.3) !important;
 .c-dark-theme .btn-outline-primary.active:focus, 
 .c-dark-theme .btn-outline-primary.dropdown-toggle.show:focus, 
 .c-dark-theme .btn-outline-primary:active:focus {
-  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.7);
 }
 .c-dark-theme .btn-outline-primary:not(:disabled):not(.disabled):active:focus, 
 .c-dark-theme .btn-outline-primary:not(:disabled):not(.disabled).active:focus {
-  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.7);
 }
 .c-dark-theme .btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
-  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.7);
 }
 /* --------------------------------------------------------------------------------------- */
 

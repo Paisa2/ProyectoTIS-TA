@@ -11,7 +11,7 @@
   <h1 class="display-4">{{$rol->nombre_rol}}</h1>
   <br>
   <label class="form-label">Permisos:</label>
-    <div class="overflow-auto">
+    <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>

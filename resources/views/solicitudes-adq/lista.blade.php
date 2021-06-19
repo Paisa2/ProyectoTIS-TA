@@ -36,7 +36,8 @@
       @endif
       </div>
     </div>
-    <table class="table">
+    <div class="table-responsive">
+      <table class="table">
         <thead>
             <tr>
                 <th scope="col" class="options">NRO</th>
@@ -51,7 +52,7 @@
         @foreach($solicitudes as $listadb)
         <tr>
             <td scope="row">{{ $loop->index +1}}</td>
-            <td>{{$listadb->justificacion_solicitud_a}}</td>
+            <td>{{substr($listadb->justificacion_solicitud_a, 0, 70)}}{{strlen($listadb->justificacion_solicitud_a)>71 ? '...' : ''}}</td>
             <td>{{$listadb->codigo_solicitud_a}}</td>
             <td>{{$listadb->tipo_solicitud_a}}</td>
             <td>{{$listadb->estado_solicitud_a}}</td>
@@ -114,10 +115,11 @@
                 </div>
               </div>
             </td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
+          </tr>
+          @endforeach
+          </tbody>
+      </table>
+    </div>
     <nav class="mt-auto" aria-label="Page navigation">
       <ul class="pagination m-0">
         @if($solicitudes->previousPageUrl())

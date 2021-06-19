@@ -317,36 +317,37 @@ form button[type='submit'].disabled:not(.dropdown-item), form button[type='submi
 }
 /* estilos botones ------------------------------------------------------- */
 .btn-primary {
-  color: #181924;
-  background-color: #fff;
-  border: 1px solid #181924;
+  color: #fff !important;
+  background-color: #3C4B64;
+  border: 1px solid #303C54;
   width: 8rem;
 }
 .container-form .btn-primary{
   width: 15rem;
 }
 .btn-primary:hover {
-  color: #181924;
-  background-color: #d8dbe0;
-  border-color: #181924;
+  background-color: #46546C;
+  border-color: #303C54;
 }
 .btn-check:focus + .btn-primary, 
 .btn-primary:focus {
-  color: #181924;
-  background-color: #d8dbe0;
+  background-color: #46546C;
   box-shadow: 0 0 0 0.25rem rgba(36, 37, 47, 0.5);
-  border-color: #181924;
+  border-color: #303C54;
 }
 .btn-primary:not(:disabled):not(.disabled):active, 
 .show > .btn-primary.dropdown-toggle {
   font-weight: bold;
   color: #fff !important;
-  background-color: #181924;
-  border-color: #181924;
+  background-color: #303C54;
+  border-color: #303C54;
 }
 .btn-primary:not(:disabled):not(.disabled):active:focus, 
 .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.25rem rgba(36, 37, 47, 0.5);
+}
+.btn-dark {
+  color: #fff !important;
 }
 /* estilos botones dark -------------------------------------------------- */
 .c-dark-theme .btn-primary {
@@ -365,7 +366,7 @@ form button[type='submit'].disabled:not(.dropdown-item), form button[type='submi
 .c-dark-theme .btn-primary:focus {
   color: #181924 !important;
   background-color: #d8dbe0;
-  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.7);
 }
 .c-dark-theme .btn-primary:not(:disabled):not(.disabled):active, 
 .c-dark-theme .show > .btn-primary.dropdown-toggle {
@@ -376,7 +377,10 @@ form button[type='submit'].disabled:not(.dropdown-item), form button[type='submi
 .c-dark-theme .btn-primary:not(:disabled):not(.disabled):active:focus, 
 .c-dark-theme .show > .btn-primary.dropdown-toggle:focus {
   border-color: #fff;
-  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.7);
+}
+.c-dark-theme .btn-dark {
+  border-color: #fff !important;
 }
 /* ------------------------------------------------------------------------------------- */
 /* estilos paginacion --------------------------------------------------*/
