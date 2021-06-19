@@ -44,13 +44,17 @@ body.bg-image.c-dark-theme {
 .c-switch-input:focus ~ .c-switch-slider {
   box-shadow: 0 0 0 0.2rem rgba(36, 37, 47, 0.5);
 }
+.c-switch-success .c-switch-input:checked + .c-switch-slider {
+  background-color: #303C54 !important;
+  border-color: #fff !important;
+}
 /* estilos slider on/off dark ------------------------------------------------ */
 .c-dark-theme .c-switch-input:focus ~ .c-switch-slider {
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }
 .c-dark-theme .c-switch-success .c-switch-input:checked + .c-switch-slider {
-  background-color: #181924;
-  border-color: #fff;
+  background-color: #181924 !important;
+  border-color: #fff !important;
 }
 /* estilos dropdown ---------------------------------------------------------- */
 .dropdown-menu {
@@ -71,7 +75,7 @@ body.bg-image.c-dark-theme {
   padding-left: 2rem;
 }
 .c-sidebar-nav-link.c-active {
-  border-right: 2px solid #22222F;
+  border-right: 3px solid #fff;
 }
 .c-sidebar-nav-link:hover {
   background-color: rgba(255, 255, 255, .05) !important;

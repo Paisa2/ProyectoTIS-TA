@@ -47,6 +47,13 @@ form *{
   position: static;
   margin-top: 0;
 }
+.form-control::placeholder {
+  color: #CCC;
+}
+.form-control:disabled{
+  background-color: #d8d8d8 !important;
+  color: #24252F !important;
+}
 /* estilos inputs dark ------------------------------------------------------ */
 .c-dark-theme .form-control:not(.bg-transparent), 
 .form-select:not(.bg-transparent) {
@@ -57,27 +64,60 @@ form *{
 .c-dark-theme .custom-file-input:focus ~ .custom-file-label {
   box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 50%);
 }
+.c-dark-theme .custom-file-label{
+border-color: rgba(0, 0, 21, 0.3) !important;
+}
+.c-dark-theme .form-control:focus {
+  background-color: #24252F;
+  color:#fff !important;
+  border: 1px solid rgb(255 255 255 / 88%);;
+  box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 88%);
+}
 .c-dark-theme .form-control:disabled{
   background-color: #dee2e6b3 !important;
   color: #24252F !important;
-}
-.c-dark-theme .custom-file-label{
-border-color: rgba(0, 0, 21, 0.3) !important;
 }
 /* ------------------------------------------------------------------------------------ */
 /* estilos grupo de botones ---------------------------------------------- */
 .btn-group, .btn-group-vertical {
   width: 100%;
 }
+.btn-check:active+.btn-outline-primary, 
+.btn-check:checked+.btn-outline-primary {
+  color: #fff !important;
+  background-color: #303C54 !important;
+  border-color: #969696;
+}
+.btn-check+.btn-outline-primary, 
+.btn-check+.btn-outline-primary {
+  background-color: #ebedef !important;
+  border-color: #969696 !important;
+}
+.btn-check:active+.btn-outline-primary:focus, 
+.btn-check:checked+.btn-outline-primary:focus, 
+.btn-outline-primary.active:focus, 
+.btn-outline-primary.dropdown-toggle.show:focus, 
+.btn-outline-primary:active:focus {
+  box-shadow: 0 0 0 0.25rem rgba(36, 37, 47, 0.5);
+}
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus, 
+.btn-outline-primary:not(:disabled):not(.disabled).active:focus {
+  box-shadow: 0 0 0 0.25rem rgba(36, 37, 47, 0.5);
+}
+.btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
+  box-shadow: 0 0 0 0.25rem rgba(36, 37, 47, 0.5);
+}
 /* estilos grupo de botones dark ----------------------------------------- */
 .c-dark-theme .btn-check:active+.btn-outline-primary, 
 .c-dark-theme .btn-check:checked+.btn-outline-primary {
   background-color: #181924 !important;
+  color: #fff !important;
 }
 .c-dark-theme .btn-check+.btn-outline-primary, 
 .c-dark-theme .btn-check+.btn-outline-primary {
   background-color: #dee2e6b3 !important;
   border-color: #fff !important;
+  color: #181924 !important;
 }
 .c-dark-theme .btn-check:active+.btn-outline-primary:focus, 
 .c-dark-theme .btn-check:checked+.btn-outline-primary:focus, 
@@ -90,7 +130,7 @@ border-color: rgba(0, 0, 21, 0.3) !important;
 .c-dark-theme .btn-outline-primary:not(:disabled):not(.disabled).active:focus {
   box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
 }
-.btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
+.c-dark-theme .btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
   box-shadow: 0 0 0 0.25rem rgba(216, 219, 224, 0.5);
 }
 /* --------------------------------------------------------------------------------------- */
@@ -115,30 +155,14 @@ border-color: rgba(0, 0, 21, 0.3) !important;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .option, select:disabled {
-  color: rgb(255, 255, 255) !important;
+  color: #181924 !important;
+}
+.c-dark-theme .option, 
+.c-dark-theme select:disabled {
+  color: #fff !important;
 }
 .btn-check:active{
 background-color: gray;
-}
-.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary{
-  background-color: #181924 !important;
-  border-color: rgb(255 255 255 / 88%);
-}
-.btn-check+.btn-outline-primary, .btn-check+.btn-outline-primary{
-  background-color: #dee2e6b3 !important;
-  border-color: #fff !important;
-}
-.btn-check:active+.btn-outline-primary:focus, .btn-check:checked+.btn-outline-primary:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus, .btn-outline-primary:active:focus {
-  box-shadow: 0 0 0 0.25rem rgb(175 171 171 / 92%);
-}
-.form-control:focus {
-  background-color: #24252F;
-  color:#fff !important;
-  border: 1px solid rgb(255 255 255 / 88%);;
-  box-shadow: 0 0 0 0.25rem rgb(255 255 255 / 88%);
-}
-.form-control::placeholder {
-  color: #CCC;
 }
 /* ---------------------------------------------------------------------------------------- */
 /* estilos select editable ------------------------------------------------------ */
