@@ -119,30 +119,30 @@
         </tbody>
     </table>
     <nav class="mt-auto" aria-label="Page navigation">
-    <ul class="pagination m-0">
-      @if($solicitudes->previousPageUrl())
-      <li class="page-item">
-        <a class="page-link" href="{{$solicitudes->previousPageUrl()}}" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      @endif
-      @if($solicitudes->previousPageUrl())
-      <li class="page-item"><a class="page-link" href="{{$solicitudes->previousPageUrl()}}">{{$solicitudes->currentPage()-1}}</a></li>
-      @endif
-      <li class="page-item active"><a class="page-link" href="#">{{$solicitudes->currentPage()}}</a></li>
-      @if($solicitudes->nextPageUrl())
-      <li class="page-item"><a class="page-link" href="{{$solicitudes->nextPageUrl()}}">{{$solicitudes->currentPage()+1}}</a></li>
-      @endif
-      @if($solicitudes->nextPageUrl())
-      <li class="page-item">
-        <a class="page-link" href="{{$solicitudes->nextPageUrl()}}" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-      @endif
-    </ul>
-  </nav>
+      <ul class="pagination m-0">
+        @if($solicitudes->previousPageUrl())
+        <li class="page-item">
+          <a class="page-link" href="{{$solicitudes->previousPageUrl()}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        @endif
+        @if($solicitudes->previousPageUrl())
+        <li class="page-item"><a class="page-link" href="{{$solicitudes->previousPageUrl()}}">{{$solicitudes->currentPage()-1}}</a></li>
+        @endif
+        <li class="page-item active"><a class="page-link" href="#">{{$solicitudes->currentPage()}}</a></li>
+        @if($solicitudes->nextPageUrl())
+        <li class="page-item"><a class="page-link" href="{{$solicitudes->nextPageUrl()}}">{{$solicitudes->currentPage()+1}}</a></li>
+        @endif
+        @if($solicitudes->nextPageUrl())
+        <li class="page-item">
+          <a class="page-link" href="{{$solicitudes->nextPageUrl()}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        @endif
+      </ul>
+    </nav>
 </div>
     {{--  {!!$unidad->render()!!}  --}}
 @endsection

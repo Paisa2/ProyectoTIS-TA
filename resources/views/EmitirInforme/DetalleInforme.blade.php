@@ -26,13 +26,15 @@ AtorizaciónPresupuesto
          <br>
          <div class="d-flex justify-content-between">
             <label for="tipo" class="form-label">PRESENTE</label>
+            @if(session('tipo_unidad')!='unidad de gasto')
             <div class="informe-options">
-               <a href="{{route('informe.generarpdf', $informe->id)}}">
+               <a href="{{route('informe.generarpdf', $informe->id)}}" target="_blank">
                   <svg class="c-icon c-icon-lg">
                      <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
                   </svg>
                </a>
             </div>
+            @endif
          </div>
          <div class="d-flex justify-content-center"> REF: INFORME DE LA SOLICITUD DE ADQUISICIÓN {{ strtoupper ( $informe->tipo_informe )}}</div>
          <br>

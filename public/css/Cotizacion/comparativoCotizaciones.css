@@ -104,6 +104,13 @@ td{
 .lavelcompad{
   margin-bottom: 0px !important; 
 }
+.r-1.active,
+.r-2.active,
+.r-3.active,
+.r-4.active,
+.r-5.active{
+  background-color: #AA5511;
+}
 .c-dark-theme .r-1.active,
 .c-dark-theme .r-2.active,
 .c-dark-theme .r-3.active,

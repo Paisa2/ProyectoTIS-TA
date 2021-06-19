@@ -16,19 +16,32 @@ use Barryvdh\DomPDF\Facade as PDF;
 class SolicitudCotizacionController extends Controller
 {
     public function index(){
-        $cotizaciones = Solicitud_cotizacion::join('solicitudes_adquisiciones', 'solicitudes_adquisiciones.id', '=', 'solicitudes_cotizaciones.solicitud_a_id')
-        ->where('solicitudes_adquisiciones.para_unidad_id', session('unidad_id'))
-        ->select('solicitudes_cotizaciones.*')->orderBy('created_at', 'desc')->get();
-        foreach($cotizaciones as $cotizacion){
-            $cotizacion->comparativo=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->count();
-            if($cotizacion->comparativo > 0){
-                $cotizacion->comparativo_id=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->first()->id;
-            }
-            $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
-            $cotizacion->informes = ProcesoCotizacionId::where('cotizacion_id', $cotizacion->id)->count();
+        $unidadId = session('unidad_id');
+        if(session('tipo_unidad') == 'unidad de gasto'){
+            $unidadColumna = 'solicitudes_adquisiciones.de_unidad_id';
+        }elseif(session('tipo_unidad') == 'unidad administrativa'){
+            $unidadColumna = 'solicitudes_adquisiciones.para_unidad_id';
+        }else {
+            $unidadColumna = 1;
+            $unidadId = 1;
         }
-        $empresas = TodaEmpresa::all();
-        return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones", "empresas"));
+        $cotizaciones = Solicitud_cotizacion::join('solicitudes_adquisiciones', 'solicitudes_adquisiciones.id', '=', 'solicitudes_cotizaciones.solicitud_a_id')
+        ->whereRaw($unidadColumna.'='.$unidadId)
+        ->select('solicitudes_cotizaciones.*')->orderBy('created_at', 'desc')->paginate(10);
+        if(count($cotizaciones) > 0){    
+            foreach($cotizaciones as $cotizacion){
+                $cotizacion->comparativo=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->count();
+                if($cotizacion->comparativo > 0){
+                    $cotizacion->comparativo_id=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->first()->id;
+                }
+                $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
+                $cotizacion->informes = ProcesoCotizacionId::where('cotizacion_id', $cotizacion->id)->count();
+            }
+            $empresas = TodaEmpresa::all();
+            return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones", "empresas"));
+        }else{
+            abort(404);
+        }
     }
 
     public function create(){

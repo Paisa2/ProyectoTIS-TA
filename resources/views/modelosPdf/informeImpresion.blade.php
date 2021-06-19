@@ -86,12 +86,10 @@
   </div>
   @endif
   <br><br><br><br>
-  <div class="firma"><span>firma</span></div>
+  <div class="firma"><span>{{$remitente->nombres}} {{$remitente->apellidos}}</span></div>
   <br><br>
   <div class="info">
-    <label>Remitente:</label><label> {{$remitente->nombres}} {{$remitente->apellidos}}</label>
     
-    <br><br>
     <label class="subtitle">Detalles de solicitud de adquisición</label>
     <br><br>
 

@@ -54,7 +54,7 @@
         </a>
       </div>
       <div class="comparativo-options">
-        <a href="{{route('comparativo.generarpdf', $datoscomparativo->id)}}">
+        <a href="{{route('comparativo.generarpdf', $datoscomparativo->id)}}" target="_blank">
           <svg class="c-icon c-icon-lg">
             <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
           </svg>

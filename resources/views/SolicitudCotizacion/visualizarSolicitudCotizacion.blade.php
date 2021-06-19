@@ -105,7 +105,32 @@
             </tbody>    
         </table>                      
 
-</br>
+  <nav class="mt-auto" aria-label="Page navigation">
+    <ul class="pagination m-0">
+      @if($cotizaciones->previousPageUrl())
+      <li class="page-item">
+        <a class="page-link" href="{{$cotizaciones->previousPageUrl()}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      @endif
+      @if($cotizaciones->previousPageUrl())
+      <li class="page-item"><a class="page-link" href="{{$cotizaciones->previousPageUrl()}}">{{$cotizaciones->currentPage()-1}}</a></li>
+      @endif
+      <li class="page-item active"><a class="page-link" href="#">{{$cotizaciones->currentPage()}}</a></li>
+      @if($cotizaciones->nextPageUrl())
+      <li class="page-item"><a class="page-link" href="{{$cotizaciones->nextPageUrl()}}">{{$cotizaciones->currentPage()+1}}</a></li>
+      @endif
+      @if($cotizaciones->nextPageUrl())
+      <li class="page-item">
+        <a class="page-link" href="{{$cotizaciones->nextPageUrl()}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      @endif
+    </ul>
+  </nav>
+
 </div>
 
 <div class="modal fade" id="generar-pdf" tabindex="-1" aria-labelledby="presupestoLabel" aria-hidden="true">
@@ -118,7 +143,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ route('generarCotPdf') }}" method="post" id="generar-form">
+        <form action="{{ route('generarCotPdf') }}" method="post" id="generar-form" target="_blank">
           {{ csrf_field() }}
           <input type="text" name="cotizacion_id" class="d-none form-control" id="cotizacion_id">
           <label class="c-switch c-switch-label c-switch-pill c-switch-success c-switch-sm float-right" id="with-business">
