@@ -43,7 +43,7 @@ class ComparativoController extends Controller
             foreach(json_decode($datoscomparativo->empresas_comparativo, true) as $columna){
                 array_push($empresas,array_values($columna));
             }
-            $presupuesto=Presupuesto::where("unidad_id",$datoscomparativo->unidad_solicitante_id)->where("estado",true)->first()->monto;
+            $presupuesto=Presupuesto::where("unidad_id",$datoscomparativo->unidad_solicitante_id)->where("estado",true)->first()->monto_disponible;
             return view("COMPARATIVO.comparativo", compact("datoscomparativo","propuestas","presupuesto","empresas"));
         }
         else{
@@ -77,7 +77,6 @@ class ComparativoController extends Controller
     }
 
     public function generar($id){
-        
         $cotizacion=InfoCotizacion::where("id",$id)->first();
         if($cotizacion){
         $eliminar=ComparativoCotizacion::where("cotizacion_id",$id)->first();
@@ -182,6 +181,12 @@ class ComparativoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $mensajes = [
+            'max'   => 'El campo "Observaciones" no puede tener más de 500 caracteres.',
+        ];
+        $this->validate($request, [
+            'observaciones'=>'max:500',
+            ], $mensajes);
         ComparativoCotizacion::where("id", $id)->update(["empresa_recomendada" => $request->empresa,"observaciones_comparativo"=>$request->observaciones]);
         return redirect()->route("comparativo.detalle",$id);
     }
