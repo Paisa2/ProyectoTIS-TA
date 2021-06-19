@@ -105,6 +105,7 @@
             </tbody>    
         </table>                      
 
+  <br>
   <nav class="mt-auto" aria-label="Page navigation">
     <ul class="pagination m-0">
       @if($cotizaciones->previousPageUrl())

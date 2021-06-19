@@ -384,9 +384,8 @@ form button[type='submit'].disabled:not(.dropdown-item), form button[type='submi
 }
 /* ------------------------------------------------------------------------------------- */
 /* estilos paginacion --------------------------------------------------*/
-.page-item.active .page-link,
-.c-dark-theme .page-item.active .page-link {
-  background-color: #181924;
+.page-item.active .page-link {
+  background-color: #303C54;
   color: #fff;
   border-color: #fff;
 }
@@ -396,5 +395,8 @@ form button[type='submit'].disabled:not(.dropdown-item), form button[type='submi
 /* estilos paginacion dark ---------------------------------------------*/
 .c-dark-theme .page-link:focus {
   box-shadow: 0 0 0 0.1rem rgba(216, 219, 224, 0.25);
+}
+.c-dark-theme .c-dark-theme .page-item.active .page-link {
+  background-color: #181924;
 }
 /* ------------------------------------------------------------------------------------- */

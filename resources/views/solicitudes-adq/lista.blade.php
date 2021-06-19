@@ -120,6 +120,7 @@
           </tbody>
       </table>
     </div>
+    <br>
     <nav class="mt-auto" aria-label="Page navigation">
       <ul class="pagination m-0">
         @if($solicitudes->previousPageUrl())
