@@ -13,12 +13,14 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    
 }
 .abs-center{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height:  calc(100vh - 60px);
+    
     
 
     

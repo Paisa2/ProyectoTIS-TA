@@ -16,6 +16,7 @@ use App\Models\RespuestaCotizacion;
 use Barryvdh\DomPDF\Facade as PDF;
 
 
+
 class EmitirInformeController extends Controller
 {
     /**
@@ -84,6 +85,18 @@ class EmitirInformeController extends Controller
         $comparativo=InfoComparativo::where('id',$id)->first();
         if($request->tipo=='Aceptado'){
             Solicitud_adquisicion::where("id", $comparativo->solicitud_a_id)->update(["estado_solicitud_a" => "Aceptado"]); 
+           $presupuesto=Presupuesto::where('unidad_id',$comparativo->unidad_solicitante_id)->where('estado',true)->first();
+           $monto=0;
+           foreach(json_decode($comparativo->empresas_comparativo, true) as $empresa){
+               $datos=array_values($empresa);
+               
+               if($datos[2]){
+                     $monto=$datos[1];
+                     
+               }
+            
+           }
+           Presupuesto::where("id", $presupuesto->id)->update(["monto_disponible" =>$presupuesto->monto_disponible-$monto]); 
         }elseif($request->tipo=='Rechazado'){
             Solicitud_adquisicion::where("id", $comparativo->solicitud_a_id)->update(["estado_solicitud_a" => "Rechazado"]); 
         }
@@ -100,8 +113,10 @@ class EmitirInformeController extends Controller
     {
         $comparativo=InfoComparativo::where('id',$id)->first();
         if($comparativo){
+            $informes=ProcesoCotizacionId::where('comparativo_id',$id)->count();
+              if($informes<1){
             $meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-            $presupuesto=Presupuesto::where('unidad_id',InfoCotizacion::where('id',$comparativo->cotizacion_id)->first()->unidad_solicitante_id)->where('estado', true)->first()->monto;
+            $presupuesto=Presupuesto::where('unidad_id',InfoCotizacion::where('id',$comparativo->cotizacion_id)->first()->unidad_solicitante_id)->where('estado', true)->first()->monto_disponible;
             $monto="";
             foreach(json_decode($comparativo->empresas_comparativo, true) as $empresa){
                 $datos=array_values($empresa);
@@ -114,7 +129,9 @@ class EmitirInformeController extends Controller
             }
             $respuestas=RespuestaCotizacion::where('cotizacion_id',$comparativo->cotizacion_id)->get();
             return view( 'EmitirInforme.EmitirInforme', compact('meses', 'comparativo','presupuesto','monto','respuestas'));
-
+              }else{
+                  abort(403);
+              }
  
         }else{
            abort(404); 

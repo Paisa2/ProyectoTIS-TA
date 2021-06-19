@@ -127,7 +127,7 @@ AtorizaciónPresupuesto
     
     <label>
     @if($presupuesto)
-      {{$presupuesto->monto}} bs
+      {{$presupuesto->monto_disponible}} bs
     @else
       Sin presupuesto
     @endif

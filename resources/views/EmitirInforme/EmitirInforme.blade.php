@@ -7,7 +7,7 @@ AtorizaciónPresupuesto
 <title>AtorizaciónPresupuesto</title>
 <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
 <link rel="stylesheet" href="{{ asset('css/EmitirInforme.css') }}">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 @endsection
 @section('main')
@@ -17,7 +17,7 @@ AtorizaciónPresupuesto
     {{csrf_field()}}
               <ul class="nav nav-tabs">
                <li class="nav-item">
-                <a class="nav-link active" id="conformato" href="#con-formato">CARTA CON FORMATO</a>
+                <a class="nav-link " id="conformato" href="#con-formato">CARTA CON FORMATO</a>
                </li>
                <li class="nav-item">
                 <a class="nav-link" id="sinformato" href="#sin-formato">CARTA SIN FORMATO</a>
@@ -36,23 +36,23 @@ AtorizaciónPresupuesto
                      <br>
                      <label for="tipo" class="form-label">De mi consideración</label>
                      <div class=" d-flex align-items-baseline justify-content-start mb-3">
-                     <label for="tipo" class="form-label">A travez de este presente tengo el bien de informarte a la Unidad de solicitud de adquisición N° {{$comparativo->codigo_solicitud_a}} , ha sido  {{ $comparativo->empresa_recomendada !=''? 'ACEPTADO':'RECHAZADO'}}</label>
+                     <label for="tipo" class="form-label">A través de este presente tengo el bien de informar a la Unidad de solicitud de adquisición N° {{$comparativo->codigo_solicitud_a}}, ha sido {{$comparativo->empresa_recomendada !=''? 'ACEPTADO':'RECHAZADO'}}</label>
                      
                      
                      
                      
                       </div>
                       
-                      <textarea name="justificacion" id="justificacion-c" class="form-control" cols="30" rows="6" style="resize: none"> Teniendo en cuenta que su unidad {{$comparativo->unidad_solicitante}} tiene un presupuesto anual {{$presupuesto}} Bs, {{ $comparativo->empresa_recomendada !=''? 'Como resultado del proceso de cotización la empresa seleccionada es '.$comparativo->empresa_recomendada.' que cotizo la solicitud de adquisición por un monto de: '.$monto.' Bs':''}}
+                      <textarea name="justificacion" id="justificacion-c" class="form-control" cols="30" rows="6" style="resize: none"> Teniendo en cuenta que su unidad {{$comparativo->unidad_solicitante}} tiene un presupuesto anual {{$presupuesto}} Bs, {{ $comparativo->empresa_recomendada !=''? 'Como resultado del proceso de cotización la empresa seleccionada es '.$comparativo->empresa_recomendada.' que cotizó la solicitud de adquisición por un monto de: '.$monto.' Bs':''}}
                     
                       </textarea>
-                      <label for="tipo" class="form-label">Sin otro en particular mos despedimos de us persona muy cordialmente deseandoles exitos en sus funcionaes que desempeñan actualmente.</label>
-                        @foreach($errors->get('tipo') as $message)
+                      <label for="tipo" class="form-label">Sin otro en particular, nos despedimos de una persona muy cordialmente deseándoles éxitos en sus funciones que desempeñan actualmente.</label>
+                        <!-- @foreach($errors->get('tipo') as $message)
                           <div class="alert alert-danger" role="alert">{{$message}}</div>
-                        @endforeach
-                        @foreach($errors->get('justificacion') as $message)
+                        @endforeach -->
+                       <!-- @foreach($errors->get('justificacion') as $message)
                           <div class="alert alert-danger" role="alert">{{$message}}</div>
-                         @endforeach
+                         @endforeach -->
                   </div>
                   <br>
                   <div id="sin-formato">
@@ -118,7 +118,7 @@ AtorizaciónPresupuesto
                
             
                 <br>
-                <input type="checkbox" name="formato" id="formato" checked class="d-none">
+                <input type="checkbox" name="formato" id="formato"  checked class="d-none {{old('formato')?'':'checked'}}">
                 <input name="tipo"  class=" d-none" value="{{ $comparativo->empresa_recomendada !=''? 'Aceptado':'Rechazado'}}">
 
              <div class="d-flex justify-content-center">
@@ -134,9 +134,11 @@ AtorizaciónPresupuesto
 @section('scripts')
 <script>
 $(window).on("load", function(){
+ 
+ /* $('#conformato').addClass('active');
  $('#sin-formato').hide();
  $('#tipo-s').prop('disabled',true);
- $('#justificacion-s').prop('disabled',true);
+ $('#justificacion-s').prop('disabled',true);*/
 $('#conformato').on('click',function(){
             $('#con-formato').show();
             $('#sin-formato').hide();
@@ -161,7 +163,11 @@ $('#sinformato').on('click',function(){
             $('#justificacion-c').prop('disabled',true);
             $('#formato').prop('checked',false);
 });
-
+// if($('#formato').hasClass('checked')){
+$('#conformato').trigger('click');
+// }else{
+// $('#sinformato').trigger('click');
+// }
 });
 
 </script>
