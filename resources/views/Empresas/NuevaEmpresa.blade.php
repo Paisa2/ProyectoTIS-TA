@@ -12,7 +12,7 @@
             <h1 class="display-4">Registrar Empresa</h1>
             <div class="row g-3">
                 <div class="col-md-12">
-                    <label for="" class="form-label">Razón Social</label>
+                    <label for="" class="form-label">Razón Social:</label>
                     <div class="select-editable" id="business">
                         <div class="dropdown">
                           <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,7 +27,7 @@
                             <span class="without d-none">Sin resultados</span>
                           </div>
                         </div>
-                        <input type="text" name="razon" id="razon" autocomplete="off" value="{{old('razon')}}" class="form-control bg-transparent">
+                        <input type="text" name="Empresa" id="razon" autocomplete="off" value="{{old('Empresa')}}" class="form-control bg-transparent">
                     </div>
                     @foreach($errors->get('Empresa') as $message)
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
@@ -42,22 +42,22 @@
             </div><br>
             <div class="row g-3">
                 <div class="col-md-4">
-                    <label for="Nombre_Comercial" class="form-label">Nombre Comercial</label>
-                    <input type="text" class="form-control" name="Nombre_Comercial" autocomplete="off">
+                    <label for="Nombre_Comercial" class="form-label">Nombre Comercial:</label>
+                    <input type="text" class="form-control" name="Nombre_Comercial" autocomplete="off" value="{{old('Nombre_Comercial')}}">
                     {{-- <input type="text" class="form-control" name="Empresa" id="Empresa"> --}}
                         @foreach($errors->get('Nombre_Comercial') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
                         @endforeach
                 </div>
                 <div class="col-md-4">
-                    <label for="Nit" class="form-label">NIT</label>
+                    <label for="Nit" class="form-label">NIT:</label>
                     <input type="text" name="Nit" class="form-control" autocomplete="off" value="{{old('Nit')}}">
                     @foreach($errors->get('Nit') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
                 </div>
                 <div class="col-md-4">
-                    <label for="Rubro" class="form-label">Rubro</label>
+                    <label for="Rubro" class="form-label">Rubro:</label>
                     <div class="select-editable" id="business">
                         <div class="dropdown">
                           <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -92,14 +92,14 @@
 
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="Representante_Legal" class="form-label">Representante Legal</label>
+                    <label for="Representante_Legal" class="form-label">Representante Legal:</label>
                     <input type="text" name="Representante_Legal" class="form-control" autocomplete="off" value="{{old('Representante_Legal')}}">
                     @foreach($errors->get('Representante_Legal') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
                 </div>
                 <div class="col-md-6">
-                    <label for="Direccion" class="form-label">Dirección</label>
+                    <label for="Direccion" class="form-label">Dirección:</label>
                     <input type="text" name="Direccion" class="form-control" autocomplete="off" value="{{old('Direccion')}}">
                     @foreach($errors->get('Direccion') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
@@ -109,7 +109,7 @@
 
             <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="Correo_Electronico" class="form-label">Correo Electronico</label>
+                    <label for="Correo_Electronico" class="form-label">Correo Electronico:</label>
                     <input type="text" name="Correo_Electronico" id="email" class="form-control" autocomplete="off" value="{{old('Correo_Electronico')}}">
                     @foreach($errors->get('Correo_Electronico') as $message)
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
