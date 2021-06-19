@@ -36,7 +36,8 @@
       @endif
       </div>
     </div>
-    <table class="table">
+    <div class="table-responsive">
+      <table class="table">
         <thead>
             <tr>
                 <th scope="col" class="options">NRO</th>
@@ -51,7 +52,7 @@
         @foreach($solicitudes as $listadb)
         <tr>
             <td scope="row">{{ $loop->index +1}}</td>
-            <td>{{$listadb->justificacion_solicitud_a}}</td>
+            <td>{{substr($listadb->justificacion_solicitud_a, 0, 70)}}{{strlen($listadb->justificacion_solicitud_a)>71 ? '...' : ''}}</td>
             <td>{{$listadb->codigo_solicitud_a}}</td>
             <td>{{$listadb->tipo_solicitud_a}}</td>
             <td>{{$listadb->estado_solicitud_a}}</td>
@@ -114,35 +115,36 @@
                 </div>
               </div>
             </td>
-        </tr>
-        @endforeach
-        </tbody>
-    </table>
+          </tr>
+          @endforeach
+          </tbody>
+      </table>
+    </div>
     <nav class="mt-auto" aria-label="Page navigation">
-    <ul class="pagination m-0">
-      @if($solicitudes->previousPageUrl())
-      <li class="page-item">
-        <a class="page-link" href="{{$solicitudes->previousPageUrl()}}" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      @endif
-      @if($solicitudes->previousPageUrl())
-      <li class="page-item"><a class="page-link" href="{{$solicitudes->previousPageUrl()}}">{{$solicitudes->currentPage()-1}}</a></li>
-      @endif
-      <li class="page-item active"><a class="page-link" href="#">{{$solicitudes->currentPage()}}</a></li>
-      @if($solicitudes->nextPageUrl())
-      <li class="page-item"><a class="page-link" href="{{$solicitudes->nextPageUrl()}}">{{$solicitudes->currentPage()+1}}</a></li>
-      @endif
-      @if($solicitudes->nextPageUrl())
-      <li class="page-item">
-        <a class="page-link" href="{{$solicitudes->nextPageUrl()}}" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-      @endif
-    </ul>
-  </nav>
+      <ul class="pagination m-0">
+        @if($solicitudes->previousPageUrl())
+        <li class="page-item">
+          <a class="page-link" href="{{$solicitudes->previousPageUrl()}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        @endif
+        @if($solicitudes->previousPageUrl())
+        <li class="page-item"><a class="page-link" href="{{$solicitudes->previousPageUrl()}}">{{$solicitudes->currentPage()-1}}</a></li>
+        @endif
+        <li class="page-item active"><a class="page-link" href="#">{{$solicitudes->currentPage()}}</a></li>
+        @if($solicitudes->nextPageUrl())
+        <li class="page-item"><a class="page-link" href="{{$solicitudes->nextPageUrl()}}">{{$solicitudes->currentPage()+1}}</a></li>
+        @endif
+        @if($solicitudes->nextPageUrl())
+        <li class="page-item">
+          <a class="page-link" href="{{$solicitudes->nextPageUrl()}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        @endif
+      </ul>
+    </nav>
 </div>
     {{--  {!!$unidad->render()!!}  --}}
 @endsection

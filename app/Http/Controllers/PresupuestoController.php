@@ -36,6 +36,7 @@ class PresupuestoController extends Controller
     public function store(Request $request)
     {
         $presupuesto = new Presupuesto($request->all());
+        $presupuesto->monto_disponible = $request->monto;
         $presupuesto->estado = true;
         $presupuesto->save();
         return redirect()->route('unidades.lista')->with('confirm', 'Se asigno el presupuesto correctamente');

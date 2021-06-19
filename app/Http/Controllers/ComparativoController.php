@@ -181,13 +181,28 @@ class ComparativoController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $mensajes = [
             'max'   => 'El campo "Observaciones" no puede tener más de 500 caracteres.',
         ];
         $this->validate($request, [
             'observaciones'=>'max:500',
-            ], $mensajes);
-        ComparativoCotizacion::where("id", $id)->update(["empresa_recomendada" => $request->empresa,"observaciones_comparativo"=>$request->observaciones]);
+            ], $mensajes);   
+        $comparativo=InfoComparativo::where("id",$id)->first();
+        $nuevoempresa=array();
+        $i = 0;
+        foreach(json_decode($comparativo->empresas_comparativo, true) as $empresa){
+            $datos=array_values($empresa);
+            if($datos[0] == $request->empresa){     
+                $nuevoempresa["r".$i] = array("e".$i=>$datos[0],"t".$i=>$datos[1],"s".$i=>true);
+            }else{
+                $nuevoempresa["r".$i] = array("e".$i=>$datos[0],"t".$i=>$datos[1],"s".$i=>false);
+            }
+            $i = $i + 1;
+        }
+        
+        ComparativoCotizacion::where("id", $id)->update(["empresa_recomendada" => $request->empresa,"observaciones_comparativo"=>$request->observaciones,"empresas_comparativo"=>json_encode($nuevoempresa)]);
+
         return redirect()->route("comparativo.detalle",$id);
     }
 

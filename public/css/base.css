@@ -22076,9 +22076,9 @@ button.bg-dark:focus {
   background-color: transparent !important;
 }
 
-[class^="bg-"] {
+/* [class^="bg-"] {
   color: #fff;
-}
+} */
 
 .bg-facebook {
   background-color: #3b5998 !important;

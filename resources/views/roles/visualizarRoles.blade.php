@@ -30,7 +30,7 @@
   @else
   <br><br>
   @endif
-  <div class="overflow-auto">
+  <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>

@@ -68,6 +68,5 @@
       href="{{route('solicitudCotizacion.index')}}">Solicitudes de cotizacion</a>
     </li>
     @endif
-    
   </ul>
 </div>

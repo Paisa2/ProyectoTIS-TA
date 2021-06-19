@@ -23,9 +23,15 @@ table {
 .c-dark-theme table{
   color: #fff;
 }
-.c-dark-theme table *{
-  color: #fff;
-  border-color: #fff;
+table,
+table td,
+table th {
+  border-color: #24252F !important;
+}
+.c-dark-theme table,
+.c-dark-theme table td,
+.c-dark-theme table th {
+  border-color: #fff !important;
 }
 .tabla-compra thead tr th, .tabla-alquiler thead tr th {
   border: 1px solid #fff;

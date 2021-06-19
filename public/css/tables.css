@@ -1,6 +1,3 @@
-table {
-  min-width: 625px;
-}
 th.options {
   width: 1.5rem;
 }
@@ -21,6 +18,10 @@ th.options {
 }
 .container-table * {
   color: #24252F;
+}
+.container-table table,
+.container-table table td,
+.container-table table th {
   border-color: #24252F !important;
 }
 @media (max-width: 768px){
@@ -35,6 +36,9 @@ th.options {
 }
 .c-dark-theme .container-table * {
   color: #fff;
+}
+.c-dark-theme .container-table table,
+.c-dark-theme .container-table table * {
   border-color: #d8dbe0 !important;
 }
 /* --------------------------------------------------------------------------------------- */

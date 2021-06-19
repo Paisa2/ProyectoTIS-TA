@@ -17,10 +17,12 @@ AtorizaciónPresupuesto
     {{csrf_field()}}
               <ul class="nav nav-tabs">
                <li class="nav-item">
-                <a class="nav-link " id="conformato" href="#con-formato">CARTA CON FORMATO</a>
+
+                <a class="nav-link" id="conformato" href="#">CARTA CON FORMATO</a>
+
                </li>
                <li class="nav-item">
-                <a class="nav-link" id="sinformato" href="#sin-formato">CARTA SIN FORMATO</a>
+                <a class="nav-link" id="sinformato" href="#">CARTA SIN FORMATO</a>
                </li>
  
              </ul>

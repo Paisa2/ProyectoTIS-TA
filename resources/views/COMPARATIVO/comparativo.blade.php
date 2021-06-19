@@ -42,27 +42,27 @@
         <th class="c-1"><b>CANT.</b></th>
         <th class="c-2"><b>UND.</b></th>
         <th class="c-3"><b>DESCRIPCION</b></th>
-        <th class="c-4 r-1">
+        <th class="c-4 r-1" id="r-1" data-value="{{0<count($empresas) ? $empresas[0][0] : ''}}">
               @if(0<count($empresas))
                 {{$empresas[0][0]}}
               @endif
               <br><b>1</b></th>
-        <th class="c-4 r-2">
+        <th class="c-4 r-2" id="r-2" data-value="{{1<count($empresas) ? $empresas[1][0] : ''}}">
               @if(1<count($empresas))
                 {{$empresas[1][0]}}
               @endif
               <br><b>2</b></th>
-        <th class="c-4 r-3">
+        <th class="c-4 r-3" id="r-3" data-value="{{2<count($empresas) ? $empresas[2][0] : ''}}">
               @if(2<count($empresas))
                 {{$empresas[2][0]}}
               @endif
               <br><b>3</b></th>
-        <th class="c-4 r-4">
+        <th class="c-4 r-4" id="r-4" data-value="{{3<count($empresas) ? $empresas[3][0] : ''}}">
               @if(3<count($empresas))
                 {{$empresas[3][0]}}
               @endif
               <br><b>4</b></th>
-        <th class="c-4 r-5">
+        <th class="c-4 r-5" id="r-5" data-value="{{4<count($empresas) ? $empresas[4][0] : ''}}">
               @if(4<count($empresas))
                 {{$empresas[4][0]}}
               @endif
@@ -161,13 +161,13 @@
     </div>
   <label for="observaciones" class="labelcompa">Empresa Recomendada: </label>
   <select class="form-control" name="empresa" id="empresas">
-     @foreach($empresas as $empresa)
+      @foreach($empresas as $empresa)
         @if($empresa[0]==$datoscomparativo->empresa_recomendada)
-        <option id="r-{{$loop->index +1}}" value="{{$empresa[0]}}" selected>{{$empresa[0]}}</option>
+        <option id=".r-{{$loop->index +1}}" value="{{$empresa[0]}}" selected>{{$empresa[0]}}</option>
         @else
-        <option id="r-{{$loop->index +1}}" value="{{$empresa[0]}}">{{$empresa[0]}}</option>
+        <option id=".r-{{$loop->index +1}}" value="{{$empresa[0]}}">{{$empresa[0]}}</option>
         @endif
-     @endforeach
+      @endforeach
   </select>
   </div>
   <div class="mb-3">
@@ -213,13 +213,13 @@
 <script>
 $(window).on("load",function(){
   $("#empresas option").off("click");
-  $("."+$("#empresas option:selected").attr("id")).addClass("active");
-  $("#empresas option").on("click",function(){
-    console.log("holaa");
+  $($("#empresas option:selected").attr("id")).addClass("active");
+  $("#empresas").on("change",function(){
     for(var i=1;i<=5;i++){
       $(".r-"+i).removeClass("active");
     }
-  $("."+$(this).attr("id")).addClass("active");
+    $("."+$("th[data-value='"+$(this).val()+"']").attr("id")).addClass("active");
+
   });
 });
 </script>

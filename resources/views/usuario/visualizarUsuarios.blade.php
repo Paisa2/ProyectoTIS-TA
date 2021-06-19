@@ -31,15 +31,14 @@
     <div class='d-flex justify-content-center'>
         <h1 class="display-4">Usuarios Registrados</h1>
     </div>
-    <table class="table">
-
-        @if(session()->has('Crear usuario'))
+    @if(session()->has('Crear usuario'))
         <div style="display:flex;justify-content:flex-end;" class="mb-3">
             <a class="btn btn-primary" href="{{url('usuario/create')}}">+ Nuevo</a>
         </div>
         @else
         <br><br>
-        @endif
+    @endif
+    <table class="table">
         <thead>
                 <tr>
                     <th scope="col" class="options">NRO</th>

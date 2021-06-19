@@ -3,7 +3,7 @@
 <head>
 
 	<meta charset="UTF-8">
-	<title>Solicitud</title>
+	<title>Solicitud de cotizacion</title>
 	<style>
 		@page {
 			margin: 0;
