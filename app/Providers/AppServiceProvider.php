@@ -19,6 +19,8 @@ use App\Models\ComparativoCotizacion;
 use App\Observers\ComparativoCotizacionObserver;
 use App\Models\InformeAutorizacion;
 use App\Observers\InformeAutorizacionObserver;
+use App\Models\Empresa;
+use App\Observers\EmpresaObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         RespuestaCotizacion::observe(RespuestaCotizacionObserver::class);
         ComparativoCotizacion::observe(ComparativoCotizacionObserver::class);
         InformeAutorizacion::observe(InformeAutorizacionObserver::class);
+        Empresa::observe(EmpresaObserver::class);
     }
 
     /**

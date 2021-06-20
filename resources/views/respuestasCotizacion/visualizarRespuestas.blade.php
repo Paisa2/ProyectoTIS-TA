@@ -55,14 +55,14 @@
                       <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                   </svg>Detalles
                   </a>              
-                  @if($cotizacion->pdf < 1)
-                  <a class="dropdown-item" href="{{ route('formulario', $cotizacion->id) }}">
+                  @if(!$cotizacion->pdf_ruta)
+                  <a class="dropdown-item" href="{{ route('formulario', $cotizacion->resp_cot_id) }}">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/cloud-upload.svg#i-cloud-upload')}}"></use>
                     </svg>Agregar PDF
                   </a>
                   @endif
-                  @if($cotizacion->pdf > 0)
+                  @if($cotizacion->pdf_ruta)
                   <a class="dropdown-item" href="{{asset($cotizacion->pdf_ruta)}}" target="_blank">
                     <svg class="c-icon mfe-2">
                       <use xlink:href="{{asset('img/icons/external-link.svg#i-external-link')}}"></use>
