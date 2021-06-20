@@ -24,7 +24,8 @@ form .btn {
 form *{
   color:#181924 !important;
 }
-form .form-control:not(:disabled):not(.disabled) {
+form .form-control:not(:disabled):not(.disabled),
+form textarea {
   border-color:#181924 !important;
 }
 /* estilos form dark ---------------------------------------------- */
@@ -34,7 +35,8 @@ form .form-control:not(:disabled):not(.disabled) {
 .c-dark-theme form *{
   color:#fff !important;
 }
-.c-dark-theme form .form-control:not(:disabled):not(.disabled){
+.c-dark-theme form .form-control:not(:disabled):not(.disabled),
+.c-dark-theme form textarea{
   border-color:#fff !important;
 }
 /* ------------------------------------------------------------------------------------ */

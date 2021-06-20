@@ -13,6 +13,9 @@
   padding: 5px;
   height: 5rem;
 }
+.c-dark-theme .soli {
+  border-color: #fff;;
+}
 .table{
   margin: center;
 }

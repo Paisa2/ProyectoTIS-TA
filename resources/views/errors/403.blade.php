@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Page not Found</title>
+	<title>Forbbiden</title>
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/errors/403.css') }}">
 </head>
 <body>
@@ -145,6 +145,13 @@
 </svg>
 
 <div class="shine"></div>
+
+<a href="{{route('bienvenido')}}" class="home">
+   <svg class="c-icon mfe-2">
+      <use xlink:href="{{asset('img/icons/home.svg#i-home')}}"></use>
+   </svg>&nbsp; Home
+</a>
+
 
 </body>
 </html>

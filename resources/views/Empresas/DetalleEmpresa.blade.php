@@ -39,37 +39,37 @@
     <div class="col-lg-12">
       <dl>
         <label><b><h4>Nombre Comercial:</h4></b></label>
-        <label>{{$registro->acronimo_empresa}}</label> 
+        <label style="font-size: 1.2rem;">{{$registro->acronimo_empresa}}</label> 
       </dl>
         
       <dl>
         <label><b><h4>Rubro:</h4></b></label>
-        <label>{{$registro->rubro_empresa}}</label> 
+        <label style="font-size: 1.2rem;">{{$registro->rubro_empresa}}</label> 
       </dl>
         
       <dl>
         <label><b><h4>Representante Legal:</h4></b></label>
-        <label>{{$registro->representante_legal}}</label>
+        <label style="font-size: 1.2rem;">{{$registro->representante_legal}}</label>
       </dl>
         
       <dl>
         <label><b><h4>NIT:</h4></b></label>
-        <label>{{$registro->nit_empresa}}</label>
+        <label style="font-size: 1.2rem;">{{$registro->nit_empresa}}</label>
       </dl>
         
       <dl>
         <label><b><h4>Dirección:</h4></b></label>
-        <label>{{$registro->direccion_empresa}}</label>
+        <label style="font-size: 1.2rem;">{{$registro->direccion_empresa}}</label>
       </dl>
         
       <dl>
         <label><b><h4>Telefono:</h4></b></label>
-        <label>{{$registro->telefono_empresa}}</label>
+        <label style="font-size: 1.2rem;">{{$registro->telefono_empresa}}</label>
       </dl>
         
       <dl>
         <label><b><h4>Correo Electronico:</h4></b></label>
-        <label>{{$registro->email_empresa}}</label>
+        <label style="font-size: 1.2rem;">{{$registro->email_empresa}}</label>
       </dl>
       </div>
 </div>
