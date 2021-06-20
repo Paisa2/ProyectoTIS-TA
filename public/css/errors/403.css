@@ -117,3 +117,17 @@ body {
             transform: translate(-98%, -48%);
   }
 }
+.home {
+  font-size: 2rem;
+  position: absolute;
+  bottom: 7rem;
+  left: 19rem;
+  color: #fff !important;
+  text-decoration: none;
+  z-index: 100;
+}
+.home .c-icon {
+  height: 30px;
+  width: 30px;
+  fill: #fff;
+}

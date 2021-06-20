@@ -134,7 +134,7 @@ AtorizaciónPresupuesto
   </label>
     <br>
     <br>
-    
+    @if($presupuesto)
       <div class="submit">
         <a href="{{route('verificarpresupuesto',['aceptar', $autopre->id])}}" class="btn btn-primary">Aceptar</a>
       </div>
@@ -142,6 +142,8 @@ AtorizaciónPresupuesto
       <div class="submit">
         <a href="{{route('verificarpresupuesto',['rechazar', $autopre->id])}}" class="btn btn-primary">Rechazar</a>
       </div>
+    @endif
+
     </div>
     </form>
 

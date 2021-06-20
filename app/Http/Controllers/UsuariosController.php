@@ -75,14 +75,14 @@ class UsuariosController extends Controller
             'ci_usuario.numeric' => 'El campo CI solo puede tener números',
             'ci_usuario.digits_between'   => 'CI debe tener entre 6 y 9 dígitos',
             'telefono_usuario.numeric' => 'El campo Teléfono solo puede tener números',
-            'telefono_usuario.digits_between'   => 'Teléfono debe tener entre 8 y 12 dígitos',
+            'telefono_usuario.digits_between'   => 'Teléfono debe tener entre 7 y 12 dígitos',
                         
         ];
         $this->validate($request, [
             'nombres'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
             'apellidos'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
             'ci_usuario'=>['required', 'digits_between:6,9', 'numeric'],
-            'telefono_usuario'=>['required', 'digits_between:8,12', 'numeric'],
+            'telefono_usuario'=>['required', 'digits_between:7,12', 'numeric'],
             'rol_id'=>'required',
             'email'=>['required','email','unique:usuarios,email'],
             'unidad_id'=>'required',

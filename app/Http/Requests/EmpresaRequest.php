@@ -28,7 +28,7 @@ class EmpresaRequest extends FormRequest
             'Nombre_Comercial' => 'required',
             'Representante_Legal' => ['required','regex:/^[\pL\s\-]+$/u'],
             'Direccion' => 'required',
-            'Nit' => ['required','numeric','digits_between:7,15'],
+            'Nit' => ['required','numeric','digits_between:7,15', 'unique:empresas,nit_empresa'],
             'Rubro' => 'required',
             'Telefono' => ['required','numeric','digits_between:6,10'],
             'Correo_Electronico'=>['required','email']
@@ -52,7 +52,8 @@ class EmpresaRequest extends FormRequest
          'Nit.digits_between' => 'El campo Nit debe contener entre 7 y 15 dígitos',
          'Correo_Electronico.email' => 'El formato de correo es incorrecto',
          'Telefono.numeric' => 'El campo Telefono solo debe contener números',
-         'Telefono.digits_between' => 'El campo Telefono debe contener entre 6 y 10 dígitos'
+         'Telefono.digits_between' => 'El campo Telefono debe contener entre 6 y 10 dígitos',
+         'Nit.unique' => 'El NIT ya ha sido registrado'
          ];
     }
 }

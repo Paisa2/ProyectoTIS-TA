@@ -71,7 +71,7 @@
                         <td>{{$registro->rubro_empresa}}</td>
                         <td>{{$registro->representante_legal}}</td>
                         <td>{{$registro->telefono_empresa}}</td>
-                        <td class="c-dark-theme options">
+                        <td class="options">
                             <div class="dropdown dropleft">
                               <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <svg class="c-icon mfe-2">

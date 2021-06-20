@@ -10,7 +10,7 @@
 </div>
 <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 @endif
-<div class="container-table">
+<div class="container-table d-flex flex-column">
   <div><h1 class="display-4">Solicitudes de Adquisiciones</h1></div>  
     <div class="row g-2">
       <div class="col-md" style="margin-bottom: 1rem;">

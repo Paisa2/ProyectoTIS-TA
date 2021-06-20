@@ -47,7 +47,7 @@
                     <th scope="col">ROL</th>
                     <th scope="col">EMAIL</th>
                     <th scope="col">PERTENECE A</th>
-                    <th scope="col">FECHA DE CREACIÓN</th>
+                    <th class="options"></th>
                 </tr>
           </thead>
           <tbody>
@@ -60,7 +60,6 @@
                         <td>{{$usuario->nombre_rol}}</td>
                         <td>{{$usuario->email}}</td>
                         <td>{{$usuario->nombre_unidad}}</td>
-                        <td>{{$usuario->created_at}}</td>
                         <td class="options">
                             <div class="dropdown dropleft">
                                 <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
