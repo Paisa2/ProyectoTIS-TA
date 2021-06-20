@@ -21,15 +21,14 @@
             
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" id="s-contacto" href="#">Contactos</a>
+      <a class="nav-link active" id="s-informacion" href="#">Acerca de Sistema</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="s-contacto" href="#">Contactos</a>
     </li>
     <li class="nav-item">
     <a class="nav-link " id="s-soporte" href="#">Soporte</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link " id="s-informacion" href="#">Acerca de Sistema</a>
-    </li>
-
     <li class="nav-item">
       <a class="nav-link" id="s-login" href="#">Inicio Sesión</a>
     </li>
@@ -227,7 +226,7 @@
 <script>
   $(window).on("load", function() {
     $("#contacto").hide();
-    $("#informacion").hide();
+    $("#login").hide();
     $("#soporte").hide();
 
     $("#s-login").on("click", function() {

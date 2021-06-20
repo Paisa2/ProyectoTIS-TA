@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     // return view('welcome');
-    return redirect()->route('informacion');
+    return redirect()->route('login');
 });
 
 Route::group(['middleware' => 'noauth'], function () {  
