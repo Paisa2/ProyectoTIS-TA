@@ -54,24 +54,25 @@
         <td>{{$itemgasto->pertenece_a}}</td>
         <td>{{$itemgasto->created_at}}</td>
         <td class="options">
-                  <div class="dropdown dropleft">
-                <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg class="c-icon mfe-2">
-                    <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
-                  </svg>
-                </span>
-                <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
-                  <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-
-                <form action="{{ route('itemsgastos.destroy', $itemgasto->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
-                <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
-                  <svg class="c-icon mfe-2">
-                    <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
-                  </svg>Eliminar
-                </button>
-                  </div>
-              </div>
-                </td> 
+          <div class="dropdown dropleft">
+            <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg class="c-icon mfe-2">
+                <use xlink:href="{{asset('img/icons/options.svg#i-options')}}"></use>
+              </svg>
+            </span>
+            <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
+              <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
+              @if(session('Eliminar item de gasto'))
+              <form action="{{ route('itemsgastos.destroy', $itemgasto->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
+              <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
+                <svg class="c-icon mfe-2">
+                  <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
+                </svg>Eliminar
+              </button>
+              @endif
+            </div>
+          </div>
+        </td> 
       </tr>
     @endforeach
     </tbody>

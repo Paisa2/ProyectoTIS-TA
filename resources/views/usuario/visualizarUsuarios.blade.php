@@ -48,6 +48,7 @@
                     <th scope="col">EMAIL</th>
                     <th scope="col">PERTENECE A</th>
                     <th scope="col">FECHA DE CREACIÓN</th>
+                    <th class="options"></th>
                 </tr>
           </thead>
           <tbody>

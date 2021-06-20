@@ -29,7 +29,7 @@ body{
 
 } */
 .pane {
-    margin-top: 5rem;
+    margin-top: 4.5rem;
 }
 .form {
     margin: auto;
@@ -140,7 +140,6 @@ h4{
 
 .nav-link:not(.active):focus,
 .nav-link:hover {
-    border: 0 !important;
-    outline: 0 !important;
+    outline: none !important;
     color: #fff;
 }

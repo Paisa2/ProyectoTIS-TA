@@ -313,10 +313,16 @@ body.bg-image.c-dark-theme {
     font-size: 2.5rem;
   }
 }
-form button[type='submit'].disabled:not(.dropdown-item), form button[type='submit'].disabled:not(.dropdown-item):hover{
+form button[type='submit'].disabled:not(.dropdown-item), 
+form button[type='submit'].disabled:not(.dropdown-item):hover{
   cursor: default;
   color: #24252F !important;
+  border-color: #24252F;
   background-color: rgb(255 255 255 / 90%) !important;
+}
+.c-dark-theme form button[type='submit'].disabled:not(.dropdown-item), 
+.c-dark-theme form button[type='submit'].disabled:not(.dropdown-item):hover{
+  background-color: rgb(200 200 200 / 90%) !important;
 }
 /* estilos botones ------------------------------------------------------- */
 .btn-primary {

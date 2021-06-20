@@ -21,57 +21,91 @@
             
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" id="s-informacion" href="#">Acerca de Sistema</a>
+      <a class="nav-link" id="informacion" href="#informacion">Acerca de Sistema</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="s-contacto" href="#">Contactos</a>
+      <a class="nav-link" id="contacto" href="#contacto">Contactos</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link " id="s-soporte" href="#">Soporte</a>
+    <a class="nav-link " id="soporte" href="#soporte">Soporte</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="s-login" href="#">Inicio Sesión</a>
+      <a class="nav-link" id="login" href="#login">Inicio Sesión</a>
     </li>
   </ul>
 
 </nav>
 
-  <div class="container pane" id="login">
-      <div class="abs-center">     
-        <form  action="/autentificacion"  class="border p-3 form"     method="POST">
-          {{csrf_field()}}
-          <div id="logo">
-            <img src="{{ asset('imagenes/cotysoft.png') }}" alt="cotysoft">
-          </div>
-          <h2>Iniciar Sesión</h2>
-          <h3>Ingrese los datos de su cuenta<h3>
-          <div class="mb-3" >
-            <div class="iconCheck"><i class="fas fa-envelope"></i></div>
-            <label for="exampleInputEmail1" class="form-label"></label>
-            <input  type="text" name="email" class="form-control" id=" email" placeholder= "Email" aria-describedby="emailHelp" value="{{old('email')}}" autocomplete="off"> 
-            @foreach($errors->get('email') as $message)
-            <div class="alert alert-danger" role="alert">{{$message}}</div>
-            @endforeach
-          </div>
-          <div class="mb-3" id="password-group">
-            <div class="iconCheck"><i class="fas fa-lock"></i></div>
-            <label for="exampleInputPassword1" class="form-label"></label>
-            <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" value="">
-            @foreach($errors->get('password') as $message)
-            <div class="alert alert-danger" role="alert">{{$message}}</div>
-            @endforeach
-          </div>
-          <div class="submit">
-            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-          </div>
-          @foreach($errors->get('password2') as $message)
+<div class="container pane" id="p-informacion" style="display:none;">
+  <div class='row'>
+    <div class='col-6'>
+
+      <div class='user-img'>
+      <img src="/imagenes/informacion.jpg"> 
+      </div>
+    </div>
+
+    <div class='col-6'>
+      <h2> Sistema de Información</h2>
+      <br>
+      <p _ngcontent-sjr-c70 class="textP">
+      “Queremos asesorarle de principio a fin ayudándole a cotizar de manera 
+      transparente e instantánea el sistema de información web que requiere tu institución"
+      </p>
+      <p _ngcontent-sjr-c70 class="textP">
+      COTYSOFT Es una aplicación desarrollada por la empresa TechnoAvance 
+      con el finalidad de ayudar al personal admisitrativo de la Universidad Mayor de San Simón en la
+      gestion del proceso de cotización de un bien o servicio.
+      </p>
+      <p _ngcontent-sjr-c70 class="textP">
+      Accede a los cuadros comparativos de la cotizacion para mejorar la toma de deciciones 
+      con la ayuda de sugerencias que proporsiona la aplicación web.
+      </p>
+      <p _ngcontent-sjr-c70 class="textP">
+      Genera reportes y accede a ellos cuando sea necesario para el control y administración de 
+      actividad de una unidad facultativa durante una gestión
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<div class="container pane" id="p-login" style="display:none;">
+    <div class="abs-center">     
+      <form  action="/autentificacion"  class="border p-3 form"     method="POST">
+        {{csrf_field()}}
+        <div id="logo">
+          <img src="{{ asset('imagenes/cotysoft.png') }}" alt="cotysoft">
+        </div>
+        <h2>Iniciar Sesión</h2>
+        <h3>Ingrese los datos de su cuenta<h3>
+        <div class="mb-3" >
+          <div class="iconCheck"><i class="fas fa-envelope"></i></div>
+          <label for="exampleInputEmail1" class="form-label"></label>
+          <input  type="text" name="email" class="form-control" id=" email" placeholder= "Email" aria-describedby="emailHelp" value="{{old('email')}}" autocomplete="off"> 
+          @foreach($errors->get('email') as $message)
           <div class="alert alert-danger" role="alert">{{$message}}</div>
           @endforeach
-        </form>
-      </div>
-  </div>
+        </div>
+        <div class="mb-3" id="password-group">
+          <div class="iconCheck"><i class="fas fa-lock"></i></div>
+          <label for="exampleInputPassword1" class="form-label"></label>
+          <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" value="">
+          @foreach($errors->get('password') as $message)
+          <div class="alert alert-danger" role="alert">{{$message}}</div>
+          @endforeach
+        </div>
+        <div class="submit {{ $errors->has('password') || $errors->has('password2') ? 'error' : '' }}" id="iniciar-sesion">
+          <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        </div>
+        @foreach($errors->get('password2') as $message)
+        <div class="alert alert-danger" role="alert">{{$message}}</div>
+        @endforeach
+      </form>
+    </div>
+</div>
 
-<div class="container pane" id="contacto">
+<div class="container pane" id="p-contacto" style="display:none;">
   <div class='row'>
     <div class='col-6'>
 
@@ -132,41 +166,7 @@
 
 </div>
 
-<div class="container pane" id="informacion">
-  <div class='row'>
-    <div class='col-6'>
-
-      <div class='user-img'>
-      <img src="/imagenes/informacion.jpg"> 
-      </div>
-    </div>
-
-    <div class='col-6'>
-      <h2> Sistema de Información</h2>
-      <br>
-      <p _ngcontent-sjr-c70 class="textP">
-      “Queremos asesorarle de principio a fin ayudándole a cotizar de manera 
-      transparente e instantánea el sistema de información web que requiere tu institución"
-      </p>
-      <p _ngcontent-sjr-c70 class="textP">
-      COTYSOFT Es una aplicación desarrollada por la empresa TechnoAvance 
-      con el finalidad de ayudar al personal admisitrativo de la Universidad Mayor de San Simón en la
-      gestion del proceso de cotización de un bien o servicio.
-      </p>
-      <p _ngcontent-sjr-c70 class="textP">
-      Accede a los cuadros comparativos de la cotizacion para mejorar la toma de deciciones 
-      con la ayuda de sugerencias que proporsiona la aplicación web.
-      </p>
-      <p _ngcontent-sjr-c70 class="textP">
-      Genera reportes y accede a ellos cuando sea necesario para el control y administración de 
-      actividad de una unidad facultativa durante una gestión
-      </p>
-    </div>
-
-  </div>
-</div>
-
-<div class="container pane" id="soporte">
+<div class="container pane" id="p-soporte" style="display:none;">
   <div class='row'>
     <div class='col-6'>
       <h2>Soporte</h2>
@@ -225,34 +225,39 @@
 
 <script>
   $(window).on("load", function() {
-    $("#contacto").hide();
-    $("#login").hide();
-    $("#soporte").hide();
 
-    $("#s-login").on("click", function() {
+    $("#login").on("click", function() {
       $(".pane").hide();
-      $("#login").show();
+      $("#p-login").show();
       $(".nav-link").removeClass("active");
-      $("#s-login").addClass("active");
+      $("#login").addClass("active");
     });
-    $("#s-contacto").on("click", function() {
+    $("#contacto").on("click", function() {
       $(".pane").hide();
-      $("#contacto").show();
+      $("#p-contacto").show();
       $(".nav-link").removeClass("active");
-      $("#s-contacto").addClass("active");
+      $("#contacto").addClass("active");
     });
-    $("#s-informacion").on("click", function() {
+    $("#informacion").on("click", function() {
       $(".pane").hide();
-      $("#informacion").show();
+      $("#p-informacion").show();
       $(".nav-link").removeClass("active");
-      $("#s-informacion").addClass("active");
+      $("#informacion").addClass("active");
     });
-    $("#s-soporte").on("click", function() {
+    $("#soporte").on("click", function() {
       $(".pane").hide();
-      $("#soporte").show();
+      $("#p-soporte").show();
       $(".nav-link").removeClass("active");
-      $("#s-soporte").addClass("active");
+      $("#soporte").addClass("active");
     });
+    if(location.hash){
+      $(location.hash).trigger("click");
+    }else if($("#iniciar-sesion").hasClass("error")) {
+      $("#login").trigger("click");
+    }else {
+      $("#informacion").trigger("click");
+    }
+
   });
 </script>
 

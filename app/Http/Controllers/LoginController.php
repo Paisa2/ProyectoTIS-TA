@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -90,14 +91,14 @@ class LoginController extends Controller
    public function autentificar(Request $request)
    {
       $this->validate($request, ['email'=>['required',], 'password'=>['required']]);
-      $credentials = request()->only('email','password');
+      // $credentials = $request->only('email','password');
       $this->deautentificar();
-      if(Auth::attempt($credentials)){
+      if(Auth::attempt(['email'=>strtolower($request->email),'password'=>$request->password])){
          $this->login($request);
          return redirect()->route('bienvenido');
       }else{
          $errors = new MessageBag(['password2' => ['Email y/o Contraseña Incorrectas']]);
-         return Redirect::back()->withErrors($errors)->withInput(Input::except('password2'));
+         return redirect()->back()->withErrors($errors)->withInput(Input::except('password2'));
       }
    }
 

@@ -24,6 +24,7 @@ class UsuariosController extends Controller
             -> join ('roles','roles.id','=','usuario_tiene_roles.rol_id')
             -> join ('unidades','unidades.id','=','usuarios.unidad_id')
             -> where ('estado',1) -> where('roles.nombre_rol', '!=', 'Superusuario') -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
+            -> orderBy('created_at', 'desc')
             -> get ();
         }else{
             $usuarios = Usuario::join('usuario_tiene_roles','usuarios.id','=','usuario_tiene_roles.usuario_id')
@@ -32,6 +33,7 @@ class UsuariosController extends Controller
             -> where ('estado',1) -> where('roles.nombre_rol', '!=', 'Superusuario') 
             -> where ('usuarios.unidad_id', session('unidad_id'))
             -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
+            -> orderBy('created_at', 'desc')
             -> get ();
         }
         return view("usuario.visualizarUsuarios",compact('usuarios'));
@@ -75,14 +77,14 @@ class UsuariosController extends Controller
             'ci_usuario.numeric' => 'El campo CI solo puede tener números',
             'ci_usuario.digits_between'   => 'CI debe tener entre 6 y 9 dígitos',
             'telefono_usuario.numeric' => 'El campo Teléfono solo puede tener números',
-            'telefono_usuario.digits_between'   => 'Teléfono debe tener entre 8 y 12 dígitos',
+            'telefono_usuario.digits_between'   => 'Teléfono debe tener entre 7 y 12 dígitos',
                         
         ];
         $this->validate($request, [
             'nombres'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
             'apellidos'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
             'ci_usuario'=>['required', 'digits_between:6,9', 'numeric'],
-            'telefono_usuario'=>['required', 'digits_between:8,12', 'numeric'],
+            'telefono_usuario'=>['required', 'digits_between:7,12', 'numeric'],
             'rol_id'=>'required',
             'email'=>['required','email','unique:usuarios,email'],
             'unidad_id'=>'required',
@@ -93,7 +95,8 @@ class UsuariosController extends Controller
         try {
                 DB::beginTransaction();
                 $usuario = new Usuario($request->all());
-                $usuario -> contrasenia = bcrypt($request -> contrasenia);
+                $usuario -> email = strtolower($request -> email);
+                $usuario -> contrasenia = bcrypt(strtolower($request -> contrasenia));
                 $usuario -> save();
                 $asignar_rol = new UsuarioTieneRol;
                 $asignar_rol -> rol_id = $request->rol_id;
