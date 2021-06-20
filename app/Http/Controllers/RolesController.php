@@ -52,7 +52,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $modulos = TipoContenido::all();
+        $modulos = TipoContenido::where('modulo', '!=', 'Roles')->where('modulo', '!=', 'Presupuestos')->get();
         foreach ($modulos as $modulo) {
             $permisos = Permiso::where('tipo_contenido_id', $modulo->id)->get();
             foreach ($permisos as $permiso) {
@@ -152,7 +152,7 @@ class RolesController extends Controller
     {
         $rol = Rol::where('id', $id)->first();
         if ($rol) {
-            $modulos = TipoContenido::all();
+            $modulos = TipoContenido::where('modulo', '!=', 'Roles')->where('modulo', '!=', 'Presupuestos')->get();
             foreach ($modulos as $modulo) {
                 $permisos = DB::table(DB::raw('(select * from permisos as pe where pe.tipo_contenido_id='.$modulo->id.') as pet'))
                 ->leftJoin(DB::raw('(select * from rol_tiene_permisos as rtp where rtp.rol_id='.$id.') as rtpt'), 'rtpt.permiso_id', '=', 'pet.id')

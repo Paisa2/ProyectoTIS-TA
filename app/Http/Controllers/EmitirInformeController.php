@@ -76,9 +76,9 @@ class EmitirInformeController extends Controller
             $informe->empresa_seleccionada=$request->empresa;
         }
           if($request->formato){
-            $informe->con_formato=true;
+            $informe->con_formato=false;
           }else{
-            $informe->con_formato=false;   
+            $informe->con_formato=true;   
           }
         
         $informe->save();

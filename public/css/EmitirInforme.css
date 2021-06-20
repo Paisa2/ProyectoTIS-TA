@@ -19,6 +19,9 @@ select.form-control{
     height: 1.7rem !important;
     margin-left: 1.5rem;
 }
+.informe-options a svg:focus{
+    outline: none;
+}
 .c-dark-theme ul.nav-tabs {
     border-color: #fff;
 }

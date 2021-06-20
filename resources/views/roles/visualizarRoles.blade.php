@@ -62,14 +62,14 @@
                     <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                   </svg>Detalles
                 </a>
-                @if(session()->has('Editar rol'))
+                @if(session()->has('Editar rol') && $rol->nombre_rol != 'Superusuario')
                 <a class="dropdown-item" type="submit" href="{{ route('roles.edit', $rol->id) }}">
                   <svg class="c-icon mfe-2">
                     <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
                   </svg>Editar
                 </a>
                 @endif
-                @if(session()->has('Eliminar rol'))
+                @if(session()->has('Eliminar rol') && $rol->nombre_rol != 'Superusuario')
                 <form action="{{ route('roles.destroy', $rol->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
                 <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
                   <svg class="c-icon mfe-2">
