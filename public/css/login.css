@@ -70,7 +70,7 @@ body{
     color: rgb(245, 240, 240);
     
 }
-.border input[type="email"],
+.border input[type="text"],
 .border input[type="password"]{
     border: 0;
     margin: -5px auto;
