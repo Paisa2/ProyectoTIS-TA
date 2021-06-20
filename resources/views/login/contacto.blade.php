@@ -34,8 +34,8 @@
   
 </ul>
         
-       
-    </nav>
+</nav>
+
        <div class="container">
           <div class='row'>
              <div class='col-6'>
@@ -111,5 +111,6 @@
 
            </div>
         </div>
+        
 </body>
 </html>
