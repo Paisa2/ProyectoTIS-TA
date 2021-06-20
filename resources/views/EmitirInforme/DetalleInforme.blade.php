@@ -29,7 +29,7 @@ AtorizaciónPresupuesto
             @if(session('tipo_unidad')!='unidad de gasto')
             <div class="informe-options">
                <a href="{{route('informe.generarpdf', $informe->id)}}" target="_blank">
-                  <svg class="c-icon c-icon-lg">
+                  <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Imprimir">
                      <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
                   </svg>
                </a>

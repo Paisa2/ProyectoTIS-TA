@@ -11,14 +11,14 @@ class CotizacionPdf extends Model
      *
      * @var string
      */
-    protected $table = 'cotizaciones_pdff';
+    protected $table = 'cotizaciones_pdf';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'ruta', 'cotizacion_id',
+        'ruta', 'resp_cot_id',
     ];
     public $timestamps = false;
 }

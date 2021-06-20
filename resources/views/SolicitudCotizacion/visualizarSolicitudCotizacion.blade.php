@@ -15,7 +15,7 @@
   <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 @endif
 
-<div class="container-table">
+<div class="container-table d-flex flex-column">
 
         <div class='d-flex justify-content-center'>
             <h2 class="display-4">Lista de Cotizaciones</h2>
@@ -105,6 +105,7 @@
             </tbody>    
         </table>                      
 
+  <br>
   <nav class="mt-auto" aria-label="Page navigation">
     <ul class="pagination m-0">
       @if($cotizaciones->previousPageUrl())

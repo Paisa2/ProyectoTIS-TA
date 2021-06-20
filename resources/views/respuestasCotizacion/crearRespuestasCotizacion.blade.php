@@ -70,8 +70,8 @@
             <td id="c-{{$i+1}}">{{$detalles[1][$i]}}</td>
             <td>{{$detalles[2][$i]}}</td>
             <td class="d4"><span>{{$detalles[3][$i]}}</span></td>
-						<td><input type="number" min="1" name="detalles[unitario][uo{{$i}}]" value="{{old('detalles.unitario.uo'.$i)}}" class="{{{{$detalles[3][$i]}} ? '' : 'not' }}" id="u-{{$i+1}}" autocomplete='off'></td>
-            <td><input type="number" min="1" name="detalles[total][t{{$i}}]" value="{{old('detalles.total.t'.$i)}}" class="{{{{$detalles[3][$i]}} ? '' : 'not' }}" id="t-{{$i+1}}" autocomplete='off'></td>
+						<td><input type="number" min="1" name="detalles[unitario][uo{{$i}}]" value="{{old('detalles.unitario.uo'.$i)}}" class="{{$detalles[3][$i] ? '' : 'not' }}" id="u-{{$i+1}}" autocomplete='off'></td>
+            <td><input type="number" min="1" name="detalles[total][t{{$i}}]" value="{{old('detalles.total.t'.$i)}}" class="{{$detalles[3][$i] ? '' : 'not' }}" id="t-{{$i+1}}" autocomplete='off'></td>
           </tr>
         @endfor
       </tbody>

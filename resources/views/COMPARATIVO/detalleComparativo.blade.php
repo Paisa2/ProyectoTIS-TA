@@ -48,14 +48,14 @@
     <div class="d-flex align-items-center mb-3">
       <div class="comparativo-options">
         <a href="{{$datoscomparativo->informe_id? route('detalleinforme', $datoscomparativo->informe_id) : route('emitirinforme', $datoscomparativo->id)}}">
-          <svg class="c-icon c-icon-lg">
+          <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="{{$datoscomparativo->informe_id? 'Ver informe' : 'Emitir informe' }}">
             <use xlink:href="{{asset('img/icons/clipboard.svg#i-clipboard')}}"></use>
           </svg>
         </a>
       </div>
       <div class="comparativo-options">
         <a href="{{route('comparativo.generarpdf', $datoscomparativo->id)}}" target="_blank">
-          <svg class="c-icon c-icon-lg">
+          <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Imprimir">
             <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
           </svg>
         </a>

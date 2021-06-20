@@ -8,22 +8,31 @@ body, html{
     height: 100%;
 }
 body{
-    background-image: url(../imagen/fondo\ oficial.jpg);
+    /* background-image: url(../imagen/fondo\ oficial.jpg); */
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    
+    color: #212529;
 }
-.abs-center{
+.pane {
+    width: 100%;
+}
+#navbar {
+    padding-bottom: 0 !important;
+}
+/* .abs-center{
     display: flex;
     align-items: center;
     justify-content: center;
     height:  calc(100vh - 60px);
-    
-    
 
-    
+} */
+.pane {
+    margin-top: 5rem;
+}
+.form {
+    margin: auto;
 }
 .form{
     width: 35%;
@@ -31,6 +40,7 @@ body{
     color:#fff !important;
     border: 1px solid #fff;
     box-shadow:none;
+    border-radius: 10px;
 }
 .form * {
     color: #fff !important;
@@ -52,7 +62,7 @@ body{
 .iconCheck{
     position: relative;
 }
-.fas{
+.form .fas{
     position: absolute;
     padding: 20px;
     left:-15px;
@@ -99,4 +109,38 @@ body{
 
 form {
     margin-top: 0;
+}
+
+.nav-tabs {
+    border: 0 !important;
+}
+
+.user-img img{
+    width: 450px; height: 450px;
+}
+
+.user-imagen img{
+    width: 250px; height: 100px;
+}
+
+.user-image img{
+    width: 50px; height: 20px;
+}
+
+h2{
+    color: #180952;
+    font-weight:600;
+    
+}
+h4{
+    color: rgb(4, 4, 12);
+    font-weight:600;
+}
+
+
+.nav-link:not(.active):focus,
+.nav-link:hover {
+    border: 0 !important;
+    outline: 0 !important;
+    color: #fff;
 }

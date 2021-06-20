@@ -41,6 +41,10 @@ if(localStorage.getItem('bg-image') == 'true'){
 
 $(window).on('load', function(){
 
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
   $('#close-sidebar').off('click');
   $('#close-sidebar').on('click', function(){
     $('#aside').removeClass('c-sidebar-show');

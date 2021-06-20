@@ -42,8 +42,8 @@
       href="{{route('empresa.index')}}">Empresas</a>
     </li>
     @endif
-    <li class="c-sidebar-nav-title">Actividades</li>
     @if(session('rol') == 'Superusuario')
+    <li class="c-sidebar-nav-title">Actividades</li>
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link {{ (request()->is('bitacora') || request()->is('bitacora/*')) ? 'c-active' : '' }}" 
       href="{{route('bitacora.index')}}">Bitacora</a>

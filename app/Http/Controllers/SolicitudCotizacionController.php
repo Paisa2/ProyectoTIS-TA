@@ -70,7 +70,7 @@ class SolicitudCotizacionController extends Controller
         $cotizacion->detalle_cotizacion = json_encode ($request->detalles);
 
         $cotizacion->save();
-        return redirect()->route('solicitudCotizacion.index')->with('confirm', 'Nuevo usuario registrado correctamente');           
+        return redirect()->route('solicitudCotizacion.index')->with('confirm', 'Cotización registrada correctamente');           
 
     }
     public function show($id){

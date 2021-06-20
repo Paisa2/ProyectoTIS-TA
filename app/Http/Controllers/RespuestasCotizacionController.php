@@ -7,6 +7,7 @@ use App\Models\Solicitud_cotizacion;
 use App\Models\RespuestaCotizacion;
 use App\Models\InfoCotizacion;
 use App\Models\TodaEmpresa;
+use App\Models\CotizacionPdf;
 
 class RespuestasCotizacionController extends Controller
 {
@@ -17,8 +18,16 @@ class RespuestasCotizacionController extends Controller
      */
     public function index($id)
     {
-        $cotizaciones=InfoCotizacion::join("respuestas_cotizacion","respuestas_cotizacion.cotizacion_id","=","info_cotizacion.id")->where('info_cotizacion.id', $id)
-        ->select("info_cotizacion.*","respuestas_cotizacion.razon_social","respuestas_cotizacion.id as resp_cot_id")->get();
+        $cotizaciones=InfoCotizacion::join("respuestas_cotizacion","respuestas_cotizacion.cotizacion_id","=","info_cotizacion.id")
+        ->where('info_cotizacion.id', $id)
+        ->select("info_cotizacion.*","respuestas_cotizacion.razon_social","respuestas_cotizacion.id as resp_cot_id")
+        ->orderBy('created_at', 'desc')->get();
+        foreach ($cotizaciones as $cotizacion) {
+            $pdf = CotizacionPdf::where('resp_cot_id', $cotizacion->resp_cot_id)->first();
+            if($pdf) {
+                $cotizacion->pdf_ruta = $pdf->ruta; 
+            }
+        }
         return view("respuestasCotizacion.visualizarRespuestas", compact("cotizaciones"));
     }
 

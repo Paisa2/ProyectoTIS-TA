@@ -20,5 +20,4 @@ class RespuestaCotizacion extends Model
     protected $fillable = [
         'razon_social', 'detalle_precios', 'cotizacion_id',
     ];
-    public $timestamps = false;
 }

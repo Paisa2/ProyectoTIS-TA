@@ -24,7 +24,7 @@
       
         <input type="submit" class="btn btn-primary" name="compra" id="compra" value="Compra">
       
-        <input type="submit" class="btn btn-primary" name="alquiler" id="compra" value="Alquiler" >
+        <input type="submit" class="btn btn-primary" name="alquiler" id="alquiler" value="Alquiler" >
       </div>
       </form>
       </div>
@@ -120,6 +120,7 @@
           </tbody>
       </table>
     </div>
+    <br>
     <nav class="mt-auto" aria-label="Page navigation">
       <ul class="pagination m-0">
         @if($solicitudes->previousPageUrl())
