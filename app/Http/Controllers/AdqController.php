@@ -38,25 +38,21 @@ class AdqController extends Controller
             $estadoSolicitud = '';
         }
         $solicitudes=Solicitud_adquisicion::where('tipo_solicitud_a', 'like', "%$tipo2%")
-            ->where('tipo_solicitud_a', 'like', "%$tipo3%")
-            ->whereRaw($columnaUnidad . '=' . $unidadId)
-            ->where('estado_solicitud_a', '!=', $estadoSolicitud)
-            ->orderBy('updated_at','desc')->paginate(10);
-        if(count($solicitudes) > 0){  
-            foreach($solicitudes as $solicitud){
-                $solicitud->cotizacion=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->count();
-                $solicitud->informes=ProcesoCotizacionId::where('solicitud_a_id',$solicitud->id)->count();
-                if($solicitud->cotizacion > 0){
-                    $solicitud->cotizacion_id=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->first()->id;
-                }
-                if($solicitud->informes > 0){
-                    $solicitud->informe_id=ProcesoCotizacionId::where('solicitud_a_id',$solicitud->id)->first()->informe_autorizacion_id;
-                }
+        ->where('tipo_solicitud_a', 'like', "%$tipo3%")
+        ->whereRaw($columnaUnidad . '=' . $unidadId)
+        ->where('estado_solicitud_a', '!=', $estadoSolicitud)
+        ->orderBy('updated_at','desc')->paginate(10);
+        foreach($solicitudes as $solicitud){
+            $solicitud->cotizacion=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->count();
+            $solicitud->informes=ProcesoCotizacionId::where('solicitud_a_id',$solicitud->id)->count();
+            if($solicitud->cotizacion > 0){
+                $solicitud->cotizacion_id=Solicitud_cotizacion::where('solicitud_a_id',$solicitud->id)->first()->id;
             }
-            return view('solicitudes-adq.lista', compact('solicitudes'));
-        }else{
-            abort(404);
+            if($solicitud->informes > 0){
+                $solicitud->informe_id=ProcesoCotizacionId::where('solicitud_a_id',$solicitud->id)->first()->informe_autorizacion_id;
+            }
         }
+        return view('solicitudes-adq.lista', compact('solicitudes'));
     }
 
     /**

@@ -95,6 +95,7 @@ class LoginController extends Controller
       $this->deautentificar();
       if(Auth::attempt(['email'=>strtolower($request->email),'password'=>$request->password])){
          $this->login($request);
+         $this->verificarFechas();
          return redirect()->route('bienvenido');
       }else{
          $errors = new MessageBag(['password2' => ['Email y/o Contraseña Incorrectas']]);

@@ -33,7 +33,7 @@
                 <tr>
                     <th scope="col" class="options">NRO</th>
                     <th scope="col">CODIGO DE COTIZACIÓN</th>
-                    <th scope="col">CANTIDAD DE RESPUESTAS</th>
+                    <th scope="col">CANTIDAD DE PROPUESTAS</th>
                     <th scope="col">ESTADO</th>
                     <th scope="col">FECHA</th> 
                     <th class="options"></th>

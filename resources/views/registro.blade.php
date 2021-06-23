@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-6">
                 <label for="pertenece_a">Pertenece a:</label>
-                <select name="unidad_id" id="institucion" class="form-control">
+                <select name="unidad_id" id="institucion" class="form-control {{ old('tipo_unidad') == 'facultad' ? 'show' : '' }}">
                 <option hidden selected value="">Seleccione</option>
                 @foreach($instituciones as $Institucion)
                 <option value="{{ $Institucion->id }}">{{ $Institucion->nombre_unidad }}</option>
@@ -109,24 +109,31 @@
 @section('scripts')
 <script>
     $(document).ready(function(){
-        $("#institucion").hide();
-        $('#institucion').prop("disabled", true);
+
+        if($("#institucion").hasClass('show')){
+            $("#facultad").hide();
+            $('#facultad').prop("disabled", true);
+        }else{
+            $("#institucion").hide();
+            $('#institucion').prop("disabled", true);
+        }
+
         $("#tipo_unidad").change(function(){
             var selector = $("#tipo_unidad").val();
             console.log(selector);
         
-        if(selector == "facultad"){
-            $('#institucion').show();
-            $('#facultad').hide();
-            $('#institucion').prop("disabled", false);
-            $('#facultad').prop("disabled", true);
-        }
-        else{
-            $('#institucion').hide();
-            $('#facultad').show();
-            $('#institucion').prop("disabled", true);
-            $('#facultad').prop("disabled", false);
-        }
+            if(selector == "facultad"){
+                $('#institucion').show();
+                $('#facultad').hide();
+                $('#institucion').prop("disabled", false);
+                $('#facultad').prop("disabled", true);
+            }
+            else{
+                $('#institucion').hide();
+                $('#facultad').show();
+                $('#institucion').prop("disabled", true);
+                $('#facultad').prop("disabled", false);
+            }
         });
     });
 </script>

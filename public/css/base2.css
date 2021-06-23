@@ -84,6 +84,9 @@ body.bg-image.c-dark-theme {
   color: #22222F;
 }
 /* estilos barra lateral izquierda dark ------------------------------------  */
+.c-dark-theme #aside .c-sidebar-nav-link:hover {
+  color: #fff;
+}
 .c-dark-theme .c-sidebar-nav-link.c-active {
   border-color: #fff;
 }

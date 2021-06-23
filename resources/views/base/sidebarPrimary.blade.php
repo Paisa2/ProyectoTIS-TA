@@ -69,4 +69,5 @@
     </li>
     @endif
   </ul>
+  <div class="c-sidebar-minimizer"></div>
 </div>

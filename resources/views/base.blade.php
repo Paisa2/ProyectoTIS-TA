@@ -13,7 +13,7 @@
   @yield('head')
 
 </head>
-<body class="c-dark-theme bg-image" id="app">
+<body id="app">
   
   @include('base.sidebarPrimary')
   @include('base.sidebarSecondary')

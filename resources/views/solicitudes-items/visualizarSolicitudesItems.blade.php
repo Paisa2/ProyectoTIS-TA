@@ -42,7 +42,7 @@
           <td>{{$solicitud->nombres_para}}</td>
           <td>{{$solicitud->detalle_solicitud_item}}</td>
           <td class="text-center">{{date("Y-m-d",strtotime($solicitud->created_at))}}</td>
-          <td class="c-dark-theme options">
+          <td class="options">
             <div class="dropdown dropleft">
               <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <svg class="c-icon mfe-2">

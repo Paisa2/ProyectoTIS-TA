@@ -55,14 +55,18 @@ class AutorizaciónPresupuestoController extends Controller
         ->where('solicitudes_adquisiciones.id',$id)
         ->select('solicitudes_adquisiciones.*','usuarios.nombres','usuarios.apellidos','unidades.nombre_unidad',"usuarios.unidad_id")->first(); 
         if($autopre){
-            $presupuesto=Presupuesto::where("unidad_id",$autopre->unidad_id)
-                                      ->where("estado",true)->orderBy("created_at","desc")->first();
-            $datos=json_decode($autopre->detalle_solicitud_a , true);      
-            $detalles=[];                     
-            foreach($datos as $columna){
-               array_push($detalles,array_values($columna));
-            };
-        return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopre','presupuesto','detalles'));
+            if($autopre->estado_solicitud_a == 'Pendiente'){
+                $presupuesto=Presupuesto::where("unidad_id",$autopre->unidad_id)
+                ->where("estado",true)->orderBy("created_at","desc")->first();
+                $datos=json_decode($autopre->detalle_solicitud_a , true);      
+                $detalles=[];                     
+                foreach($datos as $columna){
+                    array_push($detalles,array_values($columna));
+                };
+                return view('AutorizaciónPresupuesto.AutorizaciónPresupuesto', compact('autopre','presupuesto','detalles'));
+            }else{
+                abort(403);
+            }
         }
         else{
             abort(404);
@@ -91,22 +95,24 @@ class AutorizaciónPresupuestoController extends Controller
 
     {
         $solicitud=Solicitud_adquisicion::where('id',$id)->first();
-       if($solicitud){
-            if($tipo=='aceptar'){
-            Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Proceso de cotizacion"]); 
-            $mensaje="Se Acepto la solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." para la cotización";
-           }elseif($tipo=='rechazar'){
-            Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Rechazado por falta de presupuesto"]); 
-            $mensaje="Se Rechazo la solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." por falta de presupuesto";
-          
+        if($solicitud){
+            if($solicitud->estado_solicitud_a == 'Pendiente'){
+                if($tipo=='aceptar'){
+                    Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Proceso de cotizacion"]); 
+                    $mensaje="Se Acepto la solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." para la cotización";
+                }elseif($tipo=='rechazar'){
+                    Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Rechazado por falta de presupuesto"]); 
+                    $mensaje="Se Rechazo la solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." por falta de presupuesto";
+                }else{
+                    $mensaje="La solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." no se pudo verificar";
+                }
+                return redirect()->route('lista.index')->with('confirm',$mensaje);
+            }else{
+                abort(403);
             }
-            else{
-                $mensaje="La solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." no se pudo verificar";
-            }
-        return redirect()->route('lista.index')->with('confirm',$mensaje);
-       }else{
-           abort(404);
-       }
+        }else{
+            abort(404);
+        }
     }
 
     /**

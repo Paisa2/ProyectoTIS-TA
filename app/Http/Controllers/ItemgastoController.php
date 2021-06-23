@@ -18,7 +18,9 @@ class ItemgastoController extends Controller
     public function index()
     {
         //$itemsgastos = ItemGasto::all();
-        $itemsgastos=ItemGasto::leftjoin('items_gasto as genericos','genericos.id','=','items_gasto.item_id')->select('items_gasto.*', 'genericos.nombre_item as pertenece_a')->get();
+        $itemsgastos=ItemGasto::leftjoin('items_gasto as genericos','genericos.id','=','items_gasto.item_id')
+        ->select('items_gasto.*', 'genericos.nombre_item as pertenece_a')
+        ->orderBy('created_at', 'desc')->get();
         return view("ITEM_GASTOS.visualizarItemgasto", compact('itemsgastos'));
         //$itemsgastos=ItemGasto::leftjoin('items_gasto','items_gasto.id','=','items_gasto.itemd_id')->get();
         //return view("ITEM_GASTOS.visualizarItemgasto", compact('itemsgastos'));

@@ -17,7 +17,7 @@
         <div class="mb-3 col-lg-6">
           <div class="row align-items-center">
           <label for="NumeroCotizacion" class="col-auto" style="margin: 0;">Número Cotización:</label>
-          <input type="text" class="form-control col" name="numero_cotizacion" id="NumeroCotizacion" autocomplete="off" value="{{old('numero_cotizacion')}}" style="margin-right:1rem;">
+          <input type="text" class="form-control col" name="numero_cotizacion" id="NumeroCotizacion" autocomplete="off" value="{{old('codigo_cotizacion')? old('codigo_cotizacion') : $codigo }}" style="margin-right:1rem;">
           </div>
           @foreach($errors->get('numero_cotizacion') as $message) 
           <div class="alert alert-danger col-12" role="alert">{{$message}}</div>

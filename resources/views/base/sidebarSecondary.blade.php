@@ -180,7 +180,7 @@
         <div class="clearfix mt-4">
           <small><b>Cotizador</b></small>
         </div>
-        <div><small class="text-muted"><a href="{{session('id')==31? '#' : route('login.access', 31)}}">Tomas Hinojosa</a></small></div>
+        <div><small class="text-muted"><a href="{{session('id')==31? '#' : route('login.access', 34)}}">Tomas Hinojosa</a></small></div>
       </div>
     </div>
   </div>

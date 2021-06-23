@@ -52,7 +52,7 @@
         <td>{{$itemgasto->tipo_item}}</td>
         <td>{{$itemgasto->nombre_item}}</td>
         <td>{{$itemgasto->pertenece_a}}</td>
-        <td>{{$itemgasto->created_at}}</td>
+        <td>{{date("Y-m-d",strtotime($itemgasto->created_at))}}</td>
         <td class="options">
           <div class="dropdown dropleft">
             <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

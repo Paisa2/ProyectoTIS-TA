@@ -136,3 +136,6 @@ td{
   height: 1.7rem !important;
   margin-left: 1.5rem;
 }
+.comparativo-options a svg:focus{
+  outline: none;
+}

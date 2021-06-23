@@ -10,7 +10,9 @@ class UnidadesController extends Controller
 {
     public function lista(){
 
-        $unidad = Unidad::join('unidades as pertenece', 'unidades.unidad_id', '=', 'pertenece.id')->select('unidades.*','pertenece.nombre_unidad as pertenece_a')->orderBy('created_at','ASC')->get();
+        $unidad = Unidad::join('unidades as pertenece', 'unidades.unidad_id', '=', 'pertenece.id')
+        ->select('unidades.*','pertenece.nombre_unidad as pertenece_a')
+        ->orderBy('created_at','desc')->get();
         foreach ($unidad as $un) {
             $un->presupuesto = Presupuesto::where('estado', true)->where('unidad_id', $un->id)->count();
         }

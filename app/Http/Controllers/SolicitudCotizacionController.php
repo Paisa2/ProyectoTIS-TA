@@ -28,24 +28,21 @@ class SolicitudCotizacionController extends Controller
         $cotizaciones = Solicitud_cotizacion::join('solicitudes_adquisiciones', 'solicitudes_adquisiciones.id', '=', 'solicitudes_cotizaciones.solicitud_a_id')
         ->whereRaw($unidadColumna.'='.$unidadId)
         ->select('solicitudes_cotizaciones.*')->orderBy('created_at', 'desc')->paginate(10);
-        if(count($cotizaciones) > 0){    
-            foreach($cotizaciones as $cotizacion){
-                $cotizacion->comparativo=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->count();
-                if($cotizacion->comparativo > 0){
-                    $cotizacion->comparativo_id=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->first()->id;
-                }
-                $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
-                $cotizacion->informes = ProcesoCotizacionId::where('cotizacion_id', $cotizacion->id)->count();
+        foreach($cotizaciones as $cotizacion){
+            $cotizacion->comparativo=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->count();
+            if($cotizacion->comparativo > 0){
+                $cotizacion->comparativo_id=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->first()->id;
             }
-            $empresas = TodaEmpresa::all();
-            return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones", "empresas"));
-        }else{
-            abort(404);
+            $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
+            $cotizacion->informes = ProcesoCotizacionId::where('cotizacion_id', $cotizacion->id)->count();
         }
+        $empresas = TodaEmpresa::all();
+        return view("SolicitudCotizacion.visualizarSolicitudCotizacion", compact("cotizaciones", "empresas"));
     }
 
     public function create(){
-        return view("SolicitudCotizacion.crearSolicitudCotizacion");
+        $codigo = Solicitud_cotizacion::max('codigo_cotizacion') + 1;
+        return view("SolicitudCotizacion.crearSolicitudCotizacion", compact('codigo'));
     }
 
     public function store(Request $request)

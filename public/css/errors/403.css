@@ -4,7 +4,7 @@
 body {
   background: #181924;
   min-height: 100vh;
-  overflow-x: auto;
+  overflow: hidden;
 }
 .staff {
   -webkit-animation: strike 0.5s 0.5s cubic-bezier(1, 0.25, 1, 1) both;
@@ -120,8 +120,8 @@ body {
 .home {
   font-size: 2rem;
   position: absolute;
-  bottom: 7rem;
-  left: 19rem;
+  bottom: 2rem;
+  left: 47%;
   color: #fff !important;
   text-decoration: none;
   z-index: 100;

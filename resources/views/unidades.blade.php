@@ -23,12 +23,12 @@
         <thead>
             <tr>
                 <th scope="col" class="options">NRO</th>
-                <th scope="col">TIPO DE UNIDAD</th>
                 <th scope="col">NOMBRE DE UNIDAD</th>
+                <th scope="col">TIPO DE UNIDAD</th>
                 <th scope="col">PERTENECE A</th>
+                <th scope="col">TELEFONO</th>
                 <th scope="col">FECHA DE CREACIÓN</th>
 
-                <th scope="col">TELEFONO</th>
 
 
                 <th class="options"></th>
@@ -38,11 +38,11 @@
         @foreach($unidad as $unidadbd)
         <tr>
             <th scope="row">{{$loop->index +1}}</th>
-            <td>{{$unidadbd->tipo_unidad}}</td>
             <td>{{$unidadbd->nombre_unidad}}</td>
+            <td>{{$unidadbd->tipo_unidad}}</td>
             <td>{{$unidadbd->pertenece_a}}</td>
-            <td>{{$unidadbd->created_at}}</td>
             <td>{{$unidadbd->telefono_unidad}}</td>
+            <td>{{date("Y-m-d",strtotime($unidadbd->created_at))}}</td>
             <td class="options">
                 <div class="dropdown dropleft">
                     <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

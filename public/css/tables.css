@@ -1,3 +1,6 @@
+table {
+  overflow-x: unset !important;
+}
 th.options {
   width: 1.5rem;
 }

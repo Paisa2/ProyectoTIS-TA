@@ -53,6 +53,7 @@
           </svg>
         </a>
       </div>
+      @if(session('tipo_unidad') != 'unidad de gasto')
       <div class="comparativo-options">
         <a href="{{route('comparativo.generarpdf', $datoscomparativo->id)}}" target="_blank">
           <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Imprimir">
@@ -60,6 +61,7 @@
           </svg>
         </a>
       </div>
+      @endif
     </div>
   </div>
   <div class="row-0"><b>CASAS COMERCIALES</b></div>

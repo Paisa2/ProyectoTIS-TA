@@ -258,11 +258,8 @@
   </table>
   <div class="observaciones">
     <label>Observaciones: </label>
-    <span>{{substr($comparativo->observaciones_comparativo, 0, 135)}}</span>
+    <span>{{$comparativo->observaciones_comparativo</span>
     <span>
-    @if(strlen($comparativo->observaciones_comparativo) > 135)
-      {{substr($comparativo->observaciones_comparativo, 135, strlen($comparativo->observaciones_comparativo)-1)}}
-    @endif
     </span>
   </div>
   <table class="informacion">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use App\Models\Rol;
 use App\Models\Unidad;
 use Illuminate\Support\Facades\DB;

@@ -41,16 +41,14 @@ if(localStorage.getItem('bg-image') == 'true'){
 
 $(window).on('load', function(){
 
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-
+  // Aside cerrar
   $('#close-sidebar').off('click');
   $('#close-sidebar').on('click', function(){
     $('#aside').removeClass('c-sidebar-show');
     $('.c-sidebar-backdrop.c-fade.c-show').addClass('d-none');
   });
 
+  // Submit solo una vez
   $('form button[type="submit"]:not(.dropdown-item)').on('click', function(){
     $(this).addClass('disabled');
     $(this).off('click');
@@ -59,6 +57,7 @@ $(window).on('load', function(){
     });
   });
 
+  // Modo claro/oscuro
   $('#mode-dark > span').on('click', function(){
     if ($('#mode-dark > input').is(':checked')){ 
       // modo dark off
@@ -71,6 +70,7 @@ $(window).on('load', function(){
     }
   });
 
+  // Sidebar vertical
   $('#navbar-vertical > span').on('click', function(){
     if ($('#navbar-vertical > input').is(':checked')){ 
       // navbar vertical off
@@ -83,6 +83,7 @@ $(window).on('load', function(){
     }
   });
 
+  // Fondo con imagen
   $('#bg-image > span').on('click', function(){
     if ($('#bg-image > input').is(':checked')){ 
       // fondo con imagen off
@@ -94,6 +95,8 @@ $(window).on('load', function(){
       localStorage.setItem('bg-image', 'true');
     }
   });
+
+  // Select editable
 
   $(".select-editable > input").on("focus", function(){
     $(this).prev().children(":first-child").addClass("focus");
@@ -120,4 +123,10 @@ $(window).on('load', function(){
       $(this).parent(".search").siblings(".without").addClass("d-none");
     }
   });
+
+  // Tooltips
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
 });
