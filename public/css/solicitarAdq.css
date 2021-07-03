@@ -80,3 +80,16 @@ tr:last-child td:first-child {
   padding-left: 1rem;
   font-weight: bold;
 }
+.solicitud-a-options svg{
+  width: 1.7rem !important;
+  height: 1.7rem !important;
+  margin-left: 1.25rem;
+  cursor: pointer;
+}
+.solicitud-a-options .disabled svg{
+  fill: gray;
+  cursor: default;
+}
+.solicitud-a-options svg:focus{
+  outline: none;
+}

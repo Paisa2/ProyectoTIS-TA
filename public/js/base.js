@@ -126,7 +126,14 @@ $(window).on('load', function(){
 
   // Tooltips
   $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').on('click', ()=>{
+      $('.tooltip[role="tooltip"]').remove();
+    });
+  })
+  // Popovers
+  $(function () {
+    $('[data-toggle="popover"]').popover();
   })
 
 });

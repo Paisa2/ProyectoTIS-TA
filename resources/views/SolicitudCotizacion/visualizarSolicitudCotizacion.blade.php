@@ -65,7 +65,7 @@
                   @if($cotizacion->respuestas>0 && session()->has("Visualizar solicitud de cotizacion"))
                   <a class="dropdown-item" href="{{ route('respuestasCotizacion.index', $cotizacion->id) }}">
                     <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                      <use xlink:href="{{asset('img/icons/list.svg#i-list')}}"></use>
                   </svg>Ver Propuestas
                   </a>                  
                   @endif

@@ -77,13 +77,20 @@ class SolicitudCotizacionController extends Controller
             $detalles=[];                     
             foreach($datos as $columna){
                 array_push($detalles,array_values($columna));
-            };
+            }
+            $cotizacion->comparativo=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->count();
+            if($cotizacion->comparativo > 0){
+                $cotizacion->comparativo_id=ComparativoCotizacion::where('cotizacion_id',$cotizacion->id)->first()->id;
+            }
+            $cotizacion->respuestas=RespuestaCotizacion::where('cotizacion_id',$cotizacion->id)->count();
+            $cotizacion->informes = ProcesoCotizacionId::where('cotizacion_id', $cotizacion->id)->count();
         }
         else{
             abort(404);
         }
         //echo dd($detalles);
-        return view("SolicitudCotizacion.detallesCotizacion", compact("cotizacion","detalles"));
+        $empresas = TodaEmpresa::all();
+        return view("SolicitudCotizacion.detallesCotizacion", compact("cotizacion","detalles", "empresas"));
     }
     public function generar($id){
         $adquisicion = Solicitud_adquisicion::where("id",$id)->first();

@@ -76,6 +76,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+        $request['nombre_rol'] = ucfirst(strtolower($request->nombre_rol)); // Mayor
         $mensajes = [
             'nombre_rol.required' => 'El campo nombre es requerido.',
             'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
@@ -247,9 +248,9 @@ class RolesController extends Controller
                 $rol->delete();
                 return redirect()->back()->withSuccess('Se elimino el rol '.$nombre.' correctamente.');   
             } catch (QueryException $e) {
-                return redirect()->back()->withError('El rol ' . $rol->nombre_rol . ' esta en uso.');   
+                return redirect()->back()->with('exception', 'El rol ' . $rol->nombre_rol . ' esta en uso.');   
             }
         }
-        return redirect()->back()->withError('Ocurrio un error al momento de eliminar el rol, intentelo de nuevo.');   
+        return redirect()->back()->withError('El rol que intenta eliminar no fue encontrado, intente actualizar la información.');   
     }
 }

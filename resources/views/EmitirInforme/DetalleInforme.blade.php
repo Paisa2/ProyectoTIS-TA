@@ -26,15 +26,24 @@ AtorizaciónPresupuesto
          <br>
          <div class="d-flex justify-content-between">
             <label for="tipo" class="form-label">PRESENTE</label>
-            @if(session('tipo_unidad')!='unidad de gasto')
-            <div class="informe-options">
-               <a href="{{route('informe.generarpdf', $informe->id)}}" target="_blank">
-                  <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Imprimir">
-                     <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
-                  </svg>
-               </a>
+            <div class="d-flex">
+               <div class="informe-options">
+                  <a href="{{route('solicitudCotizacion.index')}}">
+                     <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Lista de cotizaciones">
+                        <use xlink:href="{{asset('img/icons/list.svg#i-list')}}"></use>
+                     </svg>
+                  </a>
+               </div>
+               @if(session('tipo_unidad')!='unidad de gasto')
+               <div class="informe-options">
+                  <a href="{{route('informe.generarpdf', $informe->id)}}" target="_blank">
+                     <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Imprimir">
+                        <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
+                     </svg>
+                  </a>
+               </div>
+               @endif
             </div>
-            @endif
          </div>
          <div class="d-flex justify-content-center"> REF: INFORME DE LA SOLICITUD DE ADQUISICIÓN {{ strtoupper ( $informe->tipo_informe )}}</div>
          <br>

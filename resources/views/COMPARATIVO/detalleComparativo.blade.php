@@ -47,9 +47,16 @@
     </div>
     <div class="d-flex align-items-center mb-3">
       <div class="comparativo-options">
-        <a href="{{$datoscomparativo->informe_id? route('detalleinforme', $datoscomparativo->informe_id) : route('emitirinforme', $datoscomparativo->id)}}">
+        <a href="{{route('solicitudCotizacion.index')}}">
+          <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Lista de cotizaciones">
+            <use xlink:href="{{asset('img/icons/list.svg#i-list')}}"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="comparativo-options">
+        <a href="{{$datoscomparativo->informe_id ? route('detalleinforme', $datoscomparativo->informe_id) : route('emitirinforme', $datoscomparativo->id)}}">
           <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="{{$datoscomparativo->informe_id? 'Ver informe' : 'Emitir informe' }}">
-            <use xlink:href="{{asset('img/icons/clipboard.svg#i-clipboard')}}"></use>
+            <use xlink:href="{{$datoscomparativo->informe_id ? asset('img/icons/clipboard-details.svg#i-clipboard-details') : asset('img/icons/clipboard.svg#i-clipboard') }}"></use>
           </svg>
         </a>
       </div>
