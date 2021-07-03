@@ -84,7 +84,21 @@
                                   <svg class="c-icon mfe-2">
                                     <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                                 </svg>Detalles
-                                </a>       
+                                </a>
+                                
+                                    <form action="{{ route('empresa.destroy', $registro->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
+                                    <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
+                                    <svg class="c-icon mfe-2">
+                                        <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
+                                    </svg>Eliminar
+                                    </button>
+
+                                    <a class="dropdown-item" href="{{route('empresa.edit', $registro->id)}}">
+                                      <svg class="c-icon mfe-2">
+                                        <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                                    </svg>Editar
+                                    </a>
+                                       
                               </div>
                             </div>
                           </td>

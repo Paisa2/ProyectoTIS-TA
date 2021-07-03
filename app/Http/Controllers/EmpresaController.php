@@ -81,7 +81,10 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $empresa = Empresa::find($id);
+        $razon = RespuestaCotizacion::select('razon_social')->distinct()->get();
+        $rubro = Empresa::select('rubro_empresa')->distinct()->get();
+        return view('Empresas.Editar', compact('empresa', 'razon', 'rubro'));
     }
 
     /**
@@ -93,9 +96,19 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $tipo = $request->get($id);
-        $registro = Empresa::where('empresas.id', $id)->select('empresas.*')->first();
+        // $tipo = $request->get($id);
+        // $registro = Empresa::where('empresas.id', $id)->select('empresas.*')->first();
+        $empresa = Empresa::find($id);
+        $empresa->nombre_empresa     =$request->Empresa;
+        $empresa->acronimo_empresa    =$request->Nombre_Comercial;
+        $empresa->representante_legal=$request->Representante_Legal;
+        $empresa->direccion_empresa  =$request->Direccion;
+        $empresa->nit_empresa        =$request->Nit;
+        $empresa->rubro_empresa      =$request->Rubro;
+        $empresa->telefono_empresa   =$request->Telefono;
+        $empresa->email_empresa      =$request->Correo_Electronico;
+        $empresa->save();
+        return redirect('ListaEmpresas')->with('confirm', 'La empresa ha sido actualizada');
 
     }
 
@@ -107,6 +120,8 @@ class EmpresaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $registro = Empresa::find($id);
+        $registro -> delete();
+        return redirect('ListaEmpresas');
     }
 }

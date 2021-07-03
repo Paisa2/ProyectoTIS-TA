@@ -74,6 +74,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/ListaEmpresas/DetalleEmpresa/{id}','EmpresaController@show')->name('empresa.show');
     Route::get('bitacora', 'BitacoraController@index')->name('bitacora.index');
 
+    Route::delete('/ListaEmpresas/{id}', 'EmpresaController@destroy')->name('empresa.destroy');
+    Route::get('/ListaEmpresas/EditarEmpresa/{id}', 'EmpresaController@edit')->name('empresa.edit');
+    Route::post('/ListaEmpresas/EditarEmpresa/{id}', 'EmpresaController@update')->name('empresa.update');
+    
+    
+
     Route::get('storage/{archivo}', function ($archivo) {
         $public_path = public_path();
         $url = $public_path.'/storage/'.$archivo;
