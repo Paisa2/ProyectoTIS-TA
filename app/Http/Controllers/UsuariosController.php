@@ -74,7 +74,8 @@ class UsuariosController extends Controller
             'contrasenia.required'=>'El campo contraseña es requerido',
             'contrasenia2.required'=>'Debe repetir la contraseña',
             'same' => 'Las dos contraseñas deben ser iguales',
-            'unique' => 'Este correo ya ha sido registrado',
+            'ci_usuario.unique'   => 'Este CI ya ha sido registrado',
+            'unique' => 'Este Email ya ha sido registrado',
             'ci_usuario.numeric' => 'El campo CI solo puede tener números',
             'ci_usuario.digits_between'   => 'CI debe tener entre 6 y 9 dígitos',
             'telefono_usuario.numeric' => 'El campo Teléfono solo puede tener números',
@@ -84,7 +85,7 @@ class UsuariosController extends Controller
         $this->validate($request, [
             'nombres'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
             'apellidos'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
-            'ci_usuario'=>['required', 'digits_between:6,9', 'numeric'],
+            'ci_usuario'=>['required', 'digits_between:6,9', 'numeric','unique:usuarios,ci_usuario'],
             'telefono_usuario'=>['required', 'digits_between:7,12', 'numeric'],
             'rol_id'=>'required',
             'email'=>['required','email','unique:usuarios,email'],
