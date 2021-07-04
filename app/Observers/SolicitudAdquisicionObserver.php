@@ -71,7 +71,7 @@ class SolicitudAdquisicionObserver
     } else if($estado == "Rechazado") {
       $mensaje = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue rechazada.";
       $operacion = "Verificar";
-    } else if ($estado == $data->getOriginal('estado_solicitud_a')) {
+    } else if (($estado == $data->getOriginal('estado_solicitud_a')) || ($estado == "Registrado" && $data->getOriginal('estado_solicitud_a') == "Pendiente")) {
       $mensaje = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue editada.";
       $operacion = "Editar";
     }else  {

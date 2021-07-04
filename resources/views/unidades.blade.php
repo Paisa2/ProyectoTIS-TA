@@ -70,6 +70,7 @@
     {{--  {!!$unidad->render()!!}  --}}
     </div>
 
+    @if(session()->has('Crear presupuesto'))
     <div class="modal fade" id="presupuesto" tabindex="-1" aria-labelledby="presupestoLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -98,6 +99,8 @@
             </div>
         </div>
     </div>
+    @endif
+
 @endsection
 
 @section('scripts')

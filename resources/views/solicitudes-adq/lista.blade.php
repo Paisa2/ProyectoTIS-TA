@@ -70,6 +70,13 @@
                       <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                   </svg>Detalles
                   </a>
+                  @if(($listadb->estado_solicitud_a=="Registrado" || $listadb->estado_solicitud_a=="Pendiente") && session()->has('Editar solicitud de adquisicion') && (session('id')==$listadb->de_usuario_id || session('rol') == 'Superusuario'))
+                  <a class="dropdown-item" type="submit" href="{{ route('solicitud.edit', $listadb->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
+                    </svg>Editar
+                  </a> 
+                  @endif  
                   @if($listadb->estado_solicitud_a=="Registrado" && session()->has('Editar solicitud de adquisicion') && session('id')==$listadb->de_usuario_id)
                   <a class="dropdown-item" href="{{ route('reenviar', $listadb->id) }}">
                     <svg class="c-icon mfe-2">

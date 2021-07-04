@@ -38,4 +38,21 @@ class EmpresaObserver
     $bitacora->detalle_bitacora = "Empresa " . $data->nombre_empresa . " eliminado.";
     $bitacora->save();
   }
+
+  /**
+   * Listen to the User updated event.
+   *
+   * @param  Solicitud_adquisicion  $data
+   * @return void
+   */
+  public function updating(Solicitud_adquisicion $data)
+  {
+    $bitacora = new Bitacora;
+    $bitacora->usuario_id = session("id");
+    $bitacora->operacion = "Editar";
+    $bitacora->modulo = "Empresa";
+    $bitacora->detalle_bitacora = "Empresa " . $data->nombre_empresa . " fue editada.";
+    $bitacora->save();
+  }
+
 }

@@ -62,6 +62,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('lista/solicitud', 'AdqController@create')->name('solicitud.create');
     Route::post('lista/solicitud', 'AdqController@store')->name('solicitud.store');
     Route::get('lista/solicitud/{id}','AdqController@show')->name('solicitud.show');
+    Route::get('lista/solicitud/{id}/edit','AdqController@edit')->name('solicitud.edit');
+    Route::put('lista/solicitud/{id}','AdqController@update')->name('solicitud.update');
     Route::get('reenviar-solicitud/{id}', 'AdqController@reenviarAdq')->name('reenviar');
     Route::get('verificarpresupuesto/{tipo}/{id}', 'AutorizaciónPresupuestoController@update')->name('verificarpresupuesto');
     Route::get('emitirinforme/{id}','EmitirInformeController@emitirinforme')->name('emitirinforme');
