@@ -76,7 +76,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $request['nombre_rol'] = ucfirst(strtolower($request->nombre_rol)); // Mayor
+        $request['nombre_rol'] = str_replace(' De ', ' de ', str_replace(' Y ', ' y ', ucwords(strtolower($request->nombre_rol)))); // Esto de Eso y Aquello
         $mensajes = [
             'nombre_rol.required' => 'El campo nombre es requerido.',
             'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
@@ -189,6 +189,7 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request['nombre_rol'] = str_replace(' De ', ' de ', str_replace(' Y ', ' y ', ucwords(strtolower($request->nombre_rol))));
         $mensajes = [
             'nombre_rol.required' => 'El campo nombre es requerido.',
             'min'   => 'El :attribute debe tener por lo menos :min caracteres.',

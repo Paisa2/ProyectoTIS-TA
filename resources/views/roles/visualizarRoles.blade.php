@@ -28,7 +28,7 @@
       </button>
   </p>
     <hr>
-    <p>Nota: Para proteger la integridad de la información y evitar perdidad de datos, 
+    <p>Nota: Para proteger la integridad de la información y evitar perdida de datos, 
       un Rol de usuario no podra ser eliminado mientras este asignado a un usuario.</p>
   </div>
 @endif
