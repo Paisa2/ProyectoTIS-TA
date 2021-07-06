@@ -35,10 +35,12 @@ AtorizaciónPresupuesto
                   </a>
                </div>
                @if(session('tipo_unidad')!='unidad de gasto')
-               <div class="informe-options">
+               <div class="informe-options" id="event-print">
                   <a href="{{route('informe.generarpdf', $informe->id)}}" target="_blank">
-                     <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Imprimir">
-                        <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use>
+                     <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Imprimir" viewBox="0 0 32 32">
+                        <!-- <use xlink:href="{{asset('img/icons/print.svg#i-print')}}"></use> -->
+                        <path d="M6 2H26L26 8C26.8889 8 27.6424 8.18593 28.2558 8.56078C28.8744 8.93882 29.2772 9.46436 29.533 10.0184C30.0013 11.0332 30.0005 12.2207 30 12.9342C30 12.9566 30 12.9785 30 13V24H26V22H28V13C28 12.2046 27.984 11.4349 27.717 10.8566C27.5978 10.5981 27.4381 10.4049 27.2129 10.2673C26.9826 10.1266 26.6111 10 26 10H6C5.38887 10 5.01744 10.1266 4.78708 10.2673C4.56194 10.4049 4.40223 10.5981 4.28296 10.8566C4.01603 11.4349 4 12.2046 4 13V22H6V24H2V13C2 12.9785 1.99999 12.9566 1.99997 12.9342C1.99949 12.2207 1.99869 11.0332 2.46704 10.0184C2.72277 9.46436 3.12556 8.93882 3.74418 8.56078C4.35757 8.18593 5.11114 8 6 8V2ZM8 8H24V4H8V8ZM6 16H26V18H6V16Z"/>
+                        <path class="paper" d="M8 18H10V28.1538H22V18H24V30H8V18Z"/>
                      </svg>
                   </a>
                </div>

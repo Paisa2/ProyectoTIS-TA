@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource("solicitudCotizacion", "SolicitudCotizacionController");
     Route::resource("respuestasCotizacion", "RespuestasCotizacionController", ['only' => ['show']]);
     Route::resource('presupuestos', 'PresupuestoController');
+    Route::get('presupuestos/disable/{id}', 'PresupuestoController@disable')->name('presupuestos.disable');
+    Route::get('presupuestos/disable-all', 'PresupuestoController@disableAll')->name('presupuestos.disable.all');
     Route::get("respuestasCotizacion/create/{id}", "RespuestasCotizacionController@create")->name('respuestasCotizacion.create');
     Route::post("respuestasCotizacion/{id}", "RespuestasCotizacionController@store")->name('respuestasCotizacion.store');
     Route::get("respuestasCotizacion/list/{id}", "RespuestasCotizacionController@index")->name('respuestasCotizacion.index');

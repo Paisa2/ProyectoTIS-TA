@@ -87,4 +87,25 @@ class PresupuestoController extends Controller
     {
         //
     }
+
+    /**
+     * Disable the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function disable($id)
+    {
+        Presupuesto::where('id', $id)->update(['estado' => false]);
+        return redirect()->route('presupuestos.index');
+    }
+    
+    public function disableAll()
+    {
+        $presupuestos = Presupuesto::where('gestion', Date('Y'))->where('estado', true)->get();
+        foreach ($presupuestos as $presupuesto) {
+            $presupuesto->update(['estado' => false]);
+        }
+        return redirect()->route('presupuestos.index');
+    }
 }
