@@ -17,7 +17,7 @@ class CreateItemsGastoTable extends Migration
             $table->increments('id');
             $table->string('tipo_item');
             $table->string('nombre_item', 255);
-            $table->integer('item_id')->unsigned();
+            $table->integer('item_id')->unsigned()->nullable();
             $table->foreign('item_id')->references('id')->on('items_gasto');
             $table->timestamps();
         });

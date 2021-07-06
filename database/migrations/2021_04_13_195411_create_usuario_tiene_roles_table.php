@@ -20,7 +20,6 @@ class CreateUsuarioTieneRolesTable extends Migration
             $table->foreign('usuario_id')->references('id')->on('usuarios');
             $table->integer('rol_id')->unsigned();
             $table->foreign('rol_id')->references('id')->on('roles');
-            $table->timestamps();
         });
     }
 

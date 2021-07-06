@@ -15,9 +15,11 @@ class CreateSolicitudesCotizacionesTable extends Migration
     {
         Schema::create('solicitudes_cotizaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('razon_social', 255);
-            $table->string('detalle_cotizacion', 6000);
-            $table->rememberToken();
+            $table->string('codigo_cotizacion', 10);
+            $table->timestamp('fecha_cotizacion');
+            $table->json('detalle_cotizacion');
+            $table->integer('solicitud_a_id')->unsigned()->nullable();
+            $table->foreign('solicitud_a_id')->references('id')->on('solicitudes_adquisiciones');
             $table->timestamps();
         });
     }

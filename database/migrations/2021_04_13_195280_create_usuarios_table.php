@@ -17,6 +17,8 @@ class CreateUsuariosTable extends Migration
             $table->increments('id');
             $table->string('nombres', 255);
             $table->string('apellidos', 255);
+            $table->string('telefono_usuario', 12);
+            $table->string('ci_usuario', 12);
             $table->string('email', 255)->unique();
             $table->string('contrasenia', 255);
             $table->integer('unidad_id')->unsigned();

@@ -18,6 +18,7 @@ class CreateNotificacionesTable extends Migration
             $table->string('mensaje_notificacion', 255);
             $table->integer('solicitud_id');
             $table->string('tipo_solicitud', 100);
+            $table->string('codigo', 10);
             $table->integer('unidad_id')->unsigned();
             $table->foreign('unidad_id')->references('id')->on('unidades');
             $table->timestamps();

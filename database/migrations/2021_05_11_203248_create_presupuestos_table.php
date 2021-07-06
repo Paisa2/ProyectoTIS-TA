@@ -16,6 +16,9 @@ class CreatePresupuestosTable extends Migration
         Schema::create('presupuestos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('monto');
+            $table->boolean('estado');
+            $table->integer('monto_disponible');
+            $table->string('gestion', 4);
             $table->integer('unidad_id')->unsigned();
             $table->foreign('unidad_id')->references('id')->on('unidades');
             $table->timestamps();

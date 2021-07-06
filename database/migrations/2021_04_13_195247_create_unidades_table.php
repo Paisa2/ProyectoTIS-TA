@@ -17,6 +17,7 @@ class CreateUnidadesTable extends Migration
             $table->increments('id');
             $table->string('tipo_unidad', 255);
             $table->string('nombre_unidad', 255);
+            $table->string('telefono_unidad', 12);
             $table->integer('unidad_id')->unsigned();
             $table->foreign('unidad_id')->references('id')->on('unidades');
             $table->timestamps();
