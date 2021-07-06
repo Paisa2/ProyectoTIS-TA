@@ -169,7 +169,7 @@ class UsuariosController extends Controller
                 $usuario->delete();
                 return redirect()->back()->withSuccess('Se elimino el usuario '.$nombre.' '.$apellido.' correctamente.');   
             } catch (QueryException $e) {
-                return redirect()->back()->withError('El usuario ' .$nombre.' '.$apellido. ' esta en uso.');   
+                return redirect()->back()->with('exception' ,'El usuario ' .$nombre.' '.$apellido. ' esta en uso.');   
             }
         }
         return redirect()->back()->withError('Ocurrio un error al momento de eliminar el usuario, intentelo de nuevo.');   

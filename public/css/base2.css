@@ -290,7 +290,26 @@ body.bg-image.c-dark-theme {
   border-color: #960816 !important;
 }
 .alert{
-  padding: 5px;
+  margin: 1rem;
+  padding: .75rem !important;
+}
+.alert p {
+  margin: 0;
+}
+.alert p + p{
+  margin-top: 1rem;
+}
+.alert-dismissible .close{
+  position: static;
+  display: flex;
+  padding: 0.75rem;
+}
+.alert-dismissible + div[class*='container']{
+  margin-top: 0;
+}
+form .alert {
+  margin:0;
+  padding: .25rem !important;
 }
 /* --------------------------------------------------------------------------------------- */
 .font-large {

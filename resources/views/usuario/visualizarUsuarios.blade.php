@@ -26,7 +26,19 @@
     </div>
     <script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
 @endif
-
+@if(session()->has('exception'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p>
+            {{session()->get('exception')}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </p>
+        <hr>
+        <p>Nota: Para proteger la integridad de la información y evitar perdida de datos,
+         un Usuario no podrá ser eliminado mientras este en uso.</p>
+    </div>
+@endif
 <div class="container-table" >
     <div class='d-flex justify-content-center'>
         <h1 class="display-4">Usuarios Registrados</h1>
