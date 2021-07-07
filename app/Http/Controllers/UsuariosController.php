@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Usuario;
 use App\Models\UsuarioTieneRol;
 use App\Models\InfoUsuario;
+use App\Models\ComparativoCotizacion;
+use App\Models\Solicitud_adquisicion;
 
 class UsuariosController extends Controller
 {
@@ -36,6 +38,12 @@ class UsuariosController extends Controller
             -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
             -> orderBy('created_at', 'desc')
             -> get ();
+        }
+        foreach ($usuarios as $usuario) {
+            $usuario->usos = ComparativoCotizacion::where('tecnico_responsable_id', $usuario->id)
+            ->orWhere('jefe_administrativo_id', $usuario->id)
+            ->orWhere('jefe_unidad_id', $usuario->id)
+            ->count() + Solicitud_adquisicion::where('de_usuario_id', $usuario->id)->count();
         }
         return view("usuario.visualizarUsuarios",compact('usuarios'));
 

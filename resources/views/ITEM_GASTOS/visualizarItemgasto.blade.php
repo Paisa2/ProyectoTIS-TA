@@ -62,7 +62,7 @@
             </span>
             <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
               <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-              @if(session('Eliminar item de gasto'))
+              @if($itemgasto->especificos == 0 && session('Eliminar item de gasto'))
               <form action="{{ route('itemsgastos.destroy', $itemgasto->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
               <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
                 <svg class="c-icon mfe-2">

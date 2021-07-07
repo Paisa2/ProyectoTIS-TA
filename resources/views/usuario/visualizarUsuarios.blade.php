@@ -74,7 +74,7 @@
                                             <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                                         </svg>Detalles de Usuario
                                     </a>                 
-                                    @if(session()->has('Eliminar usuario'))
+                                    @if($usuario->usos == 0 && session()->has('Eliminar usuario'))
                                     <form action="{{ route('usuario.destroy', $usuario->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
                                     <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
                                     <svg class="c-icon mfe-2">

@@ -82,7 +82,7 @@
                   </svg>Editar
                 </a>
                 @endif
-                @if(session()->has('Eliminar rol') && $rol->nombre_rol != 'Superusuario')
+                @if($rol->asignados == 0 && session()->has('Eliminar rol') && $rol->nombre_rol != 'Superusuario')
                 <form action="{{ route('roles.destroy', $rol->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
                 <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
                   <svg class="c-icon mfe-2">

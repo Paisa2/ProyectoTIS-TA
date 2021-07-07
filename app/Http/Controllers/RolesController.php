@@ -10,6 +10,7 @@ use Illuminate\Database\QueryException;
 use App\Models\TipoContenido;
 use App\Models\Permiso;
 use App\Models\RolTienePermiso;
+use App\Models\UsuarioTieneRol;
 use App\Models\Rol;
 
 class RolesController extends Controller
@@ -39,6 +40,7 @@ class RolesController extends Controller
     {
         $roles = Rol::where('id', '!=', 3)->orderBy('updated_at', 'desc')->get();
         foreach ($roles as $rol) {
+            $rol->asignados = UsuarioTieneRol::where('rol_id', $rol->id)->count();
             $permisos = RolTienePermiso::where('rol_id', $rol->id)->get();
             $rol->numero_permisos = count($permisos);
         }

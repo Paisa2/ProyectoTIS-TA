@@ -69,7 +69,7 @@
                               <span class="dropdown-item" id="{{str_replace(' ', '_', $rubros->rubro_empresa)}}">{{$rubros->rubro_empresa}}</span>
                               @endforeach
                             </span>
-                            <span class="without d-none">Sin resultados</span>
+                            <span class="without {{count($rubro) > 0?'d-none':'' }}">Sin resultados</span>
                           </div>
                         </div>
                         <input type="text" name="Rubro" id="Rubro" autocomplete="off" value="{{old('Rubro')}}" class="form-control bg-transparent">
