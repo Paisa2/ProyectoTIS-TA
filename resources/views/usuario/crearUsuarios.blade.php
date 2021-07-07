@@ -58,7 +58,7 @@
                     <select class="form-control" name="rol_id">
                     <option hidden selected value="">Seleccione</option>
                     @foreach($roles as $rol)
-                    <option {{ old('rol_id') == $rol->id ? 'selected' : '' }} value="{{$rol->id}}">{{$rol->nombre_rol}}</option>
+                    <option id="{{$rol->nombre_rol}}"{{ old('rol_id') == $rol->id ? 'selected' : '' }} value="{{$rol->id}}">{{$rol->nombre_rol}}</option>
                     @endforeach
                     </select>
                     @foreach($errors->get('rol_id') as $message) 
@@ -68,7 +68,7 @@
 
                 <div class="mb-3 col-6">
                     <label for="" class="form-label">Pertenece a:</label>
-                    <select class="form-control" name="unidad_id">
+                    <select id="unidades" class="form-control" name="unidad_id">
                     <option hidden selected value="">Seleccione</option>
                 
                     @foreach($unidades as $unidad)
@@ -121,7 +121,17 @@
     @endif
 </div>
 
-
+<script>
+    $("#unidades").on("change", function()
+    {
+        if($("#unidades").children("option:selected").text().includes("Administrativa")){
+            $("#Cotizador").show();
+        }
+        else{
+            $("#Cotizador").hide();
+        }
+    });
+</script>
 
 <!-- fin codigo importante -->
 @endsection
