@@ -18,4 +18,11 @@ class UnidadesController extends Controller
         }
         return view('unidades', compact('unidad'));
     }
+    public function destroy($id)
+    {
+        // $empresa = Empresa::find($id);
+        $unidad = Unidad::find($id);
+        $unidad -> delete();
+        return redirect('unidades');
+    }
 }

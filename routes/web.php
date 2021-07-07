@@ -77,6 +77,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/ListaEmpresas/{id}', 'EmpresaController@destroy')->name('empresa.destroy');
     Route::get('/ListaEmpresas/EditarEmpresa/{id}', 'EmpresaController@edit')->name('empresa.edit');
     Route::post('/ListaEmpresas/EditarEmpresa/{id}', 'EmpresaController@update')->name('empresa.update');
+
+    Route::delete('/unidades/{id}', 'RegistroController@destroy')->name('registro.destroy');
+    Route::get('/unidades/editar/{id}', 'RegistroController@edit')->name('registro.edit');
+    Route::post('/unidades/editar/{id}', 'RegistroController@update')->name('registro.update');
     
     
 

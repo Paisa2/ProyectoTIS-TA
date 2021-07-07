@@ -122,6 +122,6 @@ class EmpresaController extends Controller
     {
         $registro = Empresa::find($id);
         $registro -> delete();
-        return redirect('ListaEmpresas');
+        return redirect('ListaEmpresas')->with('eliminado', 'Se elimino la empresa'. $registro->nombre_empresa .'correctamente');
     }
 }

@@ -9,6 +9,12 @@
 @endsection
 
 @section('main')
+@if(session('eliminado'))
+<div class="alert alert-success" role="alert" id="confirm">
+    {!! session('eliminado') !!}
+</div>
+<script>setTimeout("document.getElementById('confirm').classList.add('d-none');",3000);</script>
+@endif
 @if(session('confirm'))
 <div class="alert alert-success" role="alert" id="confirm">
     {!! session('confirm') !!}
@@ -46,11 +52,13 @@
              </form>
             </div>
             </div>
+            @if(session()->has('Crear empresa'))
             <div class="col-md">
             <div class="d-flex justify-content-end mb-3">
               <a href="{{route('empresa.create')}}" class="btn btn-primary">+ Nuevo</a>
             </div>
             </div>
+            @endif
         </div>
         <table class="table">
             <thead>
@@ -85,19 +93,21 @@
                                     <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                                 </svg>Detalles
                                 </a>
-                                
+                                @if(session()->has('Editar empresa'))
+                                    <a class="dropdown-item" href="{{route('empresa.edit', $registro->id)}}">
+                                      <svg class="c-icon mfe-2">
+                                        <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
+                                    </svg>Editar
+                                    </a>
+                                @endif
+                                @if(session()->has('Eliminar empresa'))
                                     <form action="{{ route('empresa.destroy', $registro->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
                                     <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
                                     <svg class="c-icon mfe-2">
                                         <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
                                     </svg>Eliminar
                                     </button>
-
-                                    <a class="dropdown-item" href="{{route('empresa.edit', $registro->id)}}">
-                                      <svg class="c-icon mfe-2">
-                                        <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
-                                    </svg>Editar
-                                    </a>
+                                @endif
                                        
                               </div>
                             </div>

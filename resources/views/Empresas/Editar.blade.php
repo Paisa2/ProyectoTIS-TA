@@ -6,11 +6,11 @@
 @endsection
 
 @section('main')
-    <div class="container-form">
+<div style="width: 70% " class="container-form">
         <form action="{{route('empresa.update', $empresa->id)}}" method="post">
             {{csrf_field()}}
             {{method_field('post')}}
-            <h1 class="display-4">Registrar Empresa</h1>
+            <h1 class="display-4">Editar Empresa</h1>
             <div class="row g-3">
                 <div class="col-md-12">
                     <label for="" class="form-label">Razón Social:</label>

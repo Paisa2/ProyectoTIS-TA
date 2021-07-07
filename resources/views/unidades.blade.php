@@ -4,6 +4,32 @@
 @endsection
 
 @section('main')
+@if(session()->has('success'))
+  <div class="alert alert-success" role="alert" id="success">
+    {{ session()->get('success') }}
+  </div>
+  <script>setTimeout("document.getElementById('success').classList.add('d-none');",3000);</script>
+@endif
+{{--  @if(session()->has('error'))
+  <div class="alert alert-danger" role="alert" id="error">
+    {{ session()->get('error') }}
+  </div>
+  <script>setTimeout("document.getElementById('error').classList.add('d-none');",3000);</script>
+@endif  --}}
+@if(session()->has('exception'))
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <p>
+      {{ session()->get('exception') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </p>
+    <hr>
+    <p>Nota: Para proteger la integridad de la información y evitar perdida de datos, 
+      una Unidad no podra ser eliminado mientras este asignado a un usuario.</p>
+  </div>
+@endif
+
 @if(session('confirm'))
 <div class="alert alert-success" role="alert" id="confirm">
     {!! session('confirm') !!}
@@ -28,9 +54,6 @@
                 <th scope="col">PERTENECE A</th>
                 <th scope="col">TELEFONO</th>
                 <th scope="col">FECHA DE CREACIÓN</th>
-
-
-
                 <th class="options"></th>
             </tr>
         </thead>
@@ -58,6 +81,21 @@
                                 <use xlink:href="{{asset('img/icons/plus.svg#i-plus')}}"></use>
                             </svg>Presupuesto
                         </button>
+                        @endif
+                        @if(session()->has('Editar unidad'))
+                                <a class="dropdown-item" href="{{route('registro.edit', $unidadbd->id)}}">
+                                  <svg class="c-icon mfe-2">
+                                    <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
+                                    </svg>Editar
+                                </a>
+                        @endif
+                        @if(session()->has('Eliminar unidad'))
+                        <form action="{{ route('registro.destroy', $unidadbd->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
+                                <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
+                                <svg class="c-icon mfe-2">
+                                <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
+                                </svg>Eliminar
+                                </button>
                         @endif
                     </div>
                 </div>
