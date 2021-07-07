@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MessaggeRequest;
+
 use App\Http\Requests\EditarUnidadRequest;
+//use App\Http\Requests\MessaggeRequest;\
 use App\Models\Unidad;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -40,8 +41,30 @@ class RegistroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MessaggeRequest $request)
+    public function store(Request $request)
     {
+        //$request['nombre_unidad']=ucfirst(strtolower($request->nombre_unidad));
+        $request['nombre_unidad'] = str_replace(' De ', ' de ', str_replace(' Y ', ' y ', ucwords(strtolower($request->nombre_unidad))));
+        $mensajes = [
+            'nombre_unidad.required' => 'El campo "Nombre" es requerido',
+            'nombre_unidad.min' => 'El campo Nombre debe tener mas de 2 caracteres',
+            'nombre_unidad.max' => 'El campo Nombre no debe tener mas de 255 caracteres',
+            'nombre_unidad.regex' => 'El campo Nombre solo permite caracteres alfabeticos',
+            'tipo_unidad.required' => 'El campo "Tipo" es requerido',
+            'unidad_id.required' => 'El campo "Pertenece a" es requerido',
+            'nombre_unidad.unique' => 'El nombre ingresado ya se encuentra en uso',
+            'telefono_unidad.unique' => 'El Telefono ingresado ya se encuentra en uso',
+            'telefono_unidad.required' => 'El campo "Telefono" es requerido',
+            'telefono_unidad.numeric' => 'El campo Telefono solo permite caracteres numericos',
+            'telefono_unidad.digits_between' => 'El Telefono de la unidad debe tener entre 7 y 12 dígitos.',
+        ];
+        $this->validate($request,[
+        'tipo_unidad' => 'required',
+        'nombre_unidad' => ['required','min:2','max:255', 'regex:/^[\pL\s\-]+$/u', 'unique:unidades,nombre_unidad'],
+        'unidad_id' => 'required',
+        'telefono_unidad' => ['required','numeric','digits_between:7,12','unique:unidades,telefono_unidad'],
+        ],$mensajes);
+
         $unidad = new Unidad;
         $unidad->tipo_unidad = $request->tipo_unidad;
         $unidad->nombre_unidad = $request->nombre_unidad;

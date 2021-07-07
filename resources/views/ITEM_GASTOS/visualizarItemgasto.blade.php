@@ -42,7 +42,9 @@
         <th scope="col">NOMBRE</th>
         <th scope="col">PERTENECE A</th>
         <th scope="col">DETALLE DE CREACIÓN</th>
+        @if(session('Eliminar item de gasto'))
         <th class="options"></th>
+        @endif 
       </tr>
     </thead>
     <tbody>
@@ -53,6 +55,7 @@
         <td>{{$itemgasto->nombre_item}}</td>
         <td>{{$itemgasto->pertenece_a}}</td>
         <td>{{date("Y-m-d",strtotime($itemgasto->created_at))}}</td>
+        @if(session('Eliminar item de gasto'))
         <td class="options">
           <div class="dropdown dropleft">
             <span id="dd-options{{$loop->index +1}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,17 +65,16 @@
             </span>
             <div class="dropdown-menu" aria-labelledby="dd-options{{$loop->index +1}}">
               <div class="dropdown-header bg-light py-2"><strong>Opciones</strong></div>
-              @if(session('Eliminar item de gasto'))
               <form action="{{ route('itemsgastos.destroy', $itemgasto->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
               <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
                 <svg class="c-icon mfe-2">
                   <use xlink:href="{{asset('img/icons/trash.svg#i-trash')}}"></use>
                 </svg>Eliminar
-              </button>
-              @endif
+              </button>   
             </div>
           </div>
-        </td> 
+        </td>
+        @endif 
       </tr>
     @endforeach
     </tbody>
