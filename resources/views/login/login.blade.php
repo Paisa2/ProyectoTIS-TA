@@ -24,6 +24,9 @@
       <a class="nav-link" id="informacion" href="#informacion">Acerca de Sistema</a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" id="derechosautor" href="#derechosautor">Derecho de Autor</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" id="contacto" href="#contacto">Contactos</a>
     </li>
     <li class="nav-item">
@@ -54,12 +57,12 @@
       </p>
       <p _ngcontent-sjr-c70 class="textP">
       COTYSOFT Es una aplicación desarrollada por la empresa TechnoAvance 
-      con el finalidad de ayudar al personal admisitrativo de la Universidad Mayor de San Simón en la
-      gestion del proceso de cotización de un bien o servicio.
+      con el finalidad de ayudar al personal administrativo de la Universidad Mayor de San Simón en la
+      gestión del proceso de cotización de un bien o servicio.
       </p>
       <p _ngcontent-sjr-c70 class="textP">
-      Accede a los cuadros comparativos de la cotizacion para mejorar la toma de deciciones 
-      con la ayuda de sugerencias que proporsiona la aplicación web.
+      Accede a los cuadros comparativos de la cotización para mejorar la toma de decisiones 
+      con la ayuda de sugerencias que proporciona la aplicación web.
       </p>
       <p _ngcontent-sjr-c70 class="textP">
       Genera reportes y accede a ellos cuando sea necesario para el control y administración de 
@@ -223,6 +226,32 @@
   </div>
 </div>
 
+<div class="container pane" id="p-derechosautor" style="display:none;">
+  <div class='row'>
+    <div class='col-6'>
+
+      <div class='user-img'>
+      <img src="/imagenes/derecho.png"> 
+      </div>
+    </div>
+
+    <div class='col-6'>
+    <br>
+      <br>
+      <br>
+      <h2> Derechos de Autor</h2>
+      <br>
+      
+      <p _ngcontent-sjr-c70 class="textP">
+      @ 2021, COTYSOFT todos los derechos reservado
+      </p>
+      
+    </div>
+
+  </div>
+</div>
+
+
 <script>
   $(window).on("load", function() {
 
@@ -231,6 +260,12 @@
       $("#p-login").show();
       $(".nav-link").removeClass("active");
       $("#login").addClass("active");
+    });
+    $("#derechosautor").on("click", function() {
+      $(".pane").hide();
+      $("#p-derechosautor").show();
+      $(".nav-link").removeClass("active");
+      $("#derechosautor").addClass("active");
     });
     $("#contacto").on("click", function() {
       $(".pane").hide();
