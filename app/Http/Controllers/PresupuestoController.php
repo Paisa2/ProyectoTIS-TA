@@ -40,6 +40,7 @@ class PresupuestoController extends Controller
         $presupuesto = new Presupuesto($request->all());
         $presupuesto->monto_disponible = $request->monto;
         $presupuesto->estado = true;
+        $presupuesto->gestion = Date('Y');
         $presupuesto->save();
         return redirect()->route('unidades.lista')->with('confirm', 'Se asigno el presupuesto correctamente');
     }
@@ -87,5 +88,26 @@ class PresupuestoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Disable the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function disable($id)
+    {
+        Presupuesto::where('id', $id)->update(['estado' => false]);
+        return redirect()->route('presupuestos.index');
+    }
+    
+    public function disableAll()
+    {
+        $presupuestos = Presupuesto::where('gestion', Date('Y'))->where('estado', true)->get();
+        foreach ($presupuestos as $presupuesto) {
+            $presupuesto->update(['estado' => false]);
+        }
+        return redirect()->route('presupuestos.index');
     }
 }

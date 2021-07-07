@@ -123,7 +123,18 @@ class AdqController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edicion = Solicitud_adquisicion::where('id', $id)->first();
+        $adquisicion=ItemGasto::where('tipo_item', 'Especifico')->get();
+        if($edicion){
+            $datos=json_decode($edicion->detalle_solicitud_a , true);      
+            $detalles=[];                     
+            foreach($datos as $columna){
+                array_push($detalles,array_values($columna));
+            }
+        } else {
+            abort(404);
+        }
+        return view('solicitudes-adq.editarSolicitudA', compact('adquisicion', 'edicion', 'detalles'));
     }
 
     /**
@@ -135,7 +146,27 @@ class AdqController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mensajes = [
+            'justificacion.min' => 'La justificación debe tener por lo menos 20 caracteres'
+        ];
+        $this->validate($request, [
+            'fecha' => 'required',
+            'justificacion' => ['required','min:20'],
+            'total' => 'required'
+            ], $mensajes);
+        $solicitud = Solicitud_adquisicion::where('id', $id)->first();
+        if($solicitud){
+            $solicitud->estado_solicitud_a = 'Registrado';
+            $solicitud->justificacion_solicitud_a = $request->justificacion;
+            $solicitud->detalle_solicitud_a = json_encode($request->detalle);
+            $solicitud->fecha_entrega = $request->fecha;
+            $solicitud->total_solicitud_a = $request->total;
+            $solicitud->save();
+        } else {
+            abort(404);
+        }
+        
+        return redirect('lista')->with('confirm', 'Solicitud de adquisición Editada');
     }
 
     /**
@@ -150,7 +181,9 @@ class AdqController extends Controller
     }
 
     function reenviarAdq($id){
-        Solicitud_adquisicion::where('id', $id)->update(['estado_solicitud_a' => 'Pendiente']);
+        $adquisicion = Solicitud_adquisicion::where('id', $id)->first();
+        $adquisicion->estado_solicitud_a = 'Pendiente';
+        $adquisicion->save();
         return redirect()->route('lista.index');
     }
 }

@@ -17,11 +17,15 @@ class CreateSolicitudesAdquisicionesTable extends Migration
             $table->increments('id');
             $table->string('tipo_solicitud_a', 100);
             $table->string('estado_solicitud_a', 100);
+            $table->string('codigo_solicitud_a', 10);
             $table->string('justificacion_solicitud_a', 800);
-            $table->string('detalle_solicitud_a', 6000);
-            $table->string('fecha_entrega');
+            $table->json('detalle_solicitud_a');
+            $table->timestamp('fecha_entrega');
+            $table->integer('total_solicitud_a');
             $table->integer('de_usuario_id')->unsigned();
             $table->foreign('de_usuario_id')->references('id')->on('usuarios');
+            $table->integer('de_unidad_id')->unsigned();
+            $table->foreign('de_unidad_id')->references('id')->on('unidades');
             $table->integer('para_unidad_id')->unsigned();
             $table->foreign('para_unidad_id')->references('id')->on('unidades');
             $table->timestamps();

@@ -8,16 +8,29 @@
   
 <!-- codigo importante -->
 @if(session()->has('success'))
-    <div class="alert alert-success" role="alert" id="success">
-        {{ session()->get('success') }}
-    </div>
-    <script>setTimeout("document.getElementById('success').classList.add('d-none');",3000);</script>
+  <div class="alert alert-success" role="alert" id="success">
+    {{ session()->get('success') }}
+  </div>
+  <script>setTimeout("document.getElementById('success').classList.add('d-none');",3000);</script>
 @endif
 @if(session()->has('error'))
-    <div class="alert alert-danger" role="alert" id="error">
-        {{ session()->get('error') }}
-    </div>
-    <script>setTimeout("document.getElementById('error').classList.add('d-none');",3000);</script>
+  <div class="alert alert-danger" role="alert" id="error">
+    {{ session()->get('error') }}
+  </div>
+  <script>setTimeout("document.getElementById('error').classList.add('d-none');",3000);</script>
+@endif
+@if(session()->has('exception'))
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <p>
+      {{ session()->get('exception') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </p>
+    <hr>
+    <p>Nota: Para proteger la integridad de la información y evitar perdida de datos, 
+      un Rol de usuario no podra ser eliminado mientras este asignado a un usuario.</p>
+  </div>
 @endif
 
 <div class="container-table">
@@ -69,7 +82,7 @@
                   </svg>Editar
                 </a>
                 @endif
-                @if(session()->has('Eliminar rol') && $rol->nombre_rol != 'Superusuario')
+                @if($rol->asignados == 0 && session()->has('Eliminar rol') && $rol->nombre_rol != 'Superusuario')
                 <form action="{{ route('roles.destroy', $rol->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
                 <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
                   <svg class="c-icon mfe-2">

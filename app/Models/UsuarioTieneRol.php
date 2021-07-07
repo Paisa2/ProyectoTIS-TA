@@ -12,4 +12,5 @@ class UsuarioTieneRol extends Model
      * @var string
      */
     protected $table = 'usuario_tiene_roles';
+    public $timestamps = false;
 }

@@ -98,10 +98,12 @@ class AutorizaciónPresupuestoController extends Controller
         if($solicitud){
             if($solicitud->estado_solicitud_a == 'Pendiente'){
                 if($tipo=='aceptar'){
-                    Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Proceso de cotizacion"]); 
+                    $solicitud->estado_solicitud_a = "Proceso de cotizacion";
+                    $solicitud->save();
                     $mensaje="Se Acepto la solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." para la cotización";
                 }elseif($tipo=='rechazar'){
-                    Solicitud_adquisicion::where("id", $id)->update(["estado_solicitud_a" => "Rechazado por falta de presupuesto"]); 
+                    $solicitud->estado_solicitud_a = "Rechazado por falta de presupuesto";
+                    $solicitud->save();
                     $mensaje="Se Rechazo la solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." por falta de presupuesto";
                 }else{
                     $mensaje="La solicitud de adquisición N° ".$solicitud->codigo_solicitud_a." no se pudo verificar";

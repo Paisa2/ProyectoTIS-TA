@@ -17,7 +17,8 @@ class CreateInformesAutorizacionTable extends Migration
             $table->increments('id');
             $table->string('tipo_informe', 100);
             $table->string('justificacion_informe', 1000);
-            $table->string('empresa_seleccionada', 255);
+            $table->string('empresa_seleccionada', 255)->nullable();
+            $table->boolean('con_formato');
             $table->integer('comparativo_id')->unsigned();
             $table->foreign('comparativo_id')->references('id')->on('comparativo_cotizaciones');
             $table->timestamps();

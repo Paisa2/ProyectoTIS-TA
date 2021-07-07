@@ -17,16 +17,16 @@ select.form-control{
 .informe-options a svg{
     width: 1.7rem !important;
     height: 1.7rem !important;
-    margin-left: 1.5rem;
+    margin-left: 1.25rem;
 }
 .informe-options a svg:focus{
     outline: none;
 }
-.c-dark-theme ul.nav-tabs {
+.c-dark-theme .container-form ul.nav-tabs {
     border-color: #fff;
 }
-.c-dark-theme .nav-tabs .nav-link.active, 
-.c-dark-theme .nav-tabs .nav-item.show .nav-link {
+.c-dark-theme .container-form .nav-tabs .nav-link.active, 
+.c-dark-theme .container-form .nav-tabs .nav-item.show .nav-link {
     background-color: #24252F;
     border-color: #fff #fff #24252F #fff;
 }

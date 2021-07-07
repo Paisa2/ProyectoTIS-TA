@@ -45,24 +45,41 @@ class SolicitudAdquisicionObserver
    * @param  Solicitud_adquisicion  $data
    * @return void
    */
-  public function updated(Solicitud_adquisicion $data)
+  public function updating(Solicitud_adquisicion $data)
   {
+    $estado = $data->estado_solicitud_a;
     $bitacora = new Bitacora;
     $bitacora->usuario_id = session("id");
     $bitacora->modulo = "Solicitud de adquisicion";
-    if ($data->estado_solicitud_a == "Proceso de cotizacion"){
-      $bitacora->detalle = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue aceptada para la cotización";
-      $bitacora->operacion = "Verificar";
-    }else if($data->estado_solicitud_a == "Rechazado por falta de presupuesto"){
-      $bitacora->detalle = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue rechazada por falta de presupuesto";
-      $bitacora->operacion = "Verificar";
-    }else if($data->estado_solicitud_a == "Pendiente"){
-      $bitacora->detalle = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue enviada";
-      $bitacora->operacion = "Enviar";
-    }else {
-      $bitacora->detalle = "algo anda mal con los estados";
-      $bitacora->operacion = "Error";
+    if($estado == "Pendiente"){
+      if ($data->getOriginal('estado_solicitud_a') == "Registrado") {
+        $mensaje = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue enviada.";
+        $operacion = "Enviar";
+      } else if ($data->getOriginal('estado_solicitud_a') == "Plazo de espera vencido") {
+        $mensaje = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue reenviada.";
+        $operacion = "Reenviar";
+      }
+    } else if ($estado == "Proceso de cotizacion"){
+      $mensaje = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue aceptada para la cotización.";
+      $operacion = "Verificar";
+    } else if($estado == "Rechazado por falta de presupuesto"){
+      $mensaje = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue rechazada por falta de presupuesto.";
+      $operacion = "Verificar";
+    } else if($estado == "Aceptado") {
+      $mensaje = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue aceptada para su adquisicion.";
+      $operacion = "Verificar";
+    } else if($estado == "Rechazado") {
+      $mensaje = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue rechazada.";
+      $operacion = "Verificar";
+    } else if (($estado == $data->getOriginal('estado_solicitud_a')) || ($estado == "Registrado" && $data->getOriginal('estado_solicitud_a') == "Pendiente")) {
+      $mensaje = "Solicitud adquisicion N° " . $data->codigo_solicitud_a . " fue editada.";
+      $operacion = "Editar";
+    }else  {
+      $mensaje = "Estado inconsistente.";
+      $operacion = "Error";
     }
+    $bitacora->detalle_bitacora = $mensaje;
+    $bitacora->operacion = $operacion;
     $bitacora->save();
   }
 }

@@ -16,8 +16,8 @@ class CreateCotizacionesPdfTable extends Migration
         Schema::create('cotizaciones_pdf', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ruta', 255);
-            $table->integer('cotizacion_id')->unsigned();
-            $table->foreign('cotizacion_id')->references('id')->on('solicitudes_cotizaciones');
+            $table->integer('resp_cot_id')->unsigned();
+            $table->foreign('resp_cot_id')->references('id')->on('respuestas_cotizacion');
         });
     }
 

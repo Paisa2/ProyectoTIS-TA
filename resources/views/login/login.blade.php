@@ -24,13 +24,13 @@
       <a class="nav-link" id="informacion" href="#informacion">Acerca de Sistema</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="derechosautor" href="#derechosautor">Derecho de Autor</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" id="contacto" href="#contacto">Contactos</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link " id="soporte" href="#soporte">Soporte</a>
+      <a class="nav-link " id="soporte" href="#soporte">Soporte</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="derechosautor" href="#derechosautor">Derechos de Autor</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" id="login" href="#login">Inicio Sesión</a>
@@ -239,11 +239,14 @@
     <br>
       <br>
       <br>
+      <br>
+      <br>
+      <br>
       <h2> Derechos de Autor</h2>
       <br>
       
       <p _ngcontent-sjr-c70 class="textP">
-      @ 2021, COTYSOFT todos los derechos reservado
+      @ 2021, COTYSOFT Todos los derechos reservado
       </p>
       
     </div>

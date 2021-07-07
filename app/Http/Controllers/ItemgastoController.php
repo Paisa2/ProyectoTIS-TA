@@ -21,6 +21,9 @@ class ItemgastoController extends Controller
         $itemsgastos=ItemGasto::leftjoin('items_gasto as genericos','genericos.id','=','items_gasto.item_id')
         ->select('items_gasto.*', 'genericos.nombre_item as pertenece_a')
         ->orderBy('created_at', 'desc')->get();
+        foreach ($itemsgastos as $item) {
+            $item->especificos = ItemGasto::where('item_id', $item->id)->count();
+        }
         return view("ITEM_GASTOS.visualizarItemgasto", compact('itemsgastos'));
         //$itemsgastos=ItemGasto::leftjoin('items_gasto','items_gasto.id','=','items_gasto.itemd_id')->get();
         //return view("ITEM_GASTOS.visualizarItemgasto", compact('itemsgastos'));

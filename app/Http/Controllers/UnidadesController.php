@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unidad;
+use App\Models\Usuario;
 use App\Models\Presupuesto;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class UnidadesController extends Controller
         ->orderBy('created_at','desc')->get();
         foreach ($unidad as $un) {
             $un->presupuesto = Presupuesto::where('estado', true)->where('unidad_id', $un->id)->count();
+            $un->sub_unidades = Unidad::where('unidad_id', $un->id)->count() + Usuario::where('unidad_id', $un->id)->count();
         }
         return view('unidades', compact('unidad'));
     }

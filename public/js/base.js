@@ -1,3 +1,6 @@
+let interval;
+let counter = 0;
+let attrs = ["M8 17H10V24H22V17H24V26H8V17Z", "M10 26V17H8V28H24V17H22V26H10Z", "M8 18H10V28.1538H22V18H24V30H8V18Z"];
 function hideVerticalNavbar(){
   $('#sidebar').removeClass('c-sidebar-lg-show');
   // $('#c-wrapper').addClass('m-0');
@@ -126,7 +129,26 @@ $(window).on('load', function(){
 
   // Tooltips
   $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').on('click', ()=>{
+      $('.tooltip[role="tooltip"]').remove();
+    });
   })
+  // Popovers
+  $(function () {
+    $('[data-toggle="popover"]').popover();
+  })
+
+  // impresora
+  $("#event-print").on("mouseenter", ()=>{
+    interval = setInterval(function(){
+      if (counter == 3) counter = 0;
+      $("#event-print .paper").attr("d", attrs[counter]);
+      counter++;
+    }, 1000);
+  });
+  $("#event-print").on("mouseleave", ()=>{
+    clearInterval(interval);
+  });
 
 });

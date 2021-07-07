@@ -70,6 +70,13 @@
                       <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                   </svg>Detalles
                   </a>
+                  @if(($listadb->estado_solicitud_a=="Registrado" || $listadb->estado_solicitud_a=="Pendiente") && session()->has('Editar solicitud de adquisicion') && (session('id')==$listadb->de_usuario_id || session('rol') == 'Superusuario'))
+                  <a class="dropdown-item" type="submit" href="{{ route('solicitud.edit', $listadb->id) }}">
+                    <svg class="c-icon mfe-2">
+                      <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
+                    </svg>Editar
+                  </a> 
+                  @endif  
                   @if($listadb->estado_solicitud_a=="Registrado" && session()->has('Editar solicitud de adquisicion') && session('id')==$listadb->de_usuario_id)
                   <a class="dropdown-item" href="{{ route('reenviar', $listadb->id) }}">
                     <svg class="c-icon mfe-2">
@@ -87,7 +94,7 @@
                   @if($listadb->estado_solicitud_a=="Pendiente" && session()->has('Editar solicitud de adquisicion') && session('tipo_unidad')!='unidad de gasto')
                   <a class="dropdown-item" href="{{ route('autopresupuesto', $listadb->id) }}">
                     <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
+                      <use xlink:href="{{asset('img/icons/verify.svg#i-verify')}}"></use>
                     </svg>Verificar
                   </a>
                   @endif
@@ -108,7 +115,7 @@
                   @if($listadb->informes > 0)
                   <a class="dropdown-item" href="{{ route('detalleinforme', $listadb->informe_id) }}">
                     <svg class="c-icon mfe-2">
-                      <use xlink:href="{{asset('img/icons/quotation.svg#i-quotation')}}"></use>
+                      <use xlink:href="{{asset('img/icons/clipboard-details.svg#i-clipboard-details')}}"></use>
                     </svg>Ver Informe
                   </a>
                   @endif

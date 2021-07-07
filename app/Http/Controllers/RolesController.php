@@ -10,6 +10,7 @@ use Illuminate\Database\QueryException;
 use App\Models\TipoContenido;
 use App\Models\Permiso;
 use App\Models\RolTienePermiso;
+use App\Models\UsuarioTieneRol;
 use App\Models\Rol;
 
 class RolesController extends Controller
@@ -39,6 +40,7 @@ class RolesController extends Controller
     {
         $roles = Rol::where('id', '!=', 3)->orderBy('updated_at', 'desc')->get();
         foreach ($roles as $rol) {
+            $rol->asignados = UsuarioTieneRol::where('rol_id', $rol->id)->count();
             $permisos = RolTienePermiso::where('rol_id', $rol->id)->get();
             $rol->numero_permisos = count($permisos);
         }
@@ -76,6 +78,7 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
+        $request['nombre_rol'] = str_replace(' De ', ' de ', str_replace(' Y ', ' y ', ucwords(strtolower($request->nombre_rol)))); // Esto de Eso y Aquello
         $mensajes = [
             'nombre_rol.required' => 'El campo nombre es requerido.',
             'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
@@ -188,6 +191,7 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request['nombre_rol'] = str_replace(' De ', ' de ', str_replace(' Y ', ' y ', ucwords(strtolower($request->nombre_rol))));
         $mensajes = [
             'nombre_rol.required' => 'El campo nombre es requerido.',
             'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
@@ -247,9 +251,9 @@ class RolesController extends Controller
                 $rol->delete();
                 return redirect()->back()->withSuccess('Se elimino el rol '.$nombre.' correctamente.');   
             } catch (QueryException $e) {
-                return redirect()->back()->withError('El rol ' . $rol->nombre_rol . ' esta en uso.');   
+                return redirect()->back()->with('exception', 'El rol ' . $rol->nombre_rol . ' esta en uso.');   
             }
         }
-        return redirect()->back()->withError('Ocurrio un error al momento de eliminar el rol, intentelo de nuevo.');   
+        return redirect()->back()->withError('El rol que intenta eliminar no fue encontrado, intente actualizar la información.');   
     }
 }

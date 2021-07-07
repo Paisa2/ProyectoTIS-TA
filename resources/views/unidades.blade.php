@@ -89,7 +89,7 @@
                                     </svg>Editar
                                 </a>
                         @endif
-                        @if(session()->has('Eliminar unidad'))
+                        @if($unidadbd->sub_unidades == 0 && session()->has('Eliminar unidad'))
                         <form action="{{ route('registro.destroy', $unidadbd->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
                                 <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
                                 <svg class="c-icon mfe-2">
@@ -108,6 +108,7 @@
     {{--  {!!$unidad->render()!!}  --}}
     </div>
 
+    @if(session()->has('Crear presupuesto'))
     <div class="modal fade" id="presupuesto" tabindex="-1" aria-labelledby="presupestoLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -137,6 +138,8 @@
             </div>
         </div>
     </div>
+    @endif
+
 @endsection
 
 @section('scripts')

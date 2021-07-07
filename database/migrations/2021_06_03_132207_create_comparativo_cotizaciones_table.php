@@ -16,7 +16,8 @@ class CreateComparativoCotizacionesTable extends Migration
         Schema::create('comparativo_cotizaciones', function (Blueprint $table) {
             $table->increments('id');
             $table->json('detalle_comparativo');
-            $table->string('observaciones_comparativo', 500);
+            $table->json('empresas_comparativo');
+            $table->string('observaciones_comparativo', 500)->nullable();
             $table->string('empresa_recomendada', 255);
             $table->integer('cotizacion_id')->unsigned();
             $table->foreign('cotizacion_id')->references('id')->on('solicitudes_cotizaciones');

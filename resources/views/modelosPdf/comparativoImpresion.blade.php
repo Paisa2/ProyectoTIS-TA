@@ -258,7 +258,7 @@
   </table>
   <div class="observaciones">
     <label>Observaciones: </label>
-    <span>{{$comparativo->observaciones_comparativo</span>
+    <span>{{$comparativo->observaciones_comparativo}}</span>
     <span>
     </span>
   </div>

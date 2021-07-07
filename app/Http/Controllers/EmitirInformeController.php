@@ -83,8 +83,10 @@ class EmitirInformeController extends Controller
         
         $informe->save();
         $comparativo=InfoComparativo::where('id',$id)->first();
+        $solicitud = Solicitud_adquisicion::where("id", $comparativo->solicitud_a_id)->first();
         if($request->tipo=='Aceptado'){
-            Solicitud_adquisicion::where("id", $comparativo->solicitud_a_id)->update(["estado_solicitud_a" => "Aceptado"]); 
+            $solicitud->estado_solicitud_a = "Aceptado";
+            $solicitud->save();
            $presupuesto=Presupuesto::where('unidad_id',$comparativo->unidad_solicitante_id)->where('estado',true)->first();
            $monto=0;
            foreach(json_decode($comparativo->empresas_comparativo, true) as $empresa){
@@ -98,7 +100,8 @@ class EmitirInformeController extends Controller
            }
            Presupuesto::where("id", $presupuesto->id)->update(["monto_disponible" =>$presupuesto->monto_disponible-$monto]); 
         }elseif($request->tipo=='Rechazado'){
-            Solicitud_adquisicion::where("id", $comparativo->solicitud_a_id)->update(["estado_solicitud_a" => "Rechazado"]); 
+            $solicitud->estado_solicitud_a = "Rechazado";
+            $solicitud->save();
         }
         return redirect()->route('detalleinforme',$informe->id)->with('confirm',"Se Envió el Informe");
     }

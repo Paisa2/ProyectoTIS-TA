@@ -48,6 +48,10 @@
       <a class="c-sidebar-nav-link {{ (request()->is('bitacora') || request()->is('bitacora/*')) ? 'c-active' : '' }}" 
       href="{{route('bitacora.index')}}">Bitacora</a>
     </li>
+    <li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link {{ (request()->is('presupuestos') || request()->is('presupuestos/*')) ? 'c-active' : '' }}" 
+      href="{{route('presupuestos.index')}}">Historial de Presupuestos</a>
+    </li>
     @endif
     <li class="c-sidebar-nav-title">Solicitudes</li>
     @if(session()->has('Visualizar solicitud de items'))
