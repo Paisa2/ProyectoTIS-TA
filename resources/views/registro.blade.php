@@ -16,7 +16,7 @@
 
         <div class="row g-3">
             <div class="col-md-6">
-                <label for="tipo">Tipo:</label>
+                <label for="tipo">Seleccione el Tipo de Unidad o Facultad:</label>
                     <select class="form-control" name="tipo_unidad" id="tipo_unidad">
                     <option hidden selected value="">Seleccione</option>
                     <option {{ old('tipo_unidad') == "unidad de gasto" ? 'selected' : '' }} value="unidad de gasto">Unidad De Gasto</option>
@@ -93,6 +93,7 @@
         @if($errors->has('telefono_unidad'))
             <div class="alert alert-danger" role="alert">{{$errors->first('telefono_unidad')}}</div>
         @endif
+        
 
     
     </div>

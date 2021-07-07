@@ -56,9 +56,11 @@ class ItemgastoController extends Controller
         //$this->validate($request, [
         //    'nombre_item' => 'required|unique:posts|max:255',
         //]);
+        $request['nombre_item']=ucfirst(strtolower($request->nombre_item));
         $mensajes = [
             'tipo_item.required' => 'Debe de seleccionar el tipo de item',
             'nombre_item.required' => 'Debe de llenar el campo nombre',
+            'nombre_item.unique' => 'El nombre ingresado ya se encuentra en uso',
             'min'   => 'El :attribute debe tener por lo menos :min caracteres.',
             'max'   => 'El :attribute no puede tener más de :max caracteres.',
             'regex' => 'El campo :attribute solo puede tener letras',
@@ -67,7 +69,7 @@ class ItemgastoController extends Controller
         ];
         $this->validate($request, [
             
-            'nombre_item'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
+            'nombre_item'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u', 'unique:items_gasto,nombre_item'], 
             'tipo_item'=>'required',
             'item_id'=>'numeric',
             ], $mensajes);

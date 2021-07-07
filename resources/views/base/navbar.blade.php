@@ -63,6 +63,12 @@
           href="{{route('bitacora.index')}}">Bitacora</a>
         </li>
         @endif
+        @if(session('rol') == 'Superusuario')
+        <li class="nav-item">
+          <a class="nav-link {{ (request()->is('presupuestos') || request()->is('presupuestos/*')) ? 'active' : '' }}" 
+          href="{{route('presupuestos.index')}}">Historial de Presupuestos</a>
+        </li>
+        @endif
       </ul>       
     </div>
 

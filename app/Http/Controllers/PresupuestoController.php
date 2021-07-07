@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Presupuesto;
+use App\Models\HistorialPresupuesto;
 
 class PresupuestoController extends Controller
 {
@@ -14,7 +15,8 @@ class PresupuestoController extends Controller
      */
     public function index()
     {
-        //
+        $historiales = HistorialPresupuesto::paginate(10);
+        return view('PRESUPUESTOS.historialPresupuestos', compact('historiales'));
     }
 
     /**
