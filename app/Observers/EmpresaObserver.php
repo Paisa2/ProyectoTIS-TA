@@ -42,10 +42,10 @@ class EmpresaObserver
   /**
    * Listen to the User updated event.
    *
-   * @param  Solicitud_adquisicion  $data
+   * @param  Empresa  $data
    * @return void
    */
-  public function updating(Solicitud_adquisicion $data)
+  public function updating(Empresa $data)
   {
     $bitacora = new Bitacora;
     $bitacora->usuario_id = session("id");

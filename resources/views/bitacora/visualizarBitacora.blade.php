@@ -38,9 +38,9 @@
   <br>
   <nav class="mt-auto" aria-label="Page navigation">
     <ul class="pagination m-0">
-      @if($bitacoras->previousPageUrl())
+      @if($bitacoras->currentPage()-2 > 0)
       <li class="page-item">
-        <a class="page-link" href="{{$bitacoras->previousPageUrl()}}" aria-label="Previous">
+        <a class="page-link" href="{{$bitacoras->currentPage()-5 > 1 ? $bitacoras->url($bitacoras->currentPage()-5) : $bitacoras->url(1) }}" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
@@ -52,9 +52,9 @@
       @if($bitacoras->nextPageUrl())
       <li class="page-item"><a class="page-link" href="{{$bitacoras->nextPageUrl()}}">{{$bitacoras->currentPage()+1}}</a></li>
       @endif
-      @if($bitacoras->nextPageUrl())
+      @if($bitacoras->currentPage()+2 < $bitacoras->lastPage())
       <li class="page-item">
-        <a class="page-link" href="{{$bitacoras->nextPageUrl()}}" aria-label="Next">
+        <a class="page-link" href="{{$bitacoras->currentPage()+5 < $bitacoras->lastPage() ? $bitacoras->url($bitacoras->currentPage()+5) : $bitacoras->url($bitacoras->lastPage()) }}" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

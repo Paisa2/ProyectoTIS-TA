@@ -16,6 +16,9 @@ class BitacoraController extends Controller
     public function index()
     {
         $bitacoras = InfoBitacora::orderBy('created_at', 'desc')->paginate(10);
+        if($bitacoras->count() == 0 && $bitacoras->currentPage() > 1) {
+            abort(404);
+        }
         return view('bitacora.visualizarBitacora', compact('bitacoras'));
         
     }
