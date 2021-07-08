@@ -28,7 +28,7 @@
                             <span class="without d-none">Sin resultados</span>
                           </div>
                         </div>
-                        <input type="text" name="Empresa" id="razon" autocomplete="off" value="{{$empresa->nombre_empresa}}" class="form-control bg-transparent">
+                        <input type="text" name="Empresa" id="Empresa" autocomplete="off" value="{{old('Empresa')?old('Empresa'): $empresa->nombre_empresa}}" class="form-control bg-transparent">
                     </div>
                     @foreach($errors->get('Empresa') as $message)
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
@@ -39,7 +39,7 @@
             <div class="row g-3">
                 <div class="col-md-4">
                     <label for="Nombre_Comercial" class="form-label">Nombre Comercial:</label>
-                    <input type="text" class="form-control" name="Nombre_Comercial" autocomplete="off" value="{{$empresa->acronimo_empresa}}">
+                    <input type="text" class="form-control" name="Nombre_Comercial" autocomplete="off" value="{{old('Nombre_Comercial')?old('Nombre_Comercial'):$empresa->acronimo_empresa}}">
                     {{-- <input type="text" class="form-control" name="Empresa" id="Empresa"> --}}
                         @foreach($errors->get('Nombre_Comercial') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="Nit" class="form-label">NIT:</label>
-                    <input type="text" name="Nit" class="form-control" autocomplete="off" value="{{$empresa->nit_empresa}}">
+                    <input type="text" name="Nit" class="form-control" autocomplete="off" value="{{old('Nit')?old('Nit'):$empresa->nit_empresa}}">
                     @foreach($errors->get('Nit') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
@@ -68,7 +68,7 @@
                             <span class="without d-none">Sin resultados</span>
                           </div>
                         </div>
-                        <input type="text" name="Rubro" id="Rubro" autocomplete="off" value="{{$empresa->rubro_empresa}}" class="form-control bg-transparent">
+                        <input type="text" name="Rubro" id="Rubro" autocomplete="off" value="{{old('Rubro')?old('Rubro'):$empresa->rubro_empresa}}" class="form-control bg-transparent">
                     </div>
                     
                     @foreach($errors->get('Rubro') as $message)
@@ -80,14 +80,14 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="Representante_Legal" class="form-label">Representante Legal:</label>
-                    <input type="text" name="Representante_Legal" class="form-control" autocomplete="off" value="{{$empresa->representante_legal}}">
+                    <input type="text" name="Representante_Legal" class="form-control" autocomplete="off" value="{{old('Representante_Legal')?old('Representante_Legal'):$empresa->representante_legal}}">
                     @foreach($errors->get('Representante_Legal') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
                 </div>
                 <div class="col-md-6">
                     <label for="Direccion" class="form-label">Dirección:</label>
-                    <input type="text" name="Direccion" class="form-control" autocomplete="off" value="{{$empresa->direccion_empresa}}">
+                    <input type="text" name="Direccion" class="form-control" autocomplete="off" value="{{old('Direccion')?old('Direccion'):$empresa->direccion_empresa}}">
                     @foreach($errors->get('Direccion') as $message)
                         <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
@@ -97,14 +97,14 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <label for="Correo_Electronico" class="form-label">Correo Electronico:</label>
-                    <input type="text" name="Correo_Electronico" id="email" class="form-control" autocomplete="off" value="{{$empresa->email_empresa}}">
+                    <input type="text" name="Correo_Electronico" id="email" class="form-control" autocomplete="off" value="{{old('Correo_Electronico')?old('Correo_Electronico'):$empresa->email_empresa}}">
                     @foreach($errors->get('Correo_Electronico') as $message)
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
                 </div>
                 <div class="col-md-6">
                     <label for="Telefono" class="form-label">Telefono</label>
-                    <input type="text" name="Telefono" class="form-control" autocomplete="off" value="{{$empresa->telefono_empresa}}">
+                    <input type="text" name="Telefono" class="form-control" autocomplete="off" value="{{old('Telefono')?old('Telefono'):$empresa->telefono_empresa}}">
                     @foreach($errors->get('Telefono') as $message)
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach

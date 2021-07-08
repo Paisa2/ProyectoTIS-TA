@@ -96,6 +96,34 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $mensajes = [
+         'Empresa.required' => 'El campo Empresa es requerido',
+         'Empresa.unique' => 'La Empresa ya ha sido registrado',
+         'Nombre_Comercial.required' => 'El campo Nombre Comercial es requerido',
+         'Nit.required' => 'El campo NIT es requerido',
+         'Rubro.required' => 'El campo Rubro es requerido',
+         'Representante_Legal' => 'El campo Representante Legal es requerido',
+         'Direccion' => 'El campo Dirección es requerido',
+         'Correo_Electronico' => 'El campo Correo Electronico es requerido',
+         'Telefono.required' => 'El campo Telefono es requerido',
+         'Representante_Legal.regex' => 'El campo Representante Legal solo debe contener letras',
+         'Nit.numeric' => 'El campo Nit solo debe contener números',
+         'Nit.digits_between' => 'El campo Nit debe contener entre 7 y 15 dígitos',
+         'Correo_Electronico.email' => 'El formato de correo es incorrecto',
+         'Telefono.numeric' => 'El campo Telefono solo debe contener números',
+         'Telefono.digits_between' => 'El campo Telefono debe contener entre 6 y 10 dígitos',
+         'Nit.unique' => 'El NIT ya ha sido registrado'
+        ];
+        $this->validate($request,[
+            'Empresa' => ['required','regex:/^[\pL\s\-]+$/u', 'unique:empresas,nombre_empresa,'.$id.',id'],
+            'Nombre_Comercial' => 'required',
+            'Representante_Legal' => ['required','regex:/^[\pL\s\-]+$/u'],
+            'Direccion' => 'required',
+            'Nit' => ['required','numeric','digits_between:7,15', 'unique:empresas,nit_empresa,'.$id.',id'],
+            'Rubro' => 'required',
+            'Telefono' => ['required','numeric','digits_between:6,10'],
+            'Correo_Electronico'=>['required','email']
+        ]);
         // $tipo = $request->get($id);
         // $registro = Empresa::where('empresas.id', $id)->select('empresas.*')->first();
         $empresa = Empresa::find($id);
