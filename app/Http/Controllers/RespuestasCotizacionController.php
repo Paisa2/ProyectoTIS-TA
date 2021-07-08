@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Solicitud_cotizacion;
 use App\Models\RespuestaCotizacion;
 use App\Models\InfoCotizacion;
@@ -51,7 +52,8 @@ class RespuestasCotizacionController extends Controller
             abort(404);
         }
         //echo dd($detalles);
-        $empresas = TodaEmpresa::all();
+        $empresas = DB::table(DB::raw('(select * from toda_empresa except select razon_social as nombre_empresa from respuestas_cotizacion where cotizacion_id = ' . $id . ') as em'))
+        ->orderBy('nombre_empresa', 'asc')->get();
         return view("respuestasCotizacion.crearRespuestasCotizacion", compact("cotizacion","detalles", "empresas"));
     }
 
