@@ -138,6 +138,7 @@
       width: 88.5%;
       border-bottom: 1px dotted #000;
       height: 1.5em;
+      color: #000; 
     }
     .observaciones span:last-child {
       display: block;

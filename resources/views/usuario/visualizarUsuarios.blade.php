@@ -85,7 +85,14 @@
                                         <svg class="c-icon mfe-2">
                                             <use xlink:href="{{asset('img/icons/details.svg#i-details')}}"></use>
                                         </svg>Detalles de Usuario
-                                    </a>                 
+                                    </a> 
+                                    @if(session()->has('Editar usuario'))
+                                    <a class="dropdown-item" type="submit" href="{{ route('usuario.edit', $usuario->id) }}">
+                                        <svg class="c-icon mfe-2">
+                                            <use xlink:href="{{asset('img/icons/edit.svg#i-edit')}}"></use>
+                                        </svg>Editar
+                                    </a>
+                                    @endif               
                                     @if($usuario->usos == 0 && session()->has('Eliminar usuario'))
                                     <form action="{{ route('usuario.destroy', $usuario->id) }}" method="post" class="d-none" id="delete{{$loop->index +1}}">{{ csrf_field() }}{{ method_field('delete') }}</form>
                                     <button class="dropdown-item" type="submit" form="delete{{$loop->index +1}}">
@@ -99,7 +106,7 @@
                         </td>
                     </tr>
             @endforeach
-          </tbody>
+        </tbody>
 
 
     </table>

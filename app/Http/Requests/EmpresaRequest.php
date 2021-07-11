@@ -24,8 +24,8 @@ class EmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-            'Empresa' => ['required','regex:/^[\pL\s\-]+$/u'],
-            'Nombre_Comercial' => 'required',
+            'Empresa' => ['required','regex:/^[\pL\s\-]+$/u', 'unique:empresas,nombre_empresa'],
+            'Nombre_Comercial' => ['required', 'unique:empresas,acronimo_empresa'],
             'Representante_Legal' => ['required','regex:/^[\pL\s\-]+$/u'],
             'Direccion' => 'required',
             'Nit' => ['required','numeric','digits_between:7,15', 'unique:empresas,nit_empresa'],
@@ -40,7 +40,9 @@ class EmpresaRequest extends FormRequest
     {
          return [
          'Empresa.required' => 'El campo Empresa es requerido',
-         'Nombre_Comercial.required' => 'El campo Nombre Comercial es requerido',
+         'Empresa.unique' => 'La Empresa ya ha sido registrada.',
+         'Nombre_Comercial.required' => 'El campo Nombre Comercial es requerido.',
+         'Nombre_Comercial.unique' => 'El Nombre Comercial ya ha sido registrado.',
          'Nit.required' => 'El campo NIT es requerido',
          'Rubro.required' => 'El campo Rubro es requerido',
          'Representante_Legal' => 'El campo Representante Legal es requerido',

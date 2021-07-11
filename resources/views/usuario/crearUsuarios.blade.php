@@ -54,19 +54,6 @@
 
             <div class="row">     
                 <div class="mb-3 col-6">
-                    <label for="" class="form-label">Rol:</label>
-                    <select class="form-control" name="rol_id">
-                    <option hidden selected value="">Seleccione</option>
-                    @foreach($roles as $rol)
-                    <option id="{{$rol->nombre_rol}}"{{ old('rol_id') == $rol->id ? 'selected' : '' }} value="{{$rol->id}}">{{$rol->nombre_rol}}</option>
-                    @endforeach
-                    </select>
-                    @foreach($errors->get('rol_id') as $message) 
-                    <div class="alert alert-danger" role="alert">{{$message}}</div>
-                    @endforeach
-                </div>
-
-                <div class="mb-3 col-6">
                     <label for="" class="form-label">Pertenece a:</label>
                     <select id="unidades" class="form-control" name="unidad_id">
                     <option hidden selected value="">Seleccione</option>
@@ -76,6 +63,19 @@
                     @endforeach
                     </select>
                     @foreach($errors->get('unidad_id') as $message) 
+                    <div class="alert alert-danger" role="alert">{{$message}}</div>
+                    @endforeach
+                </div>
+
+                <div class="mb-3 col-6">
+                    <label for="" class="form-label">Rol:</label>
+                    <select class="form-control" name="rol_id" id="roles">
+                    <option hidden selected value="">Seleccione</option>
+                    @foreach($roles as $rol)
+                    <option id="{{$rol->nombre_rol}}"{{ old('rol_id') == $rol->id ? 'selected' : '' }} value="{{$rol->id}}">{{$rol->nombre_rol}}</option>
+                    @endforeach
+                    </select>
+                    @foreach($errors->get('rol_id') as $message) 
                     <div class="alert alert-danger" role="alert">{{$message}}</div>
                     @endforeach
                 </div>
@@ -129,6 +129,7 @@
         }
         else{
             $("#Cotizador").hide();
+            $("#roles").val("");
         }
     });
 </script>

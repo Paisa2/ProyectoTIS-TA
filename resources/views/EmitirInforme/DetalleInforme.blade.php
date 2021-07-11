@@ -27,6 +27,7 @@ AtorizaciónPresupuesto
          <div class="d-flex justify-content-between">
             <label for="tipo" class="form-label">PRESENTE</label>
             <div class="d-flex">
+               @if(session()->has('Visualizar solicitud de cotizacion'))
                <div class="informe-options">
                   <a href="{{route('solicitudCotizacion.index')}}">
                      <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Lista de cotizaciones">
@@ -34,6 +35,7 @@ AtorizaciónPresupuesto
                      </svg>
                   </a>
                </div>
+               @endif
                @if(session('tipo_unidad')!='unidad de gasto')
                <div class="informe-options" id="event-print">
                   <a href="{{route('informe.generarpdf', $informe->id)}}" target="_blank">

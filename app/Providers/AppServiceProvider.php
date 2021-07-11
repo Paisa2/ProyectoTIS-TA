@@ -21,6 +21,8 @@ use App\Models\InformeAutorizacion;
 use App\Observers\InformeAutorizacionObserver;
 use App\Models\Empresa;
 use App\Observers\EmpresaObserver;
+use App\Models\Unidad;
+use App\Observers\UnidadObserver;
 use App\Models\ItemGasto;
 use App\Observers\ItemGastoObserver;
 
@@ -48,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
         ComparativoCotizacion::observe(ComparativoCotizacionObserver::class);
         InformeAutorizacion::observe(InformeAutorizacionObserver::class);
         Empresa::observe(EmpresaObserver::class);
+        Unidad::observe(UnidadObserver::class);
         ItemGasto::observe(ItemGastoObserver::class);
     }
 

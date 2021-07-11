@@ -145,6 +145,9 @@
        </tr>
     </tbody>
   </table>
+  @if($totaltotal == 0)
+  <div id="off" class="d-none"></div>
+  @endif
   <div class="mb-3">
   <label for="exampleInputEmail1" class="form-label">Presupuesto de la Unidad Solicitante:</label>
   <label for="exampleInputEmail1" class="form-label">{{$presupuesto}} Bs.</label>
@@ -173,10 +176,7 @@
   <div class="mb-3">
     <label for="observaciones" class="labelcompa">Observaciones: </label>
     <br>
-    <input type="text"  name="observaciones" class="form-control" value="{{ old('observaciones') }}" autocomplete="off">
-     @foreach($errors->get('observaciones') as $message)
-      <div class="alert alert-danger">{{$message}}</div>
-      @endforeach
+    <input type="text" name="observaciones" id="observacion" class="form-control" value="{{ old('observaciones') ? old('observaciones') : ($totaltotal == 0 ? 'Ninguna empresa respondió' : '') }}" autocomplete="off">
   </div>
   <table class="informacion">
     <thead>
@@ -210,9 +210,15 @@
 @endsection
 
 @section("scripts")
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<script>
+  $('input[name="tipo_item"]').on('change',function()
+  {
+    $('select[name="empresa"]').attr('disabled',this.value=="RECHAZAR")
+  });
+</script>
 <script>
 $(window).on("load",function(){
-  $("#empresas option").off("click");
   $($("#empresas option:selected").attr("id")).addClass("active");
   $("#empresas").on("change",function(){
     for(var i=1;i<=5;i++){
@@ -221,14 +227,18 @@ $(window).on("load",function(){
     $("."+$("th[data-value='"+$(this).val()+"']").attr("id")).addClass("active");
 
   });
+  if ($('#off').attr('id') == 'off') {
+    $('#btnradio2').trigger('click');
+    $('input[name="tipo_item"]').off('change');
+    $('#observacion').on('keydown', (e)=>{
+      e.preventDefault();
+    });
+    $('#btnradio1').on('click', function(){
+      $('#btnradio2').trigger('click');
+    });
+  }
 });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <script>
-    $('input[name="tipo_item"]').on('change',function()
-    {
-      $('select[name="empresa"]').attr('disabled',this.value=="RECHAZAR")
-    });
-    </script>
+
 
 @endsection

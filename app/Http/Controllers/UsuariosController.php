@@ -26,14 +26,15 @@ class UsuariosController extends Controller
             $usuarios = Usuario::join('usuario_tiene_roles','usuarios.id','=','usuario_tiene_roles.usuario_id')
             -> join ('roles','roles.id','=','usuario_tiene_roles.rol_id')
             -> join ('unidades','unidades.id','=','usuarios.unidad_id')
-            -> where ('estado',true) -> where('roles.nombre_rol', '!=', 'Superusuario') -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
+            -> where ('estado',true) -> where('roles.nombre_rol', '!=', 'Superusuario')  -> where('roles.nombre_rol', '!=', 'Jefe')
+            -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
             -> orderBy('created_at', 'desc')
             -> get ();
         }else{
             $usuarios = Usuario::join('usuario_tiene_roles','usuarios.id','=','usuario_tiene_roles.usuario_id')
             -> join ('roles','roles.id','=','usuario_tiene_roles.rol_id')
             -> join ('unidades','unidades.id','=','usuarios.unidad_id')
-            -> where ('estado',true) -> where('roles.nombre_rol', '!=', 'Superusuario') 
+            -> where ('estado',true) -> where('roles.nombre_rol', '!=', 'Superusuario')  -> where('roles.nombre_rol', '!=', 'Jefe')
             -> where ('usuarios.unidad_id', session('unidad_id'))
             -> select ('usuarios.*','roles.nombre_rol','unidades.nombre_unidad')
             -> orderBy('created_at', 'desc')
@@ -56,7 +57,7 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        $roles = Rol::where("id","!=",1)->get();
+        $roles = Rol::where("id","!=",1)->where("id", "!=", 3)->get();
         $unidades = Unidad::where("tipo_unidad","unidad de gasto")->orWhere("tipo_unidad","unidad administrativa")->get();
         return view("usuario.crearUsuarios ",compact("roles","unidades"));
     }
@@ -146,7 +147,18 @@ class UsuariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = InfoUsuario::find($id);
+        $roles = Rol::where("id","!=",1)->where("id", "!=", 3)->get();
+        $unidades = Unidad::where("tipo_unidad","unidad de gasto")->orWhere("tipo_unidad","unidad administrativa")->get();
+        if ($usuario) {
+            $historialRoles = Rol::join('usuario_tiene_roles as utr', 'utr.rol_id', '=', 'roles.id')
+            ->where('utr.usuario_id', $usuario->id)
+            ->orderBy('utr.created_at', 'desc')
+            ->select('roles.*', 'utr.estado', 'utr.created_at')->get();
+        } else {
+            abort(404);
+        }
+        return view('usuario.editarUsuario', compact('usuario', 'roles', 'unidades', 'historialRoles'));
     }
 
     /**
@@ -158,7 +170,64 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mensages = [
+            'required' => 'El campo :attribute es requerido',
+            'min'   => 'El campo :attribute debe tener por lo menos :min caracteres',
+            'max'   => 'El campo :attribute no puede tener más de :max caracteres',
+            'regex' => 'El campo :attribute solo puede tener letras',
+            'email' => 'Debe ingresar un Email que sea valido',
+            'contrasenia.min'   => 'El campo contraseña debe tener por lo menos :min caracteres',
+            'contrasenia.max'   => 'El campo contraseña no puede tener más de :max caracteres',
+            'contrasenia2.min'   => 'El campo confirmar contraseña debe tener por lo menos :min caracteres',
+            'contrasenia2.max'   => 'El campo confirmar contraseña no puede tener más de :max caracteres',
+            'same' => 'Las dos contraseñas deben ser iguales',
+            'ci_usuario.unique'   => 'Este CI ya ha sido registrado',
+            'unique' => 'Este Email ya ha sido registrado',
+            'ci_usuario.numeric' => 'El campo CI solo puede tener números',
+            'ci_usuario.digits_between'   => 'CI debe tener entre 6 y 9 dígitos',
+            'telefono_usuario.numeric' => 'El campo Teléfono solo puede tener números',
+            'telefono_usuario.digits_between'   => 'Teléfono debe tener entre 7 y 12 dígitos',
+                        
+        ];
+        $this->validate($request, [
+            'nombres'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
+            'apellidos'=>['required', 'min:2', 'max:255', 'regex:/^[\pL\s\-]+$/u'], 
+            'ci_usuario'=>['required', 'digits_between:6,9', 'numeric','unique:usuarios,ci_usuario,'.$id.',id'],
+            'telefono_usuario'=>['required', 'digits_between:7,12', 'numeric'],
+            'rol_id'=>'required',
+            'email'=>['required','email','unique:usuarios,email,'.$id.',id'],
+            'unidad_id'=>'required',
+            'contrasenia'=>['nullable', 'min:8', 'max:24'],
+            'contrasenia2'=>['nullable', 'min:8', 'max:24', 'same:contrasenia'],
+            ], $mensages);
+        $usuario = Usuario::find($id);
+        if ($usuario) {
+            $usuario->nombres = $request->nombres;
+            $usuario->apellidos = $request->apellidos;
+            $usuario->ci_usuario = $request->ci_usuario;
+            $usuario->telefono_usuario = $request->telefono_usuario;
+            $usuario->email = $request->email;
+            $usuario->unidad_id = $request->unidad_id;
+            if (UsuarioTieneRol::where('usuario_id', $usuario->id)->where('rol_id', $request->rol_id)->where('estado', true)->count() == 0) {
+                $roles = UsuarioTieneRol::where('usuario_id', $usuario->id)->where('estado', true)->get();
+                foreach ($roles as $rol) {
+                    $rol->estado = false;
+                    $rol->save();
+                }
+                $tieneRol = new UsuarioTieneRol;
+                $tieneRol->usuario_id = $usuario->id;
+                $tieneRol->rol_id = $request->rol_id;
+                $tieneRol->estado = true;
+                $tieneRol->save();
+            }
+            if ($request->contrasenia != null) {
+                $usuario->contrasenia = $request->contrasenia;
+            }
+            $usuario->save();
+        } else {
+            abort(404);
+        }
+        return redirect()->route('usuario.index')->with('confirm', 'Se actualizo la informacion del usuario.');
     }
 
     /**

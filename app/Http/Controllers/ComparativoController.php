@@ -39,17 +39,21 @@ class ComparativoController extends Controller
             foreach($datos as $columna){
                 array_push($propuestas,array_values($columna));
             }
+            $counter = 0;
+            $totaltotal = 0;
             $empresas=[];                     
             foreach(json_decode($datoscomparativo->empresas_comparativo, true) as $columna){
                 array_push($empresas,array_values($columna));
+                $totaltotal = $totaltotal + $empresas[$counter][1];
+                $counter++;
             }
             $presupuesto=Presupuesto::where("unidad_id",$datoscomparativo->unidad_solicitante_id)->where("estado",true)->first()->monto_disponible;
-            return view("COMPARATIVO.comparativo", compact("datoscomparativo","propuestas","presupuesto","empresas"));
+            return view("COMPARATIVO.comparativo", compact("datoscomparativo","propuestas","presupuesto","empresas", "totaltotal"));
         }
         else{
             abort(404);
         }
-           
+        
     }
     public function detalle($id){
         $datoscuadrocomparativo=ComparativoCotizacion::where("id",$id)->first();
@@ -116,7 +120,11 @@ class ComparativoController extends Controller
         $comparativo->jefe_administrativo_id=Infojefeunidad::where("unidad_id",session("unidad_id"))->first()->usuario_id;
         $comparativo->jefe_unidad_id=Infojefeunidad::where("unidad_id",$cotizacion->unidad_solicitante_id)->first()->usuario_id;
         $comparativo->save();
-        return redirect()->route("comparativo.create",$comparativo->id);
+        if (session()->has('Editar cuadro comparativo')) {
+            return redirect()->route("comparativo.create",$comparativo->id);
+        } else {
+            return redirect()->route("comparativo.detalle",$comparativo->id);
+        }
         }
         else{
             abort(404);

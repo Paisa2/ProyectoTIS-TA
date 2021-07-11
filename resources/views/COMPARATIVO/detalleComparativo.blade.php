@@ -46,6 +46,7 @@
       </div>
     </div>
     <div class="d-flex align-items-center mb-3">
+      @if(session()->has('Visualizar solicitud de cotizacion'))
       <div class="comparativo-options">
         <a href="{{route('solicitudCotizacion.index')}}">
           <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="Lista de cotizaciones">
@@ -53,6 +54,7 @@
           </svg>
         </a>
       </div>
+      @endif
       <div class="comparativo-options">
         <a href="{{$datoscomparativo->informe_id ? route('detalleinforme', $datoscomparativo->informe_id) : route('emitirinforme', $datoscomparativo->id)}}">
           <svg class="c-icon c-icon-lg" data-toggle="tooltip" data-placement="top" title="{{$datoscomparativo->informe_id? 'Ver informe' : 'Emitir informe' }}">
