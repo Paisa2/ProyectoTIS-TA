@@ -56,5 +56,14 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'noauth' => \App\Http\Middleware\noAuthenticated::class,
+        // 'SolicitaAdq' => \App\Http\Middleware\SolicitaAdq::class,
+        'crear.rol' => \App\Http\Middleware\TienePermisoCrearRol::class,
+        'visualizar.rol' => \App\Http\Middleware\TienePermisoVisualizarRoles::class,
+        'editar.rol' => \App\Http\Middleware\TienePermisoEditarRol::class,
+        'eliminar.rol' => \App\Http\Middleware\TienePermisoEliminarRol::class,
+        'crear.solicitud.item' => \App\Http\Middleware\TienePermisoCrearSolicitudItem::class,
+        'visualizar.solicitud.item' => \App\Http\Middleware\TienePermisoVisualizarSolicitudesItems::class,
+
     ];
 }

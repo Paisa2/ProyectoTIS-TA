@@ -1,0 +1,95 @@
+/* .dropdown-item{
+background-color: #24252F;
+color: white;
+display: block;
+}
+.dropdown-item:hover{
+    background-color: #0d6efd;
+    color: white;
+}
+ul{
+    top: 20%;
+    width: 100%;
+    padding: 0%;
+}
+.dropdown-menu{
+    padding: 0%;
+} */
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+.c-dark-theme table{
+  color: #fff;
+}
+table,
+table td,
+table th {
+  border-color: #24252F !important;
+}
+.c-dark-theme table,
+.c-dark-theme table td,
+.c-dark-theme table th {
+  border-color: #fff !important;
+}
+.tabla-compra thead tr th, .tabla-alquiler thead tr th {
+  border: 1px solid #fff;
+  text-align: center;
+}
+.tabla-compra thead tr th.c-0, .tabla-alquiler thead tr th.c-0{
+  width: 5%;
+}
+.tabla-compra thead tr th.c-1, .tabla-alquiler thead tr th.c-1{
+  width: 35%;
+}
+.tabla-compra thead tr th.c-2, .tabla-alquiler thead tr th.c-2{
+  width: 20%;
+}
+td {
+  padding: 0;
+}
+.tabla-compra tbody tr td, .tabla-alquiler tbody tr td{
+  border: 1px solid #000;
+  height: 2rem;
+  text-align: center;
+}
+.tabla-compra tbody tr td > input, .tabla-alquiler tbody tr td > input,
+.tabla-compra tbody tr td > select, .tabla-alquiler tbody tr td > select{
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: center;
+}
+option {
+  background-color: #ebedef;
+}
+.c-dark-theme option {
+  background-color: #24252F;
+}
+.articulo input, .articulo span{
+  text-align: left !important;
+  padding-left: .8rem;
+}
+.articulo span {
+  display: inline-block;
+  width: 100%;
+}
+tr:last-child td:first-child {
+  padding-left: 1rem;
+  font-weight: bold;
+}
+.solicitud-a-options svg{
+  width: 1.7rem !important;
+  height: 1.7rem !important;
+  margin-left: 1.25rem;
+  cursor: pointer;
+}
+.solicitud-a-options .disabled svg{
+  fill: gray;
+  cursor: default;
+}
+.solicitud-a-options svg:focus{
+  outline: none;
+}

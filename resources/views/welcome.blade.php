@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
@@ -7,10 +7,9 @@
 
         <title>ProyectoTIS</title>
 
-        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-        <!-- Styles -->
+   
         <style>
             html, body {
                 background-color: #fff;
@@ -95,4 +94,27 @@
             </div>
         </div>
     </body>
-</html>
+</html> -->
+@extends('base')
+
+@section('head')
+<!-- aqui van los stilos css -->
+@endsection
+
+
+@section('main')
+
+<div style="color:white;">
+    asdasd
+    asdasd
+    asdasd
+    asdasd
+    asdasd
+    asdasd
+</div>
+
+@endsection
+
+@section('scripts')
+<!-- aqui van los scripts, javascript -->
+@endsection

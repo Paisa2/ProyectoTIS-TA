@@ -1,0 +1,141 @@
+.titulo span {
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  color: #fff;
+  margin-bottom: 15px;
+}
+table,
+table td,
+table th {
+  border-color: #24252F !important;
+}
+.c-dark-theme table,
+.c-dark-theme table td,
+.c-dark-theme table th {
+  border-color: #fff !important;
+}
+.fecha {
+  width: 10rem; 
+}
+.fecha th {
+  border: 1px solid #fff;
+  text-align: center;
+}
+.fecha td {
+  border: 1px solid #fff;
+  height: 2rem;
+}
+.numero {
+  display: block;
+  text-align: center;
+  margin: .5rem 0;
+  color: #fff;
+}
+div.row-0 {
+  border: 1px solid #24252F ;
+  color: #fff;
+  text-align: right;
+  letter-spacing: .7rem;
+  padding-right: 10.1%;
+}
+.c-dark-theme div.row-0 {
+  border: 1px solid #fff;
+}
+.comparativo th {
+  border: 1px solid #fff;
+  text-align: center;
+  font-weight: normal;
+}
+.comparativo thead tr th.c-1 {
+  width: 5%;
+}
+.comparativo thead tr th.c-2 {
+  width: 6.5%;
+}
+.comparativo thead tr th.c-3 {
+  width: 41%;
+  letter-spacing: .7rem;
+}
+.comparativo thead tr th.c-4 {
+  width: 9.5%;
+}
+.comparativo tbody tr td {
+  height: 2em;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  border-bottom: 1px dotted #fff;
+}
+.comparativo tbody tr:last-child td {
+  border-bottom: 1px solid #fff;
+}
+.observaciones {
+  color: #fff;
+}
+.form-label {
+  margin: 0 !important;
+  margin-right: 3px !important;
+}
+#observaciones {
+  display: inline-block;
+  width: 90%;
+  line-height: 1em;
+  border: none;
+  border-bottom: 1px dotted #fff;
+  border-radius: 0;
+  padding-bottom: 0;
+  padding-left: 5px;
+}
+.informacion th {
+  border: 1px solid #fff;
+  text-align: center;
+  font-weight: normal;
+}
+.informacion td {
+  border: 1px solid #fff;
+  height: 2.5rem;
+}
+.lavelcompa{
+  margin-bottom: 10px;
+}
+.bb{
+  margin-top: 0.5rem !important;
+}
+td{
+  text-align: center;
+}
+.dd{
+  text-align: unset; 
+  padding-left: 10px !important;
+}
+.lavelcompad{
+  margin-bottom: 0px !important; 
+}
+.r-1.active,
+.r-2.active,
+.r-3.active,
+.r-4.active,
+.r-5.active{
+  background-color: #AA5511;
+}
+.c-dark-theme .r-1.active,
+.c-dark-theme .r-2.active,
+.c-dark-theme .r-3.active,
+.c-dark-theme .r-4.active,
+.c-dark-theme .r-5.active{
+  background-color: #AA5511;
+}
+.comparativo-options a svg{
+  width: 1.7rem !important;
+  height: 1.7rem !important;
+  margin-left: 1.25rem;
+}
+.comparativo-options a svg:focus{
+  outline: none;
+}

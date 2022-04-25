@@ -1,0 +1,21 @@
+.submit {
+  display: flex;
+  justify-content: center;
+}
+.container h3{
+  text-align: center;
+  font-size: 150%;   
+}
+.soli{
+  border: 1px solid #000;
+  border-radius: 5px;
+  display:flow-root;
+  padding: 5px;
+  height: 5rem;
+}
+.c-dark-theme .soli {
+  border-color: #fff;;
+}
+.table{
+  margin: center;
+}

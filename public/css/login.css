@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body, html{
+    height: 100%;
+}
+body{
+    /* background-image: url(../imagen/fondo\ oficial.jpg); */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #212529;
+}
+.pane {
+    width: 100%;
+}
+#navbar {
+    padding-bottom: 0 !important;
+}
+/* .abs-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:  calc(100vh - 60px);
+
+} */
+.pane {
+    margin-top: 4.5rem;
+}
+.form {
+    margin: auto;
+}
+.form{
+    width: 35%;
+    background-color: #24252F;
+    color:#fff !important;
+    border: 1px solid #fff;
+    box-shadow:none;
+    border-radius: 10px;
+}
+.form * {
+    color: #fff !important;
+    border-color: #ebedef !important;
+}
+.form-control::placeholder {
+    color: #CCC;
+}
+.form h2{
+    color:#fff;
+    text-align: center;
+    font-size: 25px;
+}
+.form h3{
+    color: rgb(245, 239, 239);
+    font-size: 15px;
+    text-align: center;
+}
+.iconCheck{
+    position: relative;
+}
+.form .fas{
+    position: absolute;
+    padding: 20px;
+    left:-15px;
+    font-size: 22px;
+    color: rgb(245, 240, 240);
+    
+}
+.border input[type="text"],
+.border input[type="password"]{
+    border: 0;
+    margin: -5px auto;
+    font-size: 15px;
+    padding-left: 40px ;
+    color:#fff !important;
+    border: 1px solid #fff;
+}
+.border button[type="submit"]{ 
+    height: 40px;
+    margin:20px auto;
+    text-align: center;
+}
+.alert{
+    padding: 0.5rem 1rem;
+}
+@media(max-width:768px){
+    .form{
+        width: 80%;
+    }
+}
+@media(max-width:480px){
+    .form{
+        width: 70%;
+    }
+}
+
+#logo {
+    padding: 7px 0;
+    display: flex;
+    justify-content: center;
+}
+#logo img {
+    width: 40%;
+}
+
+form {
+    margin-top: 0;
+}
+
+.nav-tabs {
+    border: 0 !important;
+}
+
+.user-img img{
+    width: 450px; height: 450px;
+}
+
+.user-imagen img{
+    width: 250px; height: 100px;
+}
+
+.user-image img{
+    width: 50px; height: 20px;
+}
+
+h2{
+    color: #180952;
+    font-weight:600;
+    
+}
+h4{
+    color: rgb(4, 4, 12);
+    font-weight:600;
+}
+
+
+.nav-link:not(.active):focus,
+.nav-link:hover {
+    outline: none !important;
+    color: #fff;
+}
